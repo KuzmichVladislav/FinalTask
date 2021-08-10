@@ -1,4 +1,4 @@
-package com.company.gum.entity.userImpl;
+package com.company.gum.entity.user_impl;
 
 import com.company.gum.entity.AbstractEntity;
 
@@ -10,18 +10,16 @@ public class User extends AbstractEntity {
     protected String name;
     protected String surname;
     protected boolean isActive;
+    protected String profileImage;
+    protected String mail;
+    private boolean verification;
 
-//private String imagePath;
-
-    public User() {
+    public boolean isVerification() {
+        return verification;
     }
 
-    public boolean isActive() {
-        return isActive;
-    }
-
-    public void setActive(boolean active) {
-        isActive = active;
+    public void setVerification(boolean verification) {
+        this.verification = verification;
     }
 
     public String getLogin() {
@@ -64,43 +62,57 @@ public class User extends AbstractEntity {
         this.surname = surname;
     }
 
-    /*public String getImagePath() {
-        return imagePath;
+    public boolean isActive() {
+        return isActive;
     }
 
-    public void setImagePath(String imagePath) {
-        this.imagePath = imagePath;
-    }*/
+    public void setActive(boolean active) {
+        isActive = active;
+    }
 
+    public String getProfileImage() {
+        return profileImage;
+    }
 
-/*    @Override
+    public void setProfileImage(String profileImage) {
+        this.profileImage = profileImage;
+    }
+
+    public String getMail() {
+        return mail;
+    }
+
+    public void setMail(String mail) {
+        this.mail = mail;
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof User)) return false;
 
         User user = (User) o;
 
-        if (isVerification() != user.isVerification()) return false;
-        if (getLogin() != null ? !getLogin().equals(user.getLogin()) : user.getLogin() != null) return false;
-        if (getPassword() != null ? !getPassword().equals(user.getPassword()) : user.getPassword() != null)
-            return false;
+        if (isActive() != user.isActive()) return false;
+        if (!getLogin().equals(user.getLogin())) return false;
+        if (!getPassword().equals(user.getPassword())) return false;
         if (getRole() != user.getRole()) return false;
-        if (getName() != null ? !getName().equals(user.getName()) : user.getName() != null) return false;
-        if (getSurname() != null ? !getSurname().equals(user.getSurname()) : user.getSurname() != null) return false;
-        return getImagePath() != null ? getImagePath().equals(user.getImagePath()) : user.getImagePath() == null;
+        if (!getName().equals(user.getName())) return false;
+        if (!getSurname().equals(user.getSurname())) return false;
+        return getMail().equals(user.getMail());
     }
 
     @Override
     public int hashCode() {
-        int result = getLogin() != null ? getLogin().hashCode() : 0;
-        result = 31 * result + (getPassword() != null ? getPassword().hashCode() : 0);
-        result = 31 * result + (getRole() != null ? getRole().hashCode() : 0);
-        result = 31 * result + (getName() != null ? getName().hashCode() : 0);
-        result = 31 * result + (getSurname() != null ? getSurname().hashCode() : 0);
-        result = 31 * result + (getImagePath() != null ? getImagePath().hashCode() : 0);
-        result = 31 * result + (isVerification() ? 1 : 0);
+        int result = getLogin().hashCode();
+        result = 31 * result + getPassword().hashCode();
+        result = 31 * result + getRole().hashCode();
+        result = 31 * result + getName().hashCode();
+        result = 31 * result + getSurname().hashCode();
+        result = 31 * result + (isActive() ? 1 : 0);
+        result = 31 * result + getMail().hashCode();
         return result;
-    }*/
+    }
 
     @Override
     public String toString() {
@@ -111,6 +123,9 @@ public class User extends AbstractEntity {
         sb.append(", name='").append(name).append('\'');
         sb.append(", surname='").append(surname).append('\'');
         sb.append(", isActive=").append(isActive);
+        sb.append(", profileImage='").append(profileImage).append('\'');
+        sb.append(", mail='").append(mail).append('\'');
+        sb.append(", verification=").append(verification);
         sb.append(", id=").append(id);
         sb.append('}');
         return sb.toString();

@@ -1,8 +1,9 @@
 package com.company.gum.pool;
 
 import com.company.gum.util.PropertyLoader;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
-import java.lang.reflect.InvocationTargetException;
 import java.sql.Connection;
 import java.sql.Driver;
 import java.sql.DriverManager;
@@ -16,9 +17,10 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 public class ConnectionPool {
 
-    private static final String PROPERTY_PATH = "db/mysql.properties";
-    private int numberOfConnections;
-    private BlockingQueue<ProxyConnection> awaitingConnections;
+    private static final Logger logger = LogManager.getLogger();
+    private static final String PROPERTY_PATH = "database/mysql.properties";
+    private int numberOfConnections = 10;
+    private BlockingQueue<ProxyConnection> awaitingConnections = new ArrayBlockingQueue<>(numberOfConnections);
     private Driver driver;
     private static AtomicBoolean isCreated = new AtomicBoolean(false);
     private static ConnectionPool instance;
@@ -27,22 +29,18 @@ public class ConnectionPool {
     private ConnectionPool() {
 
         Properties property = PropertyLoader.loadProperty(PROPERTY_PATH);
-        numberOfConnections = 5;
-        this.awaitingConnections = new ArrayBlockingQueue<>(numberOfConnections);
 
         try {
             driver = new com.mysql.cj.jdbc.Driver();
             DriverManager.registerDriver(driver);
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-        for (int i = 0; i < numberOfConnections; i++) {
-            try {
-                ProxyConnection connection = new ProxyConnection(DriverManager.getConnection(property.getProperty("db.url"),property));
+
+            for (int i = 0; i < numberOfConnections; i++) {
+                ProxyConnection connection = new ProxyConnection(DriverManager.getConnection(property.getProperty("db.url"), property));
                 awaitingConnections.offer(connection);
-            } catch (SQLException e) {
-                e.printStackTrace();
             }
+        } catch (SQLException e) {
+            logger.error("Something wrong with database file!", e);
+            e.printStackTrace();
         }
     }
 
@@ -50,6 +48,7 @@ public class ConnectionPool {
         if (!isCreated.get()) {
             initPool();
             isCreated.set(true);
+            logger.debug("connection pool created successfully \"{}\"", instance);
         }
         return instance;
     }
@@ -66,6 +65,9 @@ public class ConnectionPool {
             connection = awaitingConnections.take();
             occupiedConnections.add(connection);
         } catch (InterruptedException e) {
+            logger.error("Connection interrupted", e);
+            e.printStackTrace();
+            Thread.currentThread().interrupt();
         }
         return connection;
     }
@@ -76,19 +78,20 @@ public class ConnectionPool {
 
     public void closeAllConnections() {
         for (int i = 0; i < numberOfConnections; i++) {
-
-            ProxyConnection connection = null;
+            ProxyConnection connection;
             try {
                 connection = awaitingConnections.take();
-            } catch (InterruptedException e) {
+                connection.reallyClose();
+            } catch (InterruptedException | SQLException e) {
+                logger.error("Connection interrupted", e);
                 e.printStackTrace();
+                Thread.currentThread().interrupt();
             }
-            assert connection != null;
-            connection.reallyClose();
             try {
                 DriverManager.deregisterDriver(driver);
-            } catch (SQLException throwables) {
-                throwables.printStackTrace();
+            } catch (SQLException e) {
+                logger.error(e);
+                e.printStackTrace();
             }
         }
     }

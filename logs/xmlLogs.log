@@ -1,3 +1,2 @@
-[INFO ] 2021-08-09 09:31:01,239 UserDaoImpl.findById() - User with id "1" was found
-[INFO ] 2021-08-09 09:31:01,254 UserDaoImpl.findByLogin() - User with login "client" was found
-[DEBUG] 2021-08-09 09:31:01,277 UserDaoImpl.delete() - User with id "2" has been deleted
+[DEBUG] 2021-08-10 11:48:08,223 ConnectionPool.getInstance() - connection pool created successfully "com.company.gum.pool.ConnectionPool@70ab2d48"
+[DEBUG] 2021-08-10 11:48:08,285 UserDaoImpl.restoreUser() - User with id "4" has been restored

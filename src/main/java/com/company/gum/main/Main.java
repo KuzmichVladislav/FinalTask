@@ -1,40 +1,24 @@
 package com.company.gum.main;
 
+import com.company.gum.dao.impl.ClientDaoImpl;
 import com.company.gum.dao.impl.UserDaoImpl;
-import com.company.gum.entity.userImpl.User;
+import com.company.gum.entity.user_impl.Client;
 import com.company.gum.exception.DaoException;
 
+import java.sql.SQLException;
+
 public class Main {
-    public static void main(String[] args) {
-        User user = null;
+    public static void main(String[] args) throws SQLException, DaoException {
+        UserDaoImpl.getInstance().restoreUser(4);
+        Client client = new Client();
 
-        try {
-            user = UserDaoImpl.getInstance().findById(1);
-        } catch (DaoException e) {
-            e.printStackTrace();
-        }
-
-        System.out.println(user);
-
-        try {
-            user = UserDaoImpl.getInstance().findByLogin("client");
-        } catch (DaoException e) {
-            e.printStackTrace();
-        }
-
-        System.out.println(user);
-
-
-       UserDaoImpl userDao = (UserDaoImpl) UserDaoImpl.getInstance();
-
-        try {
-            userDao.delete(2);
-        } catch (DaoException e) {
-            e.printStackTrace();
-        }
-
-        System.out.println(user);
-
+        client.setLogin("firstLogin");
+        client.setPassword("aloha");
+        client.setName("Ivan");
+        client.setSurname("Ivanov");
+        client.setMail("123@jas.by");
+        client.setPhone("9379992");
+        Client client2 = ClientDaoImpl.getInstance().create(client);
 
     }
 

@@ -1,4 +1,4 @@
-package com.company.gum.entity.userImpl;
+package com.company.gum.entity.user_impl;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -8,7 +8,6 @@ public class Client extends User {
     private Integer discount;
     private Integer discountLevel;
     private String phone;
-    private String mail;
     private BigDecimal money;
 
     public Client() {
@@ -47,14 +46,6 @@ public class Client extends User {
         this.phone = phone;
     }
 
-    public String getMail() {
-        return mail;
-    }
-
-    public void setMail(String mail) {
-        this.mail = mail;
-    }
-
     public BigDecimal getMoney() {
         return money;
     }
@@ -71,26 +62,21 @@ public class Client extends User {
 
         Client client = (Client) o;
 
-        if (getRegisterDate() != null ? !getRegisterDate().equals(client.getRegisterDate()) : client.getRegisterDate() != null)
-            return false;
-        if (getDiscount() != null ? !getDiscount().equals(client.getDiscount()) : client.getDiscount() != null)
-            return false;
-        if (getDiscountLevel() != null ? !getDiscountLevel().equals(client.getDiscountLevel()) : client.getDiscountLevel() != null)
-            return false;
+        if (!getRegisterDate().equals(client.getRegisterDate())) return false;
+        if (!getDiscount().equals(client.getDiscount())) return false;
+        if (!getDiscountLevel().equals(client.getDiscountLevel())) return false;
         if (getPhone() != null ? !getPhone().equals(client.getPhone()) : client.getPhone() != null) return false;
-        if (getMail() != null ? !getMail().equals(client.getMail()) : client.getMail() != null) return false;
-        return getMoney() != null ? getMoney().equals(client.getMoney()) : client.getMoney() == null;
+        return getMoney().equals(client.getMoney());
     }
 
     @Override
     public int hashCode() {
         int result = super.hashCode();
-        result = 31 * result + (getRegisterDate() != null ? getRegisterDate().hashCode() : 0);
-        result = 31 * result + (getDiscount() != null ? getDiscount().hashCode() : 0);
-        result = 31 * result + (getDiscountLevel() != null ? getDiscountLevel().hashCode() : 0);
+        result = 31 * result + getRegisterDate().hashCode();
+        result = 31 * result + getDiscount().hashCode();
+        result = 31 * result + getDiscountLevel().hashCode();
         result = 31 * result + (getPhone() != null ? getPhone().hashCode() : 0);
-        result = 31 * result + (getMail() != null ? getMail().hashCode() : 0);
-        result = 31 * result + (getMoney() != null ? getMoney().hashCode() : 0);
+        result = 31 * result + getMoney().hashCode();
         return result;
     }
 
@@ -101,11 +87,15 @@ public class Client extends User {
         sb.append(", discount=").append(discount);
         sb.append(", discountLevel=").append(discountLevel);
         sb.append(", phone='").append(phone).append('\'');
-        sb.append(", mail='").append(mail).append('\'');
         sb.append(", money=").append(money);
         sb.append(", login='").append(login).append('\'');
         sb.append(", password='").append(password).append('\'');
         sb.append(", role=").append(role);
+        sb.append(", name='").append(name).append('\'');
+        sb.append(", surname='").append(surname).append('\'');
+        sb.append(", isActive=").append(isActive);
+        sb.append(", profileImage='").append(profileImage).append('\'');
+        sb.append(", mail='").append(mail).append('\'');
         sb.append(", id=").append(id);
         sb.append('}');
         return sb.toString();

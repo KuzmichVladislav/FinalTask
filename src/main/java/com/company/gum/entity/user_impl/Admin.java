@@ -1,4 +1,4 @@
-package com.company.gum.entity.userImpl;
+package com.company.gum.entity.user_impl;
 
 public class Admin extends User {
 
