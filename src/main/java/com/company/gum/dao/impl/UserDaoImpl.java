@@ -38,7 +38,7 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public User findUserById(int userId) throws DaoException {
-        User user = null;
+        User user = new User();
         try (Connection connection = ConnectionPool.getInstance().takeConnection();
              PreparedStatement statement = connection.prepareStatement(FIND_USER_BY_ID)) {
             statement.setInt(1, userId);
