@@ -1,2 +1,2 @@
-[DEBUG] 2021-08-11 10:43:21,612 ConnectionPool.getInstance() - connection pool created successfully "com.company.gum.pool.ConnectionPool@3a393455"
-[DEBUG] 2021-08-11 10:43:21,699 ClientDaoImpl.createClient() - Client Client{registerDate=null, discount=null, discountLevel=null, phone='9379993', money=null, login='firstLogin', password='aloha', role=CLIENT, name='Pert', surname='Petrov', isActive=false, profileImage='null', mail='456@jas.by', id=13} was created
+[DEBUG] 2021-08-11 10:58:38,490 ConnectionPool.getInstance() - connection pool created successfully "com.company.gum.pool.ConnectionPool@3a393455"
+[DEBUG] 2021-08-11 10:58:38,584 TrainerDaoImpl.create() - Trainer Trainer{registerDate=null, phone='9379993', mail='56@jas.by', login='secondLogin', password='aloha', role=TRAINER, name='Pert', surname='Petrov', isActive=false, profileImage='null', mail='56@jas.by', id=14} was created

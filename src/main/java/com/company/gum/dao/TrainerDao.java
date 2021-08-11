@@ -8,13 +8,13 @@ import java.util.List;
 
 public interface TrainerDao {
 
-    Trainer create(Trainer trainer) throws SQLException, DaoException;
+    Trainer createTrainer(Trainer trainer) throws SQLException, DaoException;
 
-    boolean update(Trainer trainer);
+    boolean updateTrainer(Trainer trainer) throws DaoException;
 
-    Trainer findTrainerById(int trainerId);
+    Trainer findTrainerById(int trainerId) throws DaoException;
 
-    List<Trainer> findAllTrainer();
+    List<Trainer> findAllTrainer() throws DaoException;
 
-    List<Trainer> findAllActiveTrainer();
+    List<Trainer> findAllActiveTrainer() throws DaoException;
 }

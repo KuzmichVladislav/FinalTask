@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 public class Trainer extends User {
 
     private LocalDateTime registerDate;
-    private int phone;
+    private String phone;
     private String mail;
 
     public Trainer() {
@@ -20,11 +20,11 @@ public class Trainer extends User {
         this.registerDate = registerDate;
     }
 
-    public int getPhone() {
+    public String getPhone() {
         return phone;
     }
 
-    public void setPhone(int phone) {
+    public void setPhone(String phone) {
         this.phone = phone;
     }
 
@@ -44,9 +44,9 @@ public class Trainer extends User {
 
         Trainer trainer = (Trainer) o;
 
-        if (getPhone() != trainer.getPhone()) return false;
         if (getRegisterDate() != null ? !getRegisterDate().equals(trainer.getRegisterDate()) : trainer.getRegisterDate() != null)
             return false;
+        if (getPhone() != null ? !getPhone().equals(trainer.getPhone()) : trainer.getPhone() != null) return false;
         return getMail() != null ? getMail().equals(trainer.getMail()) : trainer.getMail() == null;
     }
 
@@ -54,7 +54,7 @@ public class Trainer extends User {
     public int hashCode() {
         int result = super.hashCode();
         result = 31 * result + (getRegisterDate() != null ? getRegisterDate().hashCode() : 0);
-        result = 31 * result + getPhone();
+        result = 31 * result + (getPhone() != null ? getPhone().hashCode() : 0);
         result = 31 * result + (getMail() != null ? getMail().hashCode() : 0);
         return result;
     }
@@ -63,11 +63,16 @@ public class Trainer extends User {
     public String toString() {
         final StringBuilder sb = new StringBuilder("Trainer{");
         sb.append("registerDate=").append(registerDate);
-        sb.append(", phone=").append(phone);
+        sb.append(", phone='").append(phone).append('\'');
         sb.append(", mail='").append(mail).append('\'');
         sb.append(", login='").append(login).append('\'');
         sb.append(", password='").append(password).append('\'');
         sb.append(", role=").append(role);
+        sb.append(", name='").append(name).append('\'');
+        sb.append(", surname='").append(surname).append('\'');
+        sb.append(", isActive=").append(isActive);
+        sb.append(", profileImage='").append(profileImage).append('\'');
+        sb.append(", mail='").append(mail).append('\'');
         sb.append(", id=").append(id);
         sb.append('}');
         return sb.toString();

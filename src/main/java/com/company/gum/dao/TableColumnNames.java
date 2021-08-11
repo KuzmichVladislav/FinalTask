@@ -22,4 +22,6 @@ public class TableColumnNames {
     public static final String DISCOUNT_TYPE = "discount_type";
     public static final String MONEY = "money";
 
+    public static final String TRAINER_ID = "trainer_id";
+
 }

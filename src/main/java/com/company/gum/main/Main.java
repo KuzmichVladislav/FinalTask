@@ -1,25 +1,23 @@
 package com.company.gum.main;
 
-import com.company.gum.dao.impl.ClientDaoImpl;
-import com.company.gum.dao.impl.UserDaoImpl;
-import com.company.gum.entity.user_impl.Client;
+import com.company.gum.dao.impl.TrainerDaoImpl;
+import com.company.gum.entity.user_impl.Trainer;
 import com.company.gum.exception.DaoException;
 
-import java.math.BigDecimal;
 import java.sql.SQLException;
 
 public class Main {
     public static void main(String[] args) throws SQLException, DaoException {
 
-        Client client = new Client();
+        Trainer trainer = new Trainer();
 
-        client.setLogin("firstLogin");
-        client.setPassword("aloha");
-        client.setName("Pert");
-        client.setSurname("Petrov");
-        client.setMail("456@jas.by");
-        client.setPhone("9379993");
-        ClientDaoImpl.getInstance().createClient(client);
+        trainer.setLogin("secondLogin");
+        trainer.setPassword("aloha");
+        trainer.setName("Pert");
+        trainer.setSurname("Petrov");
+        trainer.setMail("56@jas.by");
+        trainer.setPhone("9379993");
+        TrainerDaoImpl.getInstance().createTrainer(trainer);
 
        // ClientDaoImpl.getInstance().withdrawal(1, new BigDecimal(5500.5));
 

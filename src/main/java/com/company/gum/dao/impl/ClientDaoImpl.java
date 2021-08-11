@@ -24,10 +24,10 @@ public class ClientDaoImpl implements ClientDao {
     private static final String VERIFICATION = "UPDATE users SET is_active = true, is_verified = true WHERE user_id = ? AND is_verified = false";
     private static final String REFILL_MONEY = "UPDATE clients SET money = money + ? WHERE client_id = ?";
     private static final String WITHDRAW_MONEY = "UPDATE clients SET money = money + ? WHERE client_id = ?";
-    private static final String FIND_CLIENT_BY_ID = "SELECT client_id, register_date, phone_number, discount, discount_type, money, user_id, login, password, role, name, surname, is_active, profile_image, mail, is_verified FROM clients, users WHERE client_id = ?";
-    private static final String FIND_ALL_CLIENT = "SELECT client_id, register_date, phone_number, discount, discount_type, money, user_id, login, password, role, name, surname, is_active, profile_image, mail, is_verified FROM clients, users";
-    private static final String FIND_ALL_ACTIVE_CLIENT = "SELECT client_id, register_date, phone_number, discount, discount_type, money, user_id, login, password, role, name, surname, is_active, profile_image, mail, is_verified FROM clients, users WHERE is_active = true";
-    private static final String FIND_ALL_CLIENT_BY_ANTHROPONYM = "SELECT client_id, register_date, phone_number, discount, discount_type, money, user_id, login, password, role, name, surname, is_active, profile_image, mail, is_verified FROM clients, users WHERE name = IFNULL(?, name) AND surname = IFNULL(?, surname)";
+    private static final String FIND_CLIENT_BY_ID = "SELECT client_id, register_date, phone_number, discount, discount_type, money, login, password, role, name, surname, is_active, profile_image, mail, is_verified FROM clients, users WHERE client_id = ?";
+    private static final String FIND_ALL_CLIENT = "SELECT client_id, register_date, phone_number, discount, discount_type, money, login, password, role, name, surname, is_active, profile_image, mail, is_verified FROM clients, users";
+    private static final String FIND_ALL_ACTIVE_CLIENT = "SELECT client_id, register_date, phone_number, discount, discount_type, money, login, password, role, name, surname, is_active, profile_image, mail, is_verified FROM clients, users WHERE is_active = true";
+    private static final String FIND_ALL_CLIENT_BY_ANTHROPONYM = "SELECT client_id, register_date, phone_number, discount, discount_type, money, login, password, role, name, surname, is_active, profile_image, mail, is_verified FROM clients, users WHERE name = IFNULL(?, name) AND surname = IFNULL(?, surname)";
 
     private static ClientDao clientDao = new ClientDaoImpl();
 
@@ -292,22 +292,22 @@ public class ClientDaoImpl implements ClientDao {
         return resultArray;
     }
 
-    private Client getClientFromResultSet(ResultSet resultClientSet) throws SQLException {
+    private Client getClientFromResultSet(ResultSet resultSet) throws SQLException {
         Client client = new Client();
-        client.setId(resultClientSet.getInt(CLIENT_ID));
-        client.setLogin(resultClientSet.getString(USERS_LOGIN));
-        client.setPassword(resultClientSet.getString(USERS_PASSWORD));
-        client.setProfileImage(resultClientSet.getString(PROFILE_IMAGE));
-        client.setRole(UserRole.valueOf(resultClientSet.getString(USERS_ROLE).toUpperCase()));
-        client.setMail(resultClientSet.getString(MAIL));
-        client.setName(resultClientSet.getString(USERS_NAME));
-        client.setSurname(resultClientSet.getString(USERS_SURNAME));
-        client.setActive(resultClientSet.getBoolean(IS_ACTIVE));
-        client.setRegisterDate(resultClientSet.getTimestamp(REGISTER_DATE).toLocalDateTime());
-        client.setPhone(resultClientSet.getString(PHONE_NUMBER));
-        client.setDiscount(resultClientSet.getInt(DISCOUNT));
-        client.setDiscountLevel(resultClientSet.getInt(DISCOUNT_TYPE));
-        client.setMoney(resultClientSet.getBigDecimal(MONEY));
+        client.setId(resultSet.getInt(CLIENT_ID));
+        client.setLogin(resultSet.getString(USERS_LOGIN));
+        client.setPassword(resultSet.getString(USERS_PASSWORD));
+        client.setProfileImage(resultSet.getString(PROFILE_IMAGE));
+        client.setRole(UserRole.valueOf(resultSet.getString(USERS_ROLE).toUpperCase()));
+        client.setMail(resultSet.getString(MAIL));
+        client.setName(resultSet.getString(USERS_NAME));
+        client.setSurname(resultSet.getString(USERS_SURNAME));
+        client.setActive(resultSet.getBoolean(IS_ACTIVE));
+        client.setRegisterDate(resultSet.getTimestamp(REGISTER_DATE).toLocalDateTime());
+        client.setPhone(resultSet.getString(PHONE_NUMBER));
+        client.setDiscount(resultSet.getInt(DISCOUNT));
+        client.setDiscountLevel(resultSet.getInt(DISCOUNT_TYPE));
+        client.setMoney(resultSet.getBigDecimal(MONEY));
         return client;
     }
 }
