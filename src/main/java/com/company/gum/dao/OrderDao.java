@@ -1,18 +1,19 @@
 package com.company.gum.dao;
 
 import com.company.gum.entity.Order;
+import com.company.gum.exception.DaoException;
 
 import java.util.List;
 
 public interface OrderDao {
 
-    Order createOrder(Order order);
+    Order createOrder(Order order) throws DaoException;
 
-    boolean updateOrder(Order order);
+    boolean updateOrder(Order order) throws DaoException;
 
-    boolean deleteOrder(int orderId);
+    boolean deleteOrder(int orderId) throws DaoException;
 
-    boolean findOrder(int orderId);
+    Order findOrder(int orderId) throws DaoException;
 
     List<Order> findAllOrder();
 

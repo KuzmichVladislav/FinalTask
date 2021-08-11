@@ -1,6 +1,7 @@
 package com.company.gum.entity;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class Order extends AbstractEntity {
@@ -13,8 +14,8 @@ public class Order extends AbstractEntity {
     private LocalDateTime registerDate;
     private String exercises;
     private String nutrition;
-    private LocalDateTime startDate;
-    private LocalDateTime endDate;
+    private LocalDate startDate;
+    private LocalDate endDate;
     private BigDecimal price;
     private String clientComment;
     private OrderStatus orderStatus;
@@ -95,19 +96,19 @@ public class Order extends AbstractEntity {
         this.nutrition = nutrition;
     }
 
-    public LocalDateTime getStartDate() {
+    public LocalDate getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(LocalDateTime startDate) {
+    public void setStartDate(LocalDate startDate) {
         this.startDate = startDate;
     }
 
-    public LocalDateTime getEndDate() {
+    public LocalDate getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(LocalDateTime endDate) {
+    public void setEndDate(LocalDate endDate) {
         this.endDate = endDate;
     }
 
@@ -213,9 +214,10 @@ public class Order extends AbstractEntity {
         sb.append(", startDate=").append(startDate);
         sb.append(", endDate=").append(endDate);
         sb.append(", price=").append(price);
-        sb.append(", clientComment='").append(clientComment).append('\'');
+        sb.append(", clientReview='").append(clientComment).append('\'');
         sb.append(", orderStatus=").append(orderStatus);
         sb.append(", active=").append(active);
+        sb.append(", id=").append(id);
         sb.append('}');
         return sb.toString();
     }

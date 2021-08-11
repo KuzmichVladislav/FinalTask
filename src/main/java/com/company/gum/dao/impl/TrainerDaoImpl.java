@@ -39,7 +39,7 @@ public class TrainerDaoImpl implements TrainerDao {
     public Trainer createTrainer(Trainer trainer) throws DaoException {
         try (Connection connection = ConnectionPool.getInstance().takeConnection();
              PreparedStatement userStatement = connection.prepareStatement(CREATE_USER, Statement.RETURN_GENERATED_KEYS);
-             PreparedStatement clientStatement = connection.prepareStatement(CREATE_TRAINER)) {
+             PreparedStatement trainerStatement = connection.prepareStatement(CREATE_TRAINER)) {
             try {
                 connection.setAutoCommit(false);
                 userStatement.setString(1, trainer.getLogin());
@@ -57,13 +57,13 @@ public class TrainerDaoImpl implements TrainerDao {
                     trainer.setId(clientId);
                 }
 
-                clientStatement.setInt(1, trainer.getId());
+                trainerStatement.setInt(1, trainer.getId());
                 if (trainer.getPhone() != null) {
-                    clientStatement.setString(2, trainer.getPhone());
+                    trainerStatement.setString(2, trainer.getPhone());
                 } else {
-                    clientStatement.setNull(2, Types.NULL);
+                    trainerStatement.setNull(2, Types.NULL);
                 }
-                clientStatement.execute();
+                trainerStatement.execute();
 
                 connection.commit();
                 logger.debug("Trainer {} was created", trainer);
