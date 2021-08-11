@@ -1,2 +1,2 @@
-[DEBUG] 2021-08-10 11:48:08,223 ConnectionPool.getInstance() - connection pool created successfully "com.company.gum.pool.ConnectionPool@70ab2d48"
-[DEBUG] 2021-08-10 11:48:08,285 UserDaoImpl.restoreUser() - User with id "4" has been restored
+[DEBUG] 2021-08-11 10:43:21,612 ConnectionPool.getInstance() - connection pool created successfully "com.company.gum.pool.ConnectionPool@3a393455"
+[DEBUG] 2021-08-11 10:43:21,699 ClientDaoImpl.createClient() - Client Client{registerDate=null, discount=null, discountLevel=null, phone='9379993', money=null, login='firstLogin', password='aloha', role=CLIENT, name='Pert', surname='Petrov', isActive=false, profileImage='null', mail='456@jas.by', id=13} was created
