@@ -1,4 +1,4 @@
-package com.company.gum.entity.user_impl;
+package com.company.gum.entity;
 
 import java.time.LocalDateTime;
 
@@ -65,15 +65,7 @@ public class Trainer extends User {
         sb.append("registerDate=").append(registerDate);
         sb.append(", phone='").append(phone).append('\'');
         sb.append(", mail='").append(mail).append('\'');
-        sb.append(", login='").append(login).append('\'');
-        sb.append(", password='").append(password).append('\'');
         sb.append(", role=").append(role);
-        sb.append(", name='").append(name).append('\'');
-        sb.append(", surname='").append(surname).append('\'');
-        sb.append(", isActive=").append(isActive);
-        sb.append(", profileImage='").append(profileImage).append('\'');
-        sb.append(", mail='").append(mail).append('\'');
-        sb.append(", id=").append(id);
         sb.append('}');
         return sb.toString();
     }

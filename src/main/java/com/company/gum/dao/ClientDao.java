@@ -1,6 +1,6 @@
 package com.company.gum.dao;
 
-import com.company.gum.entity.user_impl.Client;
+import com.company.gum.entity.Client;
 import com.company.gum.exception.DaoException;
 
 import java.math.BigDecimal;

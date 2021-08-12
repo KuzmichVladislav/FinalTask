@@ -217,7 +217,6 @@ public class Order extends AbstractEntity {
         sb.append(", clientReview='").append(clientComment).append('\'');
         sb.append(", orderStatus=").append(orderStatus);
         sb.append(", active=").append(active);
-        sb.append(", id=").append(id);
         sb.append('}');
         return sb.toString();
     }

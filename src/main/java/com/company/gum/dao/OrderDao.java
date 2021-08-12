@@ -15,14 +15,14 @@ public interface OrderDao {
 
     Order findOrder(int orderId) throws DaoException;
 
-    List<Order> findAllOrder();
+    List<Order> findAllOrder() throws DaoException;
 
-    List<Order> findOrderWithFilter(Order filter);
+    List<Order> findOrderWithFilter(Order filter) throws DaoException;
 
-    List<Order> findAllActiveOrder();
+    List<Order> findAllActiveOrder() throws DaoException;
 
-    List<Order> findActiveOrderByTrainer(int trainerId);
+    List<Order> findActiveOrderByTrainer(int trainerId) throws DaoException;
 
-    List<Order> findActiveOrderByClient(int clientId);
+    List<Order> findActiveOrderByClient(int clientId) throws DaoException;
 
 }

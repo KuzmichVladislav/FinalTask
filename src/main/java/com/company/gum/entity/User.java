@@ -1,18 +1,22 @@
-package com.company.gum.entity.user_impl;
-
-import com.company.gum.entity.AbstractEntity;
+package com.company.gum.entity;
 
 public class User extends AbstractEntity {
 
-    protected String login;
-    protected String password;
-    protected UserRole role;
-    protected String name;
-    protected String surname;
-    protected boolean isActive;
-    protected String profileImage;
-    protected String mail;
+    private String login;
+    private String password;
+    UserRole role;
+    private String name;
+    private String surname;
+    private boolean isActive;
+    private String profileImage;
+    private String mail;
     private boolean verification;
+
+    public enum UserRole {
+        ADMIN,
+        TRAINER,
+        CLIENT
+    }
 
     public boolean isVerification() {
         return verification;
@@ -126,7 +130,6 @@ public class User extends AbstractEntity {
         sb.append(", profileImage='").append(profileImage).append('\'');
         sb.append(", mail='").append(mail).append('\'');
         sb.append(", verification=").append(verification);
-        sb.append(", id=").append(id);
         sb.append('}');
         return sb.toString();
     }

@@ -1,6 +1,6 @@
 package com.company.gum.dao;
 
-import com.company.gum.entity.user_impl.User;
+import com.company.gum.entity.User;
 import com.company.gum.exception.DaoException;
 
 public interface UserDao {

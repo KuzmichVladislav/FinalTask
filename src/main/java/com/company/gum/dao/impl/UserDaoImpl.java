@@ -1,8 +1,7 @@
 package com.company.gum.dao.impl;
 
 import com.company.gum.dao.UserDao;
-import com.company.gum.entity.user_impl.User;
-import com.company.gum.entity.user_impl.UserRole;
+import com.company.gum.entity.User;
 import com.company.gum.exception.DaoException;
 import com.company.gum.pool.ConnectionPool;
 import org.apache.logging.log4j.LogManager;
@@ -46,7 +45,7 @@ public class UserDaoImpl implements UserDao {
 
             if (resultSet.next()) {
                 user = getUserFromResultSet(resultSet);
-                logger.info("User with id \"{}\" was found", user.getId());
+                logger.info("User with id \"{}\" was found: {}", user.getId(), user);
             }
         } catch (SQLException e) {
             throw new DaoException(e);
@@ -159,14 +158,14 @@ public class UserDaoImpl implements UserDao {
 
     private User getUserFromResultSet(ResultSet resultSet) throws SQLException {
         User user = new User();
-        user.setId(resultSet.getInt(USERS_ID));
-        user.setLogin(resultSet.getString(USERS_LOGIN));
-        user.setPassword(resultSet.getString(USERS_PASSWORD));
+        user.setId(resultSet.getInt(USER_ID));
+        user.setLogin(resultSet.getString(USER_LOGIN));
+        user.setPassword(resultSet.getString(USER_PASSWORD));
         user.setProfileImage(resultSet.getString(PROFILE_IMAGE));
-        user.setRole(UserRole.valueOf(resultSet.getString(USERS_ROLE).toUpperCase()));
+        user.setRole(User.UserRole.valueOf(resultSet.getString(USER_ROLE).toUpperCase()));
         user.setMail(resultSet.getString(MAIL));
-        user.setName(resultSet.getString(USERS_NAME));
-        user.setSurname(resultSet.getString(USERS_SURNAME));
+        user.setName(resultSet.getString(USER_NAME));
+        user.setSurname(resultSet.getString(USER_SURNAME));
         user.setActive(resultSet.getBoolean(IS_ACTIVE));
         return user;
     }

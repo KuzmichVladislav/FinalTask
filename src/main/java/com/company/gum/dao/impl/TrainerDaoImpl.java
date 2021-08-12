@@ -1,8 +1,8 @@
 package com.company.gum.dao.impl;
 
 import com.company.gum.dao.TrainerDao;
-import com.company.gum.entity.user_impl.Trainer;
-import com.company.gum.entity.user_impl.UserRole;
+import com.company.gum.entity.Trainer;
+import com.company.gum.entity.User;
 import com.company.gum.exception.DaoException;
 import com.company.gum.pool.ConnectionPool;
 import org.apache.logging.log4j.LogManager;
@@ -18,12 +18,60 @@ public class TrainerDaoImpl implements TrainerDao {
 
     private static final Logger logger = LogManager.getLogger();
 
-    private static final String CREATE_USER = "INSERT INTO users(login, password, name, surname, mail, role) VALUES (?,?,?,?,?,?)";
-    private static final String CREATE_TRAINER = "INSERT INTO trainers(trainer_id ,phone_number) VALUES (?, ?)";
-    private static final String UPDATE_TRAINER = "UPDATE trainers SET phone_number = IFNULL(?, phone_number) WHERE trainer_id = ?";
-    private static final String FIND_TRAINER_BY_ID = "SELECT trainer_id, register_date, phone_number, login, password, role, name, surname, is_active, profile_image, mail, is_verified FROM trainers, users WHERE trainer_id = ?";
-    private static final String FIND_ALL_TRAINER = "SELECT trainer_id, register_date, phone_number, login, password, role, name, surname, is_active, profile_image, mail, is_verified FROM trainers, users";
-    private static final String FIND_ALL_ACTIVE_TRAINER = "SELECT trainer_id, register_date, phone_number, login, password, role, name, surname, is_active, profile_image, mail, is_verified FROM trainers, users WHERE is_active = true";
+    private static final String CREATE_USER = "INSERT INTO users(login, password, name, surname, mail, role)\n" +
+            "VALUES (?, ?, ?, ?, ?, ?)";
+    private static final String CREATE_TRAINER = "INSERT INTO trainers(trainer_id, phone_number)\n" +
+            "VALUES (?, ?)";
+    private static final String UPDATE_TRAINER = "UPDATE trainers\n" +
+            "SET phone_number = IFNULL(?, phone_number)\n" +
+            "WHERE trainer_id = ?";
+    private static final String FIND_TRAINER_BY_ID = "SELECT trainer_id,\n" +
+            "       register_date,\n" +
+            "       phone_number,\n" +
+            "       login,\n" +
+            "       password,\n" +
+            "       role,\n" +
+            "       name,\n" +
+            "       surname,\n" +
+            "       is_active,\n" +
+            "       profile_image,\n" +
+            "       mail,\n" +
+            "       is_verified\n" +
+            "FROM trainers,\n" +
+            "     users\n" +
+            "WHERE trainer_id = ?\n" +
+            "  AND role = 'TRAINER'";
+    private static final String FIND_ALL_TRAINER = "SELECT trainer_id,\n" +
+            "       register_date,\n" +
+            "       phone_number,\n" +
+            "       login,\n" +
+            "       password,\n" +
+            "       role,\n" +
+            "       name,\n" +
+            "       surname,\n" +
+            "       is_active,\n" +
+            "       profile_image,\n" +
+            "       mail,\n" +
+            "       is_verified\n" +
+            "FROM trainers,\n" +
+            "     users\n" +
+            "WHERE role = 'TRAINER'";
+    private static final String FIND_ALL_ACTIVE_TRAINER = "SELECT trainer_id,\n" +
+            "       register_date,\n" +
+            "       phone_number,\n" +
+            "       login,\n" +
+            "       password,\n" +
+            "       role,\n" +
+            "       name,\n" +
+            "       surname,\n" +
+            "       is_active,\n" +
+            "       profile_image,\n" +
+            "       mail,\n" +
+            "       is_verified\n" +
+            "FROM trainers,\n" +
+            "     users\n" +
+            "WHERE is_active = true\n" +
+            "  AND role = 'TRAINER'";
 
 
     private static TrainerDao trainerDao = new TrainerDaoImpl();
@@ -169,13 +217,13 @@ public class TrainerDaoImpl implements TrainerDao {
     private Trainer getTrainerFromResultSet(ResultSet resultSet) throws SQLException {
         Trainer trainer = new Trainer();
         trainer.setId(resultSet.getInt(TRAINER_ID));
-        trainer.setLogin(resultSet.getString(USERS_LOGIN));
-        trainer.setPassword(resultSet.getString(USERS_PASSWORD));
+        trainer.setLogin(resultSet.getString(USER_LOGIN));
+        trainer.setPassword(resultSet.getString(USER_PASSWORD));
         trainer.setProfileImage(resultSet.getString(PROFILE_IMAGE));
-        trainer.setRole(UserRole.valueOf(resultSet.getString(USERS_ROLE).toUpperCase()));
+        trainer.setRole(User.UserRole.valueOf(resultSet.getString(USER_ROLE).toUpperCase()));
         trainer.setMail(resultSet.getString(MAIL));
-        trainer.setName(resultSet.getString(USERS_NAME));
-        trainer.setSurname(resultSet.getString(USERS_SURNAME));
+        trainer.setName(resultSet.getString(USER_NAME));
+        trainer.setSurname(resultSet.getString(USER_SURNAME));
         trainer.setActive(resultSet.getBoolean(IS_ACTIVE));
         trainer.setRegisterDate(resultSet.getTimestamp(REGISTER_DATE).toLocalDateTime());
         trainer.setPhone(resultSet.getString(PHONE_NUMBER));

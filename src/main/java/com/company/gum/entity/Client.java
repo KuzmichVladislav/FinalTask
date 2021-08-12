@@ -1,4 +1,4 @@
-package com.company.gum.entity.user_impl;
+package com.company.gum.entity;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -88,15 +88,7 @@ public class Client extends User {
         sb.append(", discountLevel=").append(discountLevel);
         sb.append(", phone='").append(phone).append('\'');
         sb.append(", money=").append(money);
-        sb.append(", login='").append(login).append('\'');
-        sb.append(", password='").append(password).append('\'');
         sb.append(", role=").append(role);
-        sb.append(", name='").append(name).append('\'');
-        sb.append(", surname='").append(surname).append('\'');
-        sb.append(", isActive=").append(isActive);
-        sb.append(", profileImage='").append(profileImage).append('\'');
-        sb.append(", mail='").append(mail).append('\'');
-        sb.append(", id=").append(id);
         sb.append('}');
         return sb.toString();
     }

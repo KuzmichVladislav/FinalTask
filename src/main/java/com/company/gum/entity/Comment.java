@@ -3,82 +3,52 @@ package com.company.gum.entity;
 import java.time.LocalDateTime;
 
 public class Comment extends AbstractEntity {
-    private Integer clientId;
-    private String clientName;
-    private String clientLastName;
-    private String clientProfileImagePath;
-    private Integer trainerId;
-    private String trainerName;
-    private String trainerLastName;
-    private LocalDateTime registerDate;
+    private Integer userId;
+    private String userName;
+    private String userSurname;
+    private String profileImage;
+    private LocalDateTime commentDate;
     private String commentText;
     private Boolean active;
 
-    public Comment() {
+    public Integer getUserId() {
+        return userId;
     }
 
-    public Integer getClientId() {
-        return clientId;
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
-    public void setClientId(Integer clientId) {
-        this.clientId = clientId;
+    public String getUserName() {
+        return userName;
     }
 
-    public String getClientName() {
-        return clientName;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
-    public void setClientName(String clientName) {
-        this.clientName = clientName;
+    public String getUserSurname() {
+        return userSurname;
     }
 
-    public String getClientLastName() {
-        return clientLastName;
+    public void setUserSurname(String userSurname) {
+        this.userSurname = userSurname;
     }
 
-    public void setClientLastName(String clientLastName) {
-        this.clientLastName = clientLastName;
+    public String getProfileImage() {
+        return profileImage;
     }
 
-    public String getClientProfileImagePath() {
-        return clientProfileImagePath;
+    public void setProfileImage(String profileImage) {
+        this.profileImage = profileImage;
     }
 
-    public void setClientProfileImagePath(String clientProfileImagePath) {
-        this.clientProfileImagePath = clientProfileImagePath;
+    public LocalDateTime getCommentDate() {
+        return commentDate;
     }
 
-    public Integer getTrainerId() {
-        return trainerId;
-    }
-
-    public void setTrainerId(Integer trainerId) {
-        this.trainerId = trainerId;
-    }
-
-    public String getTrainerName() {
-        return trainerName;
-    }
-
-    public void setTrainerName(String trainerName) {
-        this.trainerName = trainerName;
-    }
-
-    public String getTrainerLastName() {
-        return trainerLastName;
-    }
-
-    public void setTrainerLastName(String trainerLastName) {
-        this.trainerLastName = trainerLastName;
-    }
-
-    public LocalDateTime getRegisterDate() {
-        return registerDate;
-    }
-
-    public void setRegisterDate(LocalDateTime registerDate) {
-        this.registerDate = registerDate;
+    public void setCommentDate(LocalDateTime commentDate) {
+        this.commentDate = commentDate;
     }
 
     public String getCommentText() {
@@ -104,21 +74,14 @@ public class Comment extends AbstractEntity {
 
         Comment comment = (Comment) o;
 
-        if (getClientId() != null ? !getClientId().equals(comment.getClientId()) : comment.getClientId() != null)
+        if (getUserId() != null ? !getUserId().equals(comment.getUserId()) : comment.getUserId() != null) return false;
+        if (getUserName() != null ? !getUserName().equals(comment.getUserName()) : comment.getUserName() != null)
             return false;
-        if (getClientName() != null ? !getClientName().equals(comment.getClientName()) : comment.getClientName() != null)
+        if (getUserSurname() != null ? !getUserSurname().equals(comment.getUserSurname()) : comment.getUserSurname() != null)
             return false;
-        if (getClientLastName() != null ? !getClientLastName().equals(comment.getClientLastName()) : comment.getClientLastName() != null)
+        if (getProfileImage() != null ? !getProfileImage().equals(comment.getProfileImage()) : comment.getProfileImage() != null)
             return false;
-        if (getClientProfileImagePath() != null ? !getClientProfileImagePath().equals(comment.getClientProfileImagePath()) : comment.getClientProfileImagePath() != null)
-            return false;
-        if (getTrainerId() != null ? !getTrainerId().equals(comment.getTrainerId()) : comment.getTrainerId() != null)
-            return false;
-        if (getTrainerName() != null ? !getTrainerName().equals(comment.getTrainerName()) : comment.getTrainerName() != null)
-            return false;
-        if (getTrainerLastName() != null ? !getTrainerLastName().equals(comment.getTrainerLastName()) : comment.getTrainerLastName() != null)
-            return false;
-        if (getRegisterDate() != null ? !getRegisterDate().equals(comment.getRegisterDate()) : comment.getRegisterDate() != null)
+        if (getCommentDate() != null ? !getCommentDate().equals(comment.getCommentDate()) : comment.getCommentDate() != null)
             return false;
         if (getCommentText() != null ? !getCommentText().equals(comment.getCommentText()) : comment.getCommentText() != null)
             return false;
@@ -127,14 +90,11 @@ public class Comment extends AbstractEntity {
 
     @Override
     public int hashCode() {
-        int result = getClientId() != null ? getClientId().hashCode() : 0;
-        result = 31 * result + (getClientName() != null ? getClientName().hashCode() : 0);
-        result = 31 * result + (getClientLastName() != null ? getClientLastName().hashCode() : 0);
-        result = 31 * result + (getClientProfileImagePath() != null ? getClientProfileImagePath().hashCode() : 0);
-        result = 31 * result + (getTrainerId() != null ? getTrainerId().hashCode() : 0);
-        result = 31 * result + (getTrainerName() != null ? getTrainerName().hashCode() : 0);
-        result = 31 * result + (getTrainerLastName() != null ? getTrainerLastName().hashCode() : 0);
-        result = 31 * result + (getRegisterDate() != null ? getRegisterDate().hashCode() : 0);
+        int result = getUserId() != null ? getUserId().hashCode() : 0;
+        result = 31 * result + (getUserName() != null ? getUserName().hashCode() : 0);
+        result = 31 * result + (getUserSurname() != null ? getUserSurname().hashCode() : 0);
+        result = 31 * result + (getProfileImage() != null ? getProfileImage().hashCode() : 0);
+        result = 31 * result + (getCommentDate() != null ? getCommentDate().hashCode() : 0);
         result = 31 * result + (getCommentText() != null ? getCommentText().hashCode() : 0);
         result = 31 * result + (getActive() != null ? getActive().hashCode() : 0);
         return result;
@@ -143,17 +103,13 @@ public class Comment extends AbstractEntity {
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("Comment{");
-        sb.append("clientId=").append(clientId);
-        sb.append(", clientName='").append(clientName).append('\'');
-        sb.append(", clientLastName='").append(clientLastName).append('\'');
-        sb.append(", clientProfileImagePath='").append(clientProfileImagePath).append('\'');
-        sb.append(", trainerId=").append(trainerId);
-        sb.append(", trainerName='").append(trainerName).append('\'');
-        sb.append(", trainerLastName='").append(trainerLastName).append('\'');
-        sb.append(", registerDate=").append(registerDate);
+        sb.append("userId=").append(userId);
+        sb.append(", userName='").append(userName).append('\'');
+        sb.append(", userSurname='").append(userSurname).append('\'');
+        sb.append(", profileImage='").append(profileImage).append('\'');
+        sb.append(", registerDate=").append(commentDate);
         sb.append(", commentText='").append(commentText).append('\'');
         sb.append(", active=").append(active);
-        sb.append(", id=").append(id);
         sb.append('}');
         return sb.toString();
     }
