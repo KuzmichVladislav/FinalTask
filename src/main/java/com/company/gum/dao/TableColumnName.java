@@ -1,8 +1,8 @@
 package com.company.gum.dao;
 
-public class TableColumnNames {
+public class TableColumnName {
 
-    private TableColumnNames() {
+    private TableColumnName() {
     }
 
     public static final String USER_ID = "user_id";

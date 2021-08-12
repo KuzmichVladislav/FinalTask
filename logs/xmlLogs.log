@@ -1,2 +1,2 @@
-[DEBUG] 2021-08-12 13:12:34,538 ConnectionPool.getInstance() - connection pool created successfully "com.company.gum.pool.ConnectionPool@ebb6851"
-[DEBUG] 2021-08-12 13:12:34,617 CommentDaoImpl.commentCount() - CountAll limit active - true, count - 1
+[DEBUG] 2021-08-12 15:39:13,540 ConnectionPool.getInstance() - Connection pool created, number of connections - 4
+[DEBUG] 2021-08-12 15:39:13,603 CommentDaoImpl.commentCount() - Count of active comments  1

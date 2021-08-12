@@ -13,113 +13,112 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.company.gum.dao.TableColumnNames.*;
+import static com.company.gum.dao.TableColumnName.*;
 
 public class ClientDaoImpl implements ClientDao {
 
     private static final Logger logger = LogManager.getLogger();
-    private static final String CREATE_USER = "INSERT INTO users(login, password, name, surname, mail)\n" +
-            "VALUES (?, ?, ?, ?, ?)";
-    private static final String CREATE_CLIENT = "INSERT INTO clients(client_id, phone_number)\n" +
-            "VALUES (?, ?)";
-    private static final String UPDATE_CLIENT = "UPDATE clients\n" +
-            "SET phone_number  = IFNULL(?, phone_number),\n" +
-            "    discount      = IFNULL(?, discount),\n" +
-            "    discount_type = IFNULL(?, discount_type)\n" +
-            "WHERE client_id = ?\n";
-    private static final String VERIFICATION = "UPDATE users\n" +
-            "SET is_active   = true,\n" +
-            "    is_verified = true\n" +
-            "WHERE user_id = ?\n" +
-            "  AND is_verified = false";
-    private static final String REFILL_MONEY = "UPDATE clients\n" +
-            "SET money = money + ?\n" +
-            "WHERE client_id = ?";
-    private static final String WITHDRAW_MONEY = "UPDATE clients\n" +
-            "SET money = money + ?\n" +
-            "WHERE client_id = ?";
-    private static final String FIND_CLIENT_BY_ID = "SELECT client_id,\n" +
-            "       register_date,\n" +
-            "       phone_number,\n" +
-            "       discount,\n" +
-            "       discount_type,\n" +
-            "       money,\n" +
-            "       login,\n" +
-            "       password,\n" +
-            "       role,\n" +
-            "       name,\n" +
-            "       surname,\n" +
-            "       is_active,\n" +
-            "       profile_image,\n" +
-            "       mail,\n" +
-            "       is_verified\n" +
-            "FROM clients,\n" +
-            "     users\n" +
-            "WHERE client_id = ?\n" +
-            "AND role = 'CLIENT'";
-    private static final String FIND_ALL_CLIENT = "SELECT client_id,\n" +
-            "       register_date,\n" +
-            "       phone_number,\n" +
-            "       discount,\n" +
-            "       discount_type,\n" +
-            "       money,\n" +
-            "       login,\n" +
-            "       password,\n" +
-            "       role,\n" +
-            "       name,\n" +
-            "       surname,\n" +
-            "       is_active,\n" +
-            "       profile_image,\n" +
-            "       mail,\n" +
-            "       is_verified\n" +
-            "FROM clients,\n" +
-            "     users\n" +
-            "WHERE role = 'CLIENT'";
-    private static final String FIND_ALL_ACTIVE_CLIENT = "SELECT client_id,\n" +
-            "       register_date,\n" +
-            "       phone_number,\n" +
-            "       discount,\n" +
-            "       discount_type,\n" +
-            "       money,\n" +
-            "       login,\n" +
-            "       password,\n" +
-            "       role,\n" +
-            "       name,\n" +
-            "       surname,\n" +
-            "       is_active,\n" +
-            "       profile_image,\n" +
-            "       mail,\n" +
-            "       is_verified\n" +
-            "FROM clients,\n" +
-            "     users\n" +
-            "WHERE is_active = true\n" +
-            "AND role = 'CLIENT'";
-    private static final String FIND_ALL_CLIENT_BY_ANTHROPONYM = "SELECT client_id,\n" +
-            "       register_date,\n" +
-            "       phone_number,\n" +
-            "       discount,\n" +
-            "       discount_type,\n" +
-            "       money,\n" +
-            "       login,\n" +
-            "       password,\n" +
-            "       role,\n" +
-            "       name,\n" +
-            "       surname,\n" +
-            "       is_active,\n" +
-            "       profile_image,\n" +
-            "       mail,\n" +
-            "       is_verified\n" +
-            "FROM clients,\n" +
-            "     users\n" +
-            "WHERE name = IFNULL(?, name)\n" +
-            "  AND surname = IFNULL(?, surname)\n" +
-            "AND role = 'CLIENT'";
+    private static final String CREATE_USER = "INSERT INTO users(login, password, name, surname, mail)\n"
+            + "VALUES (?, ?, ?, ?, ?)";
+    private static final String CREATE_CLIENT = "INSERT INTO clients(client_id, phone_number)\n"
+            + "VALUES (?, ?)";
+    private static final String UPDATE_CLIENT = "UPDATE clients\n"
+            + "SET phone_number  = IFNULL(?, phone_number),\n"
+            + "    discount      = IFNULL(?, discount),\n"
+            + "    discount_type = IFNULL(?, discount_type)\n"
+            + "WHERE client_id = ?\n";
+    private static final String VERIFICATION = "UPDATE users\n"
+            + "SET is_active   = true,\n"
+            + "    is_verified = true\n"
+            + "WHERE user_id = ?\n"
+            + "  AND is_verified = false";
+    private static final String REFILL_MONEY = "UPDATE clients\n"
+            + "SET money = money + ?\n"
+            + "WHERE client_id = ?";
+    private static final String WITHDRAW_MONEY = "UPDATE clients\n"
+            + "SET money = money + ?\n"
+            + "WHERE client_id = ?";
+    private static final String FIND_CLIENT_BY_ID = "SELECT client_id,\n"
+            + "       register_date,\n"
+            + "       phone_number,\n"
+            + "       discount,\n"
+            + "       discount_type,\n"
+            + "       money,\n"
+            + "       login,\n"
+            + "       password,\n"
+            + "       role,\n"
+            + "       name,\n"
+            + "       surname,\n"
+            + "       is_active,\n"
+            + "       profile_image,\n"
+            + "       mail,\n"
+            + "       is_verified\n"
+            + "FROM clients,\n"
+            + "     users\n"
+            + "WHERE client_id = ?\n"
+            + "AND role = 'CLIENT'";
+    private static final String FIND_ALL_CLIENT = "SELECT client_id,\n"
+            + "       register_date,\n"
+            + "       phone_number,\n"
+            + "       discount,\n"
+            + "       discount_type,\n"
+            + "       money,\n"
+            + "       login,\n"
+            + "       password,\n"
+            + "       role,\n"
+            + "       name,\n"
+            + "       surname,\n"
+            + "       is_active,\n"
+            + "       profile_image,\n"
+            + "       mail,\n"
+            + "       is_verified\n"
+            + "FROM clients,\n"
+            + "     users\n"
+            + "WHERE role = 'CLIENT'";
+    private static final String FIND_ALL_ACTIVE_CLIENT = "SELECT client_id,\n"
+            + "       register_date,\n"
+            + "       phone_number,\n"
+            + "       discount,\n"
+            + "       discount_type,\n"
+            + "       money,\n"
+            + "       login,\n"
+            + "       password,\n"
+            + "       role,\n"
+            + "       name,\n"
+            + "       surname,\n"
+            + "       is_active,\n"
+            + "       profile_image,\n"
+            + "       mail,\n"
+            + "       is_verified\n"
+            + "FROM clients,\n"
+            + "     users\n"
+            + "WHERE is_active = true\n"
+            + "AND role = 'CLIENT'";
+    private static final String FIND_ALL_CLIENT_BY_ANTHROPONYM = "SELECT client_id,\n"
+            + "       register_date,\n"
+            + "       phone_number,\n"
+            + "       discount,\n"
+            + "       discount_type,\n"
+            + "       money,\n"
+            + "       login,\n"
+            + "       password,\n"
+            + "       role,\n"
+            + "       name,\n"
+            + "       surname,\n"
+            + "       is_active,\n"
+            + "       profile_image,\n"
+            + "       mail,\n"
+            + "       is_verified\n"
+            + "FROM clients,\n"
+            + "     users\n"
+            + "WHERE name = IFNULL(?, name)\n"
+            + "  AND surname = IFNULL(?, surname)\n"
+            + "AND role = 'CLIENT'";
 
     private static ClientDao clientDao = new ClientDaoImpl();
 
     private ClientDaoImpl() {
     }
-
 
     public static ClientDao getInstance() {
         return clientDao;
@@ -128,8 +127,8 @@ public class ClientDaoImpl implements ClientDao {
     @Override
     public Client createClient(Client client) throws DaoException {
         try (Connection connection = ConnectionPool.getInstance().takeConnection();
-             PreparedStatement userStatement = connection.prepareStatement(CREATE_USER, Statement.RETURN_GENERATED_KEYS);
-             PreparedStatement clientStatement = connection.prepareStatement(CREATE_CLIENT)) {
+                PreparedStatement userStatement = connection.prepareStatement(CREATE_USER, Statement.RETURN_GENERATED_KEYS);
+                PreparedStatement clientStatement = connection.prepareStatement(CREATE_CLIENT)) {
             try {
                 connection.setAutoCommit(false);
                 userStatement.setString(1, client.getLogin());
@@ -172,7 +171,7 @@ public class ClientDaoImpl implements ClientDao {
     public boolean updateClient(Client client) throws DaoException {
         boolean isUpdated;
         try (Connection connection = ConnectionPool.getInstance().takeConnection();
-             PreparedStatement statement = connection.prepareStatement(UPDATE_CLIENT)) {
+                PreparedStatement statement = connection.prepareStatement(UPDATE_CLIENT)) {
             if (client.getName() != null) {
                 statement.setString(1, client.getPhone());
             } else {
@@ -200,12 +199,11 @@ public class ClientDaoImpl implements ClientDao {
         return isUpdated;
     }
 
-
     @Override
     public boolean verification(int clientId) throws DaoException {
         boolean isUpdated;
         try (Connection connection = ConnectionPool.getInstance().takeConnection();
-             PreparedStatement statement = connection.prepareStatement(VERIFICATION)) {
+                PreparedStatement statement = connection.prepareStatement(VERIFICATION)) {
             statement.setInt(1, clientId);
 
             isUpdated = statement.executeUpdate() == 1;
@@ -224,7 +222,7 @@ public class ClientDaoImpl implements ClientDao {
     public boolean refillMoney(int clientId, BigDecimal amount) throws DaoException {
         boolean isUpdated;
         try (Connection connection = ConnectionPool.getInstance().takeConnection();
-             PreparedStatement updateClientStatement = connection.prepareStatement(REFILL_MONEY)) {
+                PreparedStatement updateClientStatement = connection.prepareStatement(REFILL_MONEY)) {
             try {
                 connection.setAutoCommit(false);
                 updateClientStatement.setBigDecimal(1, amount);
@@ -252,7 +250,7 @@ public class ClientDaoImpl implements ClientDao {
     public boolean withdrawMoney(int clientId, BigDecimal amount) throws DaoException {
         boolean isUpdated;
         try (Connection connection = ConnectionPool.getInstance().takeConnection();
-             PreparedStatement updateClientStatement = connection.prepareStatement(WITHDRAW_MONEY)) {
+                PreparedStatement updateClientStatement = connection.prepareStatement(WITHDRAW_MONEY)) {
             try {
                 connection.setAutoCommit(false);
 
@@ -282,7 +280,7 @@ public class ClientDaoImpl implements ClientDao {
     public Client findClientById(int clientId) throws DaoException {
         Client client = new Client();
         try (Connection connection = ConnectionPool.getInstance().takeConnection();
-             PreparedStatement clientStatement = connection.prepareStatement(FIND_CLIENT_BY_ID)) {
+                PreparedStatement clientStatement = connection.prepareStatement(FIND_CLIENT_BY_ID)) {
 
             clientStatement.setInt(1, clientId);
 
@@ -302,7 +300,7 @@ public class ClientDaoImpl implements ClientDao {
     public List<Client> findAllClient() throws DaoException {
         List<Client> resultArray = new ArrayList<>();
         try (Connection connection = ConnectionPool.getInstance().takeConnection();
-             PreparedStatement statement = connection.prepareStatement(FIND_ALL_CLIENT)) {
+                PreparedStatement statement = connection.prepareStatement(FIND_ALL_CLIENT)) {
             ResultSet resultSet = statement.executeQuery();
 
             while (resultSet.next()) {
@@ -324,7 +322,7 @@ public class ClientDaoImpl implements ClientDao {
     public List<Client> findAllActiveClient() throws DaoException {
         List<Client> resultArray = new ArrayList<>();
         try (Connection connection = ConnectionPool.getInstance().takeConnection();
-             PreparedStatement statement = connection.prepareStatement(FIND_ALL_ACTIVE_CLIENT)) {
+                PreparedStatement statement = connection.prepareStatement(FIND_ALL_ACTIVE_CLIENT)) {
 
             ResultSet resultSet = statement.executeQuery();
 
@@ -347,7 +345,7 @@ public class ClientDaoImpl implements ClientDao {
     public List<Client> findAllClientByAnthroponym(String name, String surname) throws DaoException {
         List<Client> resultArray = new ArrayList<>();
         try (Connection connection = ConnectionPool.getInstance().takeConnection();
-             PreparedStatement statement = connection.prepareStatement(FIND_ALL_CLIENT_BY_ANTHROPONYM)) {
+                PreparedStatement statement = connection.prepareStatement(FIND_ALL_CLIENT_BY_ANTHROPONYM)) {
             if (name != null) {
                 statement.setString(1, name);
             } else {

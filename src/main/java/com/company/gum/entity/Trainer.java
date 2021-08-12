@@ -38,15 +38,24 @@ public class Trainer extends User {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Trainer)) return false;
-        if (!super.equals(o)) return false;
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Trainer)) {
+            return false;
+        }
+        if (!super.equals(o)) {
+            return false;
+        }
 
         Trainer trainer = (Trainer) o;
 
-        if (getRegisterDate() != null ? !getRegisterDate().equals(trainer.getRegisterDate()) : trainer.getRegisterDate() != null)
+        if (getRegisterDate() != null ? !getRegisterDate().equals(trainer.getRegisterDate()) : trainer.getRegisterDate() != null) {
             return false;
-        if (getPhone() != null ? !getPhone().equals(trainer.getPhone()) : trainer.getPhone() != null) return false;
+        }
+        if (getPhone() != null ? !getPhone().equals(trainer.getPhone()) : trainer.getPhone() != null) {
+            return false;
+        }
         return getMail() != null ? getMail().equals(trainer.getMail()) : trainer.getMail() == null;
     }
 

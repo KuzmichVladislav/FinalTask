@@ -1,6 +1,7 @@
 package com.company.gum.entity;
 
 public class AbstractEntity {
+
     private Integer id;
 
     public Integer getId() {

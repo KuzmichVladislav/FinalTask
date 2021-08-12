@@ -3,6 +3,7 @@ package com.company.gum.entity;
 import java.time.LocalDateTime;
 
 public class Comment extends AbstractEntity {
+
     private Integer userId;
     private String userName;
     private String userSurname;
@@ -69,22 +70,33 @@ public class Comment extends AbstractEntity {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Comment)) return false;
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Comment)) {
+            return false;
+        }
 
         Comment comment = (Comment) o;
 
-        if (getUserId() != null ? !getUserId().equals(comment.getUserId()) : comment.getUserId() != null) return false;
-        if (getUserName() != null ? !getUserName().equals(comment.getUserName()) : comment.getUserName() != null)
+        if (getUserId() != null ? !getUserId().equals(comment.getUserId()) : comment.getUserId() != null) {
             return false;
-        if (getUserSurname() != null ? !getUserSurname().equals(comment.getUserSurname()) : comment.getUserSurname() != null)
+        }
+        if (getUserName() != null ? !getUserName().equals(comment.getUserName()) : comment.getUserName() != null) {
             return false;
-        if (getProfileImage() != null ? !getProfileImage().equals(comment.getProfileImage()) : comment.getProfileImage() != null)
+        }
+        if (getUserSurname() != null ? !getUserSurname().equals(comment.getUserSurname()) : comment.getUserSurname() != null) {
             return false;
-        if (getCommentDate() != null ? !getCommentDate().equals(comment.getCommentDate()) : comment.getCommentDate() != null)
+        }
+        if (getProfileImage() != null ? !getProfileImage().equals(comment.getProfileImage()) : comment.getProfileImage() != null) {
             return false;
-        if (getCommentText() != null ? !getCommentText().equals(comment.getCommentText()) : comment.getCommentText() != null)
+        }
+        if (getCommentDate() != null ? !getCommentDate().equals(comment.getCommentDate()) : comment.getCommentDate() != null) {
             return false;
+        }
+        if (getCommentText() != null ? !getCommentText().equals(comment.getCommentText()) : comment.getCommentText() != null) {
+            return false;
+        }
         return getActive() != null ? getActive().equals(comment.getActive()) : comment.getActive() == null;
     }
 

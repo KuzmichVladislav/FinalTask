@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 public class Client extends User {
+
     private LocalDateTime registerDate;
     private Integer discount;
     private Integer discountLevel;
@@ -56,16 +57,30 @@ public class Client extends User {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Client)) return false;
-        if (!super.equals(o)) return false;
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Client)) {
+            return false;
+        }
+        if (!super.equals(o)) {
+            return false;
+        }
 
         Client client = (Client) o;
 
-        if (!getRegisterDate().equals(client.getRegisterDate())) return false;
-        if (!getDiscount().equals(client.getDiscount())) return false;
-        if (!getDiscountLevel().equals(client.getDiscountLevel())) return false;
-        if (getPhone() != null ? !getPhone().equals(client.getPhone()) : client.getPhone() != null) return false;
+        if (!getRegisterDate().equals(client.getRegisterDate())) {
+            return false;
+        }
+        if (!getDiscount().equals(client.getDiscount())) {
+            return false;
+        }
+        if (!getDiscountLevel().equals(client.getDiscountLevel())) {
+            return false;
+        }
+        if (getPhone() != null ? !getPhone().equals(client.getPhone()) : client.getPhone() != null) {
+            return false;
+        }
         return getMoney().equals(client.getMoney());
     }
 

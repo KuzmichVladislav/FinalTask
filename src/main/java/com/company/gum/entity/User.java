@@ -92,17 +92,33 @@ public class User extends AbstractEntity {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof User)) return false;
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof User)) {
+            return false;
+        }
 
         User user = (User) o;
 
-        if (isActive() != user.isActive()) return false;
-        if (!getLogin().equals(user.getLogin())) return false;
-        if (!getPassword().equals(user.getPassword())) return false;
-        if (getRole() != user.getRole()) return false;
-        if (!getName().equals(user.getName())) return false;
-        if (!getSurname().equals(user.getSurname())) return false;
+        if (isActive() != user.isActive()) {
+            return false;
+        }
+        if (!getLogin().equals(user.getLogin())) {
+            return false;
+        }
+        if (!getPassword().equals(user.getPassword())) {
+            return false;
+        }
+        if (getRole() != user.getRole()) {
+            return false;
+        }
+        if (!getName().equals(user.getName())) {
+            return false;
+        }
+        if (!getSurname().equals(user.getSurname())) {
+            return false;
+        }
         return getMail().equals(user.getMail());
     }
 
@@ -134,4 +150,3 @@ public class User extends AbstractEntity {
         return sb.toString();
     }
 }
-

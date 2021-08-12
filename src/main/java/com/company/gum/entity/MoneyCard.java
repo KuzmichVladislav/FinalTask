@@ -3,6 +3,7 @@ package com.company.gum.entity;
 import java.math.BigDecimal;
 
 public class MoneyCard {
+
     private String cardNumber;
     private BigDecimal cardAmount;
 
@@ -27,13 +28,18 @@ public class MoneyCard {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof MoneyCard)) return false;
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof MoneyCard)) {
+            return false;
+        }
 
         MoneyCard moneyCard = (MoneyCard) o;
 
-        if (getCardNumber() != null ? !getCardNumber().equals(moneyCard.getCardNumber()) : moneyCard.getCardNumber() != null)
+        if (getCardNumber() != null ? !getCardNumber().equals(moneyCard.getCardNumber()) : moneyCard.getCardNumber() != null) {
             return false;
+        }
         return getCardAmount() != null ? getCardAmount().equals(moneyCard.getCardAmount()) : moneyCard.getCardAmount() == null;
     }
 

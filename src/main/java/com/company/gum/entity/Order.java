@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class Order extends AbstractEntity {
+
     private Integer clientId;
     private String clientName;
     private String clientSurname;
@@ -146,36 +147,57 @@ public class Order extends AbstractEntity {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Order)) return false;
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Order)) {
+            return false;
+        }
 
         Order order = (Order) o;
 
-        if (getClientId() != null ? !getClientId().equals(order.getClientId()) : order.getClientId() != null)
+        if (getClientId() != null ? !getClientId().equals(order.getClientId()) : order.getClientId() != null) {
             return false;
-        if (getClientName() != null ? !getClientName().equals(order.getClientName()) : order.getClientName() != null)
+        }
+        if (getClientName() != null ? !getClientName().equals(order.getClientName()) : order.getClientName() != null) {
             return false;
-        if (getClientSurname() != null ? !getClientSurname().equals(order.getClientSurname()) : order.getClientSurname() != null)
+        }
+        if (getClientSurname() != null ? !getClientSurname().equals(order.getClientSurname()) : order.getClientSurname() != null) {
             return false;
-        if (getTrainerId() != null ? !getTrainerId().equals(order.getTrainerId()) : order.getTrainerId() != null)
+        }
+        if (getTrainerId() != null ? !getTrainerId().equals(order.getTrainerId()) : order.getTrainerId() != null) {
             return false;
-        if (getTrainerName() != null ? !getTrainerName().equals(order.getTrainerName()) : order.getTrainerName() != null)
+        }
+        if (getTrainerName() != null ? !getTrainerName().equals(order.getTrainerName()) : order.getTrainerName() != null) {
             return false;
-        if (getTrainerSurname() != null ? !getTrainerSurname().equals(order.getTrainerSurname()) : order.getTrainerSurname() != null)
+        }
+        if (getTrainerSurname() != null ? !getTrainerSurname().equals(order.getTrainerSurname()) : order.getTrainerSurname() != null) {
             return false;
-        if (getRegisterDate() != null ? !getRegisterDate().equals(order.getRegisterDate()) : order.getRegisterDate() != null)
+        }
+        if (getRegisterDate() != null ? !getRegisterDate().equals(order.getRegisterDate()) : order.getRegisterDate() != null) {
             return false;
-        if (getExercises() != null ? !getExercises().equals(order.getExercises()) : order.getExercises() != null)
+        }
+        if (getExercises() != null ? !getExercises().equals(order.getExercises()) : order.getExercises() != null) {
             return false;
-        if (getNutrition() != null ? !getNutrition().equals(order.getNutrition()) : order.getNutrition() != null)
+        }
+        if (getNutrition() != null ? !getNutrition().equals(order.getNutrition()) : order.getNutrition() != null) {
             return false;
-        if (getStartDate() != null ? !getStartDate().equals(order.getStartDate()) : order.getStartDate() != null)
+        }
+        if (getStartDate() != null ? !getStartDate().equals(order.getStartDate()) : order.getStartDate() != null) {
             return false;
-        if (getEndDate() != null ? !getEndDate().equals(order.getEndDate()) : order.getEndDate() != null) return false;
-        if (getPrice() != null ? !getPrice().equals(order.getPrice()) : order.getPrice() != null) return false;
-        if (getClientComment() != null ? !getClientComment().equals(order.getClientComment()) : order.getClientComment() != null)
+        }
+        if (getEndDate() != null ? !getEndDate().equals(order.getEndDate()) : order.getEndDate() != null) {
             return false;
-        if (getOrderStatus() != order.getOrderStatus()) return false;
+        }
+        if (getPrice() != null ? !getPrice().equals(order.getPrice()) : order.getPrice() != null) {
+            return false;
+        }
+        if (getClientComment() != null ? !getClientComment().equals(order.getClientComment()) : order.getClientComment() != null) {
+            return false;
+        }
+        if (getOrderStatus() != order.getOrderStatus()) {
+            return false;
+        }
         return getActive() != null ? getActive().equals(order.getActive()) : order.getActive() == null;
     }
 

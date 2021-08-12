@@ -18,9 +18,15 @@ public class Admin extends User {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Admin)) return false;
-        if (!super.equals(o)) return false;
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Admin)) {
+            return false;
+        }
+        if (!super.equals(o)) {
+            return false;
+        }
 
         Admin admin = (Admin) o;
 

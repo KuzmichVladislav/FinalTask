@@ -4,6 +4,7 @@ import com.company.gum.entity.User;
 import com.company.gum.exception.DaoException;
 
 public interface UserDao {
+
     User findUserById(int userId) throws DaoException;
 
     User findUserByLogin(String login) throws DaoException;

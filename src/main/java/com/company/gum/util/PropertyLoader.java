@@ -10,7 +10,7 @@ public class PropertyLoader {
     private PropertyLoader() {
     }
 
-    public static Properties loadProperty (String path) {
+    public static Properties loadProperty(String path) {
         Properties properties = new Properties();
 
         try {
