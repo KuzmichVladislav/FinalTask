@@ -43,7 +43,7 @@ public class ConnectionPool {
                 logger.warn("Incorrect number of connections, set default = {}", numberOfConnections);
             }
 
-            this.awaitingConnections = new LinkedBlockingDeque<>(numberOfConnections);
+            awaitingConnections = new LinkedBlockingDeque<>(numberOfConnections);
             occupiedConnections = new LinkedBlockingDeque<>();
             Driver driver = new com.mysql.cj.jdbc.Driver();
             DriverManager.registerDriver(driver);

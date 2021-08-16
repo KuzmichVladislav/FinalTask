@@ -1,14 +1,8 @@
 package com.company.gum.main;
 
-import com.company.gum.dao.impl.CommentDaoImpl;
-import com.company.gum.entity.Comment;
-import com.company.gum.exception.DaoException;
-
-import java.sql.SQLException;
-
 public class Main {
 
-    public static void main(String[] args) throws SQLException, DaoException {
+    public static void main(String[] args) throws Exception {
 
         /*
         Trainer trainer = new Trainer();
@@ -51,7 +45,9 @@ public class Main {
         comment.setId(3);
         CommentDaoImpl.getInstance().updateComment(comment);*/
         //Comment comment = CommentDaoImpl.getInstance().findComment(3);
-        System.out.println(CommentDaoImpl.getInstance().commentCount(true));
-
+        //System.out.println(CommentDaoImpl.getInstance().commentCount(true));
+        Integer in = new Integer(25);
+        if (in < 35)
+            System.out.println("Value of int = " + in);
     }
 }
