@@ -40,42 +40,90 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
-    public boolean updateClient(Client client) {
-        return false;
+    public boolean updateClient(Client client) throws ServiceException {
+        boolean isUpdated;
+        try {
+            isUpdated = clientDao.updateClient(client);
+        } catch (DaoException e) {
+            throw new ServiceException(e);
+        }
+        return isUpdated;
     }
 
     @Override
-    public boolean verification(int clientId) {
-        return false;
+    public boolean verification(int clientId) throws ServiceException {
+        boolean isUpdated;
+        try {
+            isUpdated = clientDao.verification(clientId);
+        } catch (DaoException e) {
+            throw new ServiceException(e);
+        }
+        return isUpdated;
     }
 
     @Override
-    public boolean refillMoney(int clientId, BigDecimal amount) {
-        return false;
+    public boolean refillMoney(int clientId, BigDecimal amount) throws ServiceException {
+        boolean isUpdated;
+        try {
+            isUpdated = clientDao.refillMoney(clientId, amount);
+        } catch (DaoException e) {
+            throw new ServiceException(e);
+        }
+        return isUpdated;
     }
 
     @Override
-    public boolean withdrawMoney(int clientId, BigDecimal amount) {
-        return false;
+    public boolean withdrawMoney(int clientId, BigDecimal amount) throws ServiceException {
+        boolean isUpdated;
+        try {
+            isUpdated = clientDao.withdrawMoney(clientId, amount);
+        } catch (DaoException e) {
+            throw new ServiceException(e);
+        }
+        return isUpdated;
     }
 
     @Override
-    public Client findClientById(int clientId) {
-        return null;
+    public Client findClientById(int clientId) throws ServiceException {
+        Client client;
+        try {
+            client = clientDao.findClientById(clientId);
+        } catch (DaoException e) {
+            throw new ServiceException(e);
+        }
+        return client;
     }
 
     @Override
-    public List<Client> findAllClient() {
-        return null;
+    public List<Client> findAllClient() throws ServiceException {
+        List<Client> clients;
+        try {
+            clients = clientDao.findAllClient();
+        } catch (DaoException e) {
+            throw new ServiceException(e);
+        }
+        return clients;
     }
 
     @Override
-    public List<Client> findAllActiveClient() {
-        return null;
+    public List<Client> findAllActiveClient() throws ServiceException {
+        List<Client> clients;
+        try {
+            clients = clientDao.findAllActiveClient();
+        } catch (DaoException e) {
+            throw new ServiceException(e);
+        }
+        return clients;
     }
 
     @Override
-    public List<Client> findAllClientByAnthroponym(String name, String surname) {
-        return null;
+    public List<Client> findAllClientByAnthroponym(String name, String surname) throws ServiceException {
+        List<Client> clients;
+        try {
+            clients = clientDao.findAllClientByAnthroponym(name, surname);
+        } catch (DaoException e) {
+            throw new ServiceException(e);
+        }
+        return clients;
     }
 }

@@ -10,19 +10,19 @@ import java.util.List;
 public interface ClientService {
     Client createClient(Client client) throws ServiceException;
 
-    boolean updateClient(Client client);
+    boolean updateClient(Client client) throws ServiceException;
 
-    boolean verification(int clientId);
+    boolean verification(int clientId) throws ServiceException;
 
-    boolean refillMoney(int clientId, BigDecimal amount);
+    boolean refillMoney(int clientId, BigDecimal amount) throws ServiceException;
 
-    boolean withdrawMoney(int clientId, BigDecimal amount);
+    boolean withdrawMoney(int clientId, BigDecimal amount) throws ServiceException;
 
-    Client findClientById(int clientId);
+    Client findClientById(int clientId) throws ServiceException;
 
-    List<Client> findAllClient();
+    List<Client> findAllClient() throws ServiceException;
 
-    List<Client> findAllActiveClient();
+    List<Client> findAllActiveClient() throws ServiceException;
 
-    List<Client> findAllClientByAnthroponym(String name, String surname);
+    List<Client> findAllClientByAnthroponym(String name, String surname) throws ServiceException;
 }
