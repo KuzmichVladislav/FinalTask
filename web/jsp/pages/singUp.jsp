@@ -31,94 +31,93 @@
 <!DOCTYPE html>
 <html>
 
-<title>Sign up facundo farm & resort</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <head>
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.css">
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <title>Sign up facundo farm & resort</title>
+    </head>
 
-<head>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.css">
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-</head>
+    <body>
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-<body>
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-<div class="container register">
-    <div class="row">
-        <div class="col-md-3 register-left">
-            <img src="https://i.ibb.co/SsQJHTz/pngegg.png"
-                 alt="">
-            <h3>${tagline}</h3>
-            <p>${motivationMessage}</p>
-            <input type="submit" name="" value="Login"><br>
-        </div>
-
-        <div class="col-md-9 register-right">
-            <form name="signUpForm" action="${pageContext.request.contextPath}/controller" method="POST"
-                  id="form">
-                <div class="row register-form">
-                    <div class="col-md-6">
-                        <input type="hidden" name="command" value="sign_up">
-
-                        <div class="form-group">
-                            <label for="input-login"></label>
-                            <input type="text" name="userLogin" class="form-control" id="input-login"
-                                   placeholder="${loginPlaceholder}" value="">
-                        </div>
-
-
-                        <div class="form-group">
-                            <label for="input-name"></label>
-                            <input type="text" name="userName" class="form-control" id="input-name"
-                                   placeholder="${namePlaceholder}" value="">
-                        </div>
-
-
-                        <div class="form-group">
-                            <label for="input-last-name"></label>
-                            <input type="text" name="userLastName" class="form-control" id="input-last-name"
-                                   placeholder="${lastNamePlaceholder}" value="">
-                        </div>
-
-
-                        <div class="form-group">
-                            <label for="input-phone"></label>
-                            <input type="text" name="userPhone" class="form-control" id="input-phone"
-                                   placeholder="${phonePlaceholder}" value="">
-                        </div>
-                    </div>
-
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="input-mail"></label>
-                            <input type="email" name="userMail" class="form-control" id="input-mail"
-                                   placeholder="${mailPlaceholder}" value="">
-                        </div>
-
-
-                        <div class="form-group">
-                            <label for="input-password"></label>
-                            <input type="password" name="userPassword" class="form-control" id="input-password"
-                                   placeholder="${passwordPlaceholder}" value="">
-                        </div>
-
-
-                        <div class="form-group">
-                            <label for="input-repeat-password"></label>
-                            <input type="password" name="repeatPassword" class="form-control"
-                                   id="input-repeat-password" placeholder="${confirmPasswordPlaceholder}" value="">
-                        </div>
-                        <input type="submit" class="btnRegister" id="submit" value="${register}">
-                    </div>
+        <div class="container register">
+            <div class="row">
+                <div class="col-md-3 register-left">
+                    <img src="https://i.ibb.co/SsQJHTz/pngegg.png"
+                         alt="">
+                    <h3>${tagline}</h3>
+                    <p>${motivationMessage}</p>
+                    <input type="submit" name="" value="Login"><br>
                 </div>
-            </form>
+
+                <div class="col-md-9 register-right">
+                    <form name="signUpForm" action="${pageContext.request.contextPath}/controller" method="POST"
+                          id="form">
+                        <div class="row register-form">
+                            <div class="col-md-6">
+                                <input type="hidden" name="command" value="sign_up">
+
+                                <div class="form-group">
+                                    <label for="input-login"></label>
+                                    <input type="text" name="userLogin" class="form-control" id="input-login"
+                                           placeholder="${loginPlaceholder}" value="">
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label for="input-name"></label>
+                                    <input type="text" name="userName" class="form-control" id="input-name"
+                                           placeholder="${namePlaceholder}" value="">
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label for="input-last-name"></label>
+                                    <input type="text" name="userLastName" class="form-control" id="input-last-name"
+                                           placeholder="${lastNamePlaceholder}" value="">
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label for="input-phone"></label>
+                                    <input type="text" name="userPhone" class="form-control" id="input-phone"
+                                           placeholder="${phonePlaceholder}" value="">
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="input-mail"></label>
+                                    <input type="email" name="userMail" class="form-control" id="input-mail"
+                                           placeholder="${mailPlaceholder}" value="">
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label for="input-password"></label>
+                                    <input type="password" name="userPassword" class="form-control" id="input-password"
+                                           placeholder="${passwordPlaceholder}" value="">
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label for="input-repeat-password"></label>
+                                    <input type="password" name="repeatPassword" class="form-control"
+                                           id="input-repeat-password" placeholder="${confirmPasswordPlaceholder}" value="">
+                                </div>
+                                <input type="submit" class="btnRegister" id="submit" value="${register}">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
-    </div>
-</div>
-</body>
+    </body>
 </html>
 

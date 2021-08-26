@@ -5,28 +5,16 @@ import org.pac4j.core.util.CommonHelper;
 
 public class JBCryptPasswordEncoder {
 
-    private static String salt = "$2a$10$r/7vpCEEmIc0Kwek2SQu0.";
-
-    public JBCryptPasswordEncoder(final String salt) {
-        this.salt = salt;
-    }
+    private static final String SALT = "$2a$10$r/7vpCEEmIc0Kwek2SQu0.";
 
     public static String encode(final String password) {
-        CommonHelper.assertNotBlank("salt", salt);
-        return BCrypt.hashpw(password, salt);
+        CommonHelper.assertNotBlank("salt", SALT);
+        return BCrypt.hashpw(password, SALT);
     }
 
     public boolean matches(final String plainPassword, final String encodedPassword) {
-        CommonHelper.assertNotBlank("salt", salt);
+        CommonHelper.assertNotBlank("salt", SALT);
 
         return BCrypt.checkpw(plainPassword, encodedPassword);
-    }
-
-    public String getSalt() {
-        return salt;
-    }
-
-    public void setSalt(String salt) {
-        this.salt = salt;
     }
 }

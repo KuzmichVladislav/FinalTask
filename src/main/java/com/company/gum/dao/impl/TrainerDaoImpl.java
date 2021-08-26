@@ -18,14 +18,14 @@ public class TrainerDaoImpl implements TrainerDao {
 
     private static final Logger logger = LogManager.getLogger();
 
-    private static final String CREATE_USER = "INSERT INTO users(login, password, name, surname, mail, role)\n"
+    private static final String SQL_CREATE_USER = "INSERT INTO users(login, password, name, surname, mail, role)\n"
             + "VALUES (?, ?, ?, ?, ?, ?)";
-    private static final String CREATE_TRAINER = "INSERT INTO trainers(trainer_id, phone_number)\n"
+    private static final String SQL_CREATE_TRAINER = "INSERT INTO trainers(trainer_id, phone_number)\n"
             + "VALUES (?, ?)";
-    private static final String UPDATE_TRAINER = "UPDATE trainers\n"
+    private static final String SQL_UPDATE_TRAINER = "UPDATE trainers\n"
             + "SET phone_number = IFNULL(?, phone_number)\n"
             + "WHERE trainer_id = ?";
-    private static final String FIND_TRAINER_BY_ID = "SELECT trainer_id,\n"
+    private static final String SQL_FIND_TRAINER_BY_ID = "SELECT trainer_id,\n"
             + "       register_date,\n"
             + "       phone_number,\n"
             + "       login,\n"
@@ -41,7 +41,7 @@ public class TrainerDaoImpl implements TrainerDao {
             + "     users\n"
             + "WHERE trainer_id = ?\n"
             + "  AND role = 'TRAINER'";
-    private static final String FIND_ALL_TRAINER = "SELECT trainer_id,\n"
+    private static final String SQL_FIND_ALL_TRAINER = "SELECT trainer_id,\n"
             + "       register_date,\n"
             + "       phone_number,\n"
             + "       login,\n"
@@ -56,7 +56,7 @@ public class TrainerDaoImpl implements TrainerDao {
             + "FROM trainers,\n"
             + "     users\n"
             + "WHERE role = 'TRAINER'";
-    private static final String FIND_ALL_ACTIVE_TRAINER = "SELECT trainer_id,\n"
+    private static final String SQL_FIND_ALL_ACTIVE_TRAINER = "SELECT trainer_id,\n"
             + "       register_date,\n"
             + "       phone_number,\n"
             + "       login,\n"
@@ -72,21 +72,23 @@ public class TrainerDaoImpl implements TrainerDao {
             + "     users\n"
             + "WHERE is_active = true\n"
             + "  AND role = 'TRAINER'";
-
-    private static TrainerDao trainerDao = new TrainerDaoImpl();
+    private static TrainerDaoImpl mInstance;
 
     private TrainerDaoImpl() {
     }
 
-    public static TrainerDao getInstance() {
-        return trainerDao;
+    public static TrainerDaoImpl getInstance() {
+        if (mInstance == null) {
+            mInstance = new TrainerDaoImpl();
+        }
+        return mInstance;
     }
 
     @Override
     public Trainer createTrainer(Trainer trainer) throws DaoException {
         try (Connection connection = ConnectionPool.getInstance().takeConnection();
-                PreparedStatement userStatement = connection.prepareStatement(CREATE_USER, Statement.RETURN_GENERATED_KEYS);
-                PreparedStatement trainerStatement = connection.prepareStatement(CREATE_TRAINER)) {
+                PreparedStatement userStatement = connection.prepareStatement(SQL_CREATE_USER, Statement.RETURN_GENERATED_KEYS);
+                PreparedStatement trainerStatement = connection.prepareStatement(SQL_CREATE_TRAINER)) {
             try {
                 connection.setAutoCommit(false);
                 userStatement.setString(1, trainer.getLogin());
@@ -130,7 +132,7 @@ public class TrainerDaoImpl implements TrainerDao {
     public boolean updateTrainer(Trainer trainer) throws DaoException {
         boolean isUpdated;
         try (Connection connection = ConnectionPool.getInstance().takeConnection();
-                PreparedStatement statement = connection.prepareStatement(UPDATE_TRAINER)) {
+                PreparedStatement statement = connection.prepareStatement(SQL_UPDATE_TRAINER)) {
             if (trainer.getName() != null) {
                 statement.setString(1, trainer.getPhone());
             } else {
@@ -152,7 +154,7 @@ public class TrainerDaoImpl implements TrainerDao {
     public Trainer findTrainerById(int trainerId) throws DaoException {
         Trainer trainer = new Trainer();
         try (Connection connection = ConnectionPool.getInstance().takeConnection();
-                PreparedStatement statement = connection.prepareStatement(FIND_TRAINER_BY_ID)) {
+                PreparedStatement statement = connection.prepareStatement(SQL_FIND_TRAINER_BY_ID)) {
 
             statement.setInt(1, trainerId);
 
@@ -172,7 +174,7 @@ public class TrainerDaoImpl implements TrainerDao {
     public List<Trainer> findAllTrainer() throws DaoException {
         List<Trainer> resultArray = new ArrayList<>();
         try (Connection connection = ConnectionPool.getInstance().takeConnection();
-                PreparedStatement statement = connection.prepareStatement(FIND_ALL_TRAINER)) {
+                PreparedStatement statement = connection.prepareStatement(SQL_FIND_ALL_TRAINER)) {
             ResultSet resultSet = statement.executeQuery();
 
             while (resultSet.next()) {
@@ -194,7 +196,7 @@ public class TrainerDaoImpl implements TrainerDao {
     public List<Trainer> findAllActiveTrainer() throws DaoException {
         List<Trainer> resultArray = new ArrayList<>();
         try (Connection connection = ConnectionPool.getInstance().takeConnection();
-                PreparedStatement statement = connection.prepareStatement(FIND_ALL_ACTIVE_TRAINER)) {
+                PreparedStatement statement = connection.prepareStatement(SQL_FIND_ALL_ACTIVE_TRAINER)) {
 
             ResultSet resultSet = statement.executeQuery();
 

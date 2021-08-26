@@ -8,10 +8,12 @@ public class Admin extends User {
         role = UserRole.ADMIN;
     }
 
+    @Override
     public String getMail() {
         return mail;
     }
 
+    @Override
     public void setMail(String mail) {
         this.mail = mail;
     }

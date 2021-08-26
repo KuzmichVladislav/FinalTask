@@ -7,22 +7,23 @@ import com.company.gum.exception.DaoException;
 import com.company.gum.exception.ServiceException;
 import com.company.gum.service.TrainerService;
 import com.company.gum.util.JBCryptPasswordEncoder;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import java.util.List;
 
 public class TrainerServiceImpl implements TrainerService {
-    private static final Logger logger = LogManager.getLogger();
 
-    private static TrainerService trainerService = new TrainerServiceImpl();
+    private static TrainerServiceImpl mInstance;
+
     private TrainerDao trainerDao = TrainerDaoImpl.getInstance();
 
     private TrainerServiceImpl() {
     }
 
-    public static TrainerService getInstance() {
-        return trainerService;
+    public static TrainerServiceImpl getInstance() {
+        if (mInstance == null) {
+            mInstance = new TrainerServiceImpl();
+        }
+        return mInstance;
     }
 
     @Override

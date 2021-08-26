@@ -19,7 +19,7 @@ import static com.company.gum.dao.TableColumnName.*;
 
 public class AdminDaoImpl implements AdminDao {
 
-    private static final String FIND_ADMIN_BY_ID = "SELECT user_id,\n"
+    private static final String SQL_FIND_ADMIN_BY_ID = "SELECT user_id,\n"
             + "       login,\n"
             + "       password,\n"
             + "       role,\n"
@@ -31,7 +31,7 @@ public class AdminDaoImpl implements AdminDao {
             + "FROM users\n"
             + "WHERE user_id = ?\n"
             + "  AND role = 'ADMIN'";
-    private static final String FIND_ALL_ADMIN = "SELECT user_id,\n"
+    private static final String SQL_FIND_ALL_ADMIN = "SELECT user_id,\n"
             + "       login,\n"
             + "       password,\n"
             + "       role,\n"
@@ -44,21 +44,23 @@ public class AdminDaoImpl implements AdminDao {
             + "WHERE role = 'ADMIN'";
 
     private static final Logger logger = LogManager.getLogger();
-
-    private static AdminDao adminDao = new AdminDaoImpl();
+    private static AdminDaoImpl mInstance;
 
     private AdminDaoImpl() {
     }
 
-    public static AdminDao getInstance() {
-        return adminDao;
+    public static AdminDaoImpl getInstance() {
+        if (mInstance == null) {
+            mInstance = new AdminDaoImpl();
+        }
+        return mInstance;
     }
 
     @Override
     public Admin findAdminById(int adminId) throws DaoException {
         Admin admin = new Admin();
         try (Connection connection = ConnectionPool.getInstance().takeConnection();
-                PreparedStatement statement = connection.prepareStatement(FIND_ADMIN_BY_ID)) {
+                PreparedStatement statement = connection.prepareStatement(SQL_FIND_ADMIN_BY_ID)) {
             statement.setInt(1, adminId);
             ResultSet resultSet = statement.executeQuery();
 
@@ -76,7 +78,7 @@ public class AdminDaoImpl implements AdminDao {
     public List<Admin> findAllAdmin() throws DaoException {
         List<Admin> resultArray = new ArrayList<>();
         try (Connection connection = ConnectionPool.getInstance().takeConnection();
-                PreparedStatement statement = connection.prepareStatement(FIND_ALL_ADMIN)) {
+                PreparedStatement statement = connection.prepareStatement(SQL_FIND_ALL_ADMIN)) {
             ResultSet resultSet = statement.executeQuery();
 
             while (resultSet.next()) {

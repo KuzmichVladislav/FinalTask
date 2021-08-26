@@ -4,6 +4,7 @@ import com.company.gum.entity.User;
 import com.company.gum.exception.ServiceException;
 
 public interface UserService {
+
     User findUserById(int userId) throws ServiceException;
 
     User findUserByLogin(String login) throws ServiceException;

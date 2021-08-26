@@ -1,6 +1,7 @@
 package com.company.gum.exception;
 
-public class CommandException extends Exception{
+public class CommandException extends Exception {
+
     public CommandException() {
         super();
     }

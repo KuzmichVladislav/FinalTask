@@ -2,9 +2,6 @@ package com.company.gum.dao;
 
 public class TableColumnName {
 
-    private TableColumnName() {
-    }
-
     public static final String USER_ID = "user_id";
     public static final String USER_LOGIN = "login";
     public static final String USER_PASSWORD = "password";
@@ -14,16 +11,13 @@ public class TableColumnName {
     public static final String IS_ACTIVE = "is_active";
     public static final String PROFILE_IMAGE = "profile_image";
     public static final String MAIL = "mail";
-
     public static final String CLIENT_ID = "client_id";
     public static final String PHONE_NUMBER = "phone_number";
     public static final String REGISTER_DATE = "register_date";
     public static final String DISCOUNT = "discount";
     public static final String DISCOUNT_TYPE = "discount_type";
     public static final String MONEY = "money";
-
     public static final String TRAINER_ID = "trainer_id";
-
     public static final String ORDER_ID = "order_id";
     public static final String ORDER_REGISTER_DATE = "register_date";
     public static final String CLIENT_NAME = "client_name";
@@ -37,8 +31,10 @@ public class TableColumnName {
     public static final String PRICE = "price";
     public static final String CLIENT_COMMENT = "client_comment";
     public static final String ORDER_STATUS = "order_status";
-
     public static final String COMMENT_ID = "comment_id";
     public static final String COMMENT_DATE = "comment_date";
     public static final String COMMENT_TEXT = "comment_text";
+
+    private TableColumnName() {
+    }
 }

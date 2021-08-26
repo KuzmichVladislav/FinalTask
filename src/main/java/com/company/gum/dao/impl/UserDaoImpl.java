@@ -18,27 +18,58 @@ public class UserDaoImpl implements UserDao {
 
     private static final Logger logger = LogManager.getLogger();
 
-    private static final String FIND_USER_BY_ID = "SELECT user_id, login, password, role, name, surname, is_active, profile_image, mail FROM users WHERE user_id = ?";
-    private static final String FIND_USER_BY_LOGIN = "SELECT user_id, login, password, role, name, surname, is_active, profile_image, mail FROM users WHERE login = ?";
-    private static final String UPDATE_USER_PASSWORD = "UPDATE users SET password = IFNULL(?, password) WHERE user_id = ?";
-    private static final String UPDATE_USER_IMAGE = "UPDATE users SET profile_image = IFNULL(?, password) WHERE user_id = ?";
-    private static final String DELETE_USER = "UPDATE users SET is_active = false WHERE user_id = ?";
-    private static final String RESTORE_USER = "UPDATE users SET is_active = true WHERE user_id = ?";
+    private static final String SQL_FIND_USER_BY_ID = "SELECT user_id,\n"
+            + "       login,\n"
+            + "       password,\n"
+            + "       role,\n"
+            + "       name,\n"
+            + "       surname,\n"
+            + "       is_active,\n"
+            + "       profile_image,\n"
+            + "       mail\n"
+            + "FROM users\n"
+            + "WHERE user_id = ?";
+    private static final String SQL_FIND_USER_BY_LOGIN = "SELECT user_id,\n"
+            + "       login,\n"
+            + "       password,\n"
+            + "       role,\n"
+            + "       name,\n"
+            + "       surname,\n"
+            + "       is_active,\n"
+            + "       profile_image,\n"
+            + "       mail\n"
+            + "FROM users\n"
+            + "WHERE login = ?\n";
+    private static final String SQL_UPDATE_USER_PASSWORD = "UPDATE users\n"
+            + "SET password = IFNULL(?, password)\n"
+            + "WHERE user_id = ?";
+    private static final String SQL_UPDATE_USER_IMAGE = "UPDATE users\n"
+            + "SET profile_image = IFNULL(?, password)\n"
+            + "WHERE user_id = ?";
+    private static final String SQL_DELETE_USER = "UPDATE users\n"
+            + "SET is_active = false\n"
+            + "WHERE user_id = ?";
+    private static final String SQL_RESTORE_USER = "UPDATE users\n"
+            + "SET is_active = true\n"
+            + "WHERE user_id = ?";
+
+    private static UserDaoImpl mInstance;
 
     private UserDaoImpl() {
     }
 
-    private static UserDao userDao = new UserDaoImpl();
-
-    public static UserDao getInstance() {
-        return userDao;
+    public static UserDaoImpl getInstance() {
+        if (mInstance == null) {
+            mInstance = new UserDaoImpl();
+        }
+        return mInstance;
     }
 
     @Override
     public User findUserById(int userId) throws DaoException {
         User user = new User();
         try (Connection connection = ConnectionPool.getInstance().takeConnection();
-                PreparedStatement statement = connection.prepareStatement(FIND_USER_BY_ID)) {
+                PreparedStatement statement = connection.prepareStatement(SQL_FIND_USER_BY_ID)) {
             statement.setInt(1, userId);
             ResultSet resultSet = statement.executeQuery();
 
@@ -56,7 +87,7 @@ public class UserDaoImpl implements UserDao {
     public User findUserByLogin(String login) throws DaoException {
         User user = null;
         try (Connection connection = ConnectionPool.getInstance().takeConnection();
-                PreparedStatement statement = connection.prepareStatement(FIND_USER_BY_LOGIN)) {
+                PreparedStatement statement = connection.prepareStatement(SQL_FIND_USER_BY_LOGIN)) {
             statement.setString(1, login);
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
@@ -73,7 +104,7 @@ public class UserDaoImpl implements UserDao {
     public boolean updateUserPassword(User user) throws DaoException {
         boolean isUpdated;
         try (Connection connection = ConnectionPool.getInstance().takeConnection();
-                PreparedStatement statement = connection.prepareStatement(UPDATE_USER_PASSWORD)) {
+                PreparedStatement statement = connection.prepareStatement(SQL_UPDATE_USER_PASSWORD)) {
             statement.setString(1, user.getPassword());
             statement.setInt(2, user.getId());
 
@@ -94,7 +125,7 @@ public class UserDaoImpl implements UserDao {
     public boolean updateUserImage(User user) throws DaoException {
         boolean isUpdated;
         try (Connection connection = ConnectionPool.getInstance().takeConnection();
-                PreparedStatement statement = connection.prepareStatement(UPDATE_USER_IMAGE)) {
+                PreparedStatement statement = connection.prepareStatement(SQL_UPDATE_USER_IMAGE)) {
             statement.setString(1, user.getProfileImage());
             statement.setInt(2, user.getId());
 
@@ -116,7 +147,7 @@ public class UserDaoImpl implements UserDao {
     public boolean deleteUser(int userId) throws DaoException {
         boolean isDeleted;
         try (Connection connection = ConnectionPool.getInstance().takeConnection();
-                PreparedStatement statement = connection.prepareStatement(DELETE_USER)) {
+                PreparedStatement statement = connection.prepareStatement(SQL_DELETE_USER)) {
             statement.setInt(1, userId);
 
             isDeleted = statement.executeUpdate() == 1;
@@ -137,7 +168,7 @@ public class UserDaoImpl implements UserDao {
     public boolean restoreUser(int userId) throws DaoException {
         boolean isRestored;
         try (Connection connection = ConnectionPool.getInstance().takeConnection();
-                PreparedStatement statement = connection.prepareStatement(RESTORE_USER)) {
+                PreparedStatement statement = connection.prepareStatement(SQL_RESTORE_USER)) {
             statement.setInt(1, userId);
 
             isRestored = statement.executeUpdate() == 1;

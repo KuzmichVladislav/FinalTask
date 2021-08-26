@@ -11,15 +11,20 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class UserServiceImpl implements UserService {
+
     private static final Logger logger = LogManager.getLogger();
-    private static UserService userService = new UserServiceImpl();
+    private static UserServiceImpl mInstance;
+
     private UserDao userDao = UserDaoImpl.getInstance();
 
     private UserServiceImpl() {
     }
 
-    public static UserService getInstance() {
-        return userService;
+    public static UserServiceImpl getInstance() {
+        if (mInstance == null) {
+            mInstance = new UserServiceImpl();
+        }
+        return mInstance;
     }
 
     @Override

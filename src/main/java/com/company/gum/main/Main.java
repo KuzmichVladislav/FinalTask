@@ -58,9 +58,8 @@ public class Main {
         // String mailTo = "kyzmenoid@gmail.com";
         // String subject = "Sample Mail";
         // String body = "Hello java mail";
-       // MailSender sender = new MailSender();
-       // sender.send(1, "kyzmenoid@gmail.com");
-
+        // MailSender sender = new MailSender();
+        // sender.send(1, "kyzmenoid@gmail.com");
         Client client = new Client();
         client.setLogin("Kuzia");
         client.setName("Vlad");
@@ -70,13 +69,12 @@ public class Main {
         client.setId(1);
         client.setMail("375259740288@yandex.by");
 
-        ClientService service = new ClientServiceImpl();
+        ClientService service = ClientServiceImpl.getInstance();
         service.createClient(client);
         System.out.println(client.getId());
         System.out.println(client.getMail());
 
 //        ClientDaoImpl cd = new ClientDaoImpl();
 //        cd.verification(57);
-
     }
 }

@@ -3,7 +3,6 @@ package com.company.gum.dao;
 import com.company.gum.entity.Trainer;
 import com.company.gum.exception.DaoException;
 
-import java.sql.SQLException;
 import java.util.List;
 
 public interface TrainerDao {

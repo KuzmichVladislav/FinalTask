@@ -5,6 +5,7 @@ import javax.servlet.http.HttpSession;
 import java.util.*;
 
 public class SessionRequestContent {
+
     private HashMap<String, Object> requestAttributes = new HashMap<>();
     private HashMap<String, String[]> requestParameters;
     private HashMap<String, Object> sessionAttributes = new HashMap<>();

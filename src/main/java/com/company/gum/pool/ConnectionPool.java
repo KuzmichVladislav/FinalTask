@@ -16,21 +16,16 @@ import java.util.concurrent.locks.ReentrantLock;
 
 public class ConnectionPool {
 
-    private static Logger logger = LogManager.getLogger(ConnectionPool.class);
-
-    private static ConnectionPool instance;
-
-    private BlockingQueue<ProxyConnection> awaitingConnections;
-    private BlockingQueue<ProxyConnection> occupiedConnections;
-
-    private static AtomicBoolean isCreated = new AtomicBoolean(false);
-    private static ReentrantLock lock = new ReentrantLock(true);
-
+    private static final Logger logger = LogManager.getLogger(ConnectionPool.class);
     private static final int DEFAULT_NUMBER_OF_CONNECTION = 5;
     private static final String PROPERTY_PATH = "database/mysql.properties";
     private static final String URL_PROPERTY = "url";
     private static final String NUMBER_OF_CONNECTIONS = "number_of_connections";
-
+    private static ConnectionPool instance;
+    private static AtomicBoolean isCreated = new AtomicBoolean(false);
+    private static ReentrantLock lock = new ReentrantLock(true);
+    private BlockingQueue<ProxyConnection> awaitingConnections;
+    private BlockingQueue<ProxyConnection> occupiedConnections;
     private int numberOfConnections;
 
     private ConnectionPool() {

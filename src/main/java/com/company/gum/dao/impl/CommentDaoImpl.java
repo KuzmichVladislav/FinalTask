@@ -17,10 +17,17 @@ public class CommentDaoImpl implements CommentDao {
 
     private static final Logger logger = LogManager.getLogger();
 
-    private static final String CREATE_COMMENT = "INSERT INTO comments (user_id, comment_text) VALUES (?, ?)";
-    private static final String UPDATE_COMMENT = "UPDATE comments SET user_id = IFNULL(?, user_id), comment_text = IFNULL(?, comment_text), is_active = IFNULL(?, is_active) WHERE comment_id = ?";
-    private static final String DELETE_COMMENT = "UPDATE comments SET is_active = false WHERE comment_id = ?";
-    private static final String FIND_COMMENT = "SELECT comments.comment_id,\n"
+    private static final String SQL_CREATE_COMMENT = "INSERT INTO comments (user_id, comment_text)\n" +
+            "VALUES (?, ?)";
+    private static final String SQL_UPDATE_COMMENT = "UPDATE comments\n" +
+            "SET user_id      = IFNULL(?, user_id),\n" +
+            "    comment_text = IFNULL(?, comment_text),\n" +
+            "    is_active    = IFNULL(?, is_active)\n" +
+            "WHERE comment_id = ?";
+    private static final String SQL_DELETE_COMMENT = "UPDATE comments\n" +
+            "SET is_active = false\n" +
+            "WHERE comment_id = ?";
+    private static final String SQL_FIND_COMMENT = "SELECT comments.comment_id,\n"
             + "       comments.user_id,\n"
             + "       u.name    AS name,\n"
             + "       u.surname AS surname,\n"
@@ -32,7 +39,7 @@ public class CommentDaoImpl implements CommentDao {
             + "         LEFT JOIN users u ON comments.user_id = u.user_id\n"
             + "WHERE comments.comment_id = ?";
 
-    private static final String FIND_ALL_COMMENT = "SELECT comments.comment_id,\n"
+    private static final String SQL_FIND_ALL_COMMENT = "SELECT comments.comment_id,\n"
             + "       comments.user_id,\n"
             + "       u.name    AS user_name,\n"
             + "       u.surname AS user_surname,\n"
@@ -42,9 +49,8 @@ public class CommentDaoImpl implements CommentDao {
             + "       comments.is_active\n"
             + "FROM comments\n"
             + "         LEFT JOIN users u ON comments.user_id = u.user_id";
-    private static CommentDao commentDao = new CommentDaoImpl();
 
-    private static final String FIND_ALL_ACTIVE_COMMENT = "SELECT comments.comment_id,\n"
+    private static final String SQL_FIND_ALL_ACTIVE_COMMENT = "SELECT comments.comment_id,\n"
             + "       comments.user_id,\n"
             + "       u.name    AS user_name,\n"
             + "       u.surname AS user_surname,\n"
@@ -56,7 +62,7 @@ public class CommentDaoImpl implements CommentDao {
             + "         LEFT JOIN users u ON comments.user_id = u.user_id\n"
             + "WHERE comments.is_active = true";
 
-    private static final String FIND_ALL_COMMENT_WITH_FILTER = "SELECT comments.comment_id,\n"
+    private static final String SQL_FIND_ALL_COMMENT_WITH_FILTER = "SELECT comments.comment_id,\n"
             + "    comments.user_id,\n"
             + "    u.name    AS user_name,\n"
             + "    u.surname AS user_surname,\n"
@@ -71,21 +77,26 @@ public class CommentDaoImpl implements CommentDao {
             + "  AND CAST(comments.comment_date AS date) = IFNULL(?, CAST(comments.comment_date AS date))\n"
             + "  AND comments.is_active = IFNULL(?, comments.is_active)";
 
-    private static final String COMMENT_COUNT = "SELECT COUNT(comments.comment_id)\n"
+    private static final String SQL_COMMENT_COUNT = "SELECT COUNT(comments.comment_id)\n"
             + "FROM comments\n"
             + "WHERE is_active = IFNULL(?, is_active)";
+
+    private static CommentDaoImpl mInstance;
 
     private CommentDaoImpl() {
     }
 
-    public static CommentDao getInstance() {
-        return commentDao;
+    public static CommentDaoImpl getInstance() {
+        if (mInstance == null) {
+            mInstance = new CommentDaoImpl();
+        }
+        return mInstance;
     }
 
     @Override
     public Comment createComment(Comment comment) throws DaoException {
         try (Connection connection = ConnectionPool.getInstance().takeConnection();
-                PreparedStatement statement = connection.prepareStatement(CREATE_COMMENT, Statement.RETURN_GENERATED_KEYS)) {
+             PreparedStatement statement = connection.prepareStatement(SQL_CREATE_COMMENT, Statement.RETURN_GENERATED_KEYS)) {
             statement.setInt(1, comment.getUserId());
             statement.setString(2, comment.getCommentText());
 
@@ -109,7 +120,7 @@ public class CommentDaoImpl implements CommentDao {
         boolean isUpdated;
 
         try (Connection connection = ConnectionPool.getInstance().takeConnection();
-                PreparedStatement statement = connection.prepareStatement(UPDATE_COMMENT)) {
+             PreparedStatement statement = connection.prepareStatement(SQL_UPDATE_COMMENT)) {
             if (comment.getUserId() != null) {
                 statement.setInt(1, comment.getUserId());
             } else {
@@ -141,7 +152,7 @@ public class CommentDaoImpl implements CommentDao {
         boolean isDeleted;
 
         try (Connection connection = ConnectionPool.getInstance().takeConnection();
-                PreparedStatement statement = connection.prepareStatement(DELETE_COMMENT)) {
+             PreparedStatement statement = connection.prepareStatement(SQL_DELETE_COMMENT)) {
             statement.setInt(1, commentId);
             isDeleted = statement.executeUpdate() == 1;
 
@@ -162,7 +173,7 @@ public class CommentDaoImpl implements CommentDao {
         Comment comment = null;
 
         try (Connection connection = ConnectionPool.getInstance().takeConnection();
-                PreparedStatement statement = connection.prepareStatement(FIND_COMMENT)) {
+             PreparedStatement statement = connection.prepareStatement(SQL_FIND_COMMENT)) {
             statement.setInt(1, commentId);
             ResultSet resultSet = statement.executeQuery();
 
@@ -182,7 +193,7 @@ public class CommentDaoImpl implements CommentDao {
         List<Comment> comments = new ArrayList<>();
 
         try (Connection connection = ConnectionPool.getInstance().takeConnection();
-                PreparedStatement statement = connection.prepareStatement(FIND_ALL_COMMENT)) {
+             PreparedStatement statement = connection.prepareStatement(SQL_FIND_ALL_COMMENT)) {
 
             ResultSet resultSet = statement.executeQuery();
 
@@ -202,7 +213,7 @@ public class CommentDaoImpl implements CommentDao {
         List<Comment> comments = new ArrayList<>();
 
         try (Connection connection = ConnectionPool.getInstance().takeConnection();
-                PreparedStatement statement = connection.prepareStatement(FIND_ALL_ACTIVE_COMMENT)) {
+             PreparedStatement statement = connection.prepareStatement(SQL_FIND_ALL_ACTIVE_COMMENT)) {
 
             ResultSet resultSet = statement.executeQuery();
 
@@ -222,7 +233,7 @@ public class CommentDaoImpl implements CommentDao {
         List<Comment> comments = new ArrayList<>();
 
         try (Connection connection = ConnectionPool.getInstance().takeConnection();
-                PreparedStatement statement = connection.prepareStatement(FIND_ALL_COMMENT_WITH_FILTER)) {
+             PreparedStatement statement = connection.prepareStatement(SQL_FIND_ALL_COMMENT_WITH_FILTER)) {
             if (filter.getUserName() != null) {
                 statement.setString(1, filter.getUserName());
             } else {
@@ -261,7 +272,7 @@ public class CommentDaoImpl implements CommentDao {
         int count = 0;
 
         try (Connection connection = ConnectionPool.getInstance().takeConnection();
-                PreparedStatement statement = connection.prepareStatement(COMMENT_COUNT)) {
+             PreparedStatement statement = connection.prepareStatement(SQL_COMMENT_COUNT)) {
 
             if (active != null) {
                 statement.setBoolean(1, active);

@@ -5,11 +5,8 @@ import com.company.gum.exception.CommandException;
 import com.company.gum.exception.ServiceException;
 import com.company.gum.service.ClientService;
 import com.company.gum.service.impl.ClientServiceImpl;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 public class VerificationCommand implements Command {
-    private static final Logger logger = LogManager.getLogger(VerificationCommand.class);
 
     private ClientService clientService = ClientServiceImpl.getInstance();
 

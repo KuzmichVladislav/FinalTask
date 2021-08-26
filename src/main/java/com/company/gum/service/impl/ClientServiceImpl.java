@@ -8,25 +8,25 @@ import com.company.gum.exception.ServiceException;
 import com.company.gum.service.ClientService;
 import com.company.gum.util.JBCryptPasswordEncoder;
 import com.company.gum.util.MailSender;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import java.math.BigDecimal;
 import java.util.List;
 
 public class ClientServiceImpl implements ClientService {
-    private static final Logger logger = LogManager.getLogger();
-    private static ClientService clientService = new ClientServiceImpl();
+
+    private static ClientServiceImpl mInstance;
 
     private ClientDao clientDao = ClientDaoImpl.getInstance();
 
-    public ClientServiceImpl() {
+    private ClientServiceImpl() {
     }
 
-    public static ClientService getInstance() {
-        return clientService;
+    public static ClientServiceImpl getInstance() {
+        if (mInstance == null) {
+            mInstance = new ClientServiceImpl();
+        }
+        return mInstance;
     }
-
 
     @Override
     public Client createClient(Client client) throws ServiceException {

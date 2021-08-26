@@ -13,11 +13,11 @@ import javax.mail.internet.MimeMessage;
 import java.util.Properties;
 
 public class MailSender {
+
     private static final Logger logger = LogManager.getLogger();
 
     private static final String PROPERTY_PATH = "mail/mail.properties";
     private static final String SUBJECT_MAIL = "Verification";
-    private static final String TEXT_MAIL = "Head to this link for activation your account: <a href='http://localhost:8080/gum_war/controller?command=verification&userId=%d'>verification</a>";
     private static final Properties properties = PropertyLoader.loadProperty(PROPERTY_PATH);
 
     private MimeMessage message;

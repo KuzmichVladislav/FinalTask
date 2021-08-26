@@ -2,21 +2,15 @@ package com.company.gum.entity;
 
 public class User extends AbstractEntity {
 
+    UserRole role;
     private String login;
     private String password;
-    UserRole role;
     private String name;
     private String surname;
     private boolean isActive;
     private String profileImage;
     private String mail;
     private boolean verification;
-
-    public enum UserRole {
-        ADMIN,
-        TRAINER,
-        CLIENT
-    }
 
     public boolean isVerification() {
         return verification;
@@ -148,5 +142,11 @@ public class User extends AbstractEntity {
         sb.append(", verification=").append(verification);
         sb.append('}');
         return sb.toString();
+    }
+
+    public enum UserRole {
+        ADMIN,
+        TRAINER,
+        CLIENT
     }
 }

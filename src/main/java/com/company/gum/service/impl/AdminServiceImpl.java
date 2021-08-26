@@ -6,23 +6,23 @@ import com.company.gum.entity.Admin;
 import com.company.gum.exception.DaoException;
 import com.company.gum.exception.ServiceException;
 import com.company.gum.service.AdminService;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import java.util.List;
 
 public class AdminServiceImpl implements AdminService {
-    private static final Logger logger = LogManager.getLogger();
 
-    private static AdminService adminService = new AdminServiceImpl();
+    private static AdminServiceImpl mInstance;
 
     private AdminDao adminDao = AdminDaoImpl.getInstance();
 
     private AdminServiceImpl() {
     }
 
-    public static AdminService getInstance() {
-        return adminService;
+    public static AdminServiceImpl getInstance() {
+        if (mInstance == null) {
+            mInstance = new AdminServiceImpl();
+        }
+        return mInstance;
     }
 
     @Override
