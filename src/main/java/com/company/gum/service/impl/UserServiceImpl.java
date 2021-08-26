@@ -6,7 +6,7 @@ import com.company.gum.entity.User;
 import com.company.gum.exception.DaoException;
 import com.company.gum.exception.ServiceException;
 import com.company.gum.service.UserService;
-import com.company.gum.util.passworEncoder.JBCryptPasswordEncoder;
+import com.company.gum.util.JBCryptPasswordEncoder;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

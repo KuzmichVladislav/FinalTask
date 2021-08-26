@@ -1,5 +1,9 @@
 package com.company.gum.main;
 
+import com.company.gum.entity.Client;
+import com.company.gum.service.ClientService;
+import com.company.gum.service.impl.ClientServiceImpl;
+
 public class Main {
 
     public static void main(String[] args) throws Exception {
@@ -46,8 +50,33 @@ public class Main {
         CommentDaoImpl.getInstance().updateComment(comment);*/
         //Comment comment = CommentDaoImpl.getInstance().findComment(3);
         //System.out.println(CommentDaoImpl.getInstance().commentCount(true));
-        Integer in = new Integer(25);
-        if (in < 35)
-            System.out.println("Value of int = " + in);
+        // System.out.println(JBCryptPasswordEncoder.encode("admindfgdf22"));
+        // JBCryptPasswordEncoder jb = new JBCryptPasswordEncoder();
+        //System.out.println(BCrypt.gensalt());
+        //  Properties properties = PropertyLoader.loadProperty("mail/mail.properties");
+        //System.out.println(properties);
+        // String mailTo = "kyzmenoid@gmail.com";
+        // String subject = "Sample Mail";
+        // String body = "Hello java mail";
+       // MailSender sender = new MailSender();
+       // sender.send(1, "kyzmenoid@gmail.com");
+
+        Client client = new Client();
+        client.setLogin("Kuzia");
+        client.setName("Vlad");
+        client.setSurname("Vlad");
+        client.setPassword("Absba");
+        client.setPhone("554554");
+        client.setId(1);
+        client.setMail("375259740288@yandex.by");
+
+        ClientService service = new ClientServiceImpl();
+        service.createClient(client);
+        System.out.println(client.getId());
+        System.out.println(client.getMail());
+
+//        ClientDaoImpl cd = new ClientDaoImpl();
+//        cd.verification(57);
+
     }
 }

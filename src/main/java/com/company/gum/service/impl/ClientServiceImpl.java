@@ -6,7 +6,8 @@ import com.company.gum.entity.Client;
 import com.company.gum.exception.DaoException;
 import com.company.gum.exception.ServiceException;
 import com.company.gum.service.ClientService;
-import com.company.gum.util.passworEncoder.PasswordEncoder;
+import com.company.gum.util.JBCryptPasswordEncoder;
+import com.company.gum.util.MailSender;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -19,7 +20,7 @@ public class ClientServiceImpl implements ClientService {
 
     private ClientDao clientDao = ClientDaoImpl.getInstance();
 
-    private ClientServiceImpl() {
+    public ClientServiceImpl() {
     }
 
     public static ClientService getInstance() {
@@ -31,11 +32,13 @@ public class ClientServiceImpl implements ClientService {
     public Client createClient(Client client) throws ServiceException {
         Client createdClient;
         try {
-            client.setPassword(PasswordEncoder.encode(client.getPassword()));
+            client.setPassword(JBCryptPasswordEncoder.encode(client.getPassword()));
             createdClient = clientDao.createClient(client);
         } catch (DaoException e) {
             throw new ServiceException(e);
         }
+        MailSender sender = new MailSender();
+        sender.send(client.getId(), client.getMail());
         return createdClient;
     }
 

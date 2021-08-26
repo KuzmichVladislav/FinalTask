@@ -6,7 +6,7 @@ import com.company.gum.entity.Trainer;
 import com.company.gum.exception.DaoException;
 import com.company.gum.exception.ServiceException;
 import com.company.gum.service.TrainerService;
-import com.company.gum.util.passworEncoder.PasswordEncoder;
+import com.company.gum.util.JBCryptPasswordEncoder;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -28,7 +28,7 @@ public class TrainerServiceImpl implements TrainerService {
     @Override
     public Trainer createTrainer(Trainer trainer) throws ServiceException {
         Trainer createdTrainer;
-        trainer.setPassword(PasswordEncoder.encode(trainer.getPassword()));
+        trainer.setPassword(JBCryptPasswordEncoder.encode(trainer.getPassword()));
         try {
             createdTrainer = trainerDao.createTrainer(trainer);
         } catch (DaoException e) {

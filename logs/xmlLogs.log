@@ -1,2 +1,2 @@
-[DEBUG] 2021-08-12 15:39:13,540 ConnectionPool.getInstance() - Connection pool created, number of connections - 4
-[DEBUG] 2021-08-12 15:39:13,603 CommentDaoImpl.commentCount() - Count of active comments  1
+[DEBUG] 2021-08-25 15:31:40,807 ConnectionPool.getInstance() - The connection pool was created with the number of connections 4
+[DEBUG] 2021-08-25 15:31:40,903 ClientDaoImpl.createClient() - Client Client{registerDate=null, discount=null, discountLevel=null, phone='554554', money=null, role=CLIENT} was created

@@ -117,7 +117,7 @@ public class ClientDaoImpl implements ClientDao {
 
     private static ClientDao clientDao = new ClientDaoImpl();
 
-    private ClientDaoImpl() {
+    public ClientDaoImpl() {
     }
 
     public static ClientDao getInstance() {
