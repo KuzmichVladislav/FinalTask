@@ -1,5 +1,8 @@
-package com.company.gum.command;
+package com.company.gum.command.impl;
 
+import com.company.gum.command.ParameterName;
+import com.company.gum.command.Command;
+import com.company.gum.command.PagePath;
 import com.company.gum.controller.SessionRequestContent;
 import com.company.gum.exception.CommandException;
 import com.company.gum.exception.ServiceException;
@@ -14,12 +17,12 @@ public class VerificationCommand implements Command {
     public String execute(SessionRequestContent requestContent) throws CommandException {
         String page;
 
-        int clientId = Integer.parseInt(requestContent.getParameterByName(AttributeName.USER_ID));
+        int clientId = Integer.parseInt(requestContent.getParameterByName(ParameterName.USER_ID));
 
         try {
             boolean isVerified = clientService.verification(clientId);
-            requestContent.putAttribute(AttributeName.VERIFICATION, isVerified);
-            page = PagePath.VERIFICATION_PATH;
+            requestContent.putAttribute(ParameterName.VERIFICATION, isVerified);
+            page = PagePath.VERIFICATION;
         } catch (ServiceException e) {
             throw new CommandException(e);
         }

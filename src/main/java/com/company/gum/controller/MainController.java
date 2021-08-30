@@ -1,9 +1,9 @@
 package com.company.gum.controller;
 
-import com.company.gum.command.AttributeName;
 import com.company.gum.command.Command;
 import com.company.gum.command.CommandType;
 import com.company.gum.command.PagePath;
+import com.company.gum.command.ParameterName;
 import com.company.gum.exception.CommandException;
 import com.company.gum.exception.ServiceException;
 import com.company.gum.pool.ConnectionPool;
@@ -40,16 +40,17 @@ public class MainController extends HttpServlet {
 
     private void doProcess(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         SessionRequestContent content = new SessionRequestContent(req);
-        Command command = CommandType.valueOf(req.getParameter(AttributeName.COMMAND).toUpperCase()).getCommand();
+        String commandName = req.getParameter(ParameterName.COMMAND).toUpperCase();
         String page;
         try {
+            Command command = CommandType.valueOf(commandName).getCommand();
             page = command.execute(content);
             content.insertAttributes(req);
             req.getRequestDispatcher(page).forward(req, resp);
-        } catch (CommandException | ServiceException e) {
+        } catch (CommandException | ServiceException | IllegalArgumentException e) {
             logger.error(e);
-            req.setAttribute(AttributeName.ERROR, e);
-            req.getRequestDispatcher(PagePath.ERROR_PATH).forward(req, resp);
+            req.setAttribute(ParameterName.ERROR, e);
+            req.getRequestDispatcher(PagePath.ERROR).forward(req, resp);
         }
     }
 
