@@ -9,6 +9,8 @@ public interface UserDao {
 
     User findUserByLogin(String login) throws DaoException;
 
+    User findUserByLoginAndPassword(String login, String password) throws DaoException;
+
     boolean updateUserPassword(User user) throws DaoException;
 
     boolean updateUserImage(User user) throws DaoException;

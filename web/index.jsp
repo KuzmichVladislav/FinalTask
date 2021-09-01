@@ -8,6 +8,6 @@
         <title>Index</title>
     </head>
     <body>
-        <c:redirect url="jsp/pages/sing_up.jsp"/>
+        <c:redirect url="jsp/pages/main.jsp"/>
     </body>
 </html>

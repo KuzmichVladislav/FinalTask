@@ -211,9 +211,9 @@ public class ClientDaoImpl implements ClientDao {
 
             isUpdated = statement.executeUpdate() == 1;
             if (isUpdated) {
-                logger.debug("client with id \"{}\" was verified", clientId);
+                logger.debug("Client with id \"{}\" was verified", clientId);
             } else {
-                logger.debug("client id \"{}\" verification failed", clientId);
+                logger.debug("Client id \"{}\" verification failed", clientId);
             }
         } catch (SQLException e) {
             throw new DaoException(e);
@@ -290,7 +290,7 @@ public class ClientDaoImpl implements ClientDao {
             ResultSet resultClientSet = clientStatement.executeQuery();
             if (resultClientSet.next()) {
                 client = getClientFromResultSet(resultClientSet);
-                logger.debug("Сlient with id \"{}\" was found:\n{}", clientId, client);
+                logger.debug("Client with id \"{}\" was found:\n{}", clientId, client);
             }
 
         } catch (SQLException e) {

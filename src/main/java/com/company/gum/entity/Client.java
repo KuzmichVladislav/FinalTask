@@ -129,6 +129,7 @@ public class Client extends User {
      * {@code Client} builder static inner class.
      */
     public static final class Builder {
+
         private Integer id;
         private UserRole role;
         private String login;
@@ -148,7 +149,8 @@ public class Client extends User {
         }
 
         /**
-         * Sets the {@code id} and returns a reference to this Builder so that the methods can be chained together.
+         * Sets the {@code id} and returns a reference to this Builder so that
+         * the methods can be chained together.
          *
          * @param val the {@code id} to set
          * @return a reference to this Builder
@@ -159,7 +161,8 @@ public class Client extends User {
         }
 
         /**
-         * Sets the {@code role} and returns a reference to this Builder so that the methods can be chained together.
+         * Sets the {@code role} and returns a reference to this Builder so that
+         * the methods can be chained together.
          *
          * @param val the {@code role} to set
          * @return a reference to this Builder
@@ -170,7 +173,8 @@ public class Client extends User {
         }
 
         /**
-         * Sets the {@code login} and returns a reference to this Builder so that the methods can be chained together.
+         * Sets the {@code login} and returns a reference to this Builder so
+         * that the methods can be chained together.
          *
          * @param val the {@code login} to set
          * @return a reference to this Builder
@@ -181,7 +185,8 @@ public class Client extends User {
         }
 
         /**
-         * Sets the {@code password} and returns a reference to this Builder so that the methods can be chained together.
+         * Sets the {@code password} and returns a reference to this Builder so
+         * that the methods can be chained together.
          *
          * @param val the {@code password} to set
          * @return a reference to this Builder
@@ -192,7 +197,8 @@ public class Client extends User {
         }
 
         /**
-         * Sets the {@code name} and returns a reference to this Builder so that the methods can be chained together.
+         * Sets the {@code name} and returns a reference to this Builder so that
+         * the methods can be chained together.
          *
          * @param val the {@code name} to set
          * @return a reference to this Builder
@@ -203,7 +209,8 @@ public class Client extends User {
         }
 
         /**
-         * Sets the {@code surname} and returns a reference to this Builder so that the methods can be chained together.
+         * Sets the {@code surname} and returns a reference to this Builder so
+         * that the methods can be chained together.
          *
          * @param val the {@code surname} to set
          * @return a reference to this Builder
@@ -214,7 +221,8 @@ public class Client extends User {
         }
 
         /**
-         * Sets the {@code profileImage} and returns a reference to this Builder so that the methods can be chained together.
+         * Sets the {@code profileImage} and returns a reference to this Builder
+         * so that the methods can be chained together.
          *
          * @param val the {@code profileImage} to set
          * @return a reference to this Builder
@@ -225,7 +233,8 @@ public class Client extends User {
         }
 
         /**
-         * Sets the {@code mail} and returns a reference to this Builder so that the methods can be chained together.
+         * Sets the {@code mail} and returns a reference to this Builder so that
+         * the methods can be chained together.
          *
          * @param val the {@code mail} to set
          * @return a reference to this Builder
@@ -236,7 +245,8 @@ public class Client extends User {
         }
 
         /**
-         * Sets the {@code verification} and returns a reference to this Builder so that the methods can be chained together.
+         * Sets the {@code verification} and returns a reference to this Builder
+         * so that the methods can be chained together.
          *
          * @param val the {@code verification} to set
          * @return a reference to this Builder
@@ -247,7 +257,8 @@ public class Client extends User {
         }
 
         /**
-         * Sets the {@code registerDate} and returns a reference to this Builder so that the methods can be chained together.
+         * Sets the {@code registerDate} and returns a reference to this Builder
+         * so that the methods can be chained together.
          *
          * @param val the {@code registerDate} to set
          * @return a reference to this Builder
@@ -258,7 +269,8 @@ public class Client extends User {
         }
 
         /**
-         * Sets the {@code discount} and returns a reference to this Builder so that the methods can be chained together.
+         * Sets the {@code discount} and returns a reference to this Builder so
+         * that the methods can be chained together.
          *
          * @param val the {@code discount} to set
          * @return a reference to this Builder
@@ -269,7 +281,8 @@ public class Client extends User {
         }
 
         /**
-         * Sets the {@code discountLevel} and returns a reference to this Builder so that the methods can be chained together.
+         * Sets the {@code discountLevel} and returns a reference to this
+         * Builder so that the methods can be chained together.
          *
          * @param val the {@code discountLevel} to set
          * @return a reference to this Builder
@@ -280,7 +293,8 @@ public class Client extends User {
         }
 
         /**
-         * Sets the {@code phone} and returns a reference to this Builder so that the methods can be chained together.
+         * Sets the {@code phone} and returns a reference to this Builder so
+         * that the methods can be chained together.
          *
          * @param val the {@code phone} to set
          * @return a reference to this Builder
@@ -291,7 +305,8 @@ public class Client extends User {
         }
 
         /**
-         * Sets the {@code money} and returns a reference to this Builder so that the methods can be chained together.
+         * Sets the {@code money} and returns a reference to this Builder so
+         * that the methods can be chained together.
          *
          * @param val the {@code money} to set
          * @return a reference to this Builder
@@ -304,7 +319,8 @@ public class Client extends User {
         /**
          * Returns a {@code Client} built from the parameters previously set.
          *
-         * @return a {@code Client} built with parameters of this {@code Client.Builder}
+         * @return a {@code Client} built with parameters of this
+         * {@code Client.Builder}
          */
         public Client build() {
             return new Client(this);

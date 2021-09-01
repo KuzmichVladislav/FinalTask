@@ -8,15 +8,15 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class PropertyLoader {
-    
+
     private static final Logger logger = LogManager.getLogger();
-    
+
     private PropertyLoader() {
     }
-    
+
     public static Properties loadProperty(String path) {
         Properties properties = new Properties();
-        
+
         try {
             properties.load(ConnectionPool.class.getClassLoader().getResourceAsStream(path));
         } catch (IOException e) {

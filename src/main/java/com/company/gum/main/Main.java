@@ -1,8 +1,11 @@
 package com.company.gum.main;
 
 import com.company.gum.entity.Client;
+import com.company.gum.entity.User;
 import com.company.gum.service.ClientService;
+import com.company.gum.service.UserService;
 import com.company.gum.service.impl.ClientServiceImpl;
+import com.company.gum.service.impl.UserServiceImpl;
 
 public class Main {
 
@@ -60,21 +63,27 @@ public class Main {
         // String body = "Hello java mail";
         // MailSender sender = new MailSender();
         // sender.send(1, "kyzmenoid@gmail.com");
-        Client client = new Client();
-        client.setLogin("Kuzia");
-        client.setName("Vlad");
-        client.setSurname("Vlad");
-        client.setPassword("Absba");
-        client.setPhone("554554");
-        client.setId(1);
-        client.setMail("375259740288@yandex.by");
-
-        ClientService service = ClientServiceImpl.getInstance();
-        service.createClient(client);
-        System.out.println(client.getId());
-        System.out.println(client.getMail());
-
+//        Client client = new Client();
+//        client.setLogin("Kuzia");
+//        client.setName("Vlad");
+//        client.setSurname("Vlad");
+//        client.setPassword("Absba");
+//        client.setPhone("554554");
+//        client.setId(1);
+//        client.setMail("375259740288@yandex.by");
+//
+//        ClientService service = ClientServiceImpl.getInstance();
+//        service.createClient(client);
+//        System.out.println(client.getId());
+//        System.out.println(client.getMail());
 //        ClientDaoImpl cd = new ClientDaoImpl();
 //        cd.verification(57);
+        UserService userService = UserServiceImpl.getInstance();
+        User user = userService.findUserByLoginAndPassword("firstLogin", "aloha");
+        System.out.println(user);
+
+        ClientService clientService = ClientServiceImpl.getInstance();
+        Client client = clientService.findClientById(user.getId());
+
     }
 }

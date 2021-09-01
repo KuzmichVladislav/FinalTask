@@ -9,6 +9,8 @@ public interface UserService {
 
     User findUserByLogin(String login) throws ServiceException;
 
+    User findUserByLoginAndPassword(String login, String password) throws ServiceException;
+
     boolean updateUserPassword(User user) throws ServiceException;
 
     boolean updateUserImage(User user) throws ServiceException;

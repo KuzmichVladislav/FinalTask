@@ -20,25 +20,25 @@ public class SessionRequestContent {
         HttpSession session = request.getSession(false);
         if (Objects.nonNull(session)) {
             Enumeration<String> sessionAttributesNames = session.getAttributeNames();
-            for (String attr : Collections.list(sessionAttributesNames)) {
+            Collections.list(sessionAttributesNames).forEach(attr -> {
                 sessionAttributes.put(attr, session.getAttribute(attr));
-            }
+            });
         }
     }
 
     public void insertAttributes(HttpServletRequest request) {
-        for (Map.Entry<String, Object> entry : requestAttributes.entrySet()) {
+        requestAttributes.entrySet().forEach(entry -> {
             String key = entry.getKey();
             Object value = entry.getValue();
             request.setAttribute(key, value);
-        }
+        });
         HttpSession session = request.getSession(false);
         if (Objects.nonNull(session)) {
-            for (Map.Entry<String, Object> entry : sessionAttributes.entrySet()) {
+            sessionAttributes.entrySet().forEach(entry -> {
                 String key = entry.getKey();
                 Object value = entry.getValue();
                 session.setAttribute(key, value);
-            }
+            });
         }
         if (invalidateSession) {
             request.getSession().invalidate();

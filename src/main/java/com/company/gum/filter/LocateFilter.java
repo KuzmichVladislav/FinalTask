@@ -6,9 +6,9 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
 @WebFilter(urlPatterns = {"/jsp/*"}, dispatcherTypes = {
-        DispatcherType.FORWARD,
-        DispatcherType.INCLUDE,
-        DispatcherType.REQUEST
+    DispatcherType.FORWARD,
+    DispatcherType.INCLUDE,
+    DispatcherType.REQUEST
 })
 public class LocateFilter implements Filter {
 
