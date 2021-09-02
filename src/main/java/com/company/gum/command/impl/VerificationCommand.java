@@ -11,21 +11,21 @@ import com.company.gum.service.impl.ClientServiceImpl;
 
 public class VerificationCommand implements Command {
 
-    private ClientService clientService = ClientServiceImpl.getInstance();
+	private ClientService clientService = ClientServiceImpl.getInstance();
 
-    @Override
-    public String execute(SessionRequestContent requestContent) throws CommandException {
-        String page;
+	@Override
+	public String execute(SessionRequestContent requestContent) throws CommandException {
+		String page;
 
-        int clientId = Integer.parseInt(requestContent.getParameterByName(ParameterName.USER_ID));
+		int clientId = Integer.parseInt(requestContent.getParameterByName(ParameterName.USER_ID));
 
-        try {
-            boolean isVerified = clientService.verification(clientId);
-            requestContent.putAttribute(ParameterName.VERIFICATION, isVerified);
-            page = PagePath.VERIFICATION;
-        } catch (ServiceException e) {
-            throw new CommandException(e);
-        }
-        return page;
-    }
+		try {
+			boolean isVerified = clientService.verification(clientId);
+			requestContent.putAttribute(ParameterName.VERIFICATION, isVerified);
+			page = PagePath.VERIFICATION;
+		} catch (ServiceException e) {
+			throw new CommandException(e);
+		}
+		return page;
+	}
 }

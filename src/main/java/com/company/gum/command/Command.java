@@ -6,5 +6,5 @@ import com.company.gum.exception.ServiceException;
 
 public interface Command {
 
-    String execute(SessionRequestContent requestContent) throws CommandException, ServiceException;
+	String execute(SessionRequestContent requestContent) throws CommandException, ServiceException;
 }

@@ -7,13 +7,13 @@ import java.util.List;
 
 public interface TrainerDao {
 
-    Trainer createTrainer(Trainer trainer) throws DaoException;
+	Trainer createTrainer(Trainer trainer) throws DaoException;
 
-    boolean updateTrainer(Trainer trainer) throws DaoException;
+	boolean updateTrainer(Trainer trainer) throws DaoException;
 
-    Trainer findTrainerById(int trainerId) throws DaoException;
+	Trainer findTrainerById(int trainerId) throws DaoException;
 
-    List<Trainer> findAllTrainer() throws DaoException;
+	List<Trainer> findAllTrainer() throws DaoException;
 
-    List<Trainer> findAllActiveTrainer() throws DaoException;
+	List<Trainer> findAllActiveTrainer() throws DaoException;
 }

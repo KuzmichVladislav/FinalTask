@@ -8,22 +8,22 @@ import java.util.List;
 
 public interface ClientDao {
 
-    Client createClient(Client client) throws DaoException;
+	Client createClient(Client client) throws DaoException;
 
-    boolean updateClient(Client client) throws DaoException;
+	boolean updateClient(Client client) throws DaoException;
 
-    boolean verification(int clientId) throws DaoException;
+	boolean verification(int clientId) throws DaoException;
 
-    boolean refillMoney(int clientId, BigDecimal amount) throws DaoException;
+	boolean refillMoney(int clientId, BigDecimal amount) throws DaoException;
 
-    boolean withdrawMoney(int clientId, BigDecimal amount) throws DaoException;
+	boolean withdrawMoney(int clientId, BigDecimal amount) throws DaoException;
 
-    Client findClientById(int clientId) throws DaoException;
+	Client findClientById(int clientId) throws DaoException;
 
-    List<Client> findAllClient() throws DaoException;
+	List<Client> findAllClient() throws DaoException;
 
-    List<Client> findAllActiveClient() throws DaoException;
+	List<Client> findAllActiveClient() throws DaoException;
 
-    List<Client> findAllClientByAnthroponym(String name, String surname) throws DaoException;
+	List<Client> findAllClientByAnthroponym(String name, String surname) throws DaoException;
 
 }

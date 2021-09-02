@@ -16,72 +16,72 @@ import static com.company.gum.command.ParameterName.*;
 
 public class SignUpCommand implements Command {
 
-    private ClientService clientService = ClientServiceImpl.getInstance();
+	private ClientService clientService = ClientServiceImpl.getInstance();
 
-    @Override
-    public String execute(SessionRequestContent requestContent) throws CommandException {
-        String page;
+	@Override
+	public String execute(SessionRequestContent requestContent) throws CommandException {
+		String page;
 
-        String login = requestContent.getParameterByName(USER_LOGIN).strip();
-        String password = requestContent.getParameterByName(USER_PASSWORD).strip();
-        String repeatedPassword = requestContent.getParameterByName(REPEAT_PASSWORD).strip();
-        String name = requestContent.getParameterByName(USER_NAME).strip();
-        String surname = requestContent.getParameterByName(USER_LAST_NAME).strip();
-        String phone = requestContent.getParameterByName(USER_PHONE).strip();
-        String mail = requestContent.getParameterByName(USER_MAIL).strip();
+		String login = requestContent.getParameterByName(USER_LOGIN).strip();
+		String password = requestContent.getParameterByName(USER_PASSWORD).strip();
+		String repeatedPassword = requestContent.getParameterByName(REPEAT_PASSWORD).strip();
+		String name = requestContent.getParameterByName(USER_NAME).strip();
+		String surname = requestContent.getParameterByName(USER_LAST_NAME).strip();
+		String phone = requestContent.getParameterByName(USER_PHONE).strip();
+		String mail = requestContent.getParameterByName(USER_MAIL).strip();
 
-        boolean isValid = true;
+		boolean isValid = true;
 
-        if (!Validator.checkLogin(login)) {
-            requestContent.putAttribute(ParameterName.ERROR_MESSAGE, ErrorMessageKey.INVALID_LOGIN);
-            isValid = false;
-        }
-        if (!Validator.checkNameSurname(name) && isValid) {
-            requestContent.putAttribute(ParameterName.ERROR_MESSAGE, ErrorMessageKey.INVALID_NAME);
-            isValid = false;
-        }
-        if (!Validator.checkNameSurname(surname) && isValid) {
-            requestContent.putAttribute(ParameterName.ERROR_MESSAGE, ErrorMessageKey.INVALID_LAST_NAME);
-            isValid = false;
-        }
-        if (!Validator.checkPhone(phone) && isValid) {
-            requestContent.putAttribute(ParameterName.ERROR_MESSAGE, ErrorMessageKey.INVALID_PHONE);
-            isValid = false;
-        }
-        if (!Validator.checkMail(mail) && isValid) {
-            requestContent.putAttribute(ParameterName.ERROR_MESSAGE, ErrorMessageKey.INVALID_EMAIL);// TODO: 9/1/2021
-            isValid = false;
-        }
-        if (!Validator.checkPassword(password) && isValid) {
-            requestContent.putAttribute(ParameterName.ERROR_MESSAGE, ErrorMessageKey.INVALID_PASSWORD);
-            isValid = false;
-        }
-        if (!repeatedPassword.equals(password) && isValid) {
-            requestContent.putAttribute(ParameterName.ERROR_MESSAGE, ErrorMessageKey.PASSWORDS_NOT_EQUAL);
-            isValid = false;
-        }
+		if (!Validator.checkLogin(login)) {
+			requestContent.putAttribute(ParameterName.ERROR_MESSAGE, ErrorMessageKey.INVALID_LOGIN);
+			isValid = false;
+		}
+		if (!Validator.checkNameSurname(name) && isValid) {
+			requestContent.putAttribute(ParameterName.ERROR_MESSAGE, ErrorMessageKey.INVALID_NAME);
+			isValid = false;
+		}
+		if (!Validator.checkNameSurname(surname) && isValid) {
+			requestContent.putAttribute(ParameterName.ERROR_MESSAGE, ErrorMessageKey.INVALID_LAST_NAME);
+			isValid = false;
+		}
+		if (!Validator.checkPhone(phone) && isValid) {
+			requestContent.putAttribute(ParameterName.ERROR_MESSAGE, ErrorMessageKey.INVALID_PHONE);
+			isValid = false;
+		}
+		if (!Validator.checkMail(mail) && isValid) {
+			requestContent.putAttribute(ParameterName.ERROR_MESSAGE, ErrorMessageKey.INVALID_EMAIL);// TODO: 9/1/2021
+			isValid = false;
+		}
+		if (!Validator.checkPassword(password) && isValid) {
+			requestContent.putAttribute(ParameterName.ERROR_MESSAGE, ErrorMessageKey.INVALID_PASSWORD);
+			isValid = false;
+		}
+		if (!repeatedPassword.equals(password) && isValid) {
+			requestContent.putAttribute(ParameterName.ERROR_MESSAGE, ErrorMessageKey.PASSWORDS_NOT_EQUAL);
+			isValid = false;
+		}
 
-        try {
-            if (isValid) {
+		try {
+			if (isValid) {
 
-                Client client = new Client.Builder().login(login)
-                        .password(password)
-                        .mail(mail)
-                        .name(name)
-                        .surname(surname)
-                        .phone(phone)
-                        .build();
+				Client client = new Client.Builder().login(login)
+						.password(password)
+						.mail(mail)
+						.name(name)
+						.surname(surname)
+						.phone(phone)
+						.build();
 
-                clientService.createClient(client);
+				clientService.createClient(client);
 
-                page = PagePath.CLIENT_CREATED;
-            } else {
-                page = PagePath.SIGN_UP;
-            }
-        } catch (ServiceException e) {
-            page = PagePath.SIGN_UP;
-            requestContent.putAttribute(ParameterName.ERROR_MESSAGE, ErrorMessageKey.LOGIN_ALREADY_EXIST);
-        }
-        return page;
-    }
+				page = PagePath.CLIENT_CREATED;
+			} else {
+				page = PagePath.SIGN_UP;
+			}
+		} catch (ServiceException e) {
+			page = PagePath.SIGN_UP;
+			requestContent.putAttribute(ParameterName.ERROR_MESSAGE, ErrorMessageKey.LOGIN_ALREADY_EXIST);
+		}
+		return page;
+	}
 }

@@ -51,10 +51,9 @@
 <div class="container register">
     <div class="row">
         <div class="col-md-3 register-left">
-            <%--            <img src="https://i.ibb.co/SsQJHTz/pngegg.png"                 alt="">--%>
+            <img src="https://i.ibb.co/SsQJHTz/pngegg.png" alt="">
             <h3>${tagline}</h3>
             <p>${motivationMessage}</p>
-            <input type="submit" name="" value="Login"><br>
         </div>
         <div class="col-md-9 register-right">
             <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">

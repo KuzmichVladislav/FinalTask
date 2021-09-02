@@ -7,13 +7,13 @@ import java.util.List;
 
 public interface TrainerService {
 
-    Trainer createTrainer(Trainer trainer) throws ServiceException;
+	Trainer createTrainer(Trainer trainer) throws ServiceException;
 
-    boolean updateTrainer(Trainer trainer) throws ServiceException;
+	boolean updateTrainer(Trainer trainer) throws ServiceException;
 
-    Trainer findTrainerById(int trainerId) throws ServiceException;
+	Trainer findTrainerById(int trainerId) throws ServiceException;
 
-    List<Trainer> findAllTrainer() throws ServiceException;
+	List<Trainer> findAllTrainer() throws ServiceException;
 
-    List<Trainer> findAllActiveTrainer() throws ServiceException;
+	List<Trainer> findAllActiveTrainer() throws ServiceException;
 }

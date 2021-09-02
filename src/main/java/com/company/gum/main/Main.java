@@ -9,7 +9,7 @@ import com.company.gum.service.impl.UserServiceImpl;
 
 public class Main {
 
-    public static void main(String[] args) throws Exception {
+	public static void main(String[] args) throws Exception {
 
         /*
         Trainer trainer = new Trainer();
@@ -22,9 +22,9 @@ public class Main {
         trainer.setPhone("9379993");
         TrainerDaoImpl.getInstance().createTrainer(trainer);
          */
-        // ClientDaoImpl.getInstance().withdrawal(1, new BigDecimal(5500.5));
-        //client_id, trainer_id, review, start_order_date, end_order_date, price
-        //"UPDATE orders SET client_id = IFNULL(?, client_id), trainer_id = IFNULL(?, trainer_id), exercises = IFNULL(?, exercises), nutrition = IFNULL(?, nutrition), start_order_date = IFNULL(?, start_order_date), end_order_date = IFNULL(?, end_order_date), price = IFNULL(?, price), client_comment = IFNULL(?, client_comment), order_status = IFNULL(?, order_status), is_active = IFNULL(?, is_active) WHERE id = ?";
+		// ClientDaoImpl.getInstance().withdrawal(1, new BigDecimal(5500.5));
+		//client_id, trainer_id, review, start_order_date, end_order_date, price
+		//"UPDATE orders SET client_id = IFNULL(?, client_id), trainer_id = IFNULL(?, trainer_id), exercises = IFNULL(?, exercises), nutrition = IFNULL(?, nutrition), start_order_date = IFNULL(?, start_order_date), end_order_date = IFNULL(?, end_order_date), price = IFNULL(?, price), client_comment = IFNULL(?, client_comment), order_status = IFNULL(?, order_status), is_active = IFNULL(?, is_active) WHERE id = ?";
 
         /*Order order = new Order();
         order.setId(1);
@@ -51,18 +51,18 @@ public class Main {
         comment.setActive(false);
         comment.setId(3);
         CommentDaoImpl.getInstance().updateComment(comment);*/
-        //Comment comment = CommentDaoImpl.getInstance().findComment(3);
-        //System.out.println(CommentDaoImpl.getInstance().commentCount(true));
-        // System.out.println(JBCryptPasswordEncoder.encode("admindfgdf22"));
-        // JBCryptPasswordEncoder jb = new JBCryptPasswordEncoder();
-        //System.out.println(BCrypt.gensalt());
-        //  Properties properties = PropertyLoader.loadProperty("mail/mail.properties");
-        //System.out.println(properties);
-        // String mailTo = "kyzmenoid@gmail.com";
-        // String subject = "Sample Mail";
-        // String body = "Hello java mail";
-        // MailSender sender = new MailSender();
-        // sender.send(1, "kyzmenoid@gmail.com");
+		//Comment comment = CommentDaoImpl.getInstance().findComment(3);
+		//System.out.println(CommentDaoImpl.getInstance().commentCount(true));
+		// System.out.println(JBCryptPasswordEncoder.encode("admindfgdf22"));
+		// JBCryptPasswordEncoder jb = new JBCryptPasswordEncoder();
+		//System.out.println(BCrypt.gensalt());
+		//  Properties properties = PropertyLoader.loadProperty("mail/mail.properties");
+		//System.out.println(properties);
+		// String mailTo = "kyzmenoid@gmail.com";
+		// String subject = "Sample Mail";
+		// String body = "Hello java mail";
+		// MailSender sender = new MailSender();
+		// sender.send(1, "kyzmenoid@gmail.com");
 //        Client client = new Client();
 //        client.setLogin("Kuzia");
 //        client.setName("Vlad");
@@ -78,12 +78,12 @@ public class Main {
 //        System.out.println(client.getMail());
 //        ClientDaoImpl cd = new ClientDaoImpl();
 //        cd.verification(57);
-        UserService userService = UserServiceImpl.getInstance();
-        User user = userService.findUserByLoginAndPassword("firstLogin", "aloha");
-        System.out.println(user);
+		UserService userService = UserServiceImpl.getInstance();
+		User user = userService.findUserByLoginAndPassword("firstLogin", "aloha");
+		System.out.println(user);
 
-        ClientService clientService = ClientServiceImpl.getInstance();
-        Client client = clientService.findClientById(user.getId());
+		ClientService clientService = ClientServiceImpl.getInstance();
+		Client client = clientService.findClientById(user.getId());
 
-    }
+	}
 }

@@ -6,10 +6,6 @@
 
     <display-name>gum</display-name>
 
-    <session-config>
-        30
-    </session-config>
-
     <error-page>
         <error-code>404</error-code>
         <location>/jsp/pages/error/error404.jsp</location>
