@@ -5,20 +5,10 @@
 <fmt:setLocale value="${sessionScope.locale}"/>
 <fmt:setBundle basename="bundle/message" var="rb"/>
 <fmt:message key="project.name" bundle="${rb}" var="projectName"/>
-<fmt:message key="project.contacts" bundle="${rb}" var="projectContacts"/>
 <fmt:message key="project.navigation.home" bundle="${rb}" var="home"/>
 <fmt:message key="project.navigation.contacts" bundle="${rb}" var="contacts"/>
 <fmt:message key="project.navigation.about" bundle="${rb}" var="about"/>
 <fmt:message key="project.navigation.language" bundle="${rb}" var="language"/>
-<fmt:message key="project.navigation.comments" bundle="${rb}" var="coments"/>
-<fmt:message key="project.navigation.price" bundle="${rb}" var="price"/>
-<fmt:message key="project.navigation.account" bundle="${rb}" var="account"/>
-<fmt:message key="user.box.fio" bundle="${rb}" var="fio"/>
-<fmt:message key="user.box.role" bundle="${rb}" var="role"/>
-<fmt:message key="user.box.cash" bundle="${rb}" var="cash"/>
-<fmt:message key="user.box.sign.in" bundle="${rb}" var="signIn"/>
-<fmt:message key="user.box.sign.up" bundle="${rb}" var="signUp"/>
-<fmt:message key="user.box.logout" bundle="${rb}" var="logOut"/>
 
 <html>
 <head>
