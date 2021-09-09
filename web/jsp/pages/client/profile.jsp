@@ -53,6 +53,7 @@
             <div class="col-md-4">
                 <div class="profile-img">
                     <img src="${sessionScope.profileImage}"/>
+
                     <form id="my_form" method="post" action="${pageContext.request.contextPath}/upload"
                           enctype="multipart/form-data" class="upload-form">
                         <div class="file btn btn-lg btn-primary">
@@ -72,6 +73,17 @@
                 </div>
             </div>
             <div class="col-md-6">
+                <form method="post" action="${pageContext.request.contextPath}/upload" enctype="multipart/form-data" class="upload-form">
+                    <div class="form-group">
+                        <input type="hidden" name="command" value="upload_image">
+                        <label class="col-form-label col-lg-3">Upload image</label>
+                        <div class="col-lg-4">
+                            <input type="file" name="multiPartServlet" id="file" onchange="checkUpload()" accept="image/jpeg,image/png,image/gif"/>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Confirm</button>
+<%--                    <button type="submit" class="btn btn-secondary" disabled id="upload-submit">Upload</button>--%>
+                </form>
                 <div class="profile-head">
                     <h5>
                         ${sessionScope.userName} ${sessionScope.userLastName}
