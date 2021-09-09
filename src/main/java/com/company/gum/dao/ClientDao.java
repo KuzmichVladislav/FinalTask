@@ -10,7 +10,7 @@ public interface ClientDao {
 
     Client createClient(Client client) throws DaoException;
 
-    boolean updateClient(Client client) throws DaoException;
+    boolean editClient(Client client) throws DaoException;
 
     boolean verification(int clientId) throws DaoException;
 

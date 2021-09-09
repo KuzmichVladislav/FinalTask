@@ -2,7 +2,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<%--<fmt:setLocale value="${sessionScope.locale}"/>--%>
+<fmt:setLocale value="${sessionScope.locale}"/>
 <fmt:setBundle basename="bundle/message" var="rb"/>
 <fmt:message key="project.name" bundle="${rb}" var="projectName"/>
 <fmt:message key="project.verification.title" bundle="${rb}" var="verificationTitle"/>

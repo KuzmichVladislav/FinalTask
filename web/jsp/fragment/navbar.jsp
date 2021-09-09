@@ -13,15 +13,14 @@
 <fmt:message key="project.navigation.comments" bundle="${rb}" var="coments"/>
 <fmt:message key="project.navigation.price" bundle="${rb}" var="price"/>
 <fmt:message key="project.navigation.account" bundle="${rb}" var="account"/>
-<fmt:message key="user.box.fio" bundle="${rb}" var="fio"/>
-<fmt:message key="user.box.role" bundle="${rb}" var="role"/>
-<fmt:message key="user.box.cash" bundle="${rb}" var="cash"/>
-<fmt:message key="user.box.sign.in" bundle="${rb}" var="signIn"/>
-<fmt:message key="user.box.sign.up" bundle="${rb}" var="signUp"/>
+<fmt:message key="user.box.sign.login" bundle="${rb}" var="login"/>
+<fmt:message key="user.box.sign.register" bundle="${rb}" var="register"/>
 <fmt:message key="user.box.logout" bundle="${rb}" var="logOut"/>
 
 <html>
 <head>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/navbar.css">
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
@@ -33,6 +32,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
             integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
             crossorigin="anonymous"></script>
+    <title></title>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -48,7 +48,7 @@
                         class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">${about}</a>
+                <a class="nav-link" href="${pageContext.request.contextPath}/jsp/pages/about.jsp">${about}</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">${contacts}</a>
@@ -58,15 +58,15 @@
                     <c:choose>
                         <c:when test="${sessionScope.userRole == 'CLIENT'}">
                             <a class="nav-link"
-                               href="${pageContext.request.contextPath}/jsp/pages/client/account/profile.jsp">${account}</a>
+                               href="${pageContext.request.contextPath}/jsp/pages/client/profile.jsp">${account}</a>
                         </c:when>
                         <c:when test="${sessionScope.userRole == 'TRAINER'}">
                             <a class="nav-link"
-                               href="${pageContext.request.contextPath}/jsp/pages/trainer/account/profile.jsp">${account}</a>
+                               href="${pageContext.request.contextPath}/jsp/pages/trainer/profile.jsp">${account}</a>
                         </c:when>
                         <c:when test="${sessionScope.userRole == 'ADMIN'}">
                             <a class="nav-link"
-                               href="${pageContext.request.contextPath}/jsp/pages/admin/account/profile.jsp">${account}</a>
+                               href="${pageContext.request.contextPath}/jsp/pages/admin/profile.jsp">${account}</a>
                         </c:when>
                     </c:choose>
                 </li>
@@ -85,6 +85,56 @@
                         (Русский)</a>
                 </div>
             </li>
+            <div class="container mt-51 d-flex justify-content-center">
+                <div class="card p-3">
+                    <div class="d-flex align-items-center">
+                        <c:choose>
+                        <c:when test="${sessionScope.authorization}">
+                        <div class="image"><img
+                                src="${sessionScope.profileImage}"
+                                alt="Profile image"
+                                class="rounded" width="80"></div>
+                        <div class="ml-3 w-100">
+                            <div class="ml-3 w-100">
+                                <h4 class="mb-0 mt-0">${sessionScope.userName} ${sessionScope.userLastName}</h4>
+                                <span>
+                                        ${role} ${sessionScope.userRole}
+                                    </span>
+                                <br>
+                                <c:if test="${sessionScope.userRole == 'CLIENT'}">
+                                    <span>
+                                        ${sessionScope.userMoney} BYN
+                                    </span>
+                                </c:if>
+                                <a href="${pageContext.request.contextPath}/controller?command=Logout">
+                                    <button class="btn btn-sm btn-primary w-100 ml-2">${logOut}</button>
+                                </a>
+                            </div>
+                            </c:when>
+                            <c:otherwise>
+                                <div class="image"><img
+                                        src="https://w7.pngwing.com/pngs/247/564/png-transparent-computer-icons-user-profile-user-avatar-blue-heroes-electric-blue.png "
+                                        alt="Profile image"
+                                        class="rounded" width="80"></div>
+                                <div class="ml-3 w-100">
+                                    <h4 class="mb-0 mt-0">Guest</h4>
+                                </div>
+                                <br>
+                                <div class="button mt-2 d-flex flex-row align-items-center">
+                                    <a href="${pageContext.request.contextPath}/jsp/pages/login_sign.jsp">
+                                        <button class="btn btn-sm btn-outline-primary w-100"
+                                                onclick="">${login}</button>
+                                    </a>
+                                    <a href="${pageContext.request.contextPath}/jsp/pages/register.jsp">
+                                        <button class="btn btn-sm btn-primary w-100 ml-2">${register}</button>
+                                    </a>
+                                </div>
+                            </c:otherwise>
+                            </c:choose>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </ul>
     </div>
 </nav>

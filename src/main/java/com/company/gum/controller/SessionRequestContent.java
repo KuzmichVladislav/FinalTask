@@ -2,7 +2,10 @@ package com.company.gum.controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.*;
+import java.util.Collections;
+import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.Objects;
 
 public class SessionRequestContent {
 
@@ -24,6 +27,10 @@ public class SessionRequestContent {
                 sessionAttributes.put(attr, session.getAttribute(attr));
             });
         }
+    }
+
+    public HttpServletRequest showRequest(HttpServletRequest request) {
+        return request;
     }
 
     public void insertAttributes(HttpServletRequest request) {

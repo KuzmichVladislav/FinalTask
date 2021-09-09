@@ -1,16 +1,22 @@
 package com.company.gum.command;
 
-import com.company.gum.command.impl.LocaleCommand;
-import com.company.gum.command.impl.LoginCommand;
-import com.company.gum.command.impl.SignUpCommand;
-import com.company.gum.command.impl.VerificationCommand;
+import com.company.gum.command.impl.*;
+import com.company.gum.command.impl.client.ChangePassword;
+import com.company.gum.command.impl.client.EditClientProfile;
+import com.company.gum.command.impl.client.NewOrder;
 
 public enum CommandType {
 
     SIGN_UP(new SignUpCommand()),
     VERIFICATION(new VerificationCommand()),
     CHANGE_LOCALE(new LocaleCommand()),
-    LOGIN(new LoginCommand());
+    LOGIN(new LoginCommand()),
+    LOGOUT(new LogoutCommand()),
+    UPLOAD_IMAGE(new UploadImageCommand()),
+    EDIT_CLIENT_PROFILE(new EditClientProfile()),
+    CHANGE_PASSWORD(new ChangePassword()),
+    NEW_ORDER(new NewOrder());
+
 
     private Command command;
 

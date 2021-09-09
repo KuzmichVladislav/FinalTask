@@ -10,7 +10,7 @@ public interface ClientService {
 
     Client createClient(Client client) throws ServiceException;
 
-    boolean updateClient(Client client) throws ServiceException;
+    boolean editClient(Client client) throws ServiceException;
 
     boolean verification(int clientId) throws ServiceException;
 

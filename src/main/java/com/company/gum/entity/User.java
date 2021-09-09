@@ -1,5 +1,7 @@
 package com.company.gum.entity;
 
+import java.io.InputStream;
+
 public class User extends AbstractEntity {
 
     UserRole role;
@@ -11,6 +13,15 @@ public class User extends AbstractEntity {
     private String profileImage;
     private String mail;
     private boolean verification;
+    private InputStream photo;
+
+    public InputStream getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(InputStream photo) {
+        this.photo = photo;
+    }
 
     private User(Builder builder) {
         setId(builder.id);

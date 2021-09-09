@@ -18,4 +18,7 @@ public interface UserService {
     boolean deleteUser(int userId) throws ServiceException;
 
     boolean restoreUser(int userId) throws ServiceException;
+
+    // FIXME: 9/7/2021
+    boolean updateUserImage2(User user) throws ServiceException;
 }

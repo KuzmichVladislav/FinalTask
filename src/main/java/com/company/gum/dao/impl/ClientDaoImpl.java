@@ -22,11 +22,12 @@ public class ClientDaoImpl implements ClientDao {
             + "VALUES (?, ?, ?, ?, ?)";
     private static final String SQL_CREATE_CLIENT = "INSERT INTO clients(client_id, phone_number)\n"
             + "VALUES (?, ?)";
-    private static final String SQL_UPDATE_CLIENT = "UPDATE clients\n"
-            + "SET phone_number  = IFNULL(?, phone_number),\n"
-            + "    discount      = IFNULL(?, discount),\n"
-            + "    discount_type = IFNULL(?, discount_type)\n"
-            + "WHERE client_id = ?\n";
+    private static final String SQL_EDIT_CLIENT = "UPDATE clients, users\n"
+            + "SET name  = IFNULL(?, name),\n"
+            + "    surname      = IFNULL(?, surname),\n"
+            + "    phone_number      = IFNULL(?, phone_number),\n"
+            + "    mail = IFNULL(?, mail)\n"
+            + "WHERE user_id = ?\n";
     private static final String SQL_VERIFICATION = "UPDATE users\n"
             + "SET is_active   = true,\n"
             + "    is_verified = true\n"
@@ -130,8 +131,8 @@ public class ClientDaoImpl implements ClientDao {
     @Override
     public Client createClient(Client client) throws DaoException {
         try (Connection connection = ConnectionPool.getInstance().takeConnection();
-                PreparedStatement userStatement = connection.prepareStatement(SQL_CREATE_USER, Statement.RETURN_GENERATED_KEYS);
-                PreparedStatement clientStatement = connection.prepareStatement(SQL_CREATE_CLIENT)) {
+             PreparedStatement userStatement = connection.prepareStatement(SQL_CREATE_USER, Statement.RETURN_GENERATED_KEYS);
+             PreparedStatement clientStatement = connection.prepareStatement(SQL_CREATE_CLIENT)) {
             try {
                 connection.setAutoCommit(false);
                 userStatement.setString(1, client.getLogin());
@@ -171,26 +172,31 @@ public class ClientDaoImpl implements ClientDao {
     }
 
     @Override
-    public boolean updateClient(Client client) throws DaoException {
+    public boolean editClient(Client client) throws DaoException {
         boolean isUpdated;
         try (Connection connection = ConnectionPool.getInstance().takeConnection();
-                PreparedStatement statement = connection.prepareStatement(SQL_UPDATE_CLIENT)) {
+             PreparedStatement statement = connection.prepareStatement(SQL_EDIT_CLIENT)) {
             if (client.getName() != null) {
-                statement.setString(1, client.getPhone());
+                statement.setString(1, client.getName());
             } else {
                 statement.setNull(1, Types.VARCHAR);
             }
-            if (client.getName() != null) {
-                statement.setInt(2, client.getDiscount());
+            if (client.getSurname() != null) {
+                statement.setString(2, client.getSurname());
             } else {
-                statement.setNull(2, Types.INTEGER);
+                statement.setNull(2, Types.VARCHAR);
             }
-            if (client.getName() != null) {
-                statement.setInt(3, client.getDiscountLevel());
+            if (client.getPhone() != null) {
+                statement.setString(3, client.getPhone());
             } else {
-                statement.setNull(3, Types.INTEGER);
+                statement.setNull(3, Types.VARCHAR);
             }
-            statement.setInt(4, client.getId());
+            if (client.getMail() != null) {
+                statement.setString(4, client.getMail());
+            } else {
+                statement.setNull(4, Types.VARCHAR);
+            }
+            statement.setInt(5, client.getId());
 
             isUpdated = statement.executeUpdate() == 1;
 
@@ -206,7 +212,7 @@ public class ClientDaoImpl implements ClientDao {
     public boolean verification(int clientId) throws DaoException {
         boolean isUpdated;
         try (Connection connection = ConnectionPool.getInstance().takeConnection();
-                PreparedStatement statement = connection.prepareStatement(SQL_VERIFICATION)) {
+             PreparedStatement statement = connection.prepareStatement(SQL_VERIFICATION)) {
             statement.setInt(1, clientId);
 
             isUpdated = statement.executeUpdate() == 1;
@@ -225,7 +231,7 @@ public class ClientDaoImpl implements ClientDao {
     public boolean refillMoney(int clientId, BigDecimal amount) throws DaoException {
         boolean isUpdated;
         try (Connection connection = ConnectionPool.getInstance().takeConnection();
-                PreparedStatement updateClientStatement = connection.prepareStatement(SQL_REFILL_MONEY)) {
+             PreparedStatement updateClientStatement = connection.prepareStatement(SQL_REFILL_MONEY)) {
             try {
                 connection.setAutoCommit(false);
                 updateClientStatement.setBigDecimal(1, amount);
@@ -253,7 +259,7 @@ public class ClientDaoImpl implements ClientDao {
     public boolean withdrawMoney(int clientId, BigDecimal amount) throws DaoException {
         boolean isUpdated;
         try (Connection connection = ConnectionPool.getInstance().takeConnection();
-                PreparedStatement updateClientStatement = connection.prepareStatement(SQL_WITHDRAW_MONEY)) {
+             PreparedStatement updateClientStatement = connection.prepareStatement(SQL_WITHDRAW_MONEY)) {
             try {
                 connection.setAutoCommit(false);
 
@@ -283,7 +289,7 @@ public class ClientDaoImpl implements ClientDao {
     public Client findClientById(int clientId) throws DaoException {
         Client client = new Client();
         try (Connection connection = ConnectionPool.getInstance().takeConnection();
-                PreparedStatement clientStatement = connection.prepareStatement(SQL_FIND_CLIENT_BY_ID)) {
+             PreparedStatement clientStatement = connection.prepareStatement(SQL_FIND_CLIENT_BY_ID)) {
 
             clientStatement.setInt(1, clientId);
 
@@ -303,7 +309,7 @@ public class ClientDaoImpl implements ClientDao {
     public List<Client> findAllClient() throws DaoException {
         List<Client> resultArray = new ArrayList<>();
         try (Connection connection = ConnectionPool.getInstance().takeConnection();
-                PreparedStatement statement = connection.prepareStatement(SQL_FIND_ALL_CLIENT)) {
+             PreparedStatement statement = connection.prepareStatement(SQL_FIND_ALL_CLIENT)) {
             ResultSet resultSet = statement.executeQuery();
 
             while (resultSet.next()) {
@@ -325,7 +331,7 @@ public class ClientDaoImpl implements ClientDao {
     public List<Client> findAllActiveClient() throws DaoException {
         List<Client> resultArray = new ArrayList<>();
         try (Connection connection = ConnectionPool.getInstance().takeConnection();
-                PreparedStatement statement = connection.prepareStatement(SQL_FIND_ALL_ACTIVE_CLIENT)) {
+             PreparedStatement statement = connection.prepareStatement(SQL_FIND_ALL_ACTIVE_CLIENT)) {
 
             ResultSet resultSet = statement.executeQuery();
 
@@ -348,7 +354,7 @@ public class ClientDaoImpl implements ClientDao {
     public List<Client> findAllClientByAnthroponym(String name, String surname) throws DaoException {
         List<Client> resultArray = new ArrayList<>();
         try (Connection connection = ConnectionPool.getInstance().takeConnection();
-                PreparedStatement statement = connection.prepareStatement(SQL_FIND_ALL_CLIENT_BY_ANTHROPONYM)) {
+             PreparedStatement statement = connection.prepareStatement(SQL_FIND_ALL_CLIENT_BY_ANTHROPONYM)) {
             if (name != null) {
                 statement.setString(1, name);
             } else {

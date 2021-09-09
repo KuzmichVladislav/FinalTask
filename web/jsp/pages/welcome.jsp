@@ -22,7 +22,7 @@
         <meta http-equiv="refresh" content="6;${pageContext.request.contextPath}/index.jsp">
     </head>
     <body>
-        <%--<c:import url="/jsp/fragment/header.jsp"/>--%>
+        <c:import url="/jsp/fragment/navbar.jsp"/>
 
         <div class="main">
             <div class="container">
@@ -38,7 +38,6 @@
                 </div>
             </div>
         </div>
-
-        <%--<c:import url="/jsp/fragment/footer.jsp"/>--%>
+        <c:import url="../fragment/footer.jsp"/>
     </body>
 </html>

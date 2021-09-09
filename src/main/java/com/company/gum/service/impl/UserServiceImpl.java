@@ -55,7 +55,7 @@ public class UserServiceImpl implements UserService {
     public User findUserByLoginAndPassword(String login, String password) throws ServiceException {
         User user;
         try {
-            user = userDao.findUserByLoginAndPassword(login, password);
+            user = userDao.findUserByLoginAndPassword(login, JBCryptPasswordEncoder.encode(password));
         } catch (DaoException e) {
             logger.warn(e);
             throw new ServiceException(e);
@@ -110,5 +110,17 @@ public class UserServiceImpl implements UserService {
             throw new ServiceException(e);
         }
         return isRestored;
+    }
+
+    // FIXME: 9/7/2021 
+    public boolean updateUserImage2(User user) throws ServiceException {
+        boolean isUpdated;
+        try {
+            isUpdated = userDao.updateUserImage2(user);
+        } catch (DaoException e) {
+            logger.warn(e);
+            throw new ServiceException(e);
+        }
+        return isUpdated;
     }
 }

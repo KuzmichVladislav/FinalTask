@@ -43,10 +43,10 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
-    public boolean updateClient(Client client) throws ServiceException {
+    public boolean editClient(Client client) throws ServiceException {
         boolean isUpdated;
         try {
-            isUpdated = clientDao.updateClient(client);
+            isUpdated = clientDao.editClient(client);
         } catch (DaoException e) {
             throw new ServiceException(e);
         }

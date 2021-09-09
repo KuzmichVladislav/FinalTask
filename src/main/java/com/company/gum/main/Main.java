@@ -1,12 +1,5 @@
 package com.company.gum.main;
 
-import com.company.gum.entity.Client;
-import com.company.gum.entity.User;
-import com.company.gum.service.ClientService;
-import com.company.gum.service.UserService;
-import com.company.gum.service.impl.ClientServiceImpl;
-import com.company.gum.service.impl.UserServiceImpl;
-
 public class Main {
 
     public static void main(String[] args) throws Exception {
@@ -78,12 +71,13 @@ public class Main {
 //        System.out.println(client.getMail());
 //        ClientDaoImpl cd = new ClientDaoImpl();
 //        cd.verification(57);
-        UserService userService = UserServiceImpl.getInstance();
-        User user = userService.findUserByLoginAndPassword("firstLogin", "aloha");
-        System.out.println(user);
-
-        ClientService clientService = ClientServiceImpl.getInstance();
-        Client client = clientService.findClientById(user.getId());
-
+//        UserService userService = UserServiceImpl.getInstance();
+//        User user = userService.findUserByLoginAndPassword("firstLogin", "aloha");
+//        System.out.println(user);
+//
+//        ClientService clientService = ClientServiceImpl.getInstance();
+//        Client client = clientService.findClientById(user.getId());
+//        System.out.println(client);
+//
     }
 }

@@ -7,7 +7,7 @@
     <display-name>gum</display-name>
 
     <session-config>
-        30
+        <session-timeout>30</session-timeout>
     </session-config>
 
     <error-page>
