@@ -1,7 +1,5 @@
 package com.company.gum.entity;
 
-import java.io.InputStream;
-
 public class User extends AbstractEntity {
 
     UserRole role;
@@ -13,13 +11,13 @@ public class User extends AbstractEntity {
     private String profileImage;
     private String mail;
     private boolean verification;
-    private InputStream photo;
+    private byte[] photo;
 
-    public InputStream getPhoto() {
+    public byte[] getPhoto() {
         return photo;
     }
 
-    public void setPhoto(InputStream photo) {
+    public void setPhoto(byte[] photo) {
         this.photo = photo;
     }
 
@@ -34,6 +32,7 @@ public class User extends AbstractEntity {
         setProfileImage(builder.profileImage);
         setMail(builder.mail);
         setVerification(builder.verification);
+        setPhoto(builder.photo);
     }
 
     public User() {
@@ -186,6 +185,7 @@ public class User extends AbstractEntity {
      */
     public static final class Builder {
 
+        public byte[] photo;
         private Integer id;
         private UserRole role;
         private String login;
@@ -196,6 +196,9 @@ public class User extends AbstractEntity {
         private String profileImage;
         private String mail;
         private boolean verification;
+
+        public Builder() {
+        }
 
         /**
          * Sets the {@code id} and returns a reference to this Builder so that
@@ -318,6 +321,17 @@ public class User extends AbstractEntity {
         }
 
         /**
+         * Sets the {@code photo} and returns a reference to this Builder so that the methods can be chained together.
+         *
+         * @param val the {@code photo} to set
+         * @return a reference to this Builder
+         */
+        public Builder photo(byte[] val) {
+            photo = val;
+            return this;
+        }
+
+        /**
          * Returns a {@code User} built from the parameters previously set.
          *
          * @return a {@code User} built with parameters of this
@@ -327,4 +341,5 @@ public class User extends AbstractEntity {
             return new User(this);
         }
     }
+
 }

@@ -23,6 +23,8 @@ import com.company.gum.util.Validator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.Base64;
+
 
 public class LoginCommand implements Command {
     private static Logger logger = LogManager.getLogger();
@@ -44,7 +46,7 @@ public class LoginCommand implements Command {
                 user = userService.findUserByLoginAndPassword(login, password);
                 if (user != null) {
                     requestContent.putSessionAttribute(AttributeName.USER_ID, user.getId());
-                    requestContent.putSessionAttribute(AttributeName.USER_PROFILE_IMAGE, user.getProfileImage());
+                    requestContent.putSessionAttribute(AttributeName.USER_PROFILE_PHOTO_PATH, user.getProfileImage());
 
                     switch (user.getRole()) {
                         case ADMIN:
@@ -76,6 +78,9 @@ public class LoginCommand implements Command {
                             requestContent.putSessionAttribute(AttributeName.USER_PHONE, client.getPhone());
                             requestContent.putSessionAttribute(AttributeName.USER_MONEY, client.getMoney());
                             requestContent.putSessionAttribute(AttributeName.USER_MAIL, client.getMail());
+                           // requestContent.putSessionAttribute(AttributeName.USER_PHOTO, client.getPhoto());
+                            String base64Image = Base64.getEncoder().encodeToString(client.getPhoto());
+                            requestContent.putSessionAttribute(AttributeName.USER_PHOTO, base64Image);
                             page = PagePath.WELCOME;
                             break;
                         default:
@@ -85,13 +90,11 @@ public class LoginCommand implements Command {
                 } else {
                     page = (String) requestContent.getSessionAttributeByName(AttributeName.CURRENT_PAGE);
                     requestContent.putAttribute(AttributeName.ERR_MESSAGE, ErrorMessageKey.WRONG_LOGIN_OR_PASSWORD);
-                  //  System.out.println(page);
                 }
 
             } else {
                 requestContent.putAttribute(AttributeName.ERR_MESSAGE, ErrorMessageKey.INVALID_LOGIN_OR_PASSWORD);
                 page = (String) requestContent.getSessionAttributeByName(AttributeName.CURRENT_PAGE);
-              //  System.out.println(page);
             }
 
         } catch (ServiceException e) {
@@ -102,7 +105,7 @@ public class LoginCommand implements Command {
     }
 }
 
-
+// TODO: 9/10/2021  
 /*
     private UserService userService = UserServiceImpl.getInstance();
     private AdminService adminService = AdminServiceImpl.getInstance();

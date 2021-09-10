@@ -85,11 +85,11 @@ public class ConnectionPool {
         return connection;
     }
 
-    void releaseConnection(ProxyConnection connection) {
+    void releaseConnection(Connection connection) {
         if (connection.getClass() == ProxyConnection.class) {
             occupiedConnections.remove(connection);
             try {
-                awaitingConnections.put(connection);
+                awaitingConnections.put((ProxyConnection)connection);
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
                 logger.error("Something wrong with current thread ", e);
@@ -118,7 +118,4 @@ public class ConnectionPool {
         });
     }
 
-    public int size() {
-        return instance.numberOfConnections;
-    }
 }

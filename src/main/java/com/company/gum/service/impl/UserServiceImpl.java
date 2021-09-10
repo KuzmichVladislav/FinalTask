@@ -112,7 +112,7 @@ public class UserServiceImpl implements UserService {
         return isRestored;
     }
 
-    // FIXME: 9/7/2021 
+    // FIXME: 9/7/2021
     public boolean updateUserImage2(User user) throws ServiceException {
         boolean isUpdated;
         try {

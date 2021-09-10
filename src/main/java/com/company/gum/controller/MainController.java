@@ -5,7 +5,6 @@ import com.company.gum.command.Command;
 import com.company.gum.command.CommandType;
 import com.company.gum.command.PagePath;
 import com.company.gum.exception.CommandException;
-import com.company.gum.pool.ConnectionPool;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -25,7 +24,6 @@ public class MainController extends HttpServlet {
     @Override
     public void init() throws ServletException {
         super.init();
-        ConnectionPool.initPool();
     }
 
     @Override
@@ -58,6 +56,5 @@ public class MainController extends HttpServlet {
     @Override
     public void destroy() {
         super.destroy();
-        ConnectionPool.getInstance().closeAllConnections();
     }
 }

@@ -52,7 +52,7 @@
         <div class="row">
             <div class="col-md-4">
                 <div class="profile-img">
-                    <img src="${sessionScope.profileImage}"/>
+                        <img src="data:image/jpg;base64,${sessionScope.userPhoto}"/>
 
                     <form id="my_form" method="post" action="${pageContext.request.contextPath}/upload"
                           enctype="multipart/form-data" class="upload-form">
@@ -69,11 +69,10 @@
                             form.submit();
                         }
                     </script>
-
                 </div>
             </div>
             <div class="col-md-6">
-                <form method="post" action="${pageContext.request.contextPath}/upload" enctype="multipart/form-data" class="upload-form">
+                <form method="post" action="${pageContext.request.contextPath}/uploadServlet" enctype="multipart/form-data" class="upload-form">
                     <div class="form-group">
                         <input type="hidden" name="command" value="upload_image">
                         <label class="col-form-label col-lg-3">Upload image</label>

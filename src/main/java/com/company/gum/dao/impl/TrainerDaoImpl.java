@@ -117,6 +117,7 @@ public class TrainerDaoImpl implements TrainerDao {
                 connection.commit();
                 logger.debug("Trainer {} was created", trainer);
             } catch (SQLException e) {
+                logger.debug("Trainer was not created");
                 connection.rollback();
                 throw new DaoException(e);
             } finally {
@@ -143,8 +144,8 @@ public class TrainerDaoImpl implements TrainerDao {
             isUpdated = statement.execute();
 
             logger.debug("Trainer {} was updated", trainer);
-
         } catch (SQLException e) {
+            logger.debug("Trainer {} was not updated", trainer);
             throw new DaoException(e);
         }
         return isUpdated;
@@ -161,7 +162,9 @@ public class TrainerDaoImpl implements TrainerDao {
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
                 trainer = getTrainerFromResultSet(resultSet);
-                logger.debug("Сlient with id \"{}\" was found:\n{}", trainerId, trainer);
+                logger.debug("Trainer with id \"{}\" was found:\n{}", trainerId, trainer);
+            } else {
+                logger.debug("Trainer with id \"{}\" was not found:\n{}", trainerId, trainer);
             }
 
         } catch (SQLException e) {
@@ -181,11 +184,9 @@ public class TrainerDaoImpl implements TrainerDao {
                 Trainer trainer = getTrainerFromResultSet(resultSet);
                 resultArray.add(trainer);
             }
-            if (resultArray.isEmpty()) {
-                logger.debug("No clients found");
-            } else {
-                logger.debug("Found {} clients:\n{}", resultArray.size(), resultArray);
-            }
+
+            logger.debug(resultArray.isEmpty() ? "No clients found" : "Found {} clients:\n{}", resultArray.size(), resultArray);
+
         } catch (SQLException e) {
             throw new DaoException(e);
         }
@@ -204,11 +205,9 @@ public class TrainerDaoImpl implements TrainerDao {
                 Trainer trainer = getTrainerFromResultSet(resultSet);
                 resultArray.add(trainer);
             }
-            if (resultArray.isEmpty()) {
-                logger.debug("No active clients found");
-            } else {
-                logger.debug("Found {} active clients:\n{}", resultArray.size(), resultArray);
-            }
+
+            logger.debug(resultArray.isEmpty() ? "No active clients found" : "Found {} active clients:\n{}", resultArray.size(), resultArray);
+
         } catch (SQLException e) {
             throw new DaoException(e);
         }

@@ -12,10 +12,8 @@ import com.company.gum.service.impl.UserServiceImpl;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
-import java.io.IOException;
+import java.util.Base64;
 
 public class _UploadImageCommand2 implements Command {
     private static final Logger logger = LogManager.getLogger();
@@ -24,8 +22,8 @@ public class _UploadImageCommand2 implements Command {
     @Override
     public String execute(SessionRequestContent requestContent) throws CommandException {
         int userId = (Integer) requestContent.getSessionAttributeByName(AttributeName.USER_ID);
-        ByteArrayInputStream photo = (ByteArrayInputStream) requestContent.getAttributeByName(AttributeName.USER_PROFILE_IMAGE);
-
+        ByteArrayInputStream photo = (ByteArrayInputStream) requestContent.getAttributeByName(AttributeName.USER_PROFILE_PHOTO_PATH);
+        System.out.println(photo);
 
         String page;
         try {
@@ -33,31 +31,32 @@ public class _UploadImageCommand2 implements Command {
             // if (photo != null) {
             user = new User();
             user.setId(userId);
-            user.setPhoto(photo);
+            user.setPhoto(photo.readAllBytes());
             userService.updateUserImage2(user);
 
-           // BufferedImage bImage = ImageIO.read(new File("sample.jpg"));
-           // ByteArrayOutputStream bos = new ByteArrayOutputStream();
+            String base64Image = Base64.getEncoder().encodeToString(user.getPhoto());
+            System.out.println(base64Image);
+            // BufferedImage bImage = ImageIO.read(new File("sample.jpg"));
+            // ByteArrayOutputStream bos = new ByteArrayOutputStream();
             //ImageIO.write(bImage, "jpg", bos );
-         //   byte [] data = bos.toByteArray();
+            //   byte [] data = bos.toByteArray();
             //ByteArrayInputStream bis = new ByteArrayInputStream(data);
 
 
-            BufferedImage bImage2 = ImageIO.read(photo);
-            System.out.println(bImage2);
-           // ImageIO.write(bImage2, "png", new File("output.png") );
-           // System.out.println("image created");
+          //  BufferedImage bImage2 = ImageIO.read(photo);
+            // ImageIO.write(bImage2, "png", new File("output.png") );
+            // System.out.println("image created");
 
 
 
             // user = userService.findUserById(userId);
-            requestContent.putSessionAttribute(AttributeName.USER_PROFILE_IMAGE, bImage2);
+            requestContent.putSessionAttribute(AttributeName.USER_PHOTO, base64Image);
             //  System.out.println(img);
 
             //    }
 
             page = PagePath.CLIENT_PROFILE;
-        } catch (ServiceException | IOException e) {
+        } catch (ServiceException e) {
             throw new CommandException(e);
         }
         return page;

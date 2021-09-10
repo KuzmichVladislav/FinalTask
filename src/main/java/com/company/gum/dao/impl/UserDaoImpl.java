@@ -26,7 +26,8 @@ public class UserDaoImpl implements UserDao {
             + "       surname,\n"
             + "       is_active,\n"
             + "       profile_image,\n"
-            + "       mail\n"
+            + "       mail,\n"
+            + "       image\n"
             + "FROM users\n"
             + "WHERE user_id = ?";
     private static final String SQL_FIND_USER_BY_LOGIN = "SELECT user_id,\n"
@@ -37,7 +38,8 @@ public class UserDaoImpl implements UserDao {
             + "       surname,\n"
             + "       is_active,\n"
             + "       profile_image,\n"
-            + "       mail\n"
+            + "       mail,\n"
+            + "       image\n"
             + "FROM users\n"
             + "WHERE login = ?\n";
     private static final String SQL_FIND_USER_BY_LOGIN_AND_PASSWORD = "SELECT user_id,\n"
@@ -48,7 +50,8 @@ public class UserDaoImpl implements UserDao {
             + "       surname,\n"
             + "       is_active,\n"
             + "       profile_image,\n"
-            + "       mail\n"
+            + "       mail,\n"
+            + "       image\n"
             + "FROM users\n"
             + "WHERE login = ? AND password = ?";
     private static final String SQL_UPDATE_USER_PASSWORD = "UPDATE users\n"
@@ -63,21 +66,21 @@ public class UserDaoImpl implements UserDao {
     private static final String SQL_RESTORE_USER = "UPDATE users\n"
             + "SET is_active = true\n"
             + "WHERE user_id = ?";
-
+    // TODO: 9/10/2021
     private static final String SQL_UPDATE_USER_IMAGE2 = "UPDATE users\n"
-            + "SET image = IFNULL(?, password)\n"
+            + "SET image = IFNULL(?, image)\n"
             + "WHERE user_id = ?";
 
-    private static UserDaoImpl mInstance;
+    private static UserDaoImpl instance;
 
     private UserDaoImpl() {
     }
 
     public static UserDaoImpl getInstance() {
-        if (mInstance == null) {
-            mInstance = new UserDaoImpl();
+        if (instance == null) {
+            instance = new UserDaoImpl();
         }
-        return mInstance;
+        return instance;
     }
 
     @Override
@@ -90,7 +93,9 @@ public class UserDaoImpl implements UserDao {
 
             if (resultSet.next()) {
                 user = getUserFromResultSet(resultSet);
-                logger.info("User with id \"{}\" was found: {}", user.getId(), user);
+                logger.debug("User with id \"{}\" was found: {}", user.getId(), user);
+            } else {
+                logger.debug("User with id \"{}\" was not found: {}", user.getId(), user);
             }
         } catch (SQLException e) {
             throw new DaoException(e);
@@ -107,7 +112,9 @@ public class UserDaoImpl implements UserDao {
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
                 user = getUserFromResultSet(resultSet);
-                logger.info("User with login \"{}\" was found", user.getLogin());
+                logger.debug("User with login \"{}\" was found", user.getLogin());
+            } else {
+                logger.debug("User with login \"{}\" was not found", user.getLogin());
             }
         } catch (SQLException e) {
             throw new DaoException(e);
@@ -127,7 +134,7 @@ public class UserDaoImpl implements UserDao {
             if (resultSet.next()) {
                 user = getUserFromResultSet(resultSet);
                 logger.debug("User was found");
-            }else{
+            } else {
                 logger.debug("User was not found");
             }
         } catch (SQLException e) {
@@ -146,11 +153,8 @@ public class UserDaoImpl implements UserDao {
 
             isUpdated = statement.executeUpdate() == 1;
 
-            if (isUpdated) {
-                logger.debug("Password for user with id \"{}\" has been updated", user.getId());
-            } else {
-                logger.debug("Can't update password for user with id \"{}\"", user.getId());
-            }
+            logger.debug(isUpdated ? "Password for user with id " + user.getId() + " has been updated" : "Can't update password for user with id " + user.getId());
+
         } catch (SQLException e) {
             throw new DaoException(e);
         }
@@ -167,11 +171,8 @@ public class UserDaoImpl implements UserDao {
 
             isUpdated = statement.executeUpdate() == 1;
 
-            if (isUpdated) {
-                logger.debug("Profile image path for user with id \"{}\" has been updated", user.getId());
-            } else {
-                logger.debug("Can't update image path for user with id \"{}\"", user.getId());
-            }
+            logger.debug(isUpdated ? "Profile image path for user with id " + user.getId() + " has been updated" :
+                    "Can't update image path for user with id " + user.getId());
 
         } catch (SQLException e) {
             throw new DaoException(e);
@@ -188,11 +189,7 @@ public class UserDaoImpl implements UserDao {
 
             isDeleted = statement.executeUpdate() == 1;
 
-            if (isDeleted) {
-                logger.debug("User with id \"{}\" has been deleted", userId);
-            } else {
-                logger.debug("Can't delete user with id \"{}\"", userId);
-            }
+            logger.debug(isDeleted ? "User with id " + userId + " has been deleted" : "Can't delete user with id " + userId);
 
         } catch (SQLException e) {
             throw new DaoException(e);
@@ -209,11 +206,7 @@ public class UserDaoImpl implements UserDao {
 
             isRestored = statement.executeUpdate() == 1;
 
-            if (isRestored) {
-                logger.debug("User with id \"{}\" has been restored", userId);
-            } else {
-                logger.debug("Can't restore user with id \"{}\"", userId);
-            }
+            logger.debug(isRestored ? "User with id " + userId + " has been restored" : "Can't restore user with id " + userId);
 
         } catch (SQLException e) {
             throw new DaoException(e);
@@ -231,16 +224,17 @@ public class UserDaoImpl implements UserDao {
                 .name(resultSet.getString(USER_NAME))
                 .surname(resultSet.getString(USER_SURNAME))
                 .isActive(resultSet.getBoolean(IS_ACTIVE))
+                .photo(resultSet.getBytes(PHOTO))
                 .build();
     }
 
-    // FIXME: 9/7/2021 
+    // TODO: 9/10/2021
     @Override
     public boolean updateUserImage2(User user) throws DaoException {
         boolean isUpdated;
         try (Connection connection = ConnectionPool.getInstance().takeConnection();
              PreparedStatement statement = connection.prepareStatement(SQL_UPDATE_USER_IMAGE2)) {
-            statement.setBlob(1, user.getPhoto());
+            statement.setBytes(1,  user.getPhoto());
             statement.setInt(2, user.getId());
 
             isUpdated = statement.executeUpdate() == 1;

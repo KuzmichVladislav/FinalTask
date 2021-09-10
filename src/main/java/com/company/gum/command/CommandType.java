@@ -12,7 +12,7 @@ public enum CommandType {
     CHANGE_LOCALE(new LocaleCommand()),
     LOGIN(new LoginCommand()),
     LOGOUT(new LogoutCommand()),
-    UPLOAD_IMAGE(new UploadImageCommand()),
+    UPLOAD_IMAGE(new _UploadImageCommand2()),
     EDIT_CLIENT_PROFILE(new EditClientProfile()),
     CHANGE_PASSWORD(new ChangePassword()),
     NEW_ORDER(new NewOrder());

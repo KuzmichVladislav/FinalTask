@@ -90,10 +90,15 @@
                     <div class="d-flex align-items-center">
                         <c:choose>
                         <c:when test="${sessionScope.authorization}">
-                        <div class="image"><img
-                                src="${sessionScope.profileImage}"
-                                alt="Profile image"
-                                class="rounded" width="80"></div>
+                        <div class="image">
+                                <img src="data:image/jpg;base64,${sessionScope.userPhoto}"
+                                     alt="Profile image"
+                                     class="rounded" width="80">
+
+                                <%--                            <img src="${sessionScope.profileImage}"--%>
+                                <%--                                 alt="Profile image"--%>
+                                <%--                                 class="rounded" width="80">--%>
+                        </div>
                         <div class="ml-3 w-100">
                             <div class="ml-3 w-100">
                                 <h4 class="mb-0 mt-0">${sessionScope.userName} ${sessionScope.userLastName}</h4>

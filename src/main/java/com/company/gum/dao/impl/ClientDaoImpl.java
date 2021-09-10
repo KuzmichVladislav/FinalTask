@@ -53,7 +53,8 @@ public class ClientDaoImpl implements ClientDao {
             + "       is_active,\n"
             + "       profile_image,\n"
             + "       mail,\n"
-            + "       is_verified\n"
+            + "       is_verified\n,"
+            + "       image\n"
             + "FROM clients,\n"
             + "     users\n"
             + "WHERE client_id = ?\n"
@@ -200,7 +201,7 @@ public class ClientDaoImpl implements ClientDao {
 
             isUpdated = statement.executeUpdate() == 1;
 
-            logger.debug("Client {} was updated", client);
+            logger.debug(isUpdated ? "Client " + client.getId() + " was updated" : "Client " + client.getId() + " was not updated");
 
         } catch (SQLException e) {
             throw new DaoException(e);
@@ -216,11 +217,9 @@ public class ClientDaoImpl implements ClientDao {
             statement.setInt(1, clientId);
 
             isUpdated = statement.executeUpdate() == 1;
-            if (isUpdated) {
-                logger.debug("Client with id \"{}\" was verified", clientId);
-            } else {
-                logger.debug("Client id \"{}\" verification failed", clientId);
-            }
+
+            logger.debug(isUpdated ? "Client with id " + clientId + " was verified" : "Client id " + clientId + " verification failed");
+
         } catch (SQLException e) {
             throw new DaoException(e);
         }
@@ -297,6 +296,8 @@ public class ClientDaoImpl implements ClientDao {
             if (resultClientSet.next()) {
                 client = getClientFromResultSet(resultClientSet);
                 logger.debug("Client with id \"{}\" was found:\n{}", clientId, client);
+            } else {
+                logger.debug("Client with id \"{}\" was not found:\n{}", clientId, client);
             }
 
         } catch (SQLException e) {
@@ -316,11 +317,9 @@ public class ClientDaoImpl implements ClientDao {
                 Client client = getClientFromResultSet(resultSet);
                 resultArray.add(client);
             }
-            if (resultArray.isEmpty()) {
-                logger.debug("No clients found");
-            } else {
-                logger.debug("Found {} clients:\n{}", resultArray.size(), resultArray);
-            }
+
+            logger.debug(resultArray.isEmpty() ? "No clients found" : "Found {} clients:\n{}", resultArray.size(), resultArray);
+
         } catch (SQLException e) {
             throw new DaoException(e);
         }
@@ -339,11 +338,9 @@ public class ClientDaoImpl implements ClientDao {
                 Client client = getClientFromResultSet(resultSet);
                 resultArray.add(client);
             }
-            if (resultArray.isEmpty()) {
-                logger.debug("No active clients found");
-            } else {
-                logger.debug("Found {} active clients:\n{}", resultArray.size(), resultArray);
-            }
+
+            logger.debug(resultArray.isEmpty() ? "No active clients found" : "Found {} active clients:\n{}", resultArray.size(), resultArray);
+
         } catch (SQLException e) {
             throw new DaoException(e);
         }
@@ -372,11 +369,9 @@ public class ClientDaoImpl implements ClientDao {
                 Client client = getClientFromResultSet(resultSet);
                 resultArray.add(client);
             }
-            if (resultArray.isEmpty()) {
-                logger.debug("No client with anthroponym {} {} found", name, surname);
-            } else {
-                logger.debug("Found {} clients with anthroponym {} {}:\n{}", resultArray.size(), name, surname, resultArray);
-            }
+
+            logger.debug(resultArray.isEmpty() ? "No client with anthroponym " + name + " " + surname + " found" : "Found " + resultArray.size() + " clients with anthroponym " + name + " " + surname);
+
         } catch (SQLException e) {
             throw new DaoException(e);
         }
@@ -400,6 +395,7 @@ public class ClientDaoImpl implements ClientDao {
         client.setDiscount(resultSet.getInt(DISCOUNT));
         client.setDiscountLevel(resultSet.getInt(DISCOUNT_TYPE));
         client.setMoney(resultSet.getBigDecimal(MONEY));
+        client.setPhoto(resultSet.getBytes(PHOTO));
         return client;
     }
 }

@@ -19,7 +19,7 @@ public class UploadImageCommand implements Command {
     @Override
     public String execute(SessionRequestContent requestContent) throws CommandException {
         int userId = (Integer) requestContent.getSessionAttributeByName(AttributeName.USER_ID);
-        String imagePath = (String) requestContent.getAttributeByName(AttributeName.USER_PROFILE_IMAGE);
+        String imagePath = (String) requestContent.getAttributeByName(AttributeName.USER_PROFILE_PHOTO_PATH);
 
         String page;
         try {
@@ -31,7 +31,7 @@ public class UploadImageCommand implements Command {
                 userService.updateUserImage(user);
 
                 user = userService.findUserById(userId);
-                requestContent.putSessionAttribute(AttributeName.USER_PROFILE_IMAGE, user.getProfileImage());
+                requestContent.putSessionAttribute(AttributeName.USER_PROFILE_PHOTO_PATH, user.getProfileImage());
             }
 
             page = PagePath.CLIENT_PROFILE;
