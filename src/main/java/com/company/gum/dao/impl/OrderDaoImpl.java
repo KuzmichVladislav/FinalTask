@@ -2,7 +2,6 @@ package com.company.gum.dao.impl;
 
 import com.company.gum.dao.OrderDao;
 import com.company.gum.entity.Order;
-import com.company.gum.entity.OrderStatus;
 import com.company.gum.exception.DaoException;
 import com.company.gum.pool.ConnectionPool;
 import org.apache.logging.log4j.LogManager;
@@ -471,24 +470,23 @@ public class OrderDaoImpl implements OrderDao {
     }
 
     private Order getOrderFromResultSet(ResultSet resultSet) throws SQLException {
-        Order order = new Order();
         Date date;
-        order.setId(resultSet.getInt(ORDER_ID));
-        order.setClientId(resultSet.getInt(CLIENT_ID));
-        order.setClientName(resultSet.getString(CLIENT_NAME));
-        order.setClientSurname(resultSet.getString(CLIENT_SURNAME));
-        order.setTrainerId(resultSet.getInt(TRAINER_ID));
-        order.setTrainerName(resultSet.getString(TRAINER_NAME));
-        order.setTrainerSurname(resultSet.getString(TRAINER_SURNAME));
-        order.setRegisterDate(resultSet.getTimestamp(ORDER_REGISTER_DATE).toLocalDateTime());
-        order.setExercises(resultSet.getString(ORDER_EXERCISES));
-        order.setNutrition(resultSet.getString(ORDER_NUTRITION));
-        order.setStartDate((date = resultSet.getDate(START_ORDER_DATE)) != null ? date.toLocalDate() : null);
-        order.setEndDate((date = resultSet.getDate(END_ORDER_DATE)) != null ? date.toLocalDate() : null);
-        order.setPrice(resultSet.getBigDecimal(PRICE));
-        order.setClientComment(resultSet.getString(CLIENT_COMMENT));
-        order.setOrderStatus(OrderStatus.valueOf(resultSet.getString(ORDER_STATUS).toUpperCase()));
-        order.setActive(resultSet.getBoolean(IS_ACTIVE));
-        return order;
+        return new Order.Builder().id(resultSet.getInt(ORDER_ID))
+                .clientId(resultSet.getInt(CLIENT_ID))
+                .clientName(resultSet.getString(CLIENT_NAME))
+                .clientSurname(resultSet.getString(CLIENT_SURNAME))
+                .trainerId(resultSet.getInt(TRAINER_ID))
+                .trainerName(resultSet.getString(TRAINER_NAME))
+                .trainerSurname(resultSet.getString(TRAINER_SURNAME))
+                .registerDate(resultSet.getTimestamp(ORDER_REGISTER_DATE).toLocalDateTime())
+                .exercises(resultSet.getString(ORDER_EXERCISES))
+                .nutrition(resultSet.getString(ORDER_NUTRITION))
+                .startDate((date = resultSet.getDate(START_ORDER_DATE)) != null ? date.toLocalDate() : null)
+                .endDate((date = resultSet.getDate(END_ORDER_DATE)) != null ? date.toLocalDate() : null)
+                .price(resultSet.getBigDecimal(PRICE))
+                .clientComment(resultSet.getString(CLIENT_COMMENT))
+                .orderStatus(Order.OrderStatus.valueOf(resultSet.getString(ORDER_STATUS).toUpperCase()))
+                .active(resultSet.getBoolean(IS_ACTIVE))
+                .build();
     }
 }

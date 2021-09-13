@@ -12,6 +12,21 @@ public class Trainer extends User {
 		role = UserRole.TRAINER;
 	}
 
+	private Trainer(Builder builder) {
+		setId(builder.id);
+		setRole(builder.role);
+		setLogin(builder.login);
+		setPassword(builder.password);
+		setName(builder.name);
+		setSurname(builder.surname);
+		setMail(builder.mail);
+		setVerification(builder.verification);
+		setPhoto(builder.photo);
+		setRegisterDate(builder.registerDate);
+		setPhone(builder.phone);
+		setMail(builder.mail);
+	}
+
 	public LocalDateTime getRegisterDate() {
 		return registerDate;
 	}
@@ -28,54 +43,163 @@ public class Trainer extends User {
 		this.phone = phone;
 	}
 
+	@Override
 	public String getMail() {
 		return mail;
 	}
 
+	@Override
 	public void setMail(String mail) {
 		this.mail = mail;
 	}
 
-	@Override
-	public boolean equals(Object o) {
-		if (this == o) {
-			return true;
-		}
-		if (!(o instanceof Trainer)) {
-			return false;
-		}
-		if (!super.equals(o)) {
-			return false;
+	/**
+	 * {@code Trainer} builder static inner class.
+	 */
+	public static final class Builder {
+		private Integer id;
+		private UserRole role;
+		private String login;
+		private String password;
+		private String name;
+		private String surname;
+		private String mail;
+		private boolean verification;
+		private byte[] photo;
+		private LocalDateTime registerDate;
+		private String phone;
+
+		public Builder() {
 		}
 
-		Trainer trainer = (Trainer) o;
-
-		if (getRegisterDate() != null ? !getRegisterDate().equals(trainer.getRegisterDate()) : trainer.getRegisterDate() != null) {
-			return false;
+		/**
+		 * Sets the {@code id} and returns a reference to this Builder so that the methods can be chained together.
+		 *
+		 * @param val the {@code id} to set
+		 * @return a reference to this Builder
+		 */
+		public Builder id(Integer val) {
+			id = val;
+			return this;
 		}
-		if (getPhone() != null ? !getPhone().equals(trainer.getPhone()) : trainer.getPhone() != null) {
-			return false;
+
+		/**
+		 * Sets the {@code role} and returns a reference to this Builder so that the methods can be chained together.
+		 *
+		 * @param val the {@code role} to set
+		 * @return a reference to this Builder
+		 */
+		public Builder role(UserRole val) {
+			role = val;
+			return this;
 		}
-		return getMail() != null ? getMail().equals(trainer.getMail()) : trainer.getMail() == null;
-	}
 
-	@Override
-	public int hashCode() {
-		int result = super.hashCode();
-		result = 31 * result + (getRegisterDate() != null ? getRegisterDate().hashCode() : 0);
-		result = 31 * result + (getPhone() != null ? getPhone().hashCode() : 0);
-		result = 31 * result + (getMail() != null ? getMail().hashCode() : 0);
-		return result;
-	}
+		/**
+		 * Sets the {@code login} and returns a reference to this Builder so that the methods can be chained together.
+		 *
+		 * @param val the {@code login} to set
+		 * @return a reference to this Builder
+		 */
+		public Builder login(String val) {
+			login = val;
+			return this;
+		}
 
-	@Override
-	public String toString() {
-		final StringBuilder sb = new StringBuilder("Trainer{");
-		sb.append("registerDate=").append(registerDate);
-		sb.append(", phone='").append(phone).append('\'');
-		sb.append(", mail='").append(mail).append('\'');
-		sb.append(", role=").append(role);
-		sb.append('}');
-		return sb.toString();
+		/**
+		 * Sets the {@code password} and returns a reference to this Builder so that the methods can be chained together.
+		 *
+		 * @param val the {@code password} to set
+		 * @return a reference to this Builder
+		 */
+		public Builder password(String val) {
+			password = val;
+			return this;
+		}
+
+		/**
+		 * Sets the {@code name} and returns a reference to this Builder so that the methods can be chained together.
+		 *
+		 * @param val the {@code name} to set
+		 * @return a reference to this Builder
+		 */
+		public Builder name(String val) {
+			name = val;
+			return this;
+		}
+
+		/**
+		 * Sets the {@code surname} and returns a reference to this Builder so that the methods can be chained together.
+		 *
+		 * @param val the {@code surname} to set
+		 * @return a reference to this Builder
+		 */
+		public Builder surname(String val) {
+			surname = val;
+			return this;
+		}
+
+		/**
+		 * Sets the {@code mail} and returns a reference to this Builder so that the methods can be chained together.
+		 *
+		 * @param val the {@code mail} to set
+		 * @return a reference to this Builder
+		 */
+		public Builder mail(String val) {
+			mail = val;
+			return this;
+		}
+
+		/**
+		 * Returns a {@code Trainer} built from the parameters previously set.
+		 *
+		 * @return a {@code Trainer} built with parameters of this {@code Trainer.Builder}
+		 */
+		public Trainer build() {
+			return new Trainer(this);
+		}
+
+		/**
+		 * Sets the {@code verification} and returns a reference to this Builder so that the methods can be chained together.
+		 *
+		 * @param val the {@code verification} to set
+		 * @return a reference to this Builder
+		 */
+		public Builder verification(boolean val) {
+			verification = val;
+			return this;
+		}
+
+		/**
+		 * Sets the {@code photo} and returns a reference to this Builder so that the methods can be chained together.
+		 *
+		 * @param val the {@code photo} to set
+		 * @return a reference to this Builder
+		 */
+		public Builder photo(byte[] val) {
+			photo = val;
+			return this;
+		}
+
+		/**
+		 * Sets the {@code registerDate} and returns a reference to this Builder so that the methods can be chained together.
+		 *
+		 * @param val the {@code registerDate} to set
+		 * @return a reference to this Builder
+		 */
+		public Builder registerDate(LocalDateTime val) {
+			registerDate = val;
+			return this;
+		}
+
+		/**
+		 * Sets the {@code phone} and returns a reference to this Builder so that the methods can be chained together.
+		 *
+		 * @param val the {@code phone} to set
+		 * @return a reference to this Builder
+		 */
+		public Builder phone(String val) {
+			phone = val;
+			return this;
+		}
 	}
 }

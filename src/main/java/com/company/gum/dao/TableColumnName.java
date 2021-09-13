@@ -12,6 +12,7 @@ public class TableColumnName {
 	public static final String PROFILE_IMAGE = "profile_image";
 	public static final String MAIL = "mail";
 	public static final String PHOTO = "image";
+	public static final String VERIFICATION = "is_verified";
 	public static final String CLIENT_ID = "client_id";
 	public static final String PHONE_NUMBER = "phone_number";
 	public static final String REGISTER_DATE = "register_date";

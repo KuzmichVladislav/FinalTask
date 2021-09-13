@@ -14,6 +14,7 @@ public class PagePath {
     public static final String CLIENT_PROFILE = "jsp/pages/client/profile.jsp";
     public static final String CREATE_ORDER = "jsp/pages/client/create_order.jsp";
     public static final String MAIN_CONTROLLER = "/controller";
+    public static final String CLIENT_ORDER_CREATED = "jsp/pages/client/order-created.jsp";
 
     private PagePath() {
     }

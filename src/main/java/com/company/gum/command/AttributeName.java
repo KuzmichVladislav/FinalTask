@@ -29,7 +29,11 @@ public class AttributeName {
     public static final String NEW_PASSWORD = "newPassword";
     public static final String CURRENT_PASSWORD = "currentPassword";
     public static final String REPEAT_PASSWORD = "repeatPassword";
-
+    public static final String CLIENT_ID = "clientId";
+    public static final String TRAINER_ID = "trainerId";
+    public static final String COMMENT = "comment";
+    public static final String START_DATE = "startDate";
+    public static final String DURATION = "duration";
 
 
     private AttributeName() {

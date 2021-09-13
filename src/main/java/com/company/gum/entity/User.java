@@ -8,17 +8,11 @@ public class User extends AbstractEntity {
     private String name;
     private String surname;
     private boolean isActive;
-    private String profileImage;
     private String mail;
     private boolean verification;
     private byte[] photo;
 
-    public byte[] getPhoto() {
-        return photo;
-    }
-
-    public void setPhoto(byte[] photo) {
-        this.photo = photo;
+    public User() {
     }
 
     private User(Builder builder) {
@@ -29,25 +23,17 @@ public class User extends AbstractEntity {
         setName(builder.name);
         setSurname(builder.surname);
         setActive(builder.isActive);
-        setProfileImage(builder.profileImage);
         setMail(builder.mail);
         setVerification(builder.verification);
         setPhoto(builder.photo);
     }
 
-    public User() {
+    public UserRole getRole() {
+        return role;
     }
 
-    public static Builder newBuilder() {
-        return new Builder();
-    }
-
-    public boolean isVerification() {
-        return verification;
-    }
-
-    public void setVerification(boolean verification) {
-        this.verification = verification;
+    public void setRole(UserRole role) {
+        this.role = role;
     }
 
     public String getLogin() {
@@ -64,14 +50,6 @@ public class User extends AbstractEntity {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public UserRole getRole() {
-        return role;
-    }
-
-    public void setRole(UserRole role) {
-        this.role = role;
     }
 
     public String getName() {
@@ -98,14 +76,6 @@ public class User extends AbstractEntity {
         isActive = active;
     }
 
-    public String getProfileImage() {
-        return profileImage;
-    }
-
-    public void setProfileImage(String profileImage) {
-        this.profileImage = profileImage;
-    }
-
     public String getMail() {
         return mail;
     }
@@ -114,64 +84,20 @@ public class User extends AbstractEntity {
         this.mail = mail;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (!(o instanceof User)) {
-            return false;
-        }
-
-        User user = (User) o;
-
-        if (isActive() != user.isActive()) {
-            return false;
-        }
-        if (!getLogin().equals(user.getLogin())) {
-            return false;
-        }
-        if (!getPassword().equals(user.getPassword())) {
-            return false;
-        }
-        if (getRole() != user.getRole()) {
-            return false;
-        }
-        if (!getName().equals(user.getName())) {
-            return false;
-        }
-        if (!getSurname().equals(user.getSurname())) {
-            return false;
-        }
-        return getMail().equals(user.getMail());
+    public boolean isVerification() {
+        return verification;
     }
 
-    @Override
-    public int hashCode() {
-        int result = getLogin().hashCode();
-        result = 31 * result + getPassword().hashCode();
-        result = 31 * result + getRole().hashCode();
-        result = 31 * result + getName().hashCode();
-        result = 31 * result + getSurname().hashCode();
-        result = 31 * result + (isActive() ? 1 : 0);
-        result = 31 * result + getMail().hashCode();
-        return result;
+    public void setVerification(boolean verification) {
+        this.verification = verification;
     }
 
-    @Override
-    public String toString() {
-        final StringBuilder sb = new StringBuilder("User{");
-        sb.append("login='").append(login).append('\'');
-        sb.append(", password='").append(password).append('\'');
-        sb.append(", role=").append(role);
-        sb.append(", name='").append(name).append('\'');
-        sb.append(", surname='").append(surname).append('\'');
-        sb.append(", isActive=").append(isActive);
-        sb.append(", profileImage='").append(profileImage).append('\'');
-        sb.append(", mail='").append(mail).append('\'');
-        sb.append(", verification=").append(verification);
-        sb.append('}');
-        return sb.toString();
+    public byte[] getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(byte[] photo) {
+        this.photo = photo;
     }
 
     public enum UserRole {
@@ -180,12 +106,11 @@ public class User extends AbstractEntity {
         CLIENT
     }
 
+
     /**
      * {@code User} builder static inner class.
      */
     public static final class Builder {
-
-        public byte[] photo;
         private Integer id;
         private UserRole role;
         private String login;
@@ -193,16 +118,15 @@ public class User extends AbstractEntity {
         private String name;
         private String surname;
         private boolean isActive;
-        private String profileImage;
         private String mail;
         private boolean verification;
+        private byte[] photo;
 
         public Builder() {
         }
 
         /**
-         * Sets the {@code id} and returns a reference to this Builder so that
-         * the methods can be chained together.
+         * Sets the {@code id} and returns a reference to this Builder so that the methods can be chained together.
          *
          * @param val the {@code id} to set
          * @return a reference to this Builder
@@ -213,8 +137,7 @@ public class User extends AbstractEntity {
         }
 
         /**
-         * Sets the {@code role} and returns a reference to this Builder so that
-         * the methods can be chained together.
+         * Sets the {@code role} and returns a reference to this Builder so that the methods can be chained together.
          *
          * @param val the {@code role} to set
          * @return a reference to this Builder
@@ -225,8 +148,7 @@ public class User extends AbstractEntity {
         }
 
         /**
-         * Sets the {@code login} and returns a reference to this Builder so
-         * that the methods can be chained together.
+         * Sets the {@code login} and returns a reference to this Builder so that the methods can be chained together.
          *
          * @param val the {@code login} to set
          * @return a reference to this Builder
@@ -237,8 +159,7 @@ public class User extends AbstractEntity {
         }
 
         /**
-         * Sets the {@code password} and returns a reference to this Builder so
-         * that the methods can be chained together.
+         * Sets the {@code password} and returns a reference to this Builder so that the methods can be chained together.
          *
          * @param val the {@code password} to set
          * @return a reference to this Builder
@@ -249,8 +170,7 @@ public class User extends AbstractEntity {
         }
 
         /**
-         * Sets the {@code name} and returns a reference to this Builder so that
-         * the methods can be chained together.
+         * Sets the {@code name} and returns a reference to this Builder so that the methods can be chained together.
          *
          * @param val the {@code name} to set
          * @return a reference to this Builder
@@ -261,8 +181,7 @@ public class User extends AbstractEntity {
         }
 
         /**
-         * Sets the {@code surname} and returns a reference to this Builder so
-         * that the methods can be chained together.
+         * Sets the {@code surname} and returns a reference to this Builder so that the methods can be chained together.
          *
          * @param val the {@code surname} to set
          * @return a reference to this Builder
@@ -273,8 +192,7 @@ public class User extends AbstractEntity {
         }
 
         /**
-         * Sets the {@code isActive} and returns a reference to this Builder so
-         * that the methods can be chained together.
+         * Sets the {@code isActive} and returns a reference to this Builder so that the methods can be chained together.
          *
          * @param val the {@code isActive} to set
          * @return a reference to this Builder
@@ -285,20 +203,7 @@ public class User extends AbstractEntity {
         }
 
         /**
-         * Sets the {@code profileImage} and returns a reference to this Builder
-         * so that the methods can be chained together.
-         *
-         * @param val the {@code profileImage} to set
-         * @return a reference to this Builder
-         */
-        public Builder profileImage(String val) {
-            profileImage = val;
-            return this;
-        }
-
-        /**
-         * Sets the {@code mail} and returns a reference to this Builder so that
-         * the methods can be chained together.
+         * Sets the {@code mail} and returns a reference to this Builder so that the methods can be chained together.
          *
          * @param val the {@code mail} to set
          * @return a reference to this Builder
@@ -309,8 +214,7 @@ public class User extends AbstractEntity {
         }
 
         /**
-         * Sets the {@code verification} and returns a reference to this Builder
-         * so that the methods can be chained together.
+         * Sets the {@code verification} and returns a reference to this Builder so that the methods can be chained together.
          *
          * @param val the {@code verification} to set
          * @return a reference to this Builder
@@ -334,12 +238,10 @@ public class User extends AbstractEntity {
         /**
          * Returns a {@code User} built from the parameters previously set.
          *
-         * @return a {@code User} built with parameters of this
-         * {@code User.Builder}
+         * @return a {@code User} built with parameters of this {@code User.Builder}
          */
         public User build() {
             return new User(this);
         }
     }
-
 }

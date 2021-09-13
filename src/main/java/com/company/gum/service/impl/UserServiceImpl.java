@@ -116,7 +116,7 @@ public class UserServiceImpl implements UserService {
     public boolean updateUserImage2(User user) throws ServiceException {
         boolean isUpdated;
         try {
-            isUpdated = userDao.updateUserImage2(user);
+            isUpdated = userDao.updateUserImage(user);
         } catch (DaoException e) {
             logger.warn(e);
             throw new ServiceException(e);

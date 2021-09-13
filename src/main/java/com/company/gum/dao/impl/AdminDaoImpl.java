@@ -26,7 +26,6 @@ public class AdminDaoImpl implements AdminDao {
             + "       name,\n"
             + "       surname,\n"
             + "       is_active,\n"
-            + "       profile_image,\n"
             + "       mail\n"
             + "FROM users\n"
             + "WHERE user_id = ?\n"
@@ -38,7 +37,6 @@ public class AdminDaoImpl implements AdminDao {
             + "       name,\n"
             + "       surname,\n"
             + "       is_active,\n"
-            + "       profile_image,\n"
             + "       mail\n"
             + "FROM users\n"
             + "WHERE role = 'ADMIN'";
@@ -101,7 +99,6 @@ public class AdminDaoImpl implements AdminDao {
         admin.setId(resultSet.getInt(USER_ID));
         admin.setLogin(resultSet.getString(USER_LOGIN));
         admin.setPassword(resultSet.getString(USER_PASSWORD));
-        admin.setProfileImage(resultSet.getString(PROFILE_IMAGE));
         admin.setRole(User.UserRole.valueOf(resultSet.getString(USER_ROLE).toUpperCase()));
         admin.setMail(resultSet.getString(MAIL));
         admin.setName(resultSet.getString(USER_NAME));

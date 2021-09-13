@@ -25,9 +25,9 @@ public class UserDaoImpl implements UserDao {
             + "       name,\n"
             + "       surname,\n"
             + "       is_active,\n"
-            + "       profile_image,\n"
             + "       mail,\n"
-            + "       image\n"
+            + "       image,\n"
+            + "       is_verified\n"
             + "FROM users\n"
             + "WHERE user_id = ?";
     private static final String SQL_FIND_USER_BY_LOGIN = "SELECT user_id,\n"
@@ -37,9 +37,9 @@ public class UserDaoImpl implements UserDao {
             + "       name,\n"
             + "       surname,\n"
             + "       is_active,\n"
-            + "       profile_image,\n"
             + "       mail,\n"
-            + "       image\n"
+            + "       image,\n"
+            + "       is_verified\n"
             + "FROM users\n"
             + "WHERE login = ?\n";
     private static final String SQL_FIND_USER_BY_LOGIN_AND_PASSWORD = "SELECT user_id,\n"
@@ -49,16 +49,13 @@ public class UserDaoImpl implements UserDao {
             + "       name,\n"
             + "       surname,\n"
             + "       is_active,\n"
-            + "       profile_image,\n"
             + "       mail,\n"
-            + "       image\n"
+            + "       image,\n"
+            + "       is_verified\n"
             + "FROM users\n"
             + "WHERE login = ? AND password = ?";
     private static final String SQL_UPDATE_USER_PASSWORD = "UPDATE users\n"
             + "SET password = IFNULL(?, password)\n"
-            + "WHERE user_id = ?";
-    private static final String SQL_UPDATE_USER_IMAGE = "UPDATE users\n"
-            + "SET profile_image = IFNULL(?, password)\n"
             + "WHERE user_id = ?";
     private static final String SQL_DELETE_USER = "UPDATE users\n"
             + "SET is_active = false\n"
@@ -66,8 +63,7 @@ public class UserDaoImpl implements UserDao {
     private static final String SQL_RESTORE_USER = "UPDATE users\n"
             + "SET is_active = true\n"
             + "WHERE user_id = ?";
-    // TODO: 9/10/2021
-    private static final String SQL_UPDATE_USER_IMAGE2 = "UPDATE users\n"
+    private static final String SQL_UPDATE_USER_IMAGE = "UPDATE users\n"
             + "SET image = IFNULL(?, image)\n"
             + "WHERE user_id = ?";
 
@@ -166,13 +162,16 @@ public class UserDaoImpl implements UserDao {
         boolean isUpdated;
         try (Connection connection = ConnectionPool.getInstance().takeConnection();
              PreparedStatement statement = connection.prepareStatement(SQL_UPDATE_USER_IMAGE)) {
-            statement.setString(1, user.getProfileImage());
+            statement.setBytes(1, user.getPhoto());
             statement.setInt(2, user.getId());
 
             isUpdated = statement.executeUpdate() == 1;
 
-            logger.debug(isUpdated ? "Profile image path for user with id " + user.getId() + " has been updated" :
-                    "Can't update image path for user with id " + user.getId());
+            if (isUpdated) {
+                logger.debug("Profile image path for user with id \"{}\" has been updated", user.getId());
+            } else {
+                logger.debug("Can't update image path for user with id \"{}\"", user.getId());
+            }
 
         } catch (SQLException e) {
             throw new DaoException(e);
@@ -218,36 +217,13 @@ public class UserDaoImpl implements UserDao {
         return new User.Builder().id(resultSet.getInt(USER_ID))
                 .login(resultSet.getString(USER_LOGIN))
                 .password(resultSet.getString(USER_PASSWORD))
-                .profileImage(resultSet.getString(PROFILE_IMAGE))
                 .role(User.UserRole.valueOf(resultSet.getString(USER_ROLE).toUpperCase()))
                 .mail(resultSet.getString(MAIL))
                 .name(resultSet.getString(USER_NAME))
                 .surname(resultSet.getString(USER_SURNAME))
                 .isActive(resultSet.getBoolean(IS_ACTIVE))
                 .photo(resultSet.getBytes(PHOTO))
+                .verification(resultSet.getBoolean(VERIFICATION))
                 .build();
-    }
-
-    // TODO: 9/10/2021
-    @Override
-    public boolean updateUserImage2(User user) throws DaoException {
-        boolean isUpdated;
-        try (Connection connection = ConnectionPool.getInstance().takeConnection();
-             PreparedStatement statement = connection.prepareStatement(SQL_UPDATE_USER_IMAGE2)) {
-            statement.setBytes(1,  user.getPhoto());
-            statement.setInt(2, user.getId());
-
-            isUpdated = statement.executeUpdate() == 1;
-
-            if (isUpdated) {
-                logger.debug("Profile image path for user with id \"{}\" has been updated", user.getId());
-            } else {
-                logger.debug("Can't update image path for user with id \"{}\"", user.getId());
-            }
-
-        } catch (SQLException e) {
-            throw new DaoException(e);
-        }
-        return isUpdated;
     }
 }

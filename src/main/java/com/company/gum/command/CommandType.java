@@ -4,6 +4,7 @@ import com.company.gum.command.impl.*;
 import com.company.gum.command.impl.client.ChangePassword;
 import com.company.gum.command.impl.client.EditClientProfile;
 import com.company.gum.command.impl.client.NewOrder;
+import com.company.gum.command.order.CreateOrder;
 
 public enum CommandType {
 
@@ -12,11 +13,11 @@ public enum CommandType {
     CHANGE_LOCALE(new LocaleCommand()),
     LOGIN(new LoginCommand()),
     LOGOUT(new LogoutCommand()),
-    UPLOAD_IMAGE(new _UploadImageCommand2()),
+    UPLOAD_IMAGE(new UploadImageCommand()),
     EDIT_CLIENT_PROFILE(new EditClientProfile()),
     CHANGE_PASSWORD(new ChangePassword()),
-    NEW_ORDER(new NewOrder());
-
+    NEW_ORDER(new NewOrder()),
+    CREATE_NEW_ORDER(new CreateOrder());
 
     private Command command;
 

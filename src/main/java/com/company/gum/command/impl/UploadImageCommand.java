@@ -12,6 +12,9 @@ import com.company.gum.service.impl.UserServiceImpl;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.io.ByteArrayInputStream;
+import java.util.Base64;
+
 public class UploadImageCommand implements Command {
     private static final Logger logger = LogManager.getLogger();
     private static UserService userService = UserServiceImpl.getInstance();
@@ -19,20 +22,19 @@ public class UploadImageCommand implements Command {
     @Override
     public String execute(SessionRequestContent requestContent) throws CommandException {
         int userId = (Integer) requestContent.getSessionAttributeByName(AttributeName.USER_ID);
-        String imagePath = (String) requestContent.getAttributeByName(AttributeName.USER_PROFILE_PHOTO_PATH);
+        ByteArrayInputStream photo = (ByteArrayInputStream) requestContent.getAttributeByName(AttributeName.USER_PROFILE_PHOTO_PATH);
 
         String page;
         try {
             User user;
-            if (imagePath != null) {
-                user = new User();
-                user.setId(userId);
-                user.setProfileImage(imagePath);
-                userService.updateUserImage(user);
+            user = new User();
+            user.setId(userId);
+            user.setPhoto(photo.readAllBytes());
+            userService.updateUserImage2(user);
 
-                user = userService.findUserById(userId);
-                requestContent.putSessionAttribute(AttributeName.USER_PROFILE_PHOTO_PATH, user.getProfileImage());
-            }
+            String base64Image = Base64.getEncoder().encodeToString(user.getPhoto());
+
+            requestContent.putSessionAttribute(AttributeName.USER_PHOTO, base64Image);
 
             page = PagePath.CLIENT_PROFILE;
         } catch (ServiceException e) {

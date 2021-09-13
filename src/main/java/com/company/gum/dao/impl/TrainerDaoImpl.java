@@ -50,7 +50,6 @@ public class TrainerDaoImpl implements TrainerDao {
             "       name,\n" +
             "       surname,\n" +
             "       is_active,\n" +
-            "       profile_image,\n" +
             "       mail,\n" +
             "       is_verified\n" +
             "FROM trainers\n" +
@@ -65,7 +64,6 @@ public class TrainerDaoImpl implements TrainerDao {
             "       name,\n" +
             "       surname,\n" +
             "       is_active,\n" +
-            "       profile_image,\n" +
             "       mail,\n" +
             "       is_verified\n" +
             "FROM trainers\n" +
@@ -206,7 +204,7 @@ public class TrainerDaoImpl implements TrainerDao {
                 resultArray.add(trainer);
             }
 
-            logger.debug(resultArray.isEmpty() ? "No active clients found" : "Found {} active clients:\n{}", resultArray.size(), resultArray);
+            logger.debug(resultArray.isEmpty() ? "No active trainer found" : "Found {} active trainers:\n{}", resultArray.size(), resultArray);
 
         } catch (SQLException e) {
             throw new DaoException(e);
@@ -219,7 +217,6 @@ public class TrainerDaoImpl implements TrainerDao {
         trainer.setId(resultSet.getInt(TRAINER_ID));
         trainer.setLogin(resultSet.getString(USER_LOGIN));
         trainer.setPassword(resultSet.getString(USER_PASSWORD));
-        trainer.setProfileImage(resultSet.getString(PROFILE_IMAGE));
         trainer.setRole(User.UserRole.valueOf(resultSet.getString(USER_ROLE).toUpperCase()));
         trainer.setMail(resultSet.getString(MAIL));
         trainer.setName(resultSet.getString(USER_NAME));

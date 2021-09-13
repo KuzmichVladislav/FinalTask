@@ -19,6 +19,4 @@ public interface UserDao {
 
     boolean restoreUser(int userId) throws DaoException;
 
-    // TODO: 9/10/2021  
-    boolean updateUserImage2(User user) throws DaoException;
 }

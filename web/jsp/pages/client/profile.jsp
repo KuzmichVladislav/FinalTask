@@ -30,16 +30,38 @@
 <fmt:message key="form.sign.up.motivation.message" bundle="${rb}" var="motivationMessage"/>
 <fmt:message key="form.sign.up.message" bundle="${rb}" var="signUpMessage"/>
 <fmt:message key="form.log.in.message" bundle="${rb}" var="logInMessage"/>
+<fmt:message key="profile.details" bundle="${rb}" var="profileDetails"/>
+<fmt:message key="profile.about" bundle="${rb}" var="profileAbout"/>
+<fmt:message key="profile.edit" bundle="${rb}" var="profileEdit"/>
+<fmt:message key="profile.change.password" bundle="${rb}" var="changePassword"/>
+<fmt:message key="profile.current.password" bundle="${rb}" var="currentPassword"/>
+<fmt:message key="profile.new.password" bundle="${rb}" var="newPassword"/>
+<fmt:message key="profile.repeat.password" bundle="${rb}" var="repeatPassword"/>
+<fmt:message key="profile.close" bundle="${rb}" var="close"/>
+<fmt:message key="profile.save.changes" bundle="${rb}" var="saveChanges"/>
+<fmt:message key="profile.work.links" bundle="${rb}" var="workLinks"/>
+<fmt:message key="profile.new.order" bundle="${rb}" var="newOrder"/>
+<fmt:message key="profile.user.login" bundle="${rb}" var="userLogin"/>
+<fmt:message key="profile.full.name" bundle="${rb}" var="fullName"/>
+<fmt:message key="profile.mail" bundle="${rb}" var="mail"/>
+<fmt:message key="profile.phone" bundle="${rb}" var="phone"/>
+<fmt:message key="profile.status" bundle="${rb}" var="status"/>
+<fmt:message key="profile.register.date" bundle="${rb}" var="registerDate"/>
+<fmt:message key="profile.money" bundle="${rb}" var="money"/>
+<fmt:message key="profile.discount" bundle="${rb}" var="discount"/>
+<fmt:message key="profile.discount.level" bundle="${rb}" var="discountLevel"/>
+<fmt:message key="profile.upload.profile.image" bundle="${rb}" var="uploadProfileImage"/>
+<fmt:message key="profile.name" bundle="${rb}" var="name"/>
+<fmt:message key="profile.surname" bundle="${rb}" var="surname"/>
+<fmt:message key="profile.confirm" bundle="${rb}" var="confirm"/>
+
 
 <html>
 <head>
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/profile.css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-
 </head>
 <body>
 <c:import url="../../fragment/navbar.jsp"/>
@@ -51,38 +73,12 @@
     <form method="post">
         <div class="row">
             <div class="col-md-4">
+
                 <div class="profile-img">
                         <img src="data:image/jpg;base64,${sessionScope.userPhoto}"/>
-
-                    <form id="my_form" method="post" action="${pageContext.request.contextPath}/upload"
-                          enctype="multipart/form-data" class="upload-form">
-                        <div class="file btn btn-lg btn-primary">
-                            <input type="hidden" name="command" value="upload_image">
-                            Change Photo
-                            <input type="file" name="photo" id="file" onchange="submit_form()"
-                                   accept="image/jpeg,image/png,image/gif"/>
-                        </div>
-                    </form>
-                    <script>
-                        function submit_form() {
-                            var form = document.getElementById("my_form");
-                            form.submit();
-                        }
-                    </script>
                 </div>
             </div>
             <div class="col-md-6">
-                <form method="post" action="${pageContext.request.contextPath}/uploadServlet" enctype="multipart/form-data" class="upload-form">
-                    <div class="form-group">
-                        <input type="hidden" name="command" value="upload_image">
-                        <label class="col-form-label col-lg-3">Upload image</label>
-                        <div class="col-lg-4">
-                            <input type="file" name="multiPartServlet" id="file" onchange="checkUpload()" accept="image/jpeg,image/png,image/gif"/>
-                        </div>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Confirm</button>
-<%--                    <button type="submit" class="btn btn-secondary" disabled id="upload-submit">Upload</button>--%>
-                </form>
                 <div class="profile-head">
                     <h5>
                         ${sessionScope.userName} ${sessionScope.userLastName}
@@ -90,15 +86,15 @@
                     <h6>
                         ${sessionScope.userRole}
                     </h6>
-                    <p class="proile-rating">Details about you:</p>
+                    <p class="proile-rating">${profileDetails}</p>
                     <ul class="nav nav-tabs" id="myTab" role="tablist">
                         <li class="nav-item">
                             <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab"
-                               aria-controls="home" aria-selected="true">About</a>
+                               aria-controls="home" aria-selected="true">${profileAbout}</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
-                               aria-controls="profile" aria-selected="false">Edit profile</a>
+                               aria-controls="profile" aria-selected="false">${profileEdit}</a>
                         </li>
                     </ul>
                 </div>
@@ -106,7 +102,7 @@
             <div class="col-md-2">
                 <!-- Button trigger modal -->
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                    Change password
+                    ${changePassword}
                 </button>
                 <!-- Modal -->
                 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
@@ -114,7 +110,7 @@
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Change password</h5>
+                                <h5 class="modal-title" id="exampleModalLabel">${changePassword}</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
@@ -127,24 +123,24 @@
 
 
                                     <div class="form-group">
-                                        <label for="input-phone">Current password</label>
-                                        <input type="text" name="currentPassword" class="form-control"
+                                        <label for="input-phone">${currentPassword}</label>
+                                        <input type="password" name="currentPassword" class="form-control"
                                                id="input-current-password"
-                                               placeholder="${currentPasswordPlaceholder}" value="">
+                                               placeholder="${currentPassword}" value="">
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="input-phone">New password</label>
-                                        <input type="text" name="newPassword" class="form-control"
+                                        <label for="input-phone">${newPassword}</label>
+                                        <input type="password" name="newPassword" class="form-control"
                                                id="input-new-password"
-                                               placeholder="${newPasswordPlaceholder}" value="">
+                                               placeholder="${newPassword}" value="">
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="input-phone">Repeat password</label>
-                                        <input type="text" name="repeatPassword" class="form-control"
+                                        <label for="input-phone">${repeatPassword}</label>
+                                        <input type="password" name="repeatPassword" class="form-control"
                                                id="input-repeat-password"
-                                               placeholder="${repeatPasswordPlaceholder}" value="">
+                                               placeholder="${repeatPassword}" value="">
                                     </div>
 
                                     <c:if test="${requestScope.errMessage != null}">
@@ -153,11 +149,10 @@
                                                                bundle="${err_rb}"/></span>
                                         </div>
                                     </c:if>
-                                    <%--                                    <button type="submit" class="btn btn-primary">${submit}</button>--%>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">${close}
                                         </button>
-                                        <button type="submit" class="btn btn-primary">Save changes</button>
+                                        <button type="submit" class="btn btn-primary">${saveChanges}</button>
                                     </div>
                                 </form>
                             </div>
@@ -165,14 +160,13 @@
                         </div>
                     </div>
                 </div>
-                <%--                <input type="submit" class="profile-edit-btn" name="btnAddMore" value="Edit Profile"/>--%>
             </div>
         </div>
         <div class="row">
             <div class="col-md-4">
                 <div class="profile-work">
-                    <p>WORK LINK</p>
-                    <a href="${pageContext.request.contextPath}/controller?command=new_order">New order</a>
+                    <p>${workLinks}</p>
+                    <a href="${pageContext.request.contextPath}/controller?command=new_order">${newOrder}</a>
                     <a href="">Website Link</a><br/>
                     <a href="">Bootsnipp Profile</a><br/>
                     <a href="">Bootply Profile</a>
@@ -193,7 +187,7 @@
                             <input type="hidden" name="userId" value="${sessionScope.userId}">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <label>User Login</label>
+                                    <label>${userLogin}</label>
                                 </div>
                                 <div class="col-md-6">
                                     <p>${sessionScope.userLogin}</p>
@@ -201,7 +195,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
-                                    <label>Full name</label>
+                                    <label>${fullName}</label>
                                 </div>
                                 <div class="col-md-6">
                                     <p> ${sessionScope.userName} ${sessionScope.userLastName}</p>
@@ -209,7 +203,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
-                                    <label>Mail</label>
+                                    <label>${mail}</label>
                                 </div>
                                 <div class="col-md-6">
                                     <p>${sessionScope.userMail}</p>
@@ -217,7 +211,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
-                                    <label>Phone</label>
+                                    <label>${phone}</label>
                                 </div>
                                 <div class="col-md-6">
                                     <p>${sessionScope.userPhone}</p>
@@ -225,7 +219,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
-                                    <label>Status</label>
+                                    <label>${status}</label>
                                 </div>
                                 <div class="col-md-6">
                                     <p>${sessionScope.userRole}</p>
@@ -233,7 +227,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
-                                    <label>Register date</label>
+                                    <label>${registerDate}</label>
                                 </div>
                                 <div class="col-md-6">
                                     <p>${sessionScope.userRegisterDate}</p>
@@ -241,7 +235,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
-                                    <label>Money</label>
+                                    <label>${money}</label>
                                 </div>
                                 <div class="col-md-6">
                                     <p>${sessionScope.userMoney} BYN</p>
@@ -249,7 +243,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
-                                    <label>Discount</label>
+                                    <label>${discount}</label>
                                 </div>
                                 <div class="col-md-6">
                                     <p>${sessionScope.userDiscount} %</p>
@@ -257,7 +251,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
-                                    <label>Discount level</label>
+                                    <label>${discountLevel}</label>
                                 </div>
                                 <div class="col-md-6">
                                     <p>${sessionScope.userDiscountLevel}</p>
@@ -266,41 +260,49 @@
                         </form>
                     </div>
                     <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                        ${uploadProfileImage}
+                        <form method="post" action="${pageContext.request.contextPath}/uploadServlet"
+                              enctype="multipart/form-data" class="upload-form">
+                            <input type="hidden" name="command" value="upload_image">
+                            <input type="file" class="btn btn-primary" name="multiPartServlet" id="file"
+                                   onchange="this.form.submit();"
+                                   accept="image/jpeg,image/png,image/gif"/>
+                        </form>
                         <form name="profileEditForm" action="${pageContext.request.contextPath}/controller"
                               method="POST">
                             <input type="hidden" name="command" value="EDIT_CLIENT_PROFILE">
                             <input type="hidden" name="userId" value="${sessionScope.userId}">
                             <div class="form-group">
-                                <label for="input-name">Name</label>
+                                <label for="input-name">${name}</label>
                                 <input type="text" name="userName" class="form-control" id="input-name"
-                                       placeholder="${namePlaceholder}" value="">
+                                       placeholder="${name}" value="">
                             </div>
 
 
                             <div class="form-group">
-                                <label for="input-last-name">Surname</label>
+                                <label for="input-last-name">${surname}</label>
                                 <input type="text" name="userLastName" class="form-control" id="input-last-name"
-                                       placeholder="${surnamePlaceholder}" value="">
+                                       placeholder="${surname}" value="">
                             </div>
 
 
                             <div class="form-group">
-                                <label for="input-phone">Phone</label>
+                                <label for="input-phone">${phone}</label>
                                 <input type="text" name="userPhone" class="form-control" id="input-phone"
-                                       placeholder="${phonePlaceholder}" value="">
+                                       placeholder="${phone}" value="">
                             </div>
 
                             <div class="form-group">
-                                <label for="input-mail">Mail</label>
+                                <label for="input-mail">${mail}</label>
                                 <input type="email" name="userMail" class="form-control" id="input-mail"
-                                       placeholder="${mailPlaceholder}" value="">
+                                       placeholder="${mail}" value="">
                             </div>
                             <c:if test="${requestScope.errMessage != null}">
                                 <div class="alert alert-danger">
                                     <span><fmt:message key="${requestScope.errMessage}" bundle="${err_rb}"/></span>
                                 </div>
                             </c:if>
-                            <button type="submit" class="btn btn-primary">Confirm</button>
+                            <button type="submit" class="btn btn-primary">${confirm}</button>
                         </form>
                     </div>
                 </div>

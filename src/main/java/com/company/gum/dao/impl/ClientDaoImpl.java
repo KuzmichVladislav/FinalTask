@@ -51,7 +51,6 @@ public class ClientDaoImpl implements ClientDao {
             + "       name,\n"
             + "       surname,\n"
             + "       is_active,\n"
-            + "       profile_image,\n"
             + "       mail,\n"
             + "       is_verified\n,"
             + "       image\n"
@@ -71,7 +70,6 @@ public class ClientDaoImpl implements ClientDao {
             + "       name,\n"
             + "       surname,\n"
             + "       is_active,\n"
-            + "       profile_image,\n"
             + "       mail,\n"
             + "       is_verified\n"
             + "FROM clients,\n"
@@ -89,7 +87,6 @@ public class ClientDaoImpl implements ClientDao {
             + "       name,\n"
             + "       surname,\n"
             + "       is_active,\n"
-            + "       profile_image,\n"
             + "       mail,\n"
             + "       is_verified\n"
             + "FROM clients,\n"
@@ -108,7 +105,6 @@ public class ClientDaoImpl implements ClientDao {
             + "       name,\n"
             + "       surname,\n"
             + "       is_active,\n"
-            + "       profile_image,\n"
             + "       mail,\n"
             + "       is_verified\n"
             + "FROM clients,\n"
@@ -380,22 +376,21 @@ public class ClientDaoImpl implements ClientDao {
     }
 
     private Client getClientFromResultSet(ResultSet resultSet) throws SQLException {
-        Client client = new Client();
-        client.setId(resultSet.getInt(CLIENT_ID));
-        client.setLogin(resultSet.getString(USER_LOGIN));
-        client.setPassword(resultSet.getString(USER_PASSWORD));
-        client.setProfileImage(resultSet.getString(PROFILE_IMAGE));
-        client.setRole(User.UserRole.valueOf(resultSet.getString(USER_ROLE).toUpperCase()));
-        client.setMail(resultSet.getString(MAIL));
-        client.setName(resultSet.getString(USER_NAME));
-        client.setSurname(resultSet.getString(USER_SURNAME));
-        client.setActive(resultSet.getBoolean(IS_ACTIVE));
-        client.setRegisterDate(resultSet.getTimestamp(REGISTER_DATE).toLocalDateTime());
-        client.setPhone(resultSet.getString(PHONE_NUMBER));
-        client.setDiscount(resultSet.getInt(DISCOUNT));
-        client.setDiscountLevel(resultSet.getInt(DISCOUNT_TYPE));
-        client.setMoney(resultSet.getBigDecimal(MONEY));
-        client.setPhoto(resultSet.getBytes(PHOTO));
-        return client;
+        return new Client.Builder().id(resultSet.getInt(CLIENT_ID))
+                .login(resultSet.getString(USER_LOGIN))
+                .password(resultSet.getString(USER_PASSWORD))
+                .role(User.UserRole.valueOf(resultSet.getString(USER_ROLE).toUpperCase()))
+                .mail(resultSet.getString(MAIL))
+                .name(resultSet.getString(USER_NAME))
+                .surname(resultSet.getString(USER_SURNAME))
+                .isActive(resultSet.getBoolean(IS_ACTIVE))
+                .registerDate(resultSet.getTimestamp(REGISTER_DATE).toLocalDateTime())
+                .phone(resultSet.getString(PHONE_NUMBER))
+                .discount(resultSet.getInt(DISCOUNT))
+                .discountLevel(resultSet.getInt(DISCOUNT_TYPE))
+                .money(resultSet.getBigDecimal(MONEY))
+                .photo(resultSet.getBytes(PHOTO))
+                .verification(resultSet.getBoolean(VERIFICATION))
+                .build();
     }
 }
