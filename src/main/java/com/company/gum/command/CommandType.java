@@ -5,6 +5,7 @@ import com.company.gum.command.impl.client.ChangePassword;
 import com.company.gum.command.impl.client.EditClientProfile;
 import com.company.gum.command.impl.client.NewOrder;
 import com.company.gum.command.order.CreateOrder;
+import com.company.gum.command.order.FindAllOrder;
 
 public enum CommandType {
 
@@ -17,7 +18,9 @@ public enum CommandType {
     EDIT_CLIENT_PROFILE(new EditClientProfile()),
     CHANGE_PASSWORD(new ChangePassword()),
     NEW_ORDER(new NewOrder()),
-    CREATE_NEW_ORDER(new CreateOrder());
+    CREATE_NEW_ORDER(new CreateOrder()),
+    FIND_ALL_ORDERS(new FindAllOrder());
+
 
     private Command command;
 

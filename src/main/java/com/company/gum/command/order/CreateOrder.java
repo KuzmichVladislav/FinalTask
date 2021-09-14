@@ -44,7 +44,7 @@ public class CreateOrder implements Command {
                     .build();
 
             orderService.createOrder(order);
-            page = PagePath.CLIENT_ORDER_CREATED;
+            page = PagePath.ORDER_CREATED;
 
         } catch (ServiceException e) {
             throw new CommandException(e);

@@ -34,6 +34,7 @@ public class AttributeName {
     public static final String COMMENT = "comment";
     public static final String START_DATE = "startDate";
     public static final String DURATION = "duration";
+    public static final String ORDERS = "orders";
 
 
     private AttributeName() {

@@ -54,6 +54,7 @@
 <fmt:message key="profile.name" bundle="${rb}" var="name"/>
 <fmt:message key="profile.surname" bundle="${rb}" var="surname"/>
 <fmt:message key="profile.confirm" bundle="${rb}" var="confirm"/>
+<fmt:message key="profile.my.orders" bundle="${rb}" var="myOrder"/>
 
 
 <html>
@@ -167,7 +168,7 @@
                 <div class="profile-work">
                     <p>${workLinks}</p>
                     <a href="${pageContext.request.contextPath}/controller?command=new_order">${newOrder}</a>
-                    <a href="">Website Link</a><br/>
+                    <a href="${pageContext.request.contextPath}/controller?command=find_all_orders">${myOrder}</a><br/>
                     <a href="">Bootsnipp Profile</a><br/>
                     <a href="">Bootply Profile</a>
                     <p>SKILLS</p>

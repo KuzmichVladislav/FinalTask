@@ -15,6 +15,11 @@
 <fmt:message key="form.sign.up.tagline" bundle="${rb}" var="tagline"/>
 <fmt:message key="form.sign.up.motivation.message" bundle="${rb}" var="motivationMessage"/>
 <fmt:message key="order.new.order.message" bundle="${rb}" var="newOrderMessage"/>
+<fmt:message key="order.new.order.week" bundle="${rb}" var="week"/>
+<fmt:message key="order.new.order.month" bundle="${rb}" var="month"/>
+<fmt:message key="order.new.order.half.year" bundle="${rb}" var="halfYear"/>
+<fmt:message key="order.new.order.year" bundle="${rb}" var="year"/>
+
 
 <html>
 <head>
@@ -65,11 +70,10 @@
                         <div class="form-group" id="training">
                             <label for="duration">${duration}</label>
                             <select id="duration" class="form-control" name="duration">
-                                <option value="0">${trainingDurationDay}</option>
-                                <option value="1">${trainingDurationWeek}</option>
-                                <option value="2">${trainingDurationMonth}</option>
-                                <option value="3">${trainingDurationThreeMonths}</option>
-                                <option value="4">${trainingDurationHalfYear}</option>
+                                <option value="0">${week}</option>
+                                <option value="1">${month}</option>
+                                <option value="2">${halfYear}</option>
+                                <option value="3">${year}</option>
                             </select>
                         </div>
                         <div class="form-group">
@@ -85,8 +89,7 @@
         </div>
     </div>
 </div>
-</div>
-</div>
+
 <c:import url="../../fragment/footer.jsp"/>
 </body>
 </html>
