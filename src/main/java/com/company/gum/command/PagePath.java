@@ -20,6 +20,8 @@ public class PagePath {
     public static final String CLIENT_ORDERS = "jsp/pages/client/client_orders.jsp";
     public static final String CLIENT_ORDER_DETAIL = "jsp/pages/client/client_order_detail.jsp";
     public static final String COMMENTS = "jsp/pages/comments.jsp";
+    public static final String COMMENT_DELETED = "jsp/pages/comment_deleted.jsp";
+    public static final String COMMENT_EDITED = "jsp/pages/comment_edited.jsp";
 
     private PagePath() {
     }

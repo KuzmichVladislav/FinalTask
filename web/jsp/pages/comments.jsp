@@ -6,19 +6,14 @@
 <fmt:setBundle basename="bundle/message" var="rb"/>
 <fmt:setBundle basename="bundle/err" var="err_rb"/>
 
-
-<fmt:message key="project.name" bundle="${rb}" var="title"/>
-<fmt:message key="form.login.placeholder" bundle="${rb}" var="loginPlaceholder"/>
-<fmt:message key="form.name.placeholder" bundle="${rb}" var="namePlaceholder"/>
-<fmt:message key="form.surname.placeholder" bundle="${rb}" var="lastNamePlaceholder"/>
-<fmt:message key="form.password.placeholder" bundle="${rb}" var="passwordPlaceholder"/>
-<fmt:message key="form.confirm.password.placeholder" bundle="${rb}" var="confirmPasswordPlaceholder"/>
-<fmt:message key="form.phone.placeholder" bundle="${rb}" var="phonePlaceholder"/>
-<fmt:message key="form.mail.placeholder" bundle="${rb}" var="mailPlaceholder"/>
-<fmt:message key="form.sign.up.register" bundle="${rb}" var="register"/>
 <fmt:message key="form.sign.up.tagline" bundle="${rb}" var="tagline"/>
 <fmt:message key="form.sign.up.motivation.message" bundle="${rb}" var="motivationMessage"/>
-<fmt:message key="form.sign.up.message" bundle="${rb}" var="signUpMessage"/>
+<fmt:message key="comment.available.comments" bundle="${rb}" var="availableComments"/>
+<fmt:message key="comment.edit.comment" bundle="${rb}" var="editComment"/>
+<fmt:message key="comment.comment" bundle="${rb}" var="commentComment"/>
+<fmt:message key="comment.close" bundle="${rb}" var="close"/>
+<fmt:message key="comment.save.changes" bundle="${rb}" var="saveChanges"/>
+
 
 <html>
 <head>
@@ -28,6 +23,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/comment.css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
 </head>
 
 <body>
@@ -45,32 +41,78 @@
             <p>${motivationMessage}</p>
         </div>
         <div class="col-md-9 register-right">
-            <h3 class="register-heading">${signUpMessage}</h3>
+            <h3 class="register-heading">${availableComments}</h3>
             <div class="row register-form">
                 <c:forEach items="${requestScope.comments}" var="comment">
                     <jsp:useBean id="comment" type="com.company.gum.entity.Comment"/>
                     <div class="container">
-                        <div class="col-8">
-                            <div class="card card-white post">
-                                <div class="post-heading">
-                                    <div class="float-left image">
-                                        <img src="data:image/jpg;base64,${comment.base64Image}"
-                                             class="img-circle avatar" alt="user profile image">
-                                    </div>
-                                    <div class="float-left meta">
-                                        <div class="title h5">
-                                                ${comment.userName} ${comment.userSurname}
-                                        </div>
-                                        <h6 class="text-muted time">${comment.commentDate}</h6>
-                                    </div>
+                        <div class="card card-white post" style="width: auto">
+                            <div class="post-heading">
+                                <div class="float-left image">
+                                    <img src="data:image/jpg;base64,${comment.base64Image}"
+                                         class="img-circle avatar" alt="user profile image">
                                 </div>
-                                <div class="post-description">
-                                    <p>${comment.commentText}</p>
+                                <div class="float-left meta">
+                                    <div class="title h5">
+                                            ${comment.userName} ${comment.userSurname}
+                                    </div>
+                                    <h6 class="text-muted time">${comment.commentDate}</h6>
                                 </div>
-                                <c:if test="${sessionScope.userId == comment.userId}">
-                                    <a href="controller?command=DELETE_COMMENT&commentId=${comment.id}"><button class="btn btn-sm btn-outline-primary w-100">Delete</button></a>
-                                </c:if>
                             </div>
+                            <div class="post-description">
+                                <p>${comment.commentText}</p>
+                            </div>
+                            <c:if test="${sessionScope.userId == comment.userId}">
+                                <!-- Button trigger modal -->
+                                <button type="button" class="btn btn-primary" data-toggle="modal"
+                                        data-target="#exampleModal">
+                                    ${editComment}
+                                </button>
+
+                                <!-- Modal -->
+                                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                                     aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">${editComment}</h5>
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <form name="loginForm"
+                                                  action="${pageContext.request.contextPath}/controller" method="POST">
+                                                <div class="modal-body">
+                                                    <input type="hidden" name="command" value="edit_comment">
+                                                    <input type="hidden" name="commentId" value=${comment.id}>
+                                                    <div class="form-group">
+                                                        <label for="input-comment">${commentComment}</label>
+                                                        <textarea name="comment" class="form-control"
+                                                                  id="input-comment">${comment.commentText}</textarea>
+                                                    </div>
+
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary"
+                                                            data-dismiss="modal">${close}
+                                                    </button>
+                                                    <button type="submit" class="btn btn-primary">${saveChanges}</button>
+                                                </div>
+                                            </form>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <a href="controller?command=DELETE_COMMENT&commentId=${comment.id}">
+                                    <button class="btn btn-sm btn-outline-primary w-100">Delete</button>
+                                </a>
+                            </c:if>
+                            <c:if test="${sessionScope.userId != comment.userId && sessionScope.userRole == 'ADMIN'}">
+                                <a href="controller?command=DELETE_COMMENT&commentId=${comment.id}">
+                                    <button class="btn btn-sm btn-outline-primary w-100">Delete</button>
+                                </a>
+                            </c:if>
                         </div>
                     </div>
                 </c:forEach>

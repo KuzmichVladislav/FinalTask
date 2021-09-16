@@ -21,9 +21,7 @@ public class CommentDaoImpl implements CommentDao {
     private static final String SQL_CREATE_COMMENT = "INSERT INTO comments (user_id, comment_text)\n"
             + "VALUES (?, ?)";
     private static final String SQL_UPDATE_COMMENT = "UPDATE comments\n"
-            + "SET user_id      = IFNULL(?, user_id),\n"
-            + "    comment_text = IFNULL(?, comment_text),\n"
-            + "    is_active    = IFNULL(?, is_active)\n"
+            + "SET comment_text = IFNULL(?, comment_text)\n"
             + "WHERE comment_id = ?";
     private static final String SQL_DELETE_COMMENT = "UPDATE comments\n"
             + "SET is_active = false\n"
@@ -119,31 +117,21 @@ public class CommentDaoImpl implements CommentDao {
     }
 
     @Override
-    public boolean updateComment(Comment comment) throws DaoException {
+    public boolean updateComment(int commentId, String commentText) throws DaoException {
         boolean isUpdated;
 
         try (Connection connection = ConnectionPool.getInstance().takeConnection();
              PreparedStatement statement = connection.prepareStatement(SQL_UPDATE_COMMENT)) {
-            if (comment.getUserId() != null) {
-                statement.setInt(1, comment.getUserId());
+            if (commentText != null) {
+                statement.setString(1, commentText);
             } else {
-                statement.setNull(1, Types.INTEGER);
+                statement.setNull(1, Types.VARCHAR);
             }
-            if (comment.getCommentText() != null) {
-                statement.setString(2, comment.getCommentText());
-            } else {
-                statement.setNull(2, Types.VARCHAR);
-            }
-            if (comment.getActive() != null) {
-                statement.setBoolean(3, comment.getActive());
-            } else {
-                statement.setNull(3, Types.BOOLEAN);
-            }
-            statement.setInt(4, comment.getId());
+            statement.setInt(2, commentId);
 
             isUpdated = statement.execute();
 
-            logger.debug(isUpdated ? "Comment " + comment.getId() + " was updated" : "Comment " + comment.getId() + " was not updated");
+            logger.debug(isUpdated ? "Comment " + commentId + " was updated" : "Comment " + commentId + " was not updated");
 
         } catch (SQLException e) {
             throw new DaoException(e);

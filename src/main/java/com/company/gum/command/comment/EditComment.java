@@ -9,17 +9,20 @@ import com.company.gum.exception.ServiceException;
 import com.company.gum.service.CommentService;
 import com.company.gum.service.impl.CommentServiceImpl;
 
-public class DeleteComment implements Command {
-   private CommentService commentService = CommentServiceImpl.getInstance();
+public class EditComment implements Command {
+
+    private CommentService commentService = CommentServiceImpl.getInstance();
 
     @Override
     public String execute(SessionRequestContent requestContent) throws CommandException {
         String page;
-        try {
+        try{
             int commentId = Integer.parseInt(requestContent.getParameterByName(AttributeName.COMMENT_ID));
-            commentService.deleteComment(commentId);
+            String commentText = requestContent.getParameterByName(AttributeName.COMMENT);
+            commentService.updateComment(commentId, commentText);
             requestContent.putAttribute(AttributeName.COMMENT_ID, commentId);
-            page = PagePath.COMMENT_DELETED;
+            requestContent.putAttribute(AttributeName.COMMENT, commentText);
+            page = PagePath.COMMENT_EDITED;
         } catch (ServiceException e) {
             throw new CommandException(e);
         }

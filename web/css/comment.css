@@ -1,10 +1,13 @@
 
-
+.card{
+    width: auto;
+}
 .card-white  .card-heading {
     color: #333;
     background-color: #fff;
     border-color: #ddd;
     border: 1px solid #dddddd;
+
 }
 .card-white  .card-footer {
     background-color: #fff;

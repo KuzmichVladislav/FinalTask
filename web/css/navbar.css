@@ -388,10 +388,6 @@ body {
     font-weight: 500
 }
 
-.container.mt-51.d-flex.justify-content-center {
-    margin-left: 300px
-}
-
 li.nav-item.active {
     margin: auto;
 }

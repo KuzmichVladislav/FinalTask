@@ -36,8 +36,14 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
-    public boolean updateComment(Comment comment) throws ServiceException {
-        return false;
+    public boolean updateComment(int commentId, String commentText) throws ServiceException {
+        boolean isUpdated;
+        try{
+            isUpdated = commentDao.updateComment(commentId, commentText);
+        } catch (DaoException e) {
+            throw new ServiceException(e);
+        }
+        return isUpdated;
     }
 
     @Override

@@ -9,7 +9,7 @@ public interface CommentService {
 
     Comment createComment(Comment comment) throws ServiceException;
 
-    boolean updateComment(Comment comment) throws ServiceException;
+    boolean updateComment(int commentId, String commentText) throws ServiceException;
 
     boolean deleteComment(int commentId) throws ServiceException;
 

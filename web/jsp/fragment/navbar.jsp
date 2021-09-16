@@ -93,8 +93,7 @@
                     <div class="d-flex align-items-center">
                         <c:choose>
                         <c:when test="${sessionScope.authorization}">
-                        <div class="image">
-                                <img src="data:image/jpg;base64,${sessionScope.userPhoto}"
+                        <div class="image"><img src="data:image/jpg;base64,${sessionScope.userPhoto}"
                                      alt="Profile image"
                                      class="rounded" width="80">
                         </div>
@@ -111,7 +110,7 @@
                                     </span>
                                 </c:if>
                                 <a href="${pageContext.request.contextPath}/controller?command=Logout">
-                                    <button class="btn btn-sm btn-primary w-100 ml-2">${logOut}</button>
+                                    <button class="btn btn-sm btn-primary w-100 ml-2" style="width: 200px!important;">${logOut}</button>
                                 </a>
                             </div>
                             </c:when>

@@ -48,6 +48,44 @@
                 <div class="col-md-6">
                     <c:choose>
                         <c:when test="${requestScope.orders.size() > 0}">
+<%--                            <button type="button" class="btn btn-info filter-button-show" onclick="clickFilter()">${showFilter}</button>--%>
+                            <%--                            <form class="filter-form" id="filterButton" action="${pageContext.request.contextPath}/controller" method="POST">--%>
+                            <%--                                <input type="hidden" name="command" value="FIND_ORDERS_BY_FILTER">--%>
+                            <%--                                <div class="form-row">--%>
+                            <%--                                    <div class="form-group col-md-6">--%>
+                            <%--                                        <label for="inputTrainerName">${trainerName}</label>--%>
+                            <%--                                        <input type="text" class="form-control" id="inputTrainerName" name="trainerName" placeholder="Name">--%>
+                            <%--                                    </div>--%>
+                            <%--                                    <div class="form-group col-md-6">--%>
+                            <%--                                        <label for="inputTrainerLastName">${trainerLastName}</label>--%>
+                            <%--                                        <input type="text" class="form-control" id="inputTrainerLastName" name="trainerLastName" placeholder="Last name">--%>
+                            <%--                                    </div>--%>
+                            <%--                                </div>--%>
+
+                            <%--                                <div class="form-row">--%>
+                            <%--                                    <div class="form-group col-lg-4">--%>
+                            <%--                                        <label for="inputStartDate">${filterSartDate}</label>--%>
+                            <%--                                        <input type="date" class="form-control" id="inputStartDate" name="startDate" placeholder="Start date">--%>
+                            <%--                                    </div>--%>
+                            <%--                                    <div class="form-group col-lg-4">--%>
+                            <%--                                        <label for="inputEndDate">${filterEndDate}</label>--%>
+                            <%--                                        <input type="date" class="form-control" id="inputEndDate" name="endDate" placeholder="End date">--%>
+                            <%--                                    </div>--%>
+                            <%--                                    <div class="form-group col-lg-4">--%>
+                            <%--                                        <label for="inputStatus">${filterStatus}</label>--%>
+                            <%--                                        <select id="inputStatus" class="form-control" name="status">--%>
+                            <%--                                            <option value="0">${statusNew}</option>--%>
+                            <%--                                            <option value="1">${statusReviewed}</option>--%>
+                            <%--                                            <option value="2">${statusRejected}</option>--%>
+                            <%--                                            <option value="3">${statusAccepted}</option>--%>
+                            <%--                                            <option value="4">${statusInProcess}</option>--%>
+                            <%--                                            <option value="5">${statusTerminated}</option>--%>
+                            <%--                                            <option selected value="">ANY</option>--%>
+                            <%--                                        </select>--%>
+                            <%--                                    </div>--%>
+                            <%--                                </div>--%>
+                            <%--                                <button type="submit" class="btn btn-success">${btnFilter}</button>--%>
+                            <%--                            </form>--%>
                             <ctg:order_table/>
                         </c:when>
 

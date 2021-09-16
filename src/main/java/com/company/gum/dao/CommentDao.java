@@ -9,7 +9,7 @@ public interface CommentDao {
 
 	Comment createComment(Comment comment) throws DaoException;
 
-	boolean updateComment(Comment comment) throws DaoException;
+	boolean updateComment(int commentId, String commentText) throws DaoException;
 
 	boolean deleteComment(int commentId) throws DaoException;
 
