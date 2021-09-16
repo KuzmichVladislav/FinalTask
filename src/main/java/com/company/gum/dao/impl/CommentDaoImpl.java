@@ -312,7 +312,7 @@ public class CommentDaoImpl implements CommentDao {
                 .commentText(resultSet.getString(COMMENT_TEXT))
                 .commentDate(resultSet.getTimestamp(COMMENT_DATE).toLocalDateTime())
                 .active(resultSet.getBoolean(IS_ACTIVE))
-                .base64Image(Base64.getEncoder().encodeToString(resultSet.getBytes(PHOTO)))
+                .base64Image(resultSet.getBytes(PHOTO) != null ? Base64.getEncoder().encodeToString(resultSet.getBytes(PHOTO)) : "sorry")
                 .build();
     }
 }

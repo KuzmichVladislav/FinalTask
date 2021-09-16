@@ -42,6 +42,7 @@ public class AttributeName {
 
     public static final String PAGE = "page";
     public static final String COMMENTS = "comments";
+    public static final String COMMENT_ID = "commentId";
 
 
     private AttributeName() {

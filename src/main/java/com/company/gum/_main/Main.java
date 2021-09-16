@@ -1,4 +1,4 @@
-package com.company.gum.main;
+package com.company.gum._main;
 
 public class Main {
 

@@ -1,6 +1,7 @@
 package com.company.gum.command;
 
 import com.company.gum.command.comment.CreateNewComment;
+import com.company.gum.command.comment.DeleteComment;
 import com.company.gum.command.comment.FindAllActiveComments;
 import com.company.gum.command.impl.*;
 import com.company.gum.command.impl.client.ChangePassword;
@@ -28,7 +29,8 @@ public enum CommandType {
     FIND_ALL_ORDERS_BY_CLIENT(new FindAllOrdersByClient()),
     CLIENT_ORDER_DETAIL(new ClientOrderDetail()),
     CREATE_NEW_COMMENT(new CreateNewComment()),
-    FIND_ALL_ACTIVE_COMMENTS(new FindAllActiveComments());
+    FIND_ALL_ACTIVE_COMMENTS(new FindAllActiveComments()),
+    DELETE_COMMENT(new DeleteComment());
 
 
     private Command command;

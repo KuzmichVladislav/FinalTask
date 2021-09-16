@@ -67,6 +67,9 @@
                                 <div class="post-description">
                                     <p>${comment.commentText}</p>
                                 </div>
+                                <c:if test="${sessionScope.userId == comment.userId}">
+                                    <a href="controller?command=DELETE_COMMENT&commentId=${comment.id}"><button class="btn btn-sm btn-outline-primary w-100">Delete</button></a>
+                                </c:if>
                             </div>
                         </div>
                     </div>

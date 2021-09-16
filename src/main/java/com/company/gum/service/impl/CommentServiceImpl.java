@@ -42,7 +42,13 @@ public class CommentServiceImpl implements CommentService {
 
     @Override
     public boolean deleteComment(int commentId) throws ServiceException {
-        return false;
+        boolean isDeleted;
+        try{
+            isDeleted = commentDao.deleteComment(commentId);
+        } catch (DaoException e) {
+            throw new ServiceException(e);
+        }
+        return isDeleted;
     }
 
     @Override

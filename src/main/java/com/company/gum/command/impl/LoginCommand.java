@@ -46,7 +46,12 @@ public class LoginCommand implements Command {
                 user = userService.findUserByLoginAndPassword(login, password);
                 if (user != null) {
                     requestContent.putSessionAttribute(AttributeName.USER_ID, user.getId());
-                    String base64Image = Base64.getEncoder().encodeToString(user.getPhoto());
+                    String base64Image;
+                    if(user.getPhoto()!=null) {
+                        base64Image = Base64.getEncoder().encodeToString(user.getPhoto());
+                    }else{
+                        base64Image = "sorry";
+                    }
                     requestContent.putSessionAttribute(AttributeName.USER_PHOTO, base64Image);
 
                     switch (user.getRole()) {
@@ -80,7 +85,11 @@ public class LoginCommand implements Command {
                             requestContent.putSessionAttribute(AttributeName.USER_PHONE, client.getPhone());
                             requestContent.putSessionAttribute(AttributeName.USER_MONEY, client.getMoney());
                             requestContent.putSessionAttribute(AttributeName.USER_MAIL, client.getMail());
-                            base64Image = Base64.getEncoder().encodeToString(client.getPhoto());
+                            if(client.getPhoto()!=null) {
+                                base64Image = Base64.getEncoder().encodeToString(client.getPhoto());
+                            }else{
+                                base64Image = "sorry";
+                            }
                             requestContent.putSessionAttribute(AttributeName.USER_PHOTO, base64Image);
                             page = PagePath.WELCOME;
                             break;
