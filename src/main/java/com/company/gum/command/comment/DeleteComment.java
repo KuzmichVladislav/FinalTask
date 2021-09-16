@@ -19,7 +19,7 @@ public class DeleteComment implements Command {
             Integer commentId = Integer.parseInt(requestContent.getParameterByName(AttributeName.COMMENT_ID));
             commentService.deleteComment(commentId);
             requestContent.putAttribute(AttributeName.COMMENT_ID, commentId);
-            page = PagePath.ORDER_DELETED_BY_CLIENT; // TODO: 9/16/2021  
+            page = PagePath.ORDER_DELETED_BY_CLIENT; // TODO: 9/16/2021
         } catch (ServiceException e) {
             throw new CommandException(e);
         }
