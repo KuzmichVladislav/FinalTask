@@ -35,6 +35,13 @@ public class AttributeName {
     public static final String START_DATE = "startDate";
     public static final String DURATION = "duration";
     public static final String ORDERS = "orders";
+    public static final String ORDER_ID = "orderId";
+    public static final String ORDER = "order";
+
+
+
+    public static final String PAGE = "page";
+    public static final String COMMENTS = "comments";
 
 
     private AttributeName() {

@@ -22,5 +22,4 @@ public interface CommentDao {
 	List<Comment> findCommentWithFilter(Comment filter) throws DaoException;
 
 	int commentCount(Boolean active) throws DaoException;
-
 }

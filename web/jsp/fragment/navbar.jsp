@@ -70,6 +70,9 @@
                         </c:when>
                     </c:choose>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="${pageContext.request.contextPath}/controller?command=find_all_active_comments">Comments</a>
+                </li>
             </c:if>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
@@ -94,10 +97,6 @@
                                 <img src="data:image/jpg;base64,${sessionScope.userPhoto}"
                                      alt="Profile image"
                                      class="rounded" width="80">
-
-                                <%--                            <img src="${sessionScope.profileImage}"--%>
-                                <%--                                 alt="Profile image"--%>
-                                <%--                                 class="rounded" width="80">--%>
                         </div>
                         <div class="ml-3 w-100">
                             <div class="ml-3 w-100">

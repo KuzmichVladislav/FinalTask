@@ -7,10 +7,9 @@
 
 <fmt:message key="form.sign.up.tagline" bundle="${rb}" var="tagline"/>
 <fmt:message key="form.sign.up.motivation.message" bundle="${rb}" var="motivationMessage"/>
-<fmt:message key="order.congratulations" bundle="${rb}" var="congratulations"/>
-<fmt:message key="order.congratulations.message" bundle="${rb}" var="congratulationsMessage"/>
+<fmt:message key="order.deleted" bundle="${rb}" var="deleted"/>
+<fmt:message key="order.deleted.message" bundle="${rb}" var="deletedMessage"/>
 <fmt:message key="order.orders" bundle="${rb}" var="orders"/>
-
 
 <html>
 <head>
@@ -38,10 +37,10 @@
             <p>${motivationMessage}</p>
         </div>
         <div class="col-md-9 register-right">
-            <h3 class="register-heading">${congratulations}</h3>
+            <h3 class="register-heading">${deleted}</h3>
             <div class="row register-form">
                 <div class="col-md-6">
-                    <p>${congratulationsMessage}</p>
+                    <p>${deletedMessage}</p>
                     <a href="${pageContext.request.contextPath}/controller?command=find_all_orders_by_client">${orders}</a>
                 </div>
             </div>

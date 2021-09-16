@@ -3,13 +3,16 @@ package com.company.gum.dao;
 public class TableColumnName {
 
 	public static final String USER_ID = "user_id";
+	public static final String USER_NAME_COMMENT = "user_name";
+	public static final String USER_SURNAME_COMMENT = "user_surname";
+
 	public static final String USER_LOGIN = "login";
 	public static final String USER_PASSWORD = "password";
 	public static final String USER_ROLE = "role";
 	public static final String USER_NAME = "name";
 	public static final String USER_SURNAME = "surname";
 	public static final String IS_ACTIVE = "is_active";
-	public static final String PROFILE_IMAGE = "profile_image";
+//	public static final String PROFILE_IMAGE = "profile_image";
 	public static final String MAIL = "mail";
 	public static final String PHOTO = "image";
 	public static final String VERIFICATION = "is_verified";

@@ -168,7 +168,7 @@
                 <div class="profile-work">
                     <p>${workLinks}</p>
                     <a href="${pageContext.request.contextPath}/controller?command=new_order">${newOrder}</a>
-                    <a href="${pageContext.request.contextPath}/controller?command=find_all_orders">${myOrder}</a><br/>
+                    <a href="${pageContext.request.contextPath}/controller?command=find_all_orders_by_client">${myOrder}</a><br/>
                     <a href="">Bootsnipp Profile</a><br/>
                     <a href="">Bootply Profile</a>
                     <p>SKILLS</p>
@@ -182,83 +182,78 @@
             <div class="col-md-8">
                 <div class="tab-content profile-tab" id="myTabContent">
                     <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                        <form name="profileEditForm" action="${pageContext.request.contextPath}/controller"
-                              method="POST">
-                            <input type="hidden" name="command" value="EDIT_CLIENT_PROFILE">
-                            <input type="hidden" name="userId" value="${sessionScope.userId}">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label>${userLogin}</label>
-                                </div>
-                                <div class="col-md-6">
-                                    <p>${sessionScope.userLogin}</p>
-                                </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>${userLogin}</label>
                             </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label>${fullName}</label>
-                                </div>
-                                <div class="col-md-6">
-                                    <p> ${sessionScope.userName} ${sessionScope.userLastName}</p>
-                                </div>
+                            <div class="col-md-6">
+                                <p>${sessionScope.userLogin}</p>
                             </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label>${mail}</label>
-                                </div>
-                                <div class="col-md-6">
-                                    <p>${sessionScope.userMail}</p>
-                                </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>${fullName}</label>
                             </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label>${phone}</label>
-                                </div>
-                                <div class="col-md-6">
-                                    <p>${sessionScope.userPhone}</p>
-                                </div>
+                            <div class="col-md-6">
+                                <p> ${sessionScope.userName} ${sessionScope.userLastName}</p>
                             </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label>${status}</label>
-                                </div>
-                                <div class="col-md-6">
-                                    <p>${sessionScope.userRole}</p>
-                                </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>${mail}</label>
                             </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label>${registerDate}</label>
-                                </div>
-                                <div class="col-md-6">
-                                    <p>${sessionScope.userRegisterDate}</p>
-                                </div>
+                            <div class="col-md-6">
+                                <p>${sessionScope.userMail}</p>
                             </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label>${money}</label>
-                                </div>
-                                <div class="col-md-6">
-                                    <p>${sessionScope.userMoney} BYN</p>
-                                </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>${phone}</label>
                             </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label>${discount}</label>
-                                </div>
-                                <div class="col-md-6">
-                                    <p>${sessionScope.userDiscount} %</p>
-                                </div>
+                            <div class="col-md-6">
+                                <p>${sessionScope.userPhone}</p>
                             </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label>${discountLevel}</label>
-                                </div>
-                                <div class="col-md-6">
-                                    <p>${sessionScope.userDiscountLevel}</p>
-                                </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>${status}</label>
                             </div>
-                        </form>
+                            <div class="col-md-6">
+                                <p>${sessionScope.userRole}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>${registerDate}</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>${sessionScope.userRegisterDate}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>${money}</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>${sessionScope.userMoney} BYN</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>${discount}</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>${sessionScope.userDiscount} %</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>${discountLevel}</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>${sessionScope.userDiscountLevel}</p>
+                            </div>
+                        </div>
                     </div>
                     <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                         ${uploadProfileImage}

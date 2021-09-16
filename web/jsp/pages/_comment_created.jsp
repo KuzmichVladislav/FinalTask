@@ -7,9 +7,8 @@
 
 <fmt:message key="form.sign.up.tagline" bundle="${rb}" var="tagline"/>
 <fmt:message key="form.sign.up.motivation.message" bundle="${rb}" var="motivationMessage"/>
-<fmt:message key="order.congratulations" bundle="${rb}" var="congratulations"/>
-<fmt:message key="order.congratulations.message" bundle="${rb}" var="congratulationsMessage"/>
-<fmt:message key="order.orders" bundle="${rb}" var="orders"/>
+<fmt:message key="comment.congratulations" bundle="${rb}" var="congratulations"/>
+<fmt:message key="comment.congratulations.message" bundle="${rb}" var="congratulationsMessage"/>
 
 
 <html>
@@ -19,12 +18,13 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<%--    поправить страницу--%>
     <meta http-equiv="refresh"
           content="5;${pageContext.request.contextPath}/controller?command=find_all_orders_by_client">
 </head>
 
 <body>
-<c:import url="../../fragment/navbar.jsp"/>
+<c:import url="../fragment/navbar.jsp"/>
 
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -49,6 +49,6 @@
     </div>
 </div>
 
-<c:import url="../../fragment/footer.jsp"/>
+<c:import url="../fragment/footer.jsp"/>
 </body>
 </html>

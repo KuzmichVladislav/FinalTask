@@ -14,21 +14,20 @@
 <fmt:message key="order.register.date" bundle="${rb}" var="registerDate"/>
 
 
-<fmt:bundle basename="page_content">
-    <fmt:message key="order.register.date" var="registerDate"/>
-    <fmt:message key="client.next" var="next"/>
-    <fmt:message key="client.previous" var="previous"/>
-</fmt:bundle>
+<%--<fmt:bundle basename="page_content">--%>
+<%--    <fmt:message key="order.register.date" var="registerDate"/>--%>
+<%--    <fmt:message key="client.next" var="next"/>--%>
+<%--    <fmt:message key="client.previous" var="previous"/>--%>
+<%--</fmt:bundle>--%>
 
 
 <html>
 <head>
-    <title>${projectName}</title>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/profile.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header.css">
-    <script src="${pageContext.request.contextPath}/js/scripts.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/js/filter.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
 

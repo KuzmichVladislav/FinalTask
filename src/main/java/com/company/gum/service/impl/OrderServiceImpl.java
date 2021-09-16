@@ -44,12 +44,24 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public boolean deleteOrder(int orderId) throws ServiceException {
-        return false;
+        boolean isDeleted;
+        try {
+            isDeleted = orderDao.deleteOrder(orderId);
+        } catch (DaoException e) {
+            throw new ServiceException(e);
+        }
+        return isDeleted;
     }
 
     @Override
     public Order findOrder(int orderId) throws ServiceException {
-        return null;
+        Order order;
+        try {
+            order = orderDao.findOrder(orderId);
+        } catch (DaoException e) {
+            throw new ServiceException(e);
+        }
+        return order;
     }
 
     @Override
@@ -76,7 +88,7 @@ public class OrderServiceImpl implements OrderService {
     public List<Order> findActiveOrderByClient(int clientId) throws ServiceException {
         List<Order> orders;
         try {
-            orders=orderDao.findActiveOrderByClient(clientId);
+            orders = orderDao.findActiveOrderByClient(clientId);
         } catch (DaoException e) {
             throw new ServiceException(e);
         }

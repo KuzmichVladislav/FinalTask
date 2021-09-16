@@ -23,10 +23,11 @@
     <div class="container">
         <div class="row row-30">
             <div class="col-md-4 col-xl-5">
-                <div class="pr-xl-4"><a class="brand" href="index.html"><img class="brand-logo-light"
-                                                                             src="https://i.ibb.co/7N7qp8j/kisspng-physical-fitness-silhouette-physical-exercise-yoga-sports-silhouette-5a84e265373299-08779795.png"
-                                                                             alt="" width="128" height="80"
-                                                                             srcset="images/agency/logo-retina-inverse-280x74.png 2x"></a>
+                <div class="pr-xl-4"><a class="brand" href="index.html">
+                    <img class="brand-logo-light"
+                         src="https://i.ibb.co/7N7qp8j/kisspng-physical-fitness-silhouette-physical-exercise-yoga-sports-silhouette-5a84e265373299-08779795.png"
+                         alt="" width="128" height="80"
+                         srcset="images/agency/logo-retina-inverse-280x74.png 2x"></a>
                     <p>${footerAbout}</p>
                     <p class="rights"><span>©  </span><span
                             class="copyright-year">2021</span><span> </span><span>Waves</span><span>. </span><span>All Rights Reserved.</span>

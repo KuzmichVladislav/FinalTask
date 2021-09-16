@@ -14,7 +14,7 @@ import java.util.List;
 
 public class ClientServiceImpl implements ClientService {
 
-    private static ClientServiceImpl mInstance;
+    private static ClientServiceImpl instance;
 
     private ClientDao clientDao = ClientDaoImpl.getInstance();
 
@@ -22,10 +22,10 @@ public class ClientServiceImpl implements ClientService {
     }
 
     public static ClientServiceImpl getInstance() {
-        if (mInstance == null) {
-            mInstance = new ClientServiceImpl();
+        if (instance == null) {
+            instance = new ClientServiceImpl();
         }
-        return mInstance;
+        return instance;
     }
 
     @Override

@@ -9,6 +9,7 @@ import org.apache.logging.log4j.Logger;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 
 import static com.company.gum.dao.TableColumnName.*;
@@ -31,7 +32,7 @@ public class CommentDaoImpl implements CommentDao {
             + "       comments.user_id,\n"
             + "       u.name    AS name,\n"
             + "       u.surname AS surname,\n"
-            + "       u.profile_image,\n"
+            + "       u.image,\n"
             + "       comments.comment_date,\n"
             + "       comments.comment_text,\n"
             + "       comments.is_active\n"
@@ -43,7 +44,7 @@ public class CommentDaoImpl implements CommentDao {
             + "       comments.user_id,\n"
             + "       u.name    AS user_name,\n"
             + "       u.surname AS user_surname,\n"
-            + "       u.profile_image,\n"
+            + "       u.image,\n"
             + "       comments.comment_date,\n"
             + "       comments.comment_text,\n"
             + "       comments.is_active\n"
@@ -54,7 +55,7 @@ public class CommentDaoImpl implements CommentDao {
             + "       comments.user_id,\n"
             + "       u.name    AS user_name,\n"
             + "       u.surname AS user_surname,\n"
-            + "       u.profile_image,\n"
+            + "       u.image,\n"
             + "       comments.comment_date,\n"
             + "       comments.comment_text,\n"
             + "       comments.is_active\n"
@@ -66,7 +67,7 @@ public class CommentDaoImpl implements CommentDao {
             + "    comments.user_id,\n"
             + "    u.name    AS user_name,\n"
             + "    u.surname AS user_surname,\n"
-            + "    u.profile_image,\n"
+            + "    u.image,\n"
             + "    comments.comment_date,\n"
             + "    comments.comment_text,\n"
             + "    comments.is_active\n"
@@ -302,15 +303,16 @@ public class CommentDaoImpl implements CommentDao {
     }
 
     private Comment getCommentFromResultSet(ResultSet resultSet) throws SQLException {
-        Comment comment = new Comment();
-        comment.setId(resultSet.getInt(COMMENT_ID));
-        comment.setUserId(resultSet.getInt(USER_ID));
-        comment.setUserName(resultSet.getString(USER_NAME));
-        comment.setUserSurname(resultSet.getString(USER_SURNAME));
-        comment.setProfileImage(resultSet.getString(PROFILE_IMAGE));
-        comment.setCommentDate(resultSet.getTimestamp(COMMENT_DATE).toLocalDateTime());
-        comment.setCommentText(resultSet.getString(COMMENT_TEXT));
-        comment.setActive(resultSet.getBoolean(IS_ACTIVE));
-        return comment;
+        return new Comment.Builder()
+                .id(resultSet.getInt(COMMENT_ID))
+                .userId(resultSet.getInt(USER_ID))
+                .userName(resultSet.getString(USER_NAME_COMMENT))
+                .userSurname(resultSet.getString(USER_SURNAME_COMMENT))
+                .photo(resultSet.getBytes(PHOTO))
+                .commentText(resultSet.getString(COMMENT_TEXT))
+                .commentDate(resultSet.getTimestamp(COMMENT_DATE).toLocalDateTime())
+                .active(resultSet.getBoolean(IS_ACTIVE))
+                .base64Image(Base64.getEncoder().encodeToString(resultSet.getBytes(PHOTO)))
+                .build();
     }
 }

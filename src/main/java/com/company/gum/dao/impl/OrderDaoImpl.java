@@ -18,8 +18,8 @@ public class OrderDaoImpl implements OrderDao {
 
     private static final Logger logger = LogManager.getLogger();
 
-    private static final String SQL_CREATE_ORDER = "INSERT INTO orders(client_id, trainer_id, client_comment, start_order_date, end_order_date, price)\n"
-            + "VALUES (?, ?, ?, ?, ?, ?)";
+    private static final String SQL_CREATE_ORDER = "INSERT INTO orders(client_id, trainer_id, client_comment, start_order_date, end_order_date, price, nutrition, exercises)\n"
+            + "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
     private static final String SQL_UPDATE_QUERY = "UPDATE orders\n"
             + "SET client_id        = IFNULL(?, client_id),\n"
             + "    trainer_id       = IFNULL(?, trainer_id),\n"
@@ -193,6 +193,8 @@ public class OrderDaoImpl implements OrderDao {
             statement.setDate(4, Date.valueOf(order.getStartDate()));
             statement.setDate(5, Date.valueOf(order.getEndDate()));
             statement.setBigDecimal(6, order.getPrice());
+            statement.setString(7,"Please wait, your order is still being processed.");
+            statement.setString(8,"Please wait, your order is still being processed.");
             statement.execute();
 
             ResultSet resultSet = statement.getGeneratedKeys();

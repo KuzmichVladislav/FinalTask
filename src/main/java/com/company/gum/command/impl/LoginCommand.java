@@ -70,6 +70,7 @@ public class LoginCommand implements Command {
                             break;
                         case CLIENT:
                             Client client = clientService.findClientById(user.getId());
+                            requestContent.putSessionAttribute(AttributeName.USER_LOGIN, client.getLogin());
                             requestContent.putSessionAttribute(AttributeName.USER_ROLE, client.getRole().name());
                             requestContent.putSessionAttribute(AttributeName.USER_NAME, client.getName());
                             requestContent.putSessionAttribute(AttributeName.USER_SURNAME, client.getSurname());
