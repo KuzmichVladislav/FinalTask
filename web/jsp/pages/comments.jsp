@@ -13,6 +13,8 @@
 <fmt:message key="comment.comment" bundle="${rb}" var="commentComment"/>
 <fmt:message key="comment.close" bundle="${rb}" var="close"/>
 <fmt:message key="comment.save.changes" bundle="${rb}" var="saveChanges"/>
+<fmt:message key="comment.add.your.comment" bundle="${rb}" var="addYourComment"/>
+<fmt:message key="comment.send.comment" bundle="${rb}" var="sendComment"/>
 
 
 <html>
@@ -43,6 +45,40 @@
         <div class="col-md-9 register-right">
             <h3 class="register-heading">${availableComments}</h3>
             <div class="row register-form">
+                <c:if test="${sessionScope.authorization}">
+                    <div class="container">
+                        <div class="card card-white post" style="width: auto">
+                            <div class="post-heading">
+                                <div class="float-left image">
+                                    <img src="data:image/jpg;base64,${sessionScope.userPhoto}" class="img-circle avatar"
+                                         alt="user profile image">
+                                </div>
+                                <div class="float-left meta">
+                                    <div class="title h5">
+                                        <a href="#"><b>${sessionScope.userName} ${sessionScope.userLastName}</b></a>
+                                        ${addYourComment}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="post-description">
+                                <form name="newCommentForm" action="${pageContext.request.contextPath}/controller"
+                                      method="POST"
+                                      id="form">
+                                    <input type="hidden" name="command" value="create_new_comment">
+                                    <div class="form-group">
+                                        <label for="new_comment">${commentComment}</label>
+                                        <textarea name="comment" class="form_control" id="new_comment"
+                                                  placeholder="Insert your comment"
+                                                  style="width: -webkit-fill-available;"></textarea>
+                                    </div>
+                                    <button type="submit"
+                                            class="btn btn-primary">${sendComment}</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </c:if>
+
                 <c:forEach items="${requestScope.comments}" var="comment">
                     <jsp:useBean id="comment" type="com.company.gum.entity.Comment"/>
                     <div class="container">
@@ -66,9 +102,8 @@
                                 <!-- Button trigger modal -->
                                 <button type="button" class="btn btn-primary" data-toggle="modal"
                                         data-target="#exampleModal">
-                                    ${editComment}
+                                        ${editComment}
                                 </button>
-
                                 <!-- Modal -->
                                 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
                                      aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -97,7 +132,8 @@
                                                     <button type="button" class="btn btn-secondary"
                                                             data-dismiss="modal">${close}
                                                     </button>
-                                                    <button type="submit" class="btn btn-primary">${saveChanges}</button>
+                                                    <button type="submit"
+                                                            class="btn btn-primary">${saveChanges}</button>
                                                 </div>
                                             </form>
 

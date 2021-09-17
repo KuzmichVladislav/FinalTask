@@ -7,15 +7,12 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
-/**
- * The type Current page filter.
- */
 @WebFilter(urlPatterns = {"/*"})
 public class CurrentPageFilter implements Filter {
 
     @Override
-    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-        HttpServletRequest httpRequest = (HttpServletRequest) request;
+    public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws IOException, ServletException {
+        HttpServletRequest httpRequest = (HttpServletRequest) req;
         String currentPage = httpRequest.getRequestURL().toString();
         if (currentPage.contains("jsp/")) {
             int index = currentPage.indexOf("jsp/");
@@ -27,10 +24,8 @@ public class CurrentPageFilter implements Filter {
                 int index = currentPage.indexOf("controller");
                 currentPage = currentPage.substring(index) + "?" + httpRequest.getQueryString();
                 httpRequest.getSession().setAttribute(AttributeName.CURRENT_PAGE, currentPage);
-                System.out.println(currentPage);
             }
         }
-        //System.out.println(currentPage);
-        chain.doFilter(httpRequest, response);
+        chain.doFilter(httpRequest, resp);
     }
 }

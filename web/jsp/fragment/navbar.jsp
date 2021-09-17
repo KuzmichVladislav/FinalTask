@@ -54,25 +54,26 @@
                 <a class="nav-link" href="#">${contacts}</a>
             </li>
             <c:if test="${sessionScope.authorization}">
-                <li class="nav-item">
-                    <c:choose>
-                        <c:when test="${sessionScope.userRole == 'CLIENT'}">
-                            <a class="nav-link"
-                               href="${pageContext.request.contextPath}/jsp/pages/client/profile.jsp">${account}</a>
-                        </c:when>
-                        <c:when test="${sessionScope.userRole == 'TRAINER'}">
-                            <a class="nav-link"
-                               href="${pageContext.request.contextPath}/jsp/pages/trainer/profile.jsp">${account}</a>
-                        </c:when>
-                        <c:when test="${sessionScope.userRole == 'ADMIN'}">
-                            <a class="nav-link"
-                               href="${pageContext.request.contextPath}/jsp/pages/admin/profile.jsp">${account}</a>
-                        </c:when>
-                    </c:choose>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="${pageContext.request.contextPath}/controller?command=find_all_active_comments">Comments</a>
-                </li>
+            <li class="nav-item">
+                <c:choose>
+                    <c:when test="${sessionScope.userRole == 'CLIENT'}">
+                        <a class="nav-link"
+                           href="${pageContext.request.contextPath}/jsp/pages/client/profile.jsp">${account}</a>
+                    </c:when>
+                    <c:when test="${sessionScope.userRole == 'TRAINER'}">
+                        <a class="nav-link"
+                           href="${pageContext.request.contextPath}/jsp/pages/trainer/profile.jsp">${account}</a>
+                    </c:when>
+                    <c:when test="${sessionScope.userRole == 'ADMIN'}">
+                        <a class="nav-link"
+                           href="${pageContext.request.contextPath}/jsp/pages/admin/profile.jsp">${account}</a>
+                    </c:when>
+                </c:choose>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link"
+                   href="${pageContext.request.contextPath}/controller?command=find_all_active_comments">Comments</a>
+            </li>
             </c:if>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
@@ -92,27 +93,25 @@
                 <div class="card p-3">
                     <div class="d-flex align-items-center">
                         <c:choose>
-                        <c:when test="${sessionScope.authorization}">
-                        <div class="image"><img src="data:image/jpg;base64,${sessionScope.userPhoto}"
-                                     alt="Profile image"
-                                     class="rounded" width="80">
-                        </div>
-                        <div class="ml-3 w-100">
-                            <div class="ml-3 w-100">
-                                <h4 class="mb-0 mt-0">${sessionScope.userName} ${sessionScope.userLastName}</h4>
-                                <span>
-                                        ${role} ${sessionScope.userRole}
-                                    </span>
-                                <br>
-                                <c:if test="${sessionScope.userRole == 'CLIENT'}">
+                            <c:when test="${sessionScope.authorization}">
+                                <div class="image"><img src="data:image/jpg;base64,${sessionScope.userPhoto}"
+                                                        alt="Profile image"
+                                                        class="rounded" width="80">
+                                </div>
+                                <div class="ml-3 w-100">
+                                    <h4 class="mb-0 mt-0">${sessionScope.userName} ${sessionScope.userLastName}</h4>
+                                    <span>${role} ${sessionScope.userRole}</span>
+                                    <br>
+                                    <c:if test="${sessionScope.userRole == 'CLIENT'}">
                                     <span>
                                         ${sessionScope.userMoney} BYN
                                     </span>
-                                </c:if>
-                                <a href="${pageContext.request.contextPath}/controller?command=Logout">
-                                    <button class="btn btn-sm btn-primary w-100 ml-2" style="width: 200px!important;">${logOut}</button>
-                                </a>
-                            </div>
+                                    </c:if>
+                                    <a href="${pageContext.request.contextPath}/controller?command=Logout">
+                                        <button class="btn btn-sm btn-primary w-100 ml-2"
+                                                style="width: 200px!important;">${logOut}</button>
+                                    </a>
+                                </div>
                             </c:when>
                             <c:otherwise>
                                 <div class="image"><img
@@ -133,12 +132,12 @@
                                     </a>
                                 </div>
                             </c:otherwise>
-                            </c:choose>
-                        </div>
+                        </c:choose>
                     </div>
                 </div>
             </div>
-        </ul>
+    </div>
+    </ul>
     </div>
 </nav>
 

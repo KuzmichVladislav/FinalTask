@@ -10,6 +10,7 @@ import com.company.gum.exception.ServiceException;
 import com.company.gum.service.CommentService;
 import com.company.gum.service.impl.CommentServiceImpl;
 
+import java.util.Collections;
 import java.util.List;
 
 public class FindAllActiveComments implements Command {
@@ -23,6 +24,7 @@ public class FindAllActiveComments implements Command {
 //            Integer pageNumber = Integer.parseInt(requestContent.getParameterByName(AttributeName.PAGE));
 //            Integer numberOsComments = commentService.commentCount(true);
             comments = commentService.findAllActiveComment();
+            Collections.reverse(comments);
 //            int numberOfPages = new BigDecimal(numberOsComments).divide(new BigDecimal(5), MathContext.DECIMAL32).setScale(0, RoundingMode.UP).intValue();
 //            requestContent.putAttribute(AttributeName.NUMBER_OF_PAGES, numberOfPages);
 //            requestContent.putAttribute(AttributeName.CURRENT_NUMBER_PAGE, pageNumber);

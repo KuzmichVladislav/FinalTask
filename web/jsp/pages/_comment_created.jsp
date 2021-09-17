@@ -9,6 +9,7 @@
 <fmt:message key="form.sign.up.motivation.message" bundle="${rb}" var="motivationMessage"/>
 <fmt:message key="comment.congratulations" bundle="${rb}" var="congratulations"/>
 <fmt:message key="comment.congratulations.message" bundle="${rb}" var="congratulationsMessage"/>
+<fmt:message key="comment.comment" bundle="${rb}" var="comment"/>
 
 
 <html>
@@ -18,9 +19,8 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<%--    поправить страницу--%>
     <meta http-equiv="refresh"
-          content="5;${pageContext.request.contextPath}/controller?command=find_all_orders_by_client">
+          content="5;${pageContext.request.contextPath}/controller?command=FIND_ALL_ACTIVE_COMMENTS">
 </head>
 
 <body>
@@ -42,7 +42,7 @@
             <div class="row register-form">
                 <div class="col-md-6">
                     <p>${congratulationsMessage}</p>
-                    <a href="${pageContext.request.contextPath}/controller?command=find_all_orders_by_client">${orders}</a>
+                    <a href="${pageContext.request.contextPath}/controller?command=FIND_ALL_ACTIVE_COMMENTS">${comment}</a>
                 </div>
             </div>
         </div>
