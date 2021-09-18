@@ -44,8 +44,12 @@ public class MainController extends HttpServlet {
             Command command = CommandType.valueOf(commandName).getCommand();
             page = command.execute(content);
             content.insertAttributes(req);
-            RequestDispatcher rd = req.getRequestDispatcher(page);
-            rd.forward(req, resp);
+            if ("POST".equals(req.getMethod())) {
+                resp.sendRedirect(page);
+            } else {
+                RequestDispatcher rd = req.getRequestDispatcher(page);
+                rd.forward(req, resp);
+            }
         } catch (IllegalArgumentException | CommandException e) {
             logger.error(e);
             req.setAttribute(AttributeName.ERROR, e);

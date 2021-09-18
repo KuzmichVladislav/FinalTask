@@ -8,6 +8,7 @@ import com.company.gum.command.impl.*;
 import com.company.gum.command.impl.client.ChangePassword;
 import com.company.gum.command.impl.client.EditClientProfile;
 import com.company.gum.command.impl.client.NewOrder;
+import com.company.gum.command.impl.client.RefillMoney;
 import com.company.gum.command.order.ClientOrderDetail;
 import com.company.gum.command.order.CreateOrder;
 import com.company.gum.command.order.DeleteOrderByClient;
@@ -32,7 +33,8 @@ public enum CommandType {
     CREATE_NEW_COMMENT(new CreateNewComment()),
     FIND_ALL_ACTIVE_COMMENTS(new FindAllActiveComments()),
     DELETE_COMMENT(new DeleteComment()),
-    EDIT_COMMENT(new EditComment());
+    EDIT_COMMENT(new EditComment()),
+    REFILL_MONEY(new RefillMoney());
 
 
     private Command command;

@@ -14,6 +14,7 @@ public class ErrorMessageKey {
     public static final String INVALID_PHONE = "invalid.phone";
     public static final String INVALID_EMAIL = "invalid.email";
     public static final String LOGIN_ALREADY_EXIST = "login.already.exist";
+    public static final Object INVALID_MONEY = "invalid.entered.money.value";
 
     private ErrorMessageKey() {
     }
