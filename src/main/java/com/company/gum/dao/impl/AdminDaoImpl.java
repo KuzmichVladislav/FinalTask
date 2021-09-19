@@ -58,14 +58,14 @@ public class AdminDaoImpl implements AdminDao {
     public Admin findAdminById(int adminId) throws DaoException {
         Admin admin = new Admin();
         try (Connection connection = ConnectionPool.getInstance().takeConnection();
-             PreparedStatement statement = connection.prepareStatement(SQL_FIND_ADMIN_BY_ID)) {
+                PreparedStatement statement = connection.prepareStatement(SQL_FIND_ADMIN_BY_ID)) {
             statement.setInt(1, adminId);
             ResultSet resultSet = statement.executeQuery();
 
             if (resultSet.next()) {
                 admin = getAdminFromResultSet(resultSet);
                 logger.debug("Admin with id \"{}\" was found", admin.getId());
-            }else{
+            } else {
                 logger.debug("Admin with id \"{}\" was found", admin.getId());
             }
         } catch (SQLException e) {
@@ -78,7 +78,7 @@ public class AdminDaoImpl implements AdminDao {
     public List<Admin> findAllAdmin() throws DaoException {
         List<Admin> resultArray = new ArrayList<>();
         try (Connection connection = ConnectionPool.getInstance().takeConnection();
-             PreparedStatement statement = connection.prepareStatement(SQL_FIND_ALL_ADMIN)) {
+                PreparedStatement statement = connection.prepareStatement(SQL_FIND_ALL_ADMIN)) {
             ResultSet resultSet = statement.executeQuery();
 
             while (resultSet.next()) {

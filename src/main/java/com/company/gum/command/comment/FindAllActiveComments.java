@@ -14,6 +14,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class FindAllActiveComments implements Command {
+
     private CommentService commentService = CommentServiceImpl.getInstance();
 
     @Override

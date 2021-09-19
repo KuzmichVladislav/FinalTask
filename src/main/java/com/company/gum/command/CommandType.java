@@ -9,18 +9,19 @@ import com.company.gum.command.impl.client.ChangePassword;
 import com.company.gum.command.impl.client.EditClientProfile;
 import com.company.gum.command.impl.client.NewOrder;
 import com.company.gum.command.impl.client.RefillMoney;
+import com.company.gum.command.impl.trainer.EditDescription;
+import com.company.gum.command.impl.trainer.EditTrainerProfile;
 import com.company.gum.command.order.ClientOrderDetail;
 import com.company.gum.command.order.CreateOrder;
 import com.company.gum.command.order.DeleteOrderByClient;
 import com.company.gum.command.order.FindAllOrdersByClient;
-
 
 public enum CommandType {
 
     SIGN_UP(new SignUpCommand()),
     VERIFICATION(new VerificationCommand()),
     CHANGE_LOCALE(new LocaleCommand()),
-    LOGIN(new LoginCommand()),
+    LOGIN(new Login()),
     LOGOUT(new LogoutCommand()),
     UPLOAD_IMAGE(new UploadImageCommand()),
     EDIT_CLIENT_PROFILE(new EditClientProfile()),
@@ -34,8 +35,9 @@ public enum CommandType {
     FIND_ALL_ACTIVE_COMMENTS(new FindAllActiveComments()),
     DELETE_COMMENT(new DeleteComment()),
     EDIT_COMMENT(new EditComment()),
-    REFILL_MONEY(new RefillMoney());
-
+    REFILL_MONEY(new RefillMoney()),
+    EDIT_TRAINER_PROFILE(new EditTrainerProfile()),
+    EDIT_DESCRIPTION(new EditDescription());
 
     private Command command;
 
@@ -44,6 +46,6 @@ public enum CommandType {
     }
 
     public Command getCommand() {
-        return command;
-    }
+		return command;
+	}
 }

@@ -24,7 +24,7 @@ public class PagePath {
     public static final String COMMENT_EDITED = "jsp/pages/comment_edited.jsp";
     public static final String MONEY_REFILLED = "jsp/pages/client/money_refilled.jsp";
     public static final String REFILL_MONEY = "jsp/pages/client/refill_money.jsp";
-
+    public static final String TRAINER_PROFILE = "jsp/pages/trainer/profile.jsp";
 
     private PagePath() {
     }

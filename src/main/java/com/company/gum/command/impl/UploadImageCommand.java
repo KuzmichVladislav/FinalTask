@@ -16,6 +16,7 @@ import java.io.ByteArrayInputStream;
 import java.util.Base64;
 
 public class UploadImageCommand implements Command {
+
     private static final Logger logger = LogManager.getLogger();
     private static UserService userService = UserServiceImpl.getInstance();
 

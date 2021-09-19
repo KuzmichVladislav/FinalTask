@@ -1,9 +1,9 @@
 package com.company.gum.command.impl;
 
+import com.company.gum.command.AttributeName;
 import com.company.gum.command.Command;
 import com.company.gum.command.ErrorMessageKey;
 import com.company.gum.command.PagePath;
-import com.company.gum.command.AttributeName;
 import com.company.gum.controller.SessionRequestContent;
 import com.company.gum.entity.Client;
 import com.company.gum.exception.CommandException;

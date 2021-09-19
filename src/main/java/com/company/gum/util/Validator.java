@@ -9,7 +9,6 @@ public class Validator {
     private static final String MAIL_REGEX = "^([\\w_\\.-]+)@([\\w_\\.-]+)\\.([a-z\\.]{2,6})$";
     private static final String MONEY_REGEX = "^[0-9]{1,3}(\\.[0-9]{1,2})?$";
 
-
     private Validator() {
     }
 
@@ -36,6 +35,5 @@ public class Validator {
     public static boolean checkMoney(String money) {
         return money.matches(MONEY_REGEX);
     }
-
 
 }

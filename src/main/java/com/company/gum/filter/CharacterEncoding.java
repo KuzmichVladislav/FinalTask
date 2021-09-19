@@ -15,4 +15,3 @@ public class CharacterEncoding implements Filter {
         chain.doFilter(req, resp);
     }
 }
-

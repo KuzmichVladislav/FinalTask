@@ -16,6 +16,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class ChangePassword implements Command {
+
     private static final Logger logger = LogManager.getLogger();
 
     private UserService userService = UserServiceImpl.getInstance();

@@ -16,7 +16,7 @@ public class EditComment implements Command {
     @Override
     public String execute(SessionRequestContent requestContent) throws CommandException {
         String page;
-        try{
+        try {
             int commentId = Integer.parseInt(requestContent.getParameterByName(AttributeName.COMMENT_ID));
             String commentText = requestContent.getParameterByName(AttributeName.COMMENT);
             commentService.updateComment(commentId, commentText);

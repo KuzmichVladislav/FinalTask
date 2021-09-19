@@ -99,23 +99,39 @@ public class Comment extends AbstractEntity {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Comment)) return false;
-        if (!super.equals(o)) return false;
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Comment)) {
+            return false;
+        }
+        if (!super.equals(o)) {
+            return false;
+        }
 
         Comment comment = (Comment) o;
 
-        if (getUserId() != null ? !getUserId().equals(comment.getUserId()) : comment.getUserId() != null) return false;
-        if (getUserName() != null ? !getUserName().equals(comment.getUserName()) : comment.getUserName() != null)
+        if (getUserId() != null ? !getUserId().equals(comment.getUserId()) : comment.getUserId() != null) {
             return false;
-        if (getUserSurname() != null ? !getUserSurname().equals(comment.getUserSurname()) : comment.getUserSurname() != null)
+        }
+        if (getUserName() != null ? !getUserName().equals(comment.getUserName()) : comment.getUserName() != null) {
             return false;
-        if (!Arrays.equals(getPhoto(), comment.getPhoto())) return false;
-        if (getCommentDate() != null ? !getCommentDate().equals(comment.getCommentDate()) : comment.getCommentDate() != null)
+        }
+        if (getUserSurname() != null ? !getUserSurname().equals(comment.getUserSurname()) : comment.getUserSurname() != null) {
             return false;
-        if (getCommentText() != null ? !getCommentText().equals(comment.getCommentText()) : comment.getCommentText() != null)
+        }
+        if (!Arrays.equals(getPhoto(), comment.getPhoto())) {
             return false;
-        if (getActive() != null ? !getActive().equals(comment.getActive()) : comment.getActive() != null) return false;
+        }
+        if (getCommentDate() != null ? !getCommentDate().equals(comment.getCommentDate()) : comment.getCommentDate() != null) {
+            return false;
+        }
+        if (getCommentText() != null ? !getCommentText().equals(comment.getCommentText()) : comment.getCommentText() != null) {
+            return false;
+        }
+        if (getActive() != null ? !getActive().equals(comment.getActive()) : comment.getActive() != null) {
+            return false;
+        }
         return getBase64Image() != null ? getBase64Image().equals(comment.getBase64Image()) : comment.getBase64Image() == null;
     }
 
@@ -145,6 +161,7 @@ public class Comment extends AbstractEntity {
      * {@code Comment} builder static inner class.
      */
     public static final class Builder {
+
         private Integer id;
         private Integer userId;
         private String userName;
@@ -159,7 +176,8 @@ public class Comment extends AbstractEntity {
         }
 
         /**
-         * Sets the {@code id} and returns a reference to this Builder so that the methods can be chained together.
+         * Sets the {@code id} and returns a reference to this Builder so that
+         * the methods can be chained together.
          *
          * @param val the {@code id} to set
          * @return a reference to this Builder
@@ -170,7 +188,8 @@ public class Comment extends AbstractEntity {
         }
 
         /**
-         * Sets the {@code userId} and returns a reference to this Builder so that the methods can be chained together.
+         * Sets the {@code userId} and returns a reference to this Builder so
+         * that the methods can be chained together.
          *
          * @param val the {@code userId} to set
          * @return a reference to this Builder
@@ -181,7 +200,8 @@ public class Comment extends AbstractEntity {
         }
 
         /**
-         * Sets the {@code userName} and returns a reference to this Builder so that the methods can be chained together.
+         * Sets the {@code userName} and returns a reference to this Builder so
+         * that the methods can be chained together.
          *
          * @param val the {@code userName} to set
          * @return a reference to this Builder
@@ -192,7 +212,8 @@ public class Comment extends AbstractEntity {
         }
 
         /**
-         * Sets the {@code userSurname} and returns a reference to this Builder so that the methods can be chained together.
+         * Sets the {@code userSurname} and returns a reference to this Builder
+         * so that the methods can be chained together.
          *
          * @param val the {@code userSurname} to set
          * @return a reference to this Builder
@@ -203,7 +224,8 @@ public class Comment extends AbstractEntity {
         }
 
         /**
-         * Sets the {@code photo} and returns a reference to this Builder so that the methods can be chained together.
+         * Sets the {@code photo} and returns a reference to this Builder so
+         * that the methods can be chained together.
          *
          * @param val the {@code photo} to set
          * @return a reference to this Builder
@@ -214,7 +236,8 @@ public class Comment extends AbstractEntity {
         }
 
         /**
-         * Sets the {@code commentDate} and returns a reference to this Builder so that the methods can be chained together.
+         * Sets the {@code commentDate} and returns a reference to this Builder
+         * so that the methods can be chained together.
          *
          * @param val the {@code commentDate} to set
          * @return a reference to this Builder
@@ -225,7 +248,8 @@ public class Comment extends AbstractEntity {
         }
 
         /**
-         * Sets the {@code commentText} and returns a reference to this Builder so that the methods can be chained together.
+         * Sets the {@code commentText} and returns a reference to this Builder
+         * so that the methods can be chained together.
          *
          * @param val the {@code commentText} to set
          * @return a reference to this Builder
@@ -236,7 +260,8 @@ public class Comment extends AbstractEntity {
         }
 
         /**
-         * Sets the {@code active} and returns a reference to this Builder so that the methods can be chained together.
+         * Sets the {@code active} and returns a reference to this Builder so
+         * that the methods can be chained together.
          *
          * @param val the {@code active} to set
          * @return a reference to this Builder
@@ -247,7 +272,8 @@ public class Comment extends AbstractEntity {
         }
 
         /**
-         * Sets the {@code base64Image} and returns a reference to this Builder so that the methods can be chained together.
+         * Sets the {@code base64Image} and returns a reference to this Builder
+         * so that the methods can be chained together.
          *
          * @param val the {@code base64Image} to set
          * @return a reference to this Builder
@@ -260,7 +286,8 @@ public class Comment extends AbstractEntity {
         /**
          * Returns a {@code Comment} built from the parameters previously set.
          *
-         * @return a {@code Comment} built with parameters of this {@code Comment.Builder}
+         * @return a {@code Comment} built with parameters of this
+         * {@code Comment.Builder}
          */
         public Comment build() {
             return new Comment(this);

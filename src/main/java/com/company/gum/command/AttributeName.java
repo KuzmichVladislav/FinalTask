@@ -17,7 +17,6 @@ public class AttributeName {
     public static final String USER_PROFILE_PHOTO_PATH = "profileImage";
     public static final String USER_PHOTO = "userPhoto";
 
-
     public static final String USER_AUTHORIZATION = "authorization";
     public static final String COMMAND = "command";
     public static final String VERIFICATION = "verification";
@@ -38,13 +37,12 @@ public class AttributeName {
     public static final String ORDER_ID = "orderId";
     public static final String ORDER = "order";
 
-
-
     public static final String PAGE = "page";
     public static final String COMMENTS = "comments";
     public static final String COMMENT_ID = "commentId";
     public static final String MONEY = "money";
-
+    public static final String DESCRIPTION = "description";
+    public static final String EXPERIENCE = "experience";
 
     private AttributeName() {
     }

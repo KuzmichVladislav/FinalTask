@@ -27,7 +27,7 @@ public class CommentServiceImpl implements CommentService {
     @Override
     public Comment createComment(Comment comment) throws ServiceException {
         Comment createdComment;
-        try{
+        try {
             createdComment = commentDao.createComment(comment);
         } catch (DaoException e) {
             throw new ServiceException(e);
@@ -38,7 +38,7 @@ public class CommentServiceImpl implements CommentService {
     @Override
     public boolean updateComment(int commentId, String commentText) throws ServiceException {
         boolean isUpdated;
-        try{
+        try {
             isUpdated = commentDao.updateComment(commentId, commentText);
         } catch (DaoException e) {
             throw new ServiceException(e);
@@ -49,7 +49,7 @@ public class CommentServiceImpl implements CommentService {
     @Override
     public boolean deleteComment(int commentId) throws ServiceException {
         boolean isDeleted;
-        try{
+        try {
             isDeleted = commentDao.deleteComment(commentId);
         } catch (DaoException e) {
             throw new ServiceException(e);

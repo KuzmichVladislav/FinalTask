@@ -12,6 +12,7 @@ import org.apache.logging.log4j.Logger;
 import java.util.List;
 
 public class OrderServiceImpl implements OrderService {
+
     private static Logger logger = LogManager.getLogger(OrderServiceImpl.class);
     private static OrderServiceImpl instance;
     private OrderDao orderDao = OrderDaoImpl.getInstance();

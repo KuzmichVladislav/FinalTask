@@ -10,7 +10,8 @@ import com.company.gum.service.CommentService;
 import com.company.gum.service.impl.CommentServiceImpl;
 
 public class DeleteComment implements Command {
-   private CommentService commentService = CommentServiceImpl.getInstance();
+
+    private CommentService commentService = CommentServiceImpl.getInstance();
 
     @Override
     public String execute(SessionRequestContent requestContent) throws CommandException {

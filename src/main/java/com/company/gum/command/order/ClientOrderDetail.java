@@ -11,6 +11,7 @@ import com.company.gum.service.OrderService;
 import com.company.gum.service.impl.OrderServiceImpl;
 
 public class ClientOrderDetail implements Command {
+
     private OrderService orderService = OrderServiceImpl.getInstance();
 
     @Override

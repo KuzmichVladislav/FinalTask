@@ -89,7 +89,7 @@ public class ConnectionPool {
         if (connection.getClass() == ProxyConnection.class) {
             occupiedConnections.remove(connection);
             try {
-                awaitingConnections.put((ProxyConnection)connection);
+                awaitingConnections.put((ProxyConnection) connection);
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
                 logger.error("Something wrong with current thread ", e);

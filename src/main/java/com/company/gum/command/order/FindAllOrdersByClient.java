@@ -15,6 +15,7 @@ import org.apache.logging.log4j.Logger;
 import java.util.List;
 
 public class FindAllOrdersByClient implements Command {
+
     private static Logger logger = LogManager.getLogger();
 
     private OrderService orderService = OrderServiceImpl.getInstance();

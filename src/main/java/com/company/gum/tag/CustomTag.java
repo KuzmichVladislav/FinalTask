@@ -14,7 +14,6 @@ public class CustomTag extends TagSupport {
     public int doStartTag() throws JspException {
         JspWriter out = pageContext.getOut();
         try {
-            out.write("<fmt:message key=\"order.register.date\" bundle=\"${rb}\"/>");
             out.write("<table border='1'>");
             for (Order order : (List<Order>) pageContext.getRequest().getAttribute("orders")) {
                 out.write("<table class=\"table table-striped\" border='1'>");
@@ -41,9 +40,9 @@ public class CustomTag extends TagSupport {
                 } else {
                     out.write("<a href=\"controller?command=CLIENT_ORDER_DETAIL&orderId=" + order.getId() + "\"><button class=\"btn btn-sm btn-outline-primary w-100\">${Detail}</button></a>");
                 }
-                if (order.getOrderStatus() == Order.OrderStatus.NEW ||
-                        order.getOrderStatus() == Order.OrderStatus.REVIEWED ||
-                        order.getOrderStatus() == Order.OrderStatus.REJECTED) {
+                if (order.getOrderStatus() == Order.OrderStatus.NEW
+                        || order.getOrderStatus() == Order.OrderStatus.REVIEWED
+                        || order.getOrderStatus() == Order.OrderStatus.REJECTED) {
                     out.write("<a href=\"controller?command=DELETE_ORDER_BY_CLIENT&orderId=" + order.getId() + "\"><button class=\"btn btn-sm btn-outline-primary w-100\">${Delete}</button></a>");
                 }
 

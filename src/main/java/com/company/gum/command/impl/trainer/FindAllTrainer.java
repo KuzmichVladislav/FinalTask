@@ -15,13 +15,14 @@ import org.apache.logging.log4j.Logger;
 import java.util.List;
 
 public class FindAllTrainer implements Command {
+
     private static final Logger logger = LogManager.getLogger();
 
     private TrainerService trainerService = TrainerServiceImpl.getInstance();
 
     @Override
     public String execute(SessionRequestContent requestContent) throws CommandException {
-        try{
+        try {
             List<Trainer> trainers = trainerService.findAllActiveTrainer();
 
             requestContent.putAttribute(AttributeName.TRAINERS, trainers);

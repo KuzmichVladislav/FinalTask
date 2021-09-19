@@ -10,19 +10,19 @@ import org.apache.logging.log4j.Logger;
 
 public class PropertyLoader {
 
-	private static final Logger logger = LogManager.getLogger();
+    private static final Logger logger = LogManager.getLogger();
 
-	private PropertyLoader() {
-	}
+    private PropertyLoader() {
+    }
 
-	public static Properties loadProperty(String path) {
-		Properties properties = new Properties();
+    public static Properties loadProperty(String path) {
+        Properties properties = new Properties();
 
-		try {
-			properties.load(ConnectionPool.class.getClassLoader().getResourceAsStream(path));
-		} catch (IOException e) {
-			logger.error("Unable to load resources", e);
-		}
-		return properties;
-	}
+        try {
+            properties.load(ConnectionPool.class.getClassLoader().getResourceAsStream(path));
+        } catch (IOException e) {
+            logger.error("Unable to load resources", e);
+        }
+        return properties;
+    }
 }

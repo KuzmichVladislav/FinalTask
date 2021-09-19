@@ -10,6 +10,7 @@ import com.company.gum.service.OrderService;
 import com.company.gum.service.impl.OrderServiceImpl;
 
 public class DeleteOrderByClient implements Command {
+
     private OrderService orderService = OrderServiceImpl.getInstance();
 
     @Override
@@ -20,8 +21,7 @@ public class DeleteOrderByClient implements Command {
             orderService.deleteOrder(orderId);
             requestContent.putAttribute(AttributeName.ORDER_ID, orderId);
             page = PagePath.ORDER_DELETED_BY_CLIENT;
-        } catch (
-                ServiceException e) {
+        } catch (ServiceException e) {
             throw new CommandException(e);
         }
         return page;

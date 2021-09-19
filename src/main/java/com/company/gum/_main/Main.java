@@ -1,5 +1,8 @@
 package com.company.gum._main;
 
+import java.time.LocalDate;
+import java.time.Period;
+
 public class Main {
 
     public static void main(String[] args) throws Exception {
@@ -79,5 +82,12 @@ public class Main {
 //        Client client = clientService.findClientById(user.getId());
 //        System.out.println(client);
 //
+
+        LocalDate start = LocalDate.parse("2020-09-18");
+        LocalDate end = LocalDate.now();
+        Period period = Period.between(start, end);
+        System.out.println(period.getYears());      // 4
+        System.out.println(period.getMonths());     // 1
+        System.out.println(period.getDays());       // 5
     }
 }

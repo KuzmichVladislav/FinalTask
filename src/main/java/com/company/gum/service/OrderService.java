@@ -25,5 +25,4 @@ public interface OrderService {
 
     List<Order> findActiveOrderByClient(int clientId) throws ServiceException;
 
-
 }

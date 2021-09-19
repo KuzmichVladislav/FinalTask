@@ -25,8 +25,8 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.Base64;
 
+public class Login implements Command {
 
-public class LoginCommand implements Command {
     private static Logger logger = LogManager.getLogger();
 
     private UserService userService = UserServiceImpl.getInstance();
@@ -47,10 +47,10 @@ public class LoginCommand implements Command {
                 if (user != null) {
                     requestContent.putSessionAttribute(AttributeName.USER_ID, user.getId());
                     String base64Image;
-                    if(user.getPhoto()!=null) {
+                    if (user.getPhoto() != null) {
                         base64Image = Base64.getEncoder().encodeToString(user.getPhoto());
-                    }else{
-                        base64Image = "sorry";
+                    } else {
+                        base64Image = "sorry";// FIXME: 9/18/2021
                     }
                     requestContent.putSessionAttribute(AttributeName.USER_PHOTO, base64Image);
 
@@ -71,6 +71,9 @@ public class LoginCommand implements Command {
                             requestContent.putSessionAttribute(AttributeName.USER_REGISTER_DATE, trainer.getRegisterDate());
                             requestContent.putSessionAttribute(AttributeName.USER_PHONE, trainer.getPhone());
                             requestContent.putSessionAttribute(AttributeName.USER_MAIL, trainer.getMail());
+                            requestContent.putSessionAttribute(AttributeName.DESCRIPTION, trainer.getDescription());
+                            requestContent.putSessionAttribute(AttributeName.EXPERIENCE, trainer.getExperience());
+
                             page = PagePath.WELCOME;
                             break;
                         case CLIENT:
@@ -80,17 +83,17 @@ public class LoginCommand implements Command {
                             requestContent.putSessionAttribute(AttributeName.USER_NAME, client.getName());
                             requestContent.putSessionAttribute(AttributeName.USER_SURNAME, client.getSurname());
                             requestContent.putSessionAttribute(AttributeName.USER_REGISTER_DATE, client.getRegisterDate());
-                            requestContent.putSessionAttribute(AttributeName.USER_DISCOUNT, client.getDiscount());
-                            requestContent.putSessionAttribute(AttributeName.USER_DISCOUNT_LEVEL, client.getDiscountLevel());
+                            requestContent.putSessionAttribute(AttributeName.USER_DISCOUNT, client.getDiscount());// TODO: 9/18/2021
+                            requestContent.putSessionAttribute(AttributeName.USER_DISCOUNT_LEVEL, client.getDiscountLevel());// TODO: 9/18/2021
                             requestContent.putSessionAttribute(AttributeName.USER_PHONE, client.getPhone());
                             requestContent.putSessionAttribute(AttributeName.USER_MONEY, client.getMoney());
                             requestContent.putSessionAttribute(AttributeName.USER_MAIL, client.getMail());
-                            if(client.getPhoto()!=null) {
+                            /* if(client.getPhoto()!=null) {
                                 base64Image = Base64.getEncoder().encodeToString(client.getPhoto());
                             }else{
                                 base64Image = "sorry";
                             }
-                            requestContent.putSessionAttribute(AttributeName.USER_PHOTO, base64Image);
+                            requestContent.putSessionAttribute(AttributeName.USER_PHOTO, base64Image);*/
                             page = PagePath.WELCOME;
                             break;
                         default:
@@ -190,4 +193,4 @@ public class LoginCommand implements Command {
         return page;
     }
 }
-*/
+ */

@@ -186,15 +186,15 @@ public class OrderDaoImpl implements OrderDao {
     @Override
     public Order createOrder(Order order) throws DaoException {
         try (Connection connection = ConnectionPool.getInstance().takeConnection();
-             PreparedStatement statement = connection.prepareStatement(SQL_CREATE_ORDER, Statement.RETURN_GENERATED_KEYS)) {
+                PreparedStatement statement = connection.prepareStatement(SQL_CREATE_ORDER, Statement.RETURN_GENERATED_KEYS)) {
             statement.setInt(1, order.getClientId());
             statement.setInt(2, order.getTrainerId());
             statement.setString(3, order.getClientComment());
             statement.setDate(4, Date.valueOf(order.getStartDate()));
             statement.setDate(5, Date.valueOf(order.getEndDate()));
             statement.setBigDecimal(6, order.getPrice());
-            statement.setString(7,"Please wait, your order is still being processed.");
-            statement.setString(8,"Please wait, your order is still being processed.");
+            statement.setString(7, "Please wait, your order is still being processed.");
+            statement.setString(8, "Please wait, your order is still being processed.");
             statement.execute();
 
             ResultSet resultSet = statement.getGeneratedKeys();
@@ -217,7 +217,7 @@ public class OrderDaoImpl implements OrderDao {
         boolean isUpdated;
 
         try (Connection connection = ConnectionPool.getInstance().takeConnection();
-             PreparedStatement statement = connection.prepareStatement(SQL_UPDATE_QUERY)) {
+                PreparedStatement statement = connection.prepareStatement(SQL_UPDATE_QUERY)) {
             if (order.getClientId() != null) {
                 statement.setInt(1, order.getClientId());
             } else {
@@ -284,7 +284,7 @@ public class OrderDaoImpl implements OrderDao {
     public boolean deleteOrder(int orderId) throws DaoException {
         boolean isDeleted;
         try (Connection connection = ConnectionPool.getInstance().takeConnection();
-             PreparedStatement statement = connection.prepareStatement(SQL_DELETE_ORDER)) {
+                PreparedStatement statement = connection.prepareStatement(SQL_DELETE_ORDER)) {
             statement.setInt(1, orderId);
             isDeleted = statement.execute();
 
@@ -300,7 +300,7 @@ public class OrderDaoImpl implements OrderDao {
     public Order findOrder(int orderId) throws DaoException {
         Order order = null;
         try (Connection connection = ConnectionPool.getInstance().takeConnection();
-             PreparedStatement statement = connection.prepareStatement(SQL_FIND_ORDER)) {
+                PreparedStatement statement = connection.prepareStatement(SQL_FIND_ORDER)) {
             statement.setInt(1, orderId);
             ResultSet resultSet = statement.executeQuery();
 
@@ -321,7 +321,7 @@ public class OrderDaoImpl implements OrderDao {
     public List<Order> findAllOrder() throws DaoException {
         List<Order> result = new ArrayList<>();
         try (Connection connection = ConnectionPool.getInstance().takeConnection();
-             PreparedStatement statement = connection.prepareStatement(SQL_FIND_ALL_ORDER)) {
+                PreparedStatement statement = connection.prepareStatement(SQL_FIND_ALL_ORDER)) {
             ResultSet resultSet = statement.executeQuery();
 
             while (resultSet.next()) {
@@ -340,7 +340,7 @@ public class OrderDaoImpl implements OrderDao {
 
         List<Order> result = new ArrayList<>();
         try (Connection connection = ConnectionPool.getInstance().takeConnection();
-             PreparedStatement statement = connection.prepareStatement(SQL_FIND_ALL_ORDER_WITH_FILTER)) {
+                PreparedStatement statement = connection.prepareStatement(SQL_FIND_ALL_ORDER_WITH_FILTER)) {
             if (filter.getClientId() != null) {
                 statement.setInt(1, filter.getClientId());
             } else {
@@ -417,7 +417,7 @@ public class OrderDaoImpl implements OrderDao {
         List<Order> result = new ArrayList<>();
 
         try (Connection connection = ConnectionPool.getInstance().takeConnection();
-             PreparedStatement statement = connection.prepareStatement(SQL_FIND_ALL_ACTIVE_ORDER)) {
+                PreparedStatement statement = connection.prepareStatement(SQL_FIND_ALL_ACTIVE_ORDER)) {
             ResultSet resultSet = statement.executeQuery();
 
             while (resultSet.next()) {
@@ -435,7 +435,7 @@ public class OrderDaoImpl implements OrderDao {
     public List<Order> findActiveOrderByTrainer(int trainerId) throws DaoException {
         List<Order> result = new ArrayList<>();
         try (Connection connection = ConnectionPool.getInstance().takeConnection();
-             PreparedStatement statement = connection.prepareStatement(SQL_FIND_ALL_ACTIVE_ORDER_BY_TRAINER)) {
+                PreparedStatement statement = connection.prepareStatement(SQL_FIND_ALL_ACTIVE_ORDER_BY_TRAINER)) {
             statement.setInt(1, trainerId);
 
             ResultSet resultSet = statement.executeQuery();
@@ -455,7 +455,7 @@ public class OrderDaoImpl implements OrderDao {
     public List<Order> findActiveOrderByClient(int clientId) throws DaoException {
         List<Order> result = new ArrayList<>();
         try (Connection connection = ConnectionPool.getInstance().takeConnection();
-             PreparedStatement statement = connection.prepareStatement(SQL_FIND_ALL_ACTIVE_ORDER_BY_CLIENT)) {
+                PreparedStatement statement = connection.prepareStatement(SQL_FIND_ALL_ACTIVE_ORDER_BY_CLIENT)) {
             statement.setInt(1, clientId);
 
             ResultSet resultSet = statement.executeQuery();

@@ -71,38 +71,63 @@ public class Order extends AbstractEntity {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Order)) return false;
-        if (!super.equals(o)) return false;
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Order)) {
+            return false;
+        }
+        if (!super.equals(o)) {
+            return false;
+        }
 
         Order order = (Order) o;
 
-        if (getClientId() != null ? !getClientId().equals(order.getClientId()) : order.getClientId() != null)
+        if (getClientId() != null ? !getClientId().equals(order.getClientId()) : order.getClientId() != null) {
             return false;
-        if (getClientName() != null ? !getClientName().equals(order.getClientName()) : order.getClientName() != null)
+        }
+        if (getClientName() != null ? !getClientName().equals(order.getClientName()) : order.getClientName() != null) {
             return false;
-        if (getClientSurname() != null ? !getClientSurname().equals(order.getClientSurname()) : order.getClientSurname() != null)
+        }
+        if (getClientSurname() != null ? !getClientSurname().equals(order.getClientSurname()) : order.getClientSurname() != null) {
             return false;
-        if (getTrainerId() != null ? !getTrainerId().equals(order.getTrainerId()) : order.getTrainerId() != null)
+        }
+        if (getTrainerId() != null ? !getTrainerId().equals(order.getTrainerId()) : order.getTrainerId() != null) {
             return false;
-        if (getTrainerName() != null ? !getTrainerName().equals(order.getTrainerName()) : order.getTrainerName() != null)
+        }
+        if (getTrainerName() != null ? !getTrainerName().equals(order.getTrainerName()) : order.getTrainerName() != null) {
             return false;
-        if (getTrainerSurname() != null ? !getTrainerSurname().equals(order.getTrainerSurname()) : order.getTrainerSurname() != null)
+        }
+        if (getTrainerSurname() != null ? !getTrainerSurname().equals(order.getTrainerSurname()) : order.getTrainerSurname() != null) {
             return false;
-        if (getRegisterDate() != null ? !getRegisterDate().equals(order.getRegisterDate()) : order.getRegisterDate() != null)
+        }
+        if (getRegisterDate() != null ? !getRegisterDate().equals(order.getRegisterDate()) : order.getRegisterDate() != null) {
             return false;
-        if (getExercises() != null ? !getExercises().equals(order.getExercises()) : order.getExercises() != null)
+        }
+        if (getExercises() != null ? !getExercises().equals(order.getExercises()) : order.getExercises() != null) {
             return false;
-        if (getNutrition() != null ? !getNutrition().equals(order.getNutrition()) : order.getNutrition() != null)
+        }
+        if (getNutrition() != null ? !getNutrition().equals(order.getNutrition()) : order.getNutrition() != null) {
             return false;
-        if (getStartDate() != null ? !getStartDate().equals(order.getStartDate()) : order.getStartDate() != null)
+        }
+        if (getStartDate() != null ? !getStartDate().equals(order.getStartDate()) : order.getStartDate() != null) {
             return false;
-        if (getEndDate() != null ? !getEndDate().equals(order.getEndDate()) : order.getEndDate() != null) return false;
-        if (getPrice() != null ? !getPrice().equals(order.getPrice()) : order.getPrice() != null) return false;
-        if (getClientComment() != null ? !getClientComment().equals(order.getClientComment()) : order.getClientComment() != null)
+        }
+        if (getEndDate() != null ? !getEndDate().equals(order.getEndDate()) : order.getEndDate() != null) {
             return false;
-        if (getOrderStatus() != order.getOrderStatus()) return false;
-        if (getActive() != null ? !getActive().equals(order.getActive()) : order.getActive() != null) return false;
+        }
+        if (getPrice() != null ? !getPrice().equals(order.getPrice()) : order.getPrice() != null) {
+            return false;
+        }
+        if (getClientComment() != null ? !getClientComment().equals(order.getClientComment()) : order.getClientComment() != null) {
+            return false;
+        }
+        if (getOrderStatus() != order.getOrderStatus()) {
+            return false;
+        }
+        if (getActive() != null ? !getActive().equals(order.getActive()) : order.getActive() != null) {
+            return false;
+        }
         return getDuration() == order.getDuration();
     }
 
@@ -269,6 +294,7 @@ public class Order extends AbstractEntity {
      * {@code Order} builder static inner class.
      */
     public static final class Builder {
+
         private Integer id;
         private Integer clientId;
         private String clientName;
@@ -291,7 +317,8 @@ public class Order extends AbstractEntity {
         }
 
         /**
-         * Sets the {@code id} and returns a reference to this Builder so that the methods can be chained together.
+         * Sets the {@code id} and returns a reference to this Builder so that
+         * the methods can be chained together.
          *
          * @param val the {@code id} to set
          * @return a reference to this Builder
@@ -302,7 +329,8 @@ public class Order extends AbstractEntity {
         }
 
         /**
-         * Sets the {@code clientId} and returns a reference to this Builder so that the methods can be chained together.
+         * Sets the {@code clientId} and returns a reference to this Builder so
+         * that the methods can be chained together.
          *
          * @param val the {@code clientId} to set
          * @return a reference to this Builder
@@ -313,7 +341,8 @@ public class Order extends AbstractEntity {
         }
 
         /**
-         * Sets the {@code clientName} and returns a reference to this Builder so that the methods can be chained together.
+         * Sets the {@code clientName} and returns a reference to this Builder
+         * so that the methods can be chained together.
          *
          * @param val the {@code clientName} to set
          * @return a reference to this Builder
@@ -324,7 +353,8 @@ public class Order extends AbstractEntity {
         }
 
         /**
-         * Sets the {@code clientSurname} and returns a reference to this Builder so that the methods can be chained together.
+         * Sets the {@code clientSurname} and returns a reference to this
+         * Builder so that the methods can be chained together.
          *
          * @param val the {@code clientSurname} to set
          * @return a reference to this Builder
@@ -335,7 +365,8 @@ public class Order extends AbstractEntity {
         }
 
         /**
-         * Sets the {@code trainerId} and returns a reference to this Builder so that the methods can be chained together.
+         * Sets the {@code trainerId} and returns a reference to this Builder so
+         * that the methods can be chained together.
          *
          * @param val the {@code trainerId} to set
          * @return a reference to this Builder
@@ -346,7 +377,8 @@ public class Order extends AbstractEntity {
         }
 
         /**
-         * Sets the {@code trainerName} and returns a reference to this Builder so that the methods can be chained together.
+         * Sets the {@code trainerName} and returns a reference to this Builder
+         * so that the methods can be chained together.
          *
          * @param val the {@code trainerName} to set
          * @return a reference to this Builder
@@ -357,7 +389,8 @@ public class Order extends AbstractEntity {
         }
 
         /**
-         * Sets the {@code trainerSurname} and returns a reference to this Builder so that the methods can be chained together.
+         * Sets the {@code trainerSurname} and returns a reference to this
+         * Builder so that the methods can be chained together.
          *
          * @param val the {@code trainerSurname} to set
          * @return a reference to this Builder
@@ -368,7 +401,8 @@ public class Order extends AbstractEntity {
         }
 
         /**
-         * Sets the {@code registerDate} and returns a reference to this Builder so that the methods can be chained together.
+         * Sets the {@code registerDate} and returns a reference to this Builder
+         * so that the methods can be chained together.
          *
          * @param val the {@code registerDate} to set
          * @return a reference to this Builder
@@ -379,7 +413,8 @@ public class Order extends AbstractEntity {
         }
 
         /**
-         * Sets the {@code exercises} and returns a reference to this Builder so that the methods can be chained together.
+         * Sets the {@code exercises} and returns a reference to this Builder so
+         * that the methods can be chained together.
          *
          * @param val the {@code exercises} to set
          * @return a reference to this Builder
@@ -390,7 +425,8 @@ public class Order extends AbstractEntity {
         }
 
         /**
-         * Sets the {@code nutrition} and returns a reference to this Builder so that the methods can be chained together.
+         * Sets the {@code nutrition} and returns a reference to this Builder so
+         * that the methods can be chained together.
          *
          * @param val the {@code nutrition} to set
          * @return a reference to this Builder
@@ -401,7 +437,8 @@ public class Order extends AbstractEntity {
         }
 
         /**
-         * Sets the {@code startDate} and returns a reference to this Builder so that the methods can be chained together.
+         * Sets the {@code startDate} and returns a reference to this Builder so
+         * that the methods can be chained together.
          *
          * @param val the {@code startDate} to set
          * @return a reference to this Builder
@@ -412,7 +449,8 @@ public class Order extends AbstractEntity {
         }
 
         /**
-         * Sets the {@code endDate} and returns a reference to this Builder so that the methods can be chained together.
+         * Sets the {@code endDate} and returns a reference to this Builder so
+         * that the methods can be chained together.
          *
          * @param val the {@code endDate} to set
          * @return a reference to this Builder
@@ -423,7 +461,8 @@ public class Order extends AbstractEntity {
         }
 
         /**
-         * Sets the {@code price} and returns a reference to this Builder so that the methods can be chained together.
+         * Sets the {@code price} and returns a reference to this Builder so
+         * that the methods can be chained together.
          *
          * @param val the {@code price} to set
          * @return a reference to this Builder
@@ -434,7 +473,8 @@ public class Order extends AbstractEntity {
         }
 
         /**
-         * Sets the {@code clientComment} and returns a reference to this Builder so that the methods can be chained together.
+         * Sets the {@code clientComment} and returns a reference to this
+         * Builder so that the methods can be chained together.
          *
          * @param val the {@code clientComment} to set
          * @return a reference to this Builder
@@ -445,7 +485,8 @@ public class Order extends AbstractEntity {
         }
 
         /**
-         * Sets the {@code orderStatus} and returns a reference to this Builder so that the methods can be chained together.
+         * Sets the {@code orderStatus} and returns a reference to this Builder
+         * so that the methods can be chained together.
          *
          * @param val the {@code orderStatus} to set
          * @return a reference to this Builder
@@ -456,7 +497,8 @@ public class Order extends AbstractEntity {
         }
 
         /**
-         * Sets the {@code active} and returns a reference to this Builder so that the methods can be chained together.
+         * Sets the {@code active} and returns a reference to this Builder so
+         * that the methods can be chained together.
          *
          * @param val the {@code active} to set
          * @return a reference to this Builder
@@ -467,7 +509,8 @@ public class Order extends AbstractEntity {
         }
 
         /**
-         * Sets the {@code duration} and returns a reference to this Builder so that the methods can be chained together.
+         * Sets the {@code duration} and returns a reference to this Builder so
+         * that the methods can be chained together.
          *
          * @param val the {@code duration} to set
          * @return a reference to this Builder
@@ -480,7 +523,8 @@ public class Order extends AbstractEntity {
         /**
          * Returns a {@code Order} built from the parameters previously set.
          *
-         * @return a {@code Order} built with parameters of this {@code Order.Builder}
+         * @return a {@code Order} built with parameters of this
+         * {@code Order.Builder}
          */
         public Order build() {
             return new Order(this);

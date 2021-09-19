@@ -21,65 +21,80 @@ public class TrainerDaoImpl implements TrainerDao {
     private static final String SQL_CREATE_USER = "INSERT INTO users(login, password, name, surname, mail, role)\n"
             + "VALUES (?, ?, ?, ?, ?, ?)";
     private static final String SQL_CREATE_TRAINER = "INSERT INTO trainers(trainer_id, phone_number)\n"
-            + "VALUES (?, ?)";
-    private static final String SQL_UPDATE_TRAINER = "UPDATE trainers\n"
-            + "SET phone_number = IFNULL(?, phone_number)\n"
-            + "WHERE trainer_id = ?";
-    private static final String SQL_FIND_TRAINER_BY_ID = "SELECT trainer_id,\n" +
-            "       register_date,\n" +
-            "       phone_number,\n" +
-            "       login,\n" +
-            "       password,\n" +
-            "       role,\n" +
-            "       name,\n" +
-            "       surname,\n" +
-            "       is_active,\n" +
-            "       profile_image,\n" +
-            "       mail,\n" +
-            "       is_verified\n" +
-            "FROM trainers\n" +
-            "     JOIN users on user_id = trainer_id\n" +
-            "WHERE trainer_id = ?\n" +
-            "  AND role = 'TRAINER'";
-    private static final String SQL_FIND_ALL_TRAINER = "SELECT trainer_id,\n" +
-            "       register_date,\n" +
-            "       phone_number,\n" +
-            "       login,\n" +
-            "       password,\n" +
-            "       role,\n" +
-            "       name,\n" +
-            "       surname,\n" +
-            "       is_active,\n" +
-            "       mail,\n" +
-            "       is_verified\n" +
-            "FROM trainers\n" +
-            "     JOIN users on user_id = trainer_id\n" +
-            "WHERE role = 'TRAINER'";
-    private static final String SQL_FIND_ALL_ACTIVE_TRAINER = "SELECT trainer_id,\n" +
-            "       register_date,\n" +
-            "       phone_number,\n" +
-            "       login,\n" +
-            "       password,\n" +
-            "       role,\n" +
-            "       name,\n" +
-            "       surname,\n" +
-            "       is_active,\n" +
-            "       mail,\n" +
-            "       is_verified\n" +
-            "FROM trainers\n" +
-            "     JOIN users on user_id = trainer_id\n" +
-            "WHERE is_active = true\n" +
-            "  AND role = 'TRAINER'";
-    private static TrainerDaoImpl mInstance;
+            + "VALUES (?, ?, ?, ?)";
+
+    private static final String SQL_EDIT_DESCRIPTION = "UPDATE trainers\n"
+            + "SET description  = IFNULL(?, description)\n"
+            + "WHERE trainer_id = ?\n";
+
+    private static final String SQL_EDIT_TRAINER = "UPDATE trainers, users\n"
+            + "SET name  = IFNULL(?, name),\n"
+            + "    surname      = IFNULL(?, surname),\n"
+            + "    phone_number      = IFNULL(?, phone_number),\n"
+            + "    mail = IFNULL(?, mail)\n"
+            + "WHERE user_id = ?\n";
+    private static final String SQL_FIND_TRAINER_BY_ID = "SELECT trainer_id,\n"
+            + "       register_date,\n"
+            + "       phone_number,\n"
+            + "       login,\n"
+            + "       password,\n"
+            + "       role,\n"
+            + "       name,\n"
+            + "       surname,\n"
+            + "       is_active,\n"
+            + "       profile_image,\n"
+            + "       mail,\n"
+            + "       description,\n"
+            + "       experience,\n"
+            + "       is_verified\n"
+            + "FROM trainers\n"
+            + "     JOIN users on user_id = trainer_id\n"
+            + "WHERE trainer_id = ?\n"
+            + "  AND role = 'TRAINER'";
+    private static final String SQL_FIND_ALL_TRAINER = "SELECT trainer_id,\n"
+            + "       register_date,\n"
+            + "       phone_number,\n"
+            + "       login,\n"
+            + "       password,\n"
+            + "       role,\n"
+            + "       name,\n"
+            + "       surname,\n"
+            + "       is_active,\n"
+            + "       mail,\n"
+            + "       description,\n"
+            + "       experience,\n"
+            + "       is_verified\n"
+            + "FROM trainers\n"
+            + "     JOIN users on user_id = trainer_id\n"
+            + "WHERE role = 'TRAINER'";
+    private static final String SQL_FIND_ALL_ACTIVE_TRAINER = "SELECT trainer_id,\n"
+            + "       register_date,\n"
+            + "       phone_number,\n"
+            + "       login,\n"
+            + "       password,\n"
+            + "       role,\n"
+            + "       name,\n"
+            + "       surname,\n"
+            + "       is_active,\n"
+            + "       mail,\n"
+            + "       description,\n"
+            + "       experience,\n"
+            + "       is_verified\n"
+            + "FROM trainers\n"
+            + "     JOIN users on user_id = trainer_id\n"
+            + "WHERE is_active = true\n"
+            + "  AND role = 'TRAINER'";
+
+    private static TrainerDaoImpl instance;
 
     private TrainerDaoImpl() {
     }
 
     public static TrainerDaoImpl getInstance() {
-        if (mInstance == null) {
-            mInstance = new TrainerDaoImpl();
+        if (instance == null) {
+            instance = new TrainerDaoImpl();
         }
-        return mInstance;
+        return instance;
     }
 
     @Override
@@ -110,6 +125,16 @@ public class TrainerDaoImpl implements TrainerDao {
                 } else {
                     trainerStatement.setNull(2, Types.NULL);
                 }
+                if (trainer.getPhone() != null) {
+                    trainerStatement.setString(3, trainer.getDescription());
+                } else {
+                    trainerStatement.setNull(3, Types.NULL);
+                }
+                if (trainer.getPhone() != null) {
+                    trainerStatement.setString(4, trainer.getExperience());
+                } else {
+                    trainerStatement.setNull(4, Types.NULL);
+                }
                 trainerStatement.execute();
 
                 connection.commit();
@@ -128,25 +153,63 @@ public class TrainerDaoImpl implements TrainerDao {
     }
 
     @Override
-    public boolean updateTrainer(Trainer trainer) throws DaoException {
-        boolean isUpdated;
+    public boolean editDescription(int trainerId, String description) throws DaoException {
+        boolean isEdited;
         try (Connection connection = ConnectionPool.getInstance().takeConnection();
-             PreparedStatement statement = connection.prepareStatement(SQL_UPDATE_TRAINER)) {
-            if (trainer.getName() != null) {
-                statement.setString(1, trainer.getPhone());
+             PreparedStatement statement = connection.prepareStatement(SQL_EDIT_DESCRIPTION)) {
+            if (description != null) {
+                statement.setString(1, description);
             } else {
                 statement.setNull(1, Types.VARCHAR);
             }
-            statement.setInt(2, trainer.getId());
 
-            isUpdated = statement.execute();
+            statement.setInt(2, trainerId);
 
-            logger.debug("Trainer {} was updated", trainer);
+            isEdited = statement.executeUpdate() == 1;
+
+            logger.debug(isEdited ? "Trainer " + trainerId + " was updated" : "Trainer " + trainerId + " was not updated");
+
         } catch (SQLException e) {
-            logger.debug("Trainer {} was not updated", trainer);
             throw new DaoException(e);
         }
-        return isUpdated;
+        return isEdited;
+    }
+
+    @Override
+    public boolean editTrainer(Trainer trainer) throws DaoException {
+        boolean isEdited;
+        try (Connection connection = ConnectionPool.getInstance().takeConnection();
+             PreparedStatement statement = connection.prepareStatement(SQL_EDIT_TRAINER)) {
+            if (trainer.getName() != null) {
+                statement.setString(1, trainer.getName());
+            } else {
+                statement.setNull(1, Types.VARCHAR);
+            }
+            if (trainer.getSurname() != null) {
+                statement.setString(2, trainer.getSurname());
+            } else {
+                statement.setNull(2, Types.VARCHAR);
+            }
+            if (trainer.getPhone() != null) {
+                statement.setString(3, trainer.getPhone());
+            } else {
+                statement.setNull(3, Types.VARCHAR);
+            }
+            if (trainer.getMail() != null) {
+                statement.setString(4, trainer.getMail());
+            } else {
+                statement.setNull(4, Types.VARCHAR);
+            }
+            statement.setInt(5, trainer.getId());
+
+            isEdited = statement.executeUpdate() == 1;
+
+            logger.debug(isEdited ? "Trainer " + trainer.getId() + " was updated" : "Trainer " + trainer.getId() + " was not updated");
+
+        } catch (SQLException e) {
+            throw new DaoException(e);
+        }
+        return isEdited;
     }
 
     @Override
@@ -224,6 +287,8 @@ public class TrainerDaoImpl implements TrainerDao {
         trainer.setActive(resultSet.getBoolean(IS_ACTIVE));
         trainer.setRegisterDate(resultSet.getTimestamp(REGISTER_DATE).toLocalDateTime());
         trainer.setPhone(resultSet.getString(PHONE_NUMBER));
+        trainer.setDescription(resultSet.getString(DESCRIPTION));
+        trainer.setExperience(resultSet.getString(EXPERIENCE));
         return trainer;
     }
 }

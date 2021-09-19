@@ -14,14 +14,14 @@ import java.util.List;
 
 public class ClientServiceImpl implements ClientService {
 
-    private static ClientServiceImpl instance;
+    private static ClientService instance;
 
     private ClientDao clientDao = ClientDaoImpl.getInstance();
 
     private ClientServiceImpl() {
     }
 
-    public static ClientServiceImpl getInstance() {
+    public static ClientService getInstance() {
         if (instance == null) {
             instance = new ClientServiceImpl();
         }

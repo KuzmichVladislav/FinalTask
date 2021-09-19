@@ -106,11 +106,11 @@ public class User extends AbstractEntity {
         CLIENT
     }
 
-
     /**
      * {@code User} builder static inner class.
      */
     public static final class Builder {
+
         private Integer id;
         private UserRole role;
         private String login;
@@ -126,7 +126,8 @@ public class User extends AbstractEntity {
         }
 
         /**
-         * Sets the {@code id} and returns a reference to this Builder so that the methods can be chained together.
+         * Sets the {@code id} and returns a reference to this Builder so that
+         * the methods can be chained together.
          *
          * @param val the {@code id} to set
          * @return a reference to this Builder
@@ -137,7 +138,8 @@ public class User extends AbstractEntity {
         }
 
         /**
-         * Sets the {@code role} and returns a reference to this Builder so that the methods can be chained together.
+         * Sets the {@code role} and returns a reference to this Builder so that
+         * the methods can be chained together.
          *
          * @param val the {@code role} to set
          * @return a reference to this Builder
@@ -148,7 +150,8 @@ public class User extends AbstractEntity {
         }
 
         /**
-         * Sets the {@code login} and returns a reference to this Builder so that the methods can be chained together.
+         * Sets the {@code login} and returns a reference to this Builder so
+         * that the methods can be chained together.
          *
          * @param val the {@code login} to set
          * @return a reference to this Builder
@@ -159,7 +162,8 @@ public class User extends AbstractEntity {
         }
 
         /**
-         * Sets the {@code password} and returns a reference to this Builder so that the methods can be chained together.
+         * Sets the {@code password} and returns a reference to this Builder so
+         * that the methods can be chained together.
          *
          * @param val the {@code password} to set
          * @return a reference to this Builder
@@ -170,7 +174,8 @@ public class User extends AbstractEntity {
         }
 
         /**
-         * Sets the {@code name} and returns a reference to this Builder so that the methods can be chained together.
+         * Sets the {@code name} and returns a reference to this Builder so that
+         * the methods can be chained together.
          *
          * @param val the {@code name} to set
          * @return a reference to this Builder
@@ -181,7 +186,8 @@ public class User extends AbstractEntity {
         }
 
         /**
-         * Sets the {@code surname} and returns a reference to this Builder so that the methods can be chained together.
+         * Sets the {@code surname} and returns a reference to this Builder so
+         * that the methods can be chained together.
          *
          * @param val the {@code surname} to set
          * @return a reference to this Builder
@@ -192,7 +198,8 @@ public class User extends AbstractEntity {
         }
 
         /**
-         * Sets the {@code isActive} and returns a reference to this Builder so that the methods can be chained together.
+         * Sets the {@code isActive} and returns a reference to this Builder so
+         * that the methods can be chained together.
          *
          * @param val the {@code isActive} to set
          * @return a reference to this Builder
@@ -203,7 +210,8 @@ public class User extends AbstractEntity {
         }
 
         /**
-         * Sets the {@code mail} and returns a reference to this Builder so that the methods can be chained together.
+         * Sets the {@code mail} and returns a reference to this Builder so that
+         * the methods can be chained together.
          *
          * @param val the {@code mail} to set
          * @return a reference to this Builder
@@ -214,7 +222,8 @@ public class User extends AbstractEntity {
         }
 
         /**
-         * Sets the {@code verification} and returns a reference to this Builder so that the methods can be chained together.
+         * Sets the {@code verification} and returns a reference to this Builder
+         * so that the methods can be chained together.
          *
          * @param val the {@code verification} to set
          * @return a reference to this Builder
@@ -225,7 +234,8 @@ public class User extends AbstractEntity {
         }
 
         /**
-         * Sets the {@code photo} and returns a reference to this Builder so that the methods can be chained together.
+         * Sets the {@code photo} and returns a reference to this Builder so
+         * that the methods can be chained together.
          *
          * @param val the {@code photo} to set
          * @return a reference to this Builder
@@ -238,7 +248,8 @@ public class User extends AbstractEntity {
         /**
          * Returns a {@code User} built from the parameters previously set.
          *
-         * @return a {@code User} built with parameters of this {@code User.Builder}
+         * @return a {@code User} built with parameters of this
+         * {@code User.Builder}
          */
         public User build() {
             return new User(this);

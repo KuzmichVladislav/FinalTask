@@ -11,6 +11,7 @@ import com.company.gum.service.CommentService;
 import com.company.gum.service.impl.CommentServiceImpl;
 
 public class CreateNewComment implements Command {
+
     private CommentService commentService = CommentServiceImpl.getInstance();
 
     @Override

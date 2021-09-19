@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface AdminDao {
 
-	Admin findAdminById(int adminId) throws DaoException;
+    Admin findAdminById(int adminId) throws DaoException;
 
-	List<Admin> findAllAdmin() throws DaoException;
+    List<Admin> findAllAdmin() throws DaoException;
 }

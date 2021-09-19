@@ -15,7 +15,6 @@ import javax.servlet.http.Part;
 import java.io.IOException;
 import java.io.InputStream;
 
-
 @WebServlet(urlPatterns = {"/uploadServlet"})
 @MultipartConfig(fileSizeThreshold = 1024 * 1024,
         maxFileSize = 1024 * 1024 * 5,
@@ -36,4 +35,3 @@ public class UploadServlet extends HttpServlet {
         req.getRequestDispatcher(PagePath.MAIN_CONTROLLER).forward(req, resp);
     }
 }
-
