@@ -1,9 +1,8 @@
 package com.company.gum.command.impl.client;
 
-import com.company.gum.command.AttributeName;
 import com.company.gum.command.Command;
-import com.company.gum.command.ErrorMessageKey;
 import com.company.gum.command.PagePath;
+import com.company.gum.command.Router;
 import com.company.gum.controller.SessionRequestContent;
 import com.company.gum.entity.Client;
 import com.company.gum.exception.CommandException;
@@ -15,38 +14,43 @@ import com.company.gum.util.Validator;
 import java.math.BigDecimal;
 import java.math.MathContext;
 
-public class RefillMoney implements Command {
+import static com.company.gum.command.AttributeName.*;
+import static com.company.gum.command.ErrorMessageKey.INVALID_MONEY;
+import static com.company.gum.command.Router.RouterType.FORWARD;
+import static com.company.gum.command.Router.RouterType.REDIRECT;
+
+public class RefillMoneyCommand implements Command {
 
     ClientService clientService = ClientServiceImpl.getInstance();
 
     @Override
-    public String execute(SessionRequestContent requestContent) throws CommandException {
-        String page;
+    public Router execute(SessionRequestContent requestContent) throws CommandException {
+        Router router;
         try {
-            int clientId = (Integer) requestContent.getSessionAttributeByName(AttributeName.USER_ID);
+            int clientId = (Integer) requestContent.getSessionAttributeByName(USER_ID);
             boolean isValid = true;
-            String StringMoney = requestContent.getParameterByName(AttributeName.MONEY);
+            String StringMoney = requestContent.getParameterByName(MONEY);
             if (!Validator.checkMoney(StringMoney)) {
-                requestContent.putAttribute(AttributeName.ERR_MESSAGE, ErrorMessageKey.INVALID_MONEY);
+                requestContent.putAttribute(ERR_MESSAGE, INVALID_MONEY);
                 isValid = false;
             }
             if (isValid) {
                 BigDecimal money = new BigDecimal(StringMoney, MathContext.DECIMAL32);
                 boolean isUpdated = clientService.refillMoney(clientId, money);
                 if (isUpdated) {
-                    requestContent.putAttribute(AttributeName.MONEY, money.doubleValue());
+                    requestContent.putAttribute(MONEY, money.doubleValue());
                     Client client = clientService.findClientById(clientId);
-                    requestContent.putSessionAttribute(AttributeName.USER_MONEY, client.getMoney());
-                    page = PagePath.MONEY_REFILLED;
+                    requestContent.putSessionAttribute(USER_MONEY, client.getMoney());
+                    router = new Router(PagePath.MONEY_REFILLED, REDIRECT);
                 } else {
-                    page = PagePath.REFILL_MONEY;
+                    router = new Router(PagePath.REFILL_MONEY, FORWARD);
                 }
             } else {
-                page = PagePath.REFILL_MONEY;
+                router = new Router(PagePath.REFILL_MONEY, FORWARD);
             }
         } catch (ServiceException e) {
             throw new CommandException(e);
         }
-        return page;
+        return router;
     }
 }

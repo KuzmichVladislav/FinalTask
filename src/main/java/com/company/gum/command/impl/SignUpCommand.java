@@ -1,9 +1,6 @@
 package com.company.gum.command.impl;
 
-import com.company.gum.command.AttributeName;
-import com.company.gum.command.Command;
-import com.company.gum.command.ErrorMessageKey;
-import com.company.gum.command.PagePath;
+import com.company.gum.command.*;
 import com.company.gum.controller.SessionRequestContent;
 import com.company.gum.entity.Client;
 import com.company.gum.exception.CommandException;
@@ -13,14 +10,17 @@ import com.company.gum.service.impl.ClientServiceImpl;
 import com.company.gum.util.Validator;
 
 import static com.company.gum.command.AttributeName.*;
+import static com.company.gum.command.ErrorMessageKey.*;
+import static com.company.gum.command.Router.RouterType.FORWARD;
+import static com.company.gum.command.Router.RouterType.REDIRECT;
 
 public class SignUpCommand implements Command {
 
     private ClientService clientService = ClientServiceImpl.getInstance();
 
     @Override
-    public String execute(SessionRequestContent requestContent) throws CommandException {
-        String page;
+    public Router execute(SessionRequestContent requestContent) throws CommandException {
+        Router router;
 
         String login = requestContent.getParameterByName(USER_LOGIN).strip();
         String password = requestContent.getParameterByName(USER_PASSWORD).strip();
@@ -33,31 +33,31 @@ public class SignUpCommand implements Command {
         boolean isValid = true;
 
         if (!Validator.checkLogin(login)) {
-            requestContent.putAttribute(AttributeName.ERR_MESSAGE, ErrorMessageKey.INVALID_LOGIN);
+            requestContent.putAttribute(AttributeName.ERR_MESSAGE, INVALID_LOGIN);
             isValid = false;
         }
         if (!Validator.checkNameSurname(name) && isValid) {
-            requestContent.putAttribute(AttributeName.ERR_MESSAGE, ErrorMessageKey.INVALID_NAME);
+            requestContent.putAttribute(ERR_MESSAGE, INVALID_NAME);
             isValid = false;
         }
         if (!Validator.checkNameSurname(surname) && isValid) {
-            requestContent.putAttribute(AttributeName.ERR_MESSAGE, ErrorMessageKey.INVALID_SURNAME_NAME);
+            requestContent.putAttribute(ERR_MESSAGE, INVALID_SURNAME_NAME);
             isValid = false;
         }
         if (!Validator.checkPhone(phone) && isValid) {
-            requestContent.putAttribute(AttributeName.ERR_MESSAGE, ErrorMessageKey.INVALID_PHONE);
+            requestContent.putAttribute(ERR_MESSAGE, INVALID_PHONE);
             isValid = false;
         }
         if (!Validator.checkMail(mail) && isValid) {
-            requestContent.putAttribute(AttributeName.ERR_MESSAGE, ErrorMessageKey.INVALID_EMAIL);
+            requestContent.putAttribute(ERR_MESSAGE, INVALID_EMAIL);
             isValid = false;
         }
         if (!Validator.checkPassword(password) && isValid) {
-            requestContent.putAttribute(AttributeName.ERR_MESSAGE, ErrorMessageKey.INVALID_PASSWORD);
+            requestContent.putAttribute(ERR_MESSAGE, INVALID_PASSWORD);
             isValid = false;
         }
         if (!repeatedPassword.equals(password) && isValid) {
-            requestContent.putAttribute(AttributeName.ERR_MESSAGE, ErrorMessageKey.PASSWORDS_NOT_EQUAL);
+            requestContent.putAttribute(ERR_MESSAGE, PASSWORDS_NOT_EQUAL);
             isValid = false;
         }
 
@@ -74,14 +74,14 @@ public class SignUpCommand implements Command {
 
                 clientService.createClient(client);
 
-                page = PagePath.CLIENT_CREATED;
+                router = new Router(PagePath.CLIENT_CREATED, REDIRECT);
             } else {
-                page = PagePath.SIGN_UP;
+                router = new Router(PagePath.SIGN_UP, FORWARD);
             }
         } catch (ServiceException e) {
-            page = PagePath.SIGN_UP;
-            requestContent.putAttribute(AttributeName.ERR_MESSAGE, ErrorMessageKey.LOGIN_ALREADY_EXIST);
+            requestContent.putAttribute(ERR_MESSAGE, LOGIN_ALREADY_EXIST);
+            router = new Router(PagePath.SIGN_UP, FORWARD);
         }
-        return page;
+        return router;
     }
 }

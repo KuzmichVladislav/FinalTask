@@ -1,8 +1,9 @@
-package com.company.gum.command.comment;
+package com.company.gum.command.impl.comment;
 
 import com.company.gum.command.AttributeName;
 import com.company.gum.command.Command;
 import com.company.gum.command.PagePath;
+import com.company.gum.command.Router;
 import com.company.gum.controller.SessionRequestContent;
 import com.company.gum.entity.Comment;
 import com.company.gum.exception.CommandException;
@@ -10,27 +11,30 @@ import com.company.gum.exception.ServiceException;
 import com.company.gum.service.CommentService;
 import com.company.gum.service.impl.CommentServiceImpl;
 
-public class CreateNewComment implements Command {
+import static com.company.gum.command.AttributeName.COMMENT;
+import static com.company.gum.command.Router.RouterType.REDIRECT;
+
+public class CreateNewCommentCommand implements Command {
 
     private CommentService commentService = CommentServiceImpl.getInstance();
 
     @Override
-    public String execute(SessionRequestContent requestContent) throws CommandException {
-        String page;
+    public Router execute(SessionRequestContent requestContent) throws CommandException {
+        Router router;
         try {
 
-            Integer userId = (Integer) requestContent.getSessionAttributeByName(AttributeName.USER_ID);
-            String commentText = requestContent.getParameterByName(AttributeName.COMMENT).strip().replaceAll("<", "").replaceAll(">", "");
+            int userId = (Integer) requestContent.getSessionAttributeByName(AttributeName.USER_ID);
+            String commentText = requestContent.getParameterByName(COMMENT).strip().replaceAll("<", "").replaceAll(">", "");
 
             Comment comment = new Comment.Builder().build();
             comment.setUserId(userId);
             comment.setCommentText(commentText);
 
             commentService.createComment(comment);
-            page = PagePath.COMMENT_CREATED;
+            router = new Router(PagePath.COMMENT_CREATED, REDIRECT);
         } catch (ServiceException e) {
             throw new CommandException(e);
         }
-        return page;
+        return router;
     }
 }

@@ -1,8 +1,8 @@
-package com.company.gum.command.impl.trainer;
+package com.company.gum.command.impl.client;
 
-import com.company.gum.command.AttributeName;
 import com.company.gum.command.Command;
 import com.company.gum.command.PagePath;
+import com.company.gum.command.Router;
 import com.company.gum.controller.SessionRequestContent;
 import com.company.gum.entity.Trainer;
 import com.company.gum.exception.CommandException;
@@ -14,21 +14,25 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.List;
 
-public class FindAllTrainer implements Command {
+import static com.company.gum.command.AttributeName.TRAINERS;
+import static com.company.gum.command.Router.RouterType.REDIRECT;
+
+public class NewOrderCommand implements Command {
 
     private static final Logger logger = LogManager.getLogger();
 
     private TrainerService trainerService = TrainerServiceImpl.getInstance();
 
     @Override
-    public String execute(SessionRequestContent requestContent) throws CommandException {
+    public Router execute(SessionRequestContent requestContent) throws CommandException {
+        Router router;
         try {
             List<Trainer> trainers = trainerService.findAllActiveTrainer();
-
-            requestContent.putAttribute(AttributeName.TRAINERS, trainers);
+            requestContent.putAttribute(TRAINERS, trainers);
+            router = new Router(PagePath.CREATE_ORDER, REDIRECT);
         } catch (ServiceException e) {
             throw new CommandException(e);
         }
-        return PagePath.CLIENT_PROFILE;
+        return router;
     }
 }

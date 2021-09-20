@@ -122,8 +122,6 @@
                                 <form name="changePasswordForm" action="${pageContext.request.contextPath}/controller"
                                       method="POST">
                                     <input type="hidden" name="command" value="change_password">
-                                    <input type="hidden" name="userId" value="${sessionScope.userId}">
-
 
                                     <div class="form-group">
                                         <label for="input-current-password">${currentPassword}</label>
@@ -145,6 +143,8 @@
                                                id="input-repeat-password"
                                                placeholder="${repeatPassword}" value="">
                                     </div>
+                                    <button type="submit" class="btn btn-primary">${saveChanges}</button>
+                                </form>
 
                                     <c:if test="${requestScope.errMessage != null}">
                                         <div class="alert alert-danger">
@@ -157,7 +157,7 @@
                                         </button>
                                         <button type="submit" class="btn btn-primary">${saveChanges}</button>
                                     </div>
-                                </form>
+
                             </div>
 
                         </div>

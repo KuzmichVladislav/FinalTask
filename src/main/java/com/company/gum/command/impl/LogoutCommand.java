@@ -1,19 +1,20 @@
 package com.company.gum.command.impl;
 
-import com.company.gum.command.AttributeName;
 import com.company.gum.command.Command;
 import com.company.gum.command.PagePath;
+import com.company.gum.command.Router;
 import com.company.gum.controller.SessionRequestContent;
 import com.company.gum.exception.CommandException;
+
+import static com.company.gum.command.Router.RouterType.REDIRECT;
 
 public class LogoutCommand implements Command {
 
     @Override
-    public String execute(SessionRequestContent requestContent) throws CommandException {
+    public Router execute(SessionRequestContent requestContent) throws CommandException {
 
         requestContent.invalidateSession();
-        String page = PagePath.INDEX;
-        requestContent.putSessionAttribute(AttributeName.CURRENT_PAGE, page);
-        return page;
+//         requestContent.putSessionAttribute(AttributeName.CURRENT_PAGE, page); // TODO: 9/20/2021
+        return new Router(PagePath.INDEX, REDIRECT);
     }
 }

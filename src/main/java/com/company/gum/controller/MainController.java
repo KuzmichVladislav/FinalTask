@@ -1,9 +1,6 @@
 package com.company.gum.controller;
 
-import com.company.gum.command.AttributeName;
-import com.company.gum.command.Command;
-import com.company.gum.command.CommandType;
-import com.company.gum.command.PagePath;
+import com.company.gum.command.*;
 import com.company.gum.exception.CommandException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -38,19 +35,25 @@ public class MainController extends HttpServlet {
 
     private void doProcess(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         SessionRequestContent content = new SessionRequestContent(req);
-        String commandName = req.getParameter(AttributeName.COMMAND).toUpperCase();
-        String page;
+
         try {
-            Command command = CommandType.valueOf(commandName).getCommand();
-            page = command.execute(content);
-            content.insertAttributes(req);
-            if ("POST".equals(req.getMethod())) {
-                resp.sendRedirect(page);// FIXME: 9/20/2021 
-            } else {
-                RequestDispatcher rd = req.getRequestDispatcher(page);
-                rd.forward(req, resp);
+            Command command = CommandType.valueOf(req.getParameter(AttributeName.COMMAND).toUpperCase()).getCommand();
+            System.out.println(CommandType.valueOf(req.getParameter(AttributeName.COMMAND).toUpperCase()));
+            Router router = command.execute(content);
+            switch (router.getRouterType()) {
+                case REDIRECT:
+                    content.insertAttributes(req);
+                    resp.sendRedirect(router.getPagePath());
+                    break;
+                case FORWARD:
+                    content.insertAttributes(req);
+                    RequestDispatcher dispatcher = req.getRequestDispatcher(router.getPagePath());
+                    dispatcher.forward(req, resp);
+                    break;
+                default:
+                    logger.error("incorrect route type " + router.getRouterType());
             }
-        } catch (IllegalArgumentException | CommandException e) {
+        } catch (CommandException e) {
             logger.error(e);
             req.setAttribute(AttributeName.ERROR, e);
             req.getRequestDispatcher(PagePath.ERROR).forward(req, resp);

@@ -2,8 +2,8 @@ package com.company.gum.command.impl.client;
 
 import com.company.gum.command.AttributeName;
 import com.company.gum.command.Command;
-import com.company.gum.command.ErrorMessageKey;
 import com.company.gum.command.PagePath;
+import com.company.gum.command.Router;
 import com.company.gum.controller.SessionRequestContent;
 import com.company.gum.entity.User;
 import com.company.gum.exception.CommandException;
@@ -12,38 +12,41 @@ import com.company.gum.service.UserService;
 import com.company.gum.service.impl.UserServiceImpl;
 import com.company.gum.util.JBCryptPasswordEncoder;
 import com.company.gum.util.Validator;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
-public class ChangePassword implements Command {
+import static com.company.gum.command.AttributeName.*;
+import static com.company.gum.command.ErrorMessageKey.*;
+import static com.company.gum.command.Router.RouterType.FORWARD;
 
-    private static final Logger logger = LogManager.getLogger();
+public class ChangePasswordCommand implements Command {
 
     private UserService userService = UserServiceImpl.getInstance();
 
     @Override
-    public String execute(SessionRequestContent requestContent) throws CommandException {
-        String page;
+    public Router execute(SessionRequestContent requestContent) throws CommandException {
+        Router router;
 
         boolean isValid = true;
 
         try {
-            Integer userId = Integer.parseInt(requestContent.getParameterByName(AttributeName.USER_ID).strip());
-            String currentPassword = requestContent.getParameterByName(AttributeName.CURRENT_PASSWORD).strip();
-            String newPassword = requestContent.getParameterByName(AttributeName.NEW_PASSWORD).strip();
-            String repeatedPassword = requestContent.getParameterByName(AttributeName.REPEAT_PASSWORD).strip();
+            int userId = (Integer) requestContent.getSessionAttributeByName(AttributeName.USER_ID);
+            String currentPassword = requestContent.getParameterByName(CURRENT_PASSWORD).strip();
+            System.out.println(currentPassword);
+            String newPassword = requestContent.getParameterByName(NEW_PASSWORD).strip();
+            System.out.println(newPassword);
+            String repeatedPassword = requestContent.getParameterByName(REPEAT_PASSWORD).strip();
+            System.out.println(repeatedPassword);
 
             if (!Validator.checkPassword(currentPassword)) {
                 isValid = false;
-                requestContent.putAttribute(AttributeName.ERR_MESSAGE, ErrorMessageKey.INVALID_CURRENT_PASSWORD);
+                requestContent.putAttribute(ERR_MESSAGE, INVALID_CURRENT_PASSWORD);
             }
             if (!Validator.checkPassword(newPassword) && isValid) {
                 isValid = false;
-                requestContent.putAttribute(AttributeName.ERR_MESSAGE, ErrorMessageKey.INVALID_NEW_PASSWORD);
+                requestContent.putAttribute(ERR_MESSAGE, INVALID_NEW_PASSWORD);
             }
             if (!repeatedPassword.equals(newPassword) && isValid) {
                 isValid = false;
-                requestContent.putAttribute(AttributeName.ERR_MESSAGE, ErrorMessageKey.PASSWORDS_NOT_EQUAL);
+                requestContent.putAttribute(ERR_MESSAGE, PASSWORDS_NOT_EQUAL);
             }
             if (isValid) {
                 User user = userService.findUserById(userId);
@@ -52,16 +55,16 @@ public class ChangePassword implements Command {
                     user.setPassword(newPassword);
                     userService.updateUserPassword(user);
                 } else {
-                    requestContent.putAttribute(AttributeName.ERR_MESSAGE, ErrorMessageKey.INVALID_PASSWORD);
+                    requestContent.putAttribute(ERR_MESSAGE, INVALID_PASSWORD);
                 }
-                page = PagePath.PASSWORDS_CHANGED;// TODO: 9/9/2021
+                router = new Router(PagePath.PASSWORDS_CHANGED, FORWARD);// TODO: 9/9/2021
             } else {
-                page = PagePath.PASSWORDS_CHANGED;
+                router = new Router(PagePath.PASSWORDS_CHANGED, FORWARD);// TODO: 9/9/2021
             }
 
         } catch (ServiceException e) {
             throw new CommandException(e);
         }
-        return page;
+        return router;
     }
 }
