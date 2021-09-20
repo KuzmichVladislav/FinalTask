@@ -14,23 +14,6 @@ public class Trainer extends User {
         role = UserRole.TRAINER;
     }
 
-    private Trainer(Builder builder) {
-        setId(builder.id);
-        setRole(builder.role);
-        setLogin(builder.login);
-        setPassword(builder.password);
-        setName(builder.name);
-        setSurname(builder.surname);
-        setMail(builder.mail);
-        setVerification(builder.verification);
-        setPhoto(builder.photo);
-        setRegisterDate(builder.registerDate);
-        setPhone(builder.phone);
-        setMail(builder.mail);
-        setDescription(builder.description);
-        setExperience(builder.experience);
-    }
-
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("Trainer{");
@@ -46,30 +29,18 @@ public class Trainer extends User {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (!(o instanceof Trainer)) {
-            return false;
-        }
-        if (!super.equals(o)) {
-            return false;
-        }
+        if (this == o) return true;
+        if (!(o instanceof Trainer)) return false;
+        if (!super.equals(o)) return false;
 
         Trainer trainer = (Trainer) o;
 
-        if (getRegisterDate() != null ? !getRegisterDate().equals(trainer.getRegisterDate()) : trainer.getRegisterDate() != null) {
+        if (getRegisterDate() != null ? !getRegisterDate().equals(trainer.getRegisterDate()) : trainer.getRegisterDate() != null)
             return false;
-        }
-        if (getPhone() != null ? !getPhone().equals(trainer.getPhone()) : trainer.getPhone() != null) {
+        if (getPhone() != null ? !getPhone().equals(trainer.getPhone()) : trainer.getPhone() != null) return false;
+        if (getMail() != null ? !getMail().equals(trainer.getMail()) : trainer.getMail() != null) return false;
+        if (getDescription() != null ? !getDescription().equals(trainer.getDescription()) : trainer.getDescription() != null)
             return false;
-        }
-        if (getMail() != null ? !getMail().equals(trainer.getMail()) : trainer.getMail() != null) {
-            return false;
-        }
-        if (getDescription() != null ? !getDescription().equals(trainer.getDescription()) : trainer.getDescription() != null) {
-            return false;
-        }
         return getExperience() != null ? getExperience().equals(trainer.getExperience()) : trainer.getExperience() == null;
     }
 
@@ -82,6 +53,23 @@ public class Trainer extends User {
         result = 31 * result + (getDescription() != null ? getDescription().hashCode() : 0);
         result = 31 * result + (getExperience() != null ? getExperience().hashCode() : 0);
         return result;
+    }
+
+    private Trainer(Builder builder) {
+        setId(builder.id);
+        setRole(builder.role);
+        setLogin(builder.login);
+        setPassword(builder.password);
+        setName(builder.name);
+        setSurname(builder.surname);
+        setMail(builder.mail);
+        setVerification(builder.verification);
+        setPhoto(builder.photo);
+        setRegisterDate(builder.registerDate);
+        setPhone(builder.phone);
+        setMail(builder.mail);
+        setDescription(builder.description);
+        setExperience(builder.experience);
     }
 
     public LocalDateTime getRegisterDate() {

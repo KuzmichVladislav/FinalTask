@@ -1,7 +1,9 @@
 package com.company.gum._main;
 
+import com.company.gum.entity.Order;
+
+import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.time.Period;
 
 public class Main {
 
@@ -22,19 +24,20 @@ public class Main {
         //client_id, trainer_id, review, start_order_date, end_order_date, price
         //"UPDATE orders SET client_id = IFNULL(?, client_id), trainer_id = IFNULL(?, trainer_id), exercises = IFNULL(?, exercises), nutrition = IFNULL(?, nutrition), start_order_date = IFNULL(?, start_order_date), end_order_date = IFNULL(?, end_order_date), price = IFNULL(?, price), client_comment = IFNULL(?, client_comment), order_status = IFNULL(?, order_status), is_active = IFNULL(?, is_active) WHERE id = ?";
 
-        /*Order order = new Order();
+        Order order = new Order();
         order.setId(1);
         order.setClientId(13);
         order.setTrainerId(14);
         order.setExercises("some exc.........");
         order.setNutrition("some nutrition....");
-        order.setOrderStatus(OrderStatus.ACCEPTED);
+        order.setOrderStatus(Order.OrderStatus.REVIEWED);
         order.setActive(true);
-
         order.setClientComment("Hi all");
         order.setStartDate(LocalDate.of(2021,1,1));
         order.setEndDate(LocalDate.of(2021,2,2));
-        order.setPrice(new BigDecimal(1000));*/
+        order.setPrice(new BigDecimal(1000));
+
+        System.out.println(order.getOrderStatus().ordinal());
 
  /*Comment comment = new Comment();
         comment.setCommentText("hi!!!!");
@@ -83,11 +86,11 @@ public class Main {
 //        System.out.println(client);
 //
 
-        LocalDate start = LocalDate.parse("2020-09-18");
-        LocalDate end = LocalDate.now();
-        Period period = Period.between(start, end);
-        System.out.println(period.getYears());      // 4
-        System.out.println(period.getMonths());     // 1
-        System.out.println(period.getDays());       // 5
+//        LocalDate start = LocalDate.parse("2020-09-18");
+//        LocalDate end = LocalDate.now();
+//        Period period = Period.between(start, end);
+//        System.out.println(period.getYears());      // 4
+//        System.out.println(period.getMonths());     // 1
+//        System.out.println(period.getDays());       // 5
     }
 }

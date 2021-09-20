@@ -4,7 +4,7 @@ public class Validator {
 
     private static final String LOGIN_REGEX = "^[\\w_]{3,16}$";
     private static final String PASSWORD_REGEX = "^[\\w_]{6,18}$";
-    private static final String NAME_SURNAME_REGEX = "^[\\p{IsAlphabetic}\\-]{3,20}$";
+    private static final String NAME_SURNAME_REGEX = "^[\\p{IsAlphabetic}\\-]{2,20}$";
     private static final String PHONE_REGEX = "^\\+?\\d{7,20}$";
     private static final String MAIL_REGEX = "^([\\w_\\.-]+)@([\\w_\\.-]+)\\.([a-z\\.]{2,6})$";
     private static final String MONEY_REGEX = "^[0-9]{1,3}(\\.[0-9]{1,2})?$";

@@ -193,7 +193,7 @@ public class OrderDaoImpl implements OrderDao {
             statement.setDate(4, Date.valueOf(order.getStartDate()));
             statement.setDate(5, Date.valueOf(order.getEndDate()));
             statement.setBigDecimal(6, order.getPrice());
-            statement.setString(7, "Please wait, your order is still being processed.");
+            statement.setString(7, "Please wait, your order is still being processed.");// FIXME: 9/20/2021
             statement.setString(8, "Please wait, your order is still being processed.");
             statement.execute();
 

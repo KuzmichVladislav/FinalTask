@@ -28,7 +28,7 @@ public class ChangePassword implements Command {
         boolean isValid = true;
 
         try {
-            Integer clientId = Integer.parseInt(requestContent.getParameterByName(AttributeName.USER_ID).strip());
+            Integer userId = Integer.parseInt(requestContent.getParameterByName(AttributeName.USER_ID).strip());
             String currentPassword = requestContent.getParameterByName(AttributeName.CURRENT_PASSWORD).strip();
             String newPassword = requestContent.getParameterByName(AttributeName.NEW_PASSWORD).strip();
             String repeatedPassword = requestContent.getParameterByName(AttributeName.REPEAT_PASSWORD).strip();
@@ -46,18 +46,17 @@ public class ChangePassword implements Command {
                 requestContent.putAttribute(AttributeName.ERR_MESSAGE, ErrorMessageKey.PASSWORDS_NOT_EQUAL);
             }
             if (isValid) {
-                User user = userService.findUserById(clientId);
+                User user = userService.findUserById(userId);
                 currentPassword = JBCryptPasswordEncoder.encode(currentPassword);
                 if (currentPassword.equals(user.getPassword())) {
                     user.setPassword(newPassword);
                     userService.updateUserPassword(user);
-                    page = PagePath.CLIENT_PROFILE;// TODO: 9/9/2021
                 } else {
                     requestContent.putAttribute(AttributeName.ERR_MESSAGE, ErrorMessageKey.INVALID_PASSWORD);
-                    page = PagePath.CLIENT_PROFILE;
                 }
+                page = PagePath.PASSWORDS_CHANGED;// TODO: 9/9/2021
             } else {
-                page = PagePath.CLIENT_PROFILE;
+                page = PagePath.PASSWORDS_CHANGED;
             }
 
         } catch (ServiceException e) {

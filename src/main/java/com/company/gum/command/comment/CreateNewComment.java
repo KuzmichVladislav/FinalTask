@@ -27,7 +27,6 @@ public class CreateNewComment implements Command {
             comment.setCommentText(commentText);
 
             commentService.createComment(comment);
-            System.out.println(comment);
             page = PagePath.COMMENT_CREATED;
         } catch (ServiceException e) {
             throw new CommandException(e);

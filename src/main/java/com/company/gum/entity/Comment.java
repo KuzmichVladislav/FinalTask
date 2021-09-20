@@ -82,57 +82,48 @@ public class Comment extends AbstractEntity {
         this.commentText = commentText;
     }
 
+    public Boolean getActive() {
+        return active;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
+    }
+
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("Comment{");
         sb.append("userId=").append(userId);
         sb.append(", userName='").append(userName).append('\'');
         sb.append(", userSurname='").append(userSurname).append('\'');
-        sb.append(", photo=").append(Arrays.toString(photo));
         sb.append(", commentDate=").append(commentDate);
         sb.append(", commentText='").append(commentText).append('\'');
         sb.append(", active=").append(active);
-        sb.append(", base64Image='").append(base64Image).append('\'');
         sb.append('}');
         return sb.toString();
     }
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (!(o instanceof Comment)) {
-            return false;
-        }
-        if (!super.equals(o)) {
-            return false;
-        }
+        if (this == o) return true;
+        if (!(o instanceof Comment)) return false;
+        if (!super.equals(o)) return false;
 
         Comment comment = (Comment) o;
 
-        if (getUserId() != null ? !getUserId().equals(comment.getUserId()) : comment.getUserId() != null) {
+        if (getUserId() != null ? !getUserId().equals(comment.getUserId()) : comment.getUserId() != null) return false;
+        if (getUserName() != null ? !getUserName().equals(comment.getUserName()) : comment.getUserName() != null)
             return false;
-        }
-        if (getUserName() != null ? !getUserName().equals(comment.getUserName()) : comment.getUserName() != null) {
+        if (getUserSurname() != null ? !getUserSurname().equals(comment.getUserSurname()) : comment.getUserSurname() != null)
             return false;
-        }
-        if (getUserSurname() != null ? !getUserSurname().equals(comment.getUserSurname()) : comment.getUserSurname() != null) {
+        if (!Arrays.equals(getPhoto(), comment.getPhoto())) return false;
+        if (getBase64Image() != null ? !getBase64Image().equals(comment.getBase64Image()) : comment.getBase64Image() != null)
             return false;
-        }
-        if (!Arrays.equals(getPhoto(), comment.getPhoto())) {
+        if (getCommentDate() != null ? !getCommentDate().equals(comment.getCommentDate()) : comment.getCommentDate() != null)
             return false;
-        }
-        if (getCommentDate() != null ? !getCommentDate().equals(comment.getCommentDate()) : comment.getCommentDate() != null) {
+        if (getCommentText() != null ? !getCommentText().equals(comment.getCommentText()) : comment.getCommentText() != null)
             return false;
-        }
-        if (getCommentText() != null ? !getCommentText().equals(comment.getCommentText()) : comment.getCommentText() != null) {
-            return false;
-        }
-        if (getActive() != null ? !getActive().equals(comment.getActive()) : comment.getActive() != null) {
-            return false;
-        }
-        return getBase64Image() != null ? getBase64Image().equals(comment.getBase64Image()) : comment.getBase64Image() == null;
+        return getActive() != null ? getActive().equals(comment.getActive()) : comment.getActive() == null;
     }
 
     @Override
@@ -142,19 +133,11 @@ public class Comment extends AbstractEntity {
         result = 31 * result + (getUserName() != null ? getUserName().hashCode() : 0);
         result = 31 * result + (getUserSurname() != null ? getUserSurname().hashCode() : 0);
         result = 31 * result + Arrays.hashCode(getPhoto());
+        result = 31 * result + (getBase64Image() != null ? getBase64Image().hashCode() : 0);
         result = 31 * result + (getCommentDate() != null ? getCommentDate().hashCode() : 0);
         result = 31 * result + (getCommentText() != null ? getCommentText().hashCode() : 0);
         result = 31 * result + (getActive() != null ? getActive().hashCode() : 0);
-        result = 31 * result + (getBase64Image() != null ? getBase64Image().hashCode() : 0);
         return result;
-    }
-
-    public Boolean getActive() {
-        return active;
-    }
-
-    public void setActive(Boolean active) {
-        this.active = active;
     }
 
     /**

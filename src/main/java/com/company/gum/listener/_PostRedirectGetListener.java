@@ -1,3 +1,4 @@
+/*
 package com.company.gum.listener;
 
 import javax.faces.FacesException;
@@ -15,6 +16,7 @@ import java.io.IOException;
 import java.util.*;
 import java.util.Map.Entry;
 
+*/
 /**
  * Implement the POST-Redirect-GET pattern for JSF.
  * <p>
@@ -29,7 +31,8 @@ import java.util.Map.Entry;
  *
  * @author BalusC
  * @link http://balusc.blogspot.com/2007/03/post-redirect-get-pattern.html
- */
+ *//*
+
 public class PostRedirectGetListener implements PhaseListener {
 
     // Init ---------------------------------------------------------------------------------------
@@ -39,19 +42,23 @@ public class PostRedirectGetListener implements PhaseListener {
     private static final String ALL_UIINPUT_VALUES_ID = "PostRedirectGetListener.allUIInputValues";
 
     // Actions ------------------------------------------------------------------------------------
-    /**
+    */
+/**
      * @see javax.faces.event.PhaseListener#getPhaseId()
-     */
+     *//*
+
     public PhaseId getPhaseId() {
 
         // Only listen during the render response phase.
         return PhaseId.RENDER_RESPONSE;
     }
 
-    /**
+    */
+/**
      * @see
      * javax.faces.event.PhaseListener#beforePhase(javax.faces.event.PhaseEvent)
-     */
+     *//*
+
     public void beforePhase(PhaseEvent event) {
 
         // Prepare.
@@ -86,16 +93,19 @@ public class PostRedirectGetListener implements PhaseListener {
         }
     }
 
-    /**
+    */
+/**
      * @see
      * javax.faces.event.PhaseListener#afterPhase(javax.faces.event.PhaseEvent)
-     */
+     *//*
+
     public void afterPhase(PhaseEvent event) {
         // Do nothing.
     }
 
     // Helpers ------------------------------------------------------------------------------------
-    /**
+    */
+/**
      * Save the current viewroot of the given facescontext in session. This is
      * important in JSF 1.2, because the viewroot would be lost in the new GET
      * request and will only be created during the afterPhase of
@@ -104,20 +114,23 @@ public class PostRedirectGetListener implements PhaseListener {
      * first ourselves.
      *
      * @param facesContext The involved facescontext.
-     */
+     *//*
+
     private static void saveViewRoot(FacesContext facesContext) {
         UIViewRoot savedViewRoot = facesContext.getViewRoot();
         facesContext.getExternalContext().getSessionMap()
                 .put(SAVED_VIEW_ROOT_ID, savedViewRoot);
     }
 
-    /**
+    */
+/**
      * Save all facesmessages of the given facescontext in session. This is done
      * so because the facesmessages are purely request scoped and would be lost
      * in the new GET request otherwise.
      *
      * @param facesContext The involved facescontext.
-     */
+     *//*
+
     private static void saveFacesMessages(FacesContext facesContext) {
 
         // Prepare the facesmessages holder in the sessionmap. The LinkedHashMap has precedence over
@@ -145,13 +158,15 @@ public class PostRedirectGetListener implements PhaseListener {
         }
     }
 
-    /**
+    */
+/**
      * Save all input values of the given facescontext in session. This is done
      * specific for request scoped beans, because its properties would be lost
      * in the new GET request otherwise.
      *
      * @param facesContext The involved facescontext.
-     */
+     *//*
+
     private static void saveUIInputValues(FacesContext facesContext) {
 
         // Prepare the input values holder in sessionmap.
@@ -163,12 +178,14 @@ public class PostRedirectGetListener implements PhaseListener {
         saveUIInputValues(facesContext, facesContext.getViewRoot().getChildren(), allUIInputValues);
     }
 
-    /**
+    */
+/**
      * A recursive method to save all input values of the given facescontext in
      * session.
      *
      * @param facesContext The involved facescontext.
-     */
+     *//*
+
     private static void saveUIInputValues(
             FacesContext facesContext, List<UIComponent> components, Map<String, Object> allUIInputValues) {
         // Walk through the components and if it is an instance of UIInput, then save the value.
@@ -183,11 +200,13 @@ public class PostRedirectGetListener implements PhaseListener {
         }
     }
 
-    /**
+    */
+/**
      * Invoke a redirect to the same URL as the current action URL.
      *
      * @param facesContext The involved facescontext.
-     */
+     *//*
+
     private static void redirect(FacesContext facesContext) {
 
         // Obtain the action URL of the current view.
@@ -203,11 +222,13 @@ public class PostRedirectGetListener implements PhaseListener {
         }
     }
 
-    /**
+    */
+/**
      * Restore any viewroot from session in the given facescontext.
      *
      * @param facesContext The involved FacesContext.
-     */
+     *//*
+
     private static void restoreViewRoot(FacesContext facesContext) {
 
         // Remove the saved viewroot from session.
@@ -217,11 +238,13 @@ public class PostRedirectGetListener implements PhaseListener {
         facesContext.setViewRoot(savedViewRoot);
     }
 
-    /**
+    */
+/**
      * Restore any facesmessages from session in the given FacesContext.
      *
      * @param facesContext The involved FacesContext.
-     */
+     *//*
+
     @SuppressWarnings("unchecked")
     private static void restoreFacesMessages(FacesContext facesContext) {
 
@@ -236,11 +259,13 @@ public class PostRedirectGetListener implements PhaseListener {
         }
     }
 
-    /**
+    */
+/**
      * Restore any input values from session in the given FacesContext.
      *
      * @param facesContext The involved FacesContext.
-     */
+     *//*
+
     @SuppressWarnings("unchecked")
     private static void restoreUIInputValues(FacesContext facesContext) {
 
@@ -255,3 +280,4 @@ public class PostRedirectGetListener implements PhaseListener {
     }
 
 }
+*/

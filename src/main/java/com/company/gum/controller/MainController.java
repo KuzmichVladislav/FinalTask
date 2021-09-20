@@ -45,7 +45,7 @@ public class MainController extends HttpServlet {
             page = command.execute(content);
             content.insertAttributes(req);
             if ("POST".equals(req.getMethod())) {
-                resp.sendRedirect(page);
+                resp.sendRedirect(page);// FIXME: 9/20/2021 
             } else {
                 RequestDispatcher rd = req.getRequestDispatcher(page);
                 rd.forward(req, resp);

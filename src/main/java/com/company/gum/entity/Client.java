@@ -2,6 +2,7 @@ package com.company.gum.entity;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.Arrays;
 
 public class Client extends User {
 
@@ -275,6 +276,73 @@ public class Client extends User {
         public Builder isActive(boolean val) {
             isActive = val;
             return this;
+        }
+
+        @Override
+        public String toString() {
+            final StringBuilder sb = new StringBuilder("Builder{");
+            sb.append("id=").append(id);
+            sb.append(", role=").append(role);
+            sb.append(", login='").append(login).append('\'');
+            sb.append(", password='").append(password).append('\'');
+            sb.append(", name='").append(name).append('\'');
+            sb.append(", surname='").append(surname).append('\'');
+            sb.append(", mail='").append(mail).append('\'');
+            sb.append(", verification=").append(verification);
+            sb.append(", registerDate=").append(registerDate);
+            sb.append(", discount=").append(discount);
+            sb.append(", discountLevel=").append(discountLevel);
+            sb.append(", phone='").append(phone).append('\'');
+            sb.append(", money=").append(money);
+            sb.append(", isActive=").append(isActive);
+            sb.append('}');
+            return sb.toString();
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (!(o instanceof Builder)) return false;
+
+            Builder builder = (Builder) o;
+
+            if (verification != builder.verification) return false;
+            if (isActive != builder.isActive) return false;
+            if (id != null ? !id.equals(builder.id) : builder.id != null) return false;
+            if (role != builder.role) return false;
+            if (login != null ? !login.equals(builder.login) : builder.login != null) return false;
+            if (password != null ? !password.equals(builder.password) : builder.password != null) return false;
+            if (name != null ? !name.equals(builder.name) : builder.name != null) return false;
+            if (surname != null ? !surname.equals(builder.surname) : builder.surname != null) return false;
+            if (mail != null ? !mail.equals(builder.mail) : builder.mail != null) return false;
+            if (!Arrays.equals(photo, builder.photo)) return false;
+            if (registerDate != null ? !registerDate.equals(builder.registerDate) : builder.registerDate != null)
+                return false;
+            if (discount != null ? !discount.equals(builder.discount) : builder.discount != null) return false;
+            if (discountLevel != null ? !discountLevel.equals(builder.discountLevel) : builder.discountLevel != null)
+                return false;
+            if (phone != null ? !phone.equals(builder.phone) : builder.phone != null) return false;
+            return money != null ? money.equals(builder.money) : builder.money == null;
+        }
+
+        @Override
+        public int hashCode() {
+            int result = id != null ? id.hashCode() : 0;
+            result = 31 * result + (role != null ? role.hashCode() : 0);
+            result = 31 * result + (login != null ? login.hashCode() : 0);
+            result = 31 * result + (password != null ? password.hashCode() : 0);
+            result = 31 * result + (name != null ? name.hashCode() : 0);
+            result = 31 * result + (surname != null ? surname.hashCode() : 0);
+            result = 31 * result + (mail != null ? mail.hashCode() : 0);
+            result = 31 * result + (verification ? 1 : 0);
+            result = 31 * result + Arrays.hashCode(photo);
+            result = 31 * result + (registerDate != null ? registerDate.hashCode() : 0);
+            result = 31 * result + (discount != null ? discount.hashCode() : 0);
+            result = 31 * result + (discountLevel != null ? discountLevel.hashCode() : 0);
+            result = 31 * result + (phone != null ? phone.hashCode() : 0);
+            result = 31 * result + (money != null ? money.hashCode() : 0);
+            result = 31 * result + (isActive ? 1 : 0);
+            return result;
         }
 
         /**

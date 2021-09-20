@@ -121,26 +121,26 @@
                             <div class="modal-body">
                                 <form name="changePasswordForm" action="${pageContext.request.contextPath}/controller"
                                       method="POST">
-                                    <input type="hidden" name="command" value="CHANGE_PASSWORD">
+                                    <input type="hidden" name="command" value="change_password">
                                     <input type="hidden" name="userId" value="${sessionScope.userId}">
 
 
                                     <div class="form-group">
-                                        <label for="input-phone">${currentPassword}</label>
+                                        <label for="input-current-password">${currentPassword}</label>
                                         <input type="password" name="currentPassword" class="form-control"
                                                id="input-current-password"
                                                placeholder="${currentPassword}" value="">
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="input-phone">${newPassword}</label>
+                                        <label for="input-new-password">${newPassword}</label>
                                         <input type="password" name="newPassword" class="form-control"
                                                id="input-new-password"
                                                placeholder="${newPassword}" value="">
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="input-phone">${repeatPassword}</label>
+                                        <label for="input-repeat-password">${repeatPassword}</label>
                                         <input type="password" name="repeatPassword" class="form-control"
                                                id="input-repeat-password"
                                                placeholder="${repeatPassword}" value="">

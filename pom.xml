@@ -9,24 +9,11 @@
     <version>1.0-SNAPSHOT</version>
 
     <properties>
-        <jdk-version>13</jdk-version>
+        <jdk-version>11</jdk-version>
         <sourceEncoding>UTF-8</sourceEncoding>
         <outputEncoding>UTF-8</outputEncoding>
     </properties>
 
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.1</version>
-                <configuration>
-                    <source>${jdk-version}</source>
-                    <target>${jdk-version}</target>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
     <dependencies>
         <dependency>
             <groupId>mysql</groupId>
