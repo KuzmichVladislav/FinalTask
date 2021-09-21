@@ -20,7 +20,7 @@
         <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <meta http-equiv="refresh"
-              content="5;${pageContext.request.contextPath}/controller?command=find_all_active_comments">
+              content="5;${pageContext.request.contextPath}/controller?command=show_all_active_comments">
     </head>
 
     <body>

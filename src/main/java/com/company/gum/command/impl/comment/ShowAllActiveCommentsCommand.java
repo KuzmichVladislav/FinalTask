@@ -16,7 +16,7 @@ import java.util.List;
 import static com.company.gum.command.AttributeName.COMMENTS;
 import static com.company.gum.command.Router.RouterType.FORWARD;
 
-public class FindAllActiveCommentsCommand implements Command {
+public class ShowAllActiveCommentsCommand implements Command {
 
     private CommentService commentService = CommentServiceImpl.getInstance();
 

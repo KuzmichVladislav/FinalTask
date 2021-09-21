@@ -21,14 +21,7 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <meta http-equiv="refresh"
           content="5;${pageContext.request.contextPath}/jsp/pages/client/profile.jsp">
-    <!– Disable F5 –>
-    <script type=“text/javascript”>
-    window.onload = function () {
-        document.onkeydown = function (e) {
-            return (e.which || e.keyCode) != 116;
-        };
-    }
-    </script>
+
 </head>
 
 <body>

@@ -18,6 +18,7 @@ public class PagePath {
     public static final String COMMENT_CREATED = "jsp/pages/comment_created.jsp";
     public static final String ORDER_DELETED_BY_CLIENT = "jsp/pages/client/order_deleted_by_client.jsp";
     public static final String CLIENT_ORDERS = "jsp/pages/client/client_orders.jsp";
+    public static final String TRAINER_ORDERS = "jsp/pages/trainer/trainer_orders.jsp";
     public static final String CLIENT_ORDER_DETAIL = "jsp/pages/client/client_order_detail.jsp";
     public static final String COMMENTS = "jsp/pages/comments.jsp";
     public static final String COMMENT_DELETED = "jsp/pages/comment_deleted.jsp";
@@ -27,6 +28,7 @@ public class PagePath {
     public static final String TRAINER_PROFILE = "jsp/pages/trainer/profile.jsp";
     public static final String PASSWORDS_CHANGED = "jsp/pages/password_changed.jsp";
     public static final String CHANGE_PASSWORD = "jsp/pages/change_password.jsp";
+    public static final String TRAINER_ORDER_DETAIL = "jsp/pages/trainer/trainer_order_detail.jsp";
 
     private PagePath() {
     }

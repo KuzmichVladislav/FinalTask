@@ -74,7 +74,7 @@
                         <img src="${sessionScope.userPhoto}"/>
                 </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-6" style="max-width:42%;">
                 <div class="profile-head">
                     <h5>
                         ${sessionScope.userName} ${sessionScope.userLastName}
@@ -108,7 +108,7 @@
                 <div class="profile-work">
                     <p>${workLinks}</p>
                     <a href="${pageContext.request.contextPath}/controller?command=new_order">${newOrder}</a>
-                    <a href="${pageContext.request.contextPath}/controller?command=find_all_orders_by_client">${myOrder}</a><br/>
+                    <a href="${pageContext.request.contextPath}/controller?command=show_all_orders_by_client">${myOrder}</a><br/>
                     <a href="${pageContext.request.contextPath}/jsp/pages/client/refill_money.jsp">${moneyRefill}</a><br/>
                     <a href="">Bootply Profile</a>
                     <p>SKILLS</p>

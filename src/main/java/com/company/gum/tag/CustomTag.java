@@ -14,10 +14,10 @@ public class CustomTag extends TagSupport {
     public int doStartTag() throws JspException {
         JspWriter out = pageContext.getOut();
         try {
-            out.write("<table border='1'>");
+            out.write("<table style=\"width: auto;\">");
+            out.write("<th>");
             for (Order order : (List<Order>) pageContext.getRequest().getAttribute("orders")) {
-                out.write("<table class=\"table table-striped\" border='1'>");
-
+                out.write("<table class=\"table table-striped\" border=\"1\" style=\"width:max-content; max-width:max-content;\">");
                 out.write("<tr>");
                 out.write("<th>${registerDate}</th>");
                 out.write("<th>${trainerFio}</th>");
@@ -32,28 +32,23 @@ public class CustomTag extends TagSupport {
                 out.write("<td>" + order.getEndDate() + "</td>");
                 out.write("<td>" + order.getOrderStatus() + "</td>");
                 out.write("</tr>");
+
                 out.write("<tr>");
                 out.write("<td colspan=\"5\">");
 
-                if (order.getOrderStatus() == Order.OrderStatus.REVIEWED) {
-                    out.write("<a href=\"controller?command=CLIENT_SHOW_UPDATED_ORDER&orderId=" + order.getId() + "\"><button class=\"btn btn-sm btn-outline-primary w-100\">${Response}</button></a>");
-                } else {
-                    out.write("<a href=\"controller?command=CLIENT_ORDER_DETAIL&orderId=" + order.getId() + "\"><button class=\"btn btn-sm btn-outline-primary w-100\">${Detail}</button></a>");
-                }
+                out.write("<a href=\"controller?command=SHOW_ORDER_BY_CLIENT&orderId=" + order.getId() + "\"><button class=\"btn btn-sm btn-outline-primary w-100\">${Detail}</button></a>");
+
                 if (order.getOrderStatus() == Order.OrderStatus.NEW
                         || order.getOrderStatus() == Order.OrderStatus.REVIEWED
                         || order.getOrderStatus() == Order.OrderStatus.REJECTED) {
                     out.write("<a href=\"controller?command=DELETE_ORDER_BY_CLIENT&orderId=" + order.getId() + "\"><button class=\"btn btn-sm btn-outline-primary w-100\">${Delete}</button></a>");
                 }
-
                 out.write("</td>");
 
                 out.write("</tr>");
-
-                out.write("</table>");
-
-                out.write("<hr>");
             }
+            out.write("</table>");
+            out.write("</th>");
             out.write("</table>");
         } catch (IOException e) {
             e.printStackTrace();

@@ -8,20 +8,20 @@
 
 <error-page>
 	<error-code>404</error-code>
-	<location>/web/jsp/pages/error/error404.jsp</location>
+	<location>/jsp/pages/error/error404.jsp</location>
 </error-page>
 <error-page>
 	<error-code>500</error-code>
-	<location>/web/jsp/pages/error/error500.jsp</location>
+	<location>/jsp/pages/error/error500.jsp</location>
 </error-page>
 <error-page>
 	<exception-type>java.lang.Exception</exception-type>
-	<location>/web/jsp/pages/error/error.jsp</location>
+	<location>/jsp/pages/error/error.jsp</location>
 </error-page>
 <jsp-config>
 	<taglib>
 		<taglib-uri>customtags</taglib-uri>
-		<taglib-location>/web/WEB-INF/tld/custom.tld</taglib-location>
+		<taglib-location>/WEB-INF/tld/custom.tld</taglib-location>
 	</taglib>
 </jsp-config>
 

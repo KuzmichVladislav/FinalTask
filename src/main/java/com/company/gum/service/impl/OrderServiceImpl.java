@@ -82,7 +82,13 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public List<Order> findActiveOrderByTrainer(int trainerId) throws ServiceException {
-        return null;
+        List<Order> orders;
+        try {
+            orders = orderDao.findActiveOrderByTrainer(trainerId);
+        } catch (DaoException e) {
+            throw new ServiceException(e);
+        }
+        return orders;
     }
 
     @Override

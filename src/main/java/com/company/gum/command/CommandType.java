@@ -8,14 +8,12 @@ import com.company.gum.command.impl.client.RefillMoneyCommand;
 import com.company.gum.command.impl.comment.CreateNewCommentCommand;
 import com.company.gum.command.impl.comment.DeleteCommentCommand;
 import com.company.gum.command.impl.comment.EditCommentCommand;
-import com.company.gum.command.impl.comment.FindAllActiveCommentsCommand;
-import com.company.gum.command.impl.order.ClientOrderDetailCommand;
-import com.company.gum.command.impl.order.CreateOrderCommand;
-import com.company.gum.command.impl.order.DeleteOrderByClientCommand;
-import com.company.gum.command.impl.order.FindAllOrdersByClientCommand;
+import com.company.gum.command.impl.comment.ShowAllActiveCommentsCommand;
+import com.company.gum.command.impl.order.*;
 import com.company.gum.command.impl.trainer.EditDescriptionCommand;
 import com.company.gum.command.impl.trainer.EditExperienceCommand;
 import com.company.gum.command.impl.trainer.EditTrainerProfileCommand;
+import com.company.gum.command.impl.order.showOrderByTrainerCommand;
 
 public enum CommandType {
 
@@ -30,10 +28,12 @@ public enum CommandType {
     NEW_ORDER(new NewOrderCommand()),
     CREATE_NEW_ORDER(new CreateOrderCommand()),
     DELETE_ORDER_BY_CLIENT(new DeleteOrderByClientCommand()),
-    FIND_ALL_ORDERS_BY_CLIENT(new FindAllOrdersByClientCommand()),
-    CLIENT_ORDER_DETAIL(new ClientOrderDetailCommand()),
+    SHOW_ALL_ORDERS_BY_CLIENT(new ShowAllOrdersByClientCommand()),
+    SHOW_ALL_ORDERS_BY_TRAINER(new ShowAllOrdersByTrainerCommand()),
+    SHOW_ORDER_BY_CLIENT(new showOrderByClientCommand()),
+    SHOW_ORDER_BY_TRAINER(new showOrderByTrainerCommand()),
     CREATE_NEW_COMMENT(new CreateNewCommentCommand()),
-    FIND_ALL_ACTIVE_COMMENTS(new FindAllActiveCommentsCommand()),
+    SHOW_ALL_ACTIVE_COMMENTS(new ShowAllActiveCommentsCommand()),
     DELETE_COMMENT(new DeleteCommentCommand()),
     EDIT_COMMENT(new EditCommentCommand()),
     REFILL_MONEY(new RefillMoneyCommand()),

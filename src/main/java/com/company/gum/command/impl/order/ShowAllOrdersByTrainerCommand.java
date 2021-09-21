@@ -10,11 +10,13 @@ import com.company.gum.exception.ServiceException;
 import com.company.gum.service.OrderService;
 import com.company.gum.service.impl.OrderServiceImpl;
 
-import static com.company.gum.command.AttributeName.ORDER;
-import static com.company.gum.command.AttributeName.ORDER_ID;
+import java.util.List;
+
+import static com.company.gum.command.AttributeName.ORDERS;
+import static com.company.gum.command.AttributeName.USER_ID;
 import static com.company.gum.command.Router.RouterType.FORWARD;
 
-public class ClientOrderDetailCommand implements Command {
+public class ShowAllOrdersByTrainerCommand implements Command {
 
     private OrderService orderService = OrderServiceImpl.getInstance();
 
@@ -22,10 +24,11 @@ public class ClientOrderDetailCommand implements Command {
     public Router execute(SessionRequestContent requestContent) throws CommandException {
         Router router;
         try {
-            int orderId = Integer.parseInt(requestContent.getParameterByName(ORDER_ID));
-            Order order = orderService.findOrder(orderId);
-            router = new Router(PagePath.CLIENT_ORDER_DETAIL, FORWARD);
-            requestContent.putAttribute(ORDER, order);
+            int trainerId = (Integer) requestContent.getSessionAttributeByName(USER_ID);
+            List<Order> orders;
+            orders = orderService.findActiveOrderByTrainer(trainerId);
+            router = new Router(PagePath.TRAINER_ORDERS, FORWARD);
+            requestContent.putAttribute(ORDERS, orders);
         } catch (ServiceException e) {
             throw new CommandException(e);
         }

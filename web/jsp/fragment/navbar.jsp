@@ -72,7 +72,7 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link"
-                               href="${pageContext.request.contextPath}/controller?command=find_all_active_comments">Comments</a>
+                               href="${pageContext.request.contextPath}/controller?command=show_all_active_comments">Comments</a>
                         </li>
                     </c:if>
                     <li class="nav-item dropdown">
