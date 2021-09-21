@@ -50,6 +50,17 @@ public class TrainerServiceImpl implements TrainerService {
     }
 
     @Override
+    public boolean editExperience(int trainerId, String experience) throws ServiceException {
+        boolean isEdited;
+        try {
+            isEdited = trainerDao.editExperience(trainerId, experience);
+        } catch (DaoException e) {
+            throw new ServiceException(e);
+        }
+        return isEdited;
+    }
+
+    @Override
     public boolean editTrainer(Trainer trainer) throws ServiceException {
         boolean isEdited;
         try {

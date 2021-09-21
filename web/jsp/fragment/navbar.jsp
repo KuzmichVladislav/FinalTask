@@ -94,7 +94,7 @@
                             <div class="d-flex align-items-center">
                                 <c:choose>
                                     <c:when test="${sessionScope.authorization}">
-                                        <div class="image"><img src="data:image/jpg;base64,${sessionScope.userPhoto}"
+                                        <div class="image"><img src="${sessionScope.userPhoto}"
                                                                 alt="Profile image"
                                                                 class="rounded" width="80">
                                         </div>
@@ -124,8 +124,7 @@
                                         <br>
                                         <div class="button mt-2 d-flex flex-row align-items-center">
                                             <a href="${pageContext.request.contextPath}/jsp/pages/login_sign.jsp">
-                                                <button class="btn btn-sm btn-outline-primary w-100"
-                                                        onclick="">${login}</button>
+                                                <button class="btn btn-sm btn-outline-primary w-100">${login}</button>
                                             </a>
                                             <a href="${pageContext.request.contextPath}/jsp/pages/register.jsp">
                                                 <button class="btn btn-sm btn-primary w-100 ml-2">${register}</button>

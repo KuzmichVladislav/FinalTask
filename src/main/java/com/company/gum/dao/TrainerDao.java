@@ -11,6 +11,8 @@ public interface TrainerDao {
 
     boolean editDescription(int trainerId, String description) throws DaoException;
 
+    boolean editExperience(int trainerId, String experience) throws DaoException;
+
     boolean editTrainer(Trainer trainer) throws DaoException;
 
     Trainer findTrainerById(int trainerId) throws DaoException;

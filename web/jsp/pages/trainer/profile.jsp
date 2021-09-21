@@ -34,9 +34,6 @@
 <fmt:message key="profile.about" bundle="${rb}" var="profileAbout"/>
 <fmt:message key="profile.edit" bundle="${rb}" var="profileEdit"/>
 <fmt:message key="profile.change.password" bundle="${rb}" var="changePassword"/>
-<fmt:message key="profile.current.password" bundle="${rb}" var="currentPassword"/>
-<fmt:message key="profile.new.password" bundle="${rb}" var="newPassword"/>
-<fmt:message key="profile.repeat.password" bundle="${rb}" var="repeatPassword"/>
 <fmt:message key="profile.close" bundle="${rb}" var="close"/>
 <fmt:message key="profile.save.changes" bundle="${rb}" var="saveChanges"/>
 <fmt:message key="profile.work.links" bundle="${rb}" var="workLinks"/>
@@ -77,7 +74,7 @@
             <div class="col-md-4">
 
                 <div class="profile-img">
-                        <img src="data:image/jpg;base64,${sessionScope.userPhoto}"/>
+                        <img src="${sessionScope.userPhoto}"/>
                 </div>
             </div>
             <div class="col-md-6">
@@ -102,66 +99,11 @@
                 </div>
             </div>
             <div class="col-md-2">
-                <!-- Button trigger modal -->
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                    ${changePassword}
-                </button>
-                <!-- Modal -->
-                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
-                     aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">${changePassword}</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <form name="changePasswordForm" action="${pageContext.request.contextPath}/controller"
-                                      method="POST">
-                                    <input type="hidden" name="command" value="CHANGE_PASSWORD">
-                                    <input type="hidden" name="userId" value="${sessionScope.userId}">
-
-
-                                    <div class="form-group">
-                                        <label for="input-phone">${currentPassword}</label>
-                                        <input type="password" name="currentPassword" class="form-control"
-                                               id="input-current-password"
-                                               placeholder="${currentPassword}" value="">
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="input-phone">${newPassword}</label>
-                                        <input type="password" name="newPassword" class="form-control"
-                                               id="input-new-password"
-                                               placeholder="${newPassword}" value="">
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="input-phone">${repeatPassword}</label>
-                                        <input type="password" name="repeatPassword" class="form-control"
-                                               id="input-repeat-password"
-                                               placeholder="${repeatPassword}" value="">
-                                    </div>
-
-                                    <c:if test="${requestScope.errMessage != null}">
-                                        <div class="alert alert-danger">
-                                            <span><fmt:message key="${requestScope.errMessage}"
-                                                               bundle="${err_rb}"/></span>
-                                        </div>
-                                    </c:if>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">${close}
-                                        </button>
-                                        <button type="submit" class="btn btn-primary">${saveChanges}</button>
-                                    </div>
-                                </form>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
+                <a href="${pageContext.request.contextPath}/jsp/pages/change_password.jsp">
+                    <button type="button" class="btn btn-primary">
+                        ${changePassword}
+                    </button>
+                </a>
             </div>
         </div>
         <div class="row">
@@ -410,7 +352,7 @@
                                             </div>
                                             <form name="loginForm"
                                                   action="${pageContext.request.contextPath}/controller" method="POST">
-                                                <input type="hidden" name="command" value="EDIT_DESCRIPTION">
+                                                <input type="hidden" name="command" value="EDIT_EXPERIENCE">
                                                 <input type="hidden" name="userId" value="${sessionScope.userId}">
 
                                                 <div class="modal-body">

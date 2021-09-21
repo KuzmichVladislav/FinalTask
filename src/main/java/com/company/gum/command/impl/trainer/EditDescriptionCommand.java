@@ -25,10 +25,6 @@ public class EditDescriptionCommand implements Command {
             String description = requestContent.getParameterByName(DESCRIPTION).strip().equals("")
                     ? (String) requestContent.getSessionAttributeByName(DESCRIPTION)
                     : requestContent.getParameterByName(DESCRIPTION).strip().replaceAll("<", "").replaceAll(">", "");
-//            String experience = requestContent.getParameterByName(AttributeName.EXPERIENCE) == null
-//                    && requestContent.getParameterByName(AttributeName.EXPERIENCE).strip().equals("")
-//                    ? (String) requestContent.getSessionAttributeByName(AttributeName.EXPERIENCE)
-//                    : requestContent.getParameterByName(AttributeName.EXPERIENCE).strip().replaceAll("<", "").replaceAll(">", "");
 
             trainerService.editDescription(trainerId, description);
 

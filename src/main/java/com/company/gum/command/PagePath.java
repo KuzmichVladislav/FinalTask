@@ -26,6 +26,7 @@ public class PagePath {
     public static final String REFILL_MONEY = "jsp/pages/client/refill_money.jsp";
     public static final String TRAINER_PROFILE = "jsp/pages/trainer/profile.jsp";
     public static final String PASSWORDS_CHANGED = "jsp/pages/password_changed.jsp";
+    public static final String CHANGE_PASSWORD = "jsp/pages/change_password.jsp";
 
     private PagePath() {
     }

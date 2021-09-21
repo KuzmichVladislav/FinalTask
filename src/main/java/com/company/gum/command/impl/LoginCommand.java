@@ -48,15 +48,16 @@ public class LoginCommand implements Command {
                     requestContent.putSessionAttribute(USER_ID, user.getId());
                     String base64Image;
                     if (user.getPhoto() != null) {
-                        base64Image = Base64.getEncoder().encodeToString(user.getPhoto());
+                        base64Image = "data:image/jpg;base64," + Base64.getEncoder().encodeToString(user.getPhoto());
                     } else {
-                        base64Image = "sorry";// FIXME: 9/18/2021
+                        base64Image = "https://i.ibb.co/mDTmCZn/png-transparent-computer-icons-user-profile-user-avatar-blue-heroes-electric-blue.png";// FIXME: 9/18/2021
                     }
                     requestContent.putSessionAttribute(USER_PHOTO, base64Image);
 
                     switch (user.getRole()) {
                         case ADMIN:
                             Admin admin = adminService.findAdminById(user.getId());
+                            requestContent.putSessionAttribute(USER_LOGIN, admin.getLogin());
                             requestContent.putSessionAttribute(USER_ROLE, admin.getRole().name());
                             requestContent.putSessionAttribute(USER_NAME, admin.getName());
                             requestContent.putSessionAttribute(USER_SURNAME, admin.getSurname());
@@ -65,6 +66,7 @@ public class LoginCommand implements Command {
                             break;
                         case TRAINER:
                             Trainer trainer = trainerService.findTrainerById(user.getId());
+                            requestContent.putSessionAttribute(USER_LOGIN, trainer.getLogin());
                             requestContent.putSessionAttribute(USER_ROLE, trainer.getRole().name());
                             requestContent.putSessionAttribute(USER_NAME, trainer.getName());
                             requestContent.putSessionAttribute(USER_SURNAME, trainer.getSurname());
@@ -82,15 +84,16 @@ public class LoginCommand implements Command {
                             requestContent.putSessionAttribute(USER_NAME, client.getName());
                             requestContent.putSessionAttribute(USER_SURNAME, client.getSurname());
                             requestContent.putSessionAttribute(USER_REGISTER_DATE, client.getRegisterDate());
-                            requestContent.putSessionAttribute(USER_DISCOUNT, client.getDiscount());// TODO: 9/18/2021
-                            requestContent.putSessionAttribute(USER_DISCOUNT_LEVEL, client.getDiscountLevel());// TODO: 9/18/2021
+                            requestContent.putSessionAttribute(USER_DISCOUNT, client.getDiscount());
+                            requestContent.putSessionAttribute(USER_DISCOUNT_LEVEL, client.getDiscountLevel());
                             requestContent.putSessionAttribute(USER_PHONE, client.getPhone());
                             requestContent.putSessionAttribute(USER_MONEY, client.getMoney());
                             requestContent.putSessionAttribute(USER_MAIL, client.getMail());
                             router = new Router(PagePath.WELCOME, REDIRECT);
                             break;
                         default:
-                            throw new CommandException();
+                            throw new CommandException("");
+                            // TODO: 9/21/2021 попытка ввода несуществующего пользователя
                     }
                     requestContent.putSessionAttribute(USER_AUTHORIZATION, true);
                 } else {

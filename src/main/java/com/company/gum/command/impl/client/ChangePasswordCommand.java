@@ -16,6 +16,7 @@ import com.company.gum.util.Validator;
 import static com.company.gum.command.AttributeName.*;
 import static com.company.gum.command.ErrorMessageKey.*;
 import static com.company.gum.command.Router.RouterType.FORWARD;
+import static com.company.gum.command.Router.RouterType.REDIRECT;
 
 public class ChangePasswordCommand implements Command {
 
@@ -30,11 +31,8 @@ public class ChangePasswordCommand implements Command {
         try {
             int userId = (Integer) requestContent.getSessionAttributeByName(AttributeName.USER_ID);
             String currentPassword = requestContent.getParameterByName(CURRENT_PASSWORD).strip();
-            System.out.println(currentPassword);
             String newPassword = requestContent.getParameterByName(NEW_PASSWORD).strip();
-            System.out.println(newPassword);
             String repeatedPassword = requestContent.getParameterByName(REPEAT_PASSWORD).strip();
-            System.out.println(repeatedPassword);
 
             if (!Validator.checkPassword(currentPassword)) {
                 isValid = false;
@@ -54,12 +52,13 @@ public class ChangePasswordCommand implements Command {
                 if (currentPassword.equals(user.getPassword())) {
                     user.setPassword(newPassword);
                     userService.updateUserPassword(user);
+                    router = new Router(PagePath.PASSWORDS_CHANGED, REDIRECT);
                 } else {
                     requestContent.putAttribute(ERR_MESSAGE, INVALID_PASSWORD);
+                    router = new Router(PagePath.CHANGE_PASSWORD, FORWARD);
                 }
-                router = new Router(PagePath.PASSWORDS_CHANGED, FORWARD);// TODO: 9/9/2021
             } else {
-                router = new Router(PagePath.PASSWORDS_CHANGED, FORWARD);// TODO: 9/9/2021
+                router = new Router(PagePath.CHANGE_PASSWORD, FORWARD);
             }
 
         } catch (ServiceException e) {

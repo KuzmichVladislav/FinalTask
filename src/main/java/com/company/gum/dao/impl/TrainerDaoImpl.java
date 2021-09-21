@@ -27,6 +27,10 @@ public class TrainerDaoImpl implements TrainerDao {
             + "SET description  = IFNULL(?, description)\n"
             + "WHERE trainer_id = ?\n";
 
+    private static final String SQL_EDIT_EXPERIENCE = "UPDATE trainers\n"
+            + "SET experience  = IFNULL(?, experience)\n"
+            + "WHERE trainer_id = ?\n";
+
     private static final String SQL_EDIT_TRAINER = "UPDATE trainers, users\n"
             + "SET name  = IFNULL(?, name),\n"
             + "    surname      = IFNULL(?, surname),\n"
@@ -167,7 +171,30 @@ public class TrainerDaoImpl implements TrainerDao {
 
             isEdited = statement.executeUpdate() == 1;
 
-            logger.debug(isEdited ? "Trainer " + trainerId + " was updated" : "Trainer " + trainerId + " was not updated");
+            logger.debug(isEdited ? "Trainer description " + trainerId + " was updated" : "Trainer description " + trainerId + " was not updated");
+
+        } catch (SQLException e) {
+            throw new DaoException(e);
+        }
+        return isEdited;
+    }
+
+    @Override
+    public boolean editExperience(int trainerId, String experience) throws DaoException {
+        boolean isEdited;
+        try (Connection connection = ConnectionPool.getInstance().takeConnection();
+             PreparedStatement statement = connection.prepareStatement(SQL_EDIT_EXPERIENCE)) {
+            if (experience != null) {
+                statement.setString(1, experience);
+            } else {
+                statement.setNull(1, Types.VARCHAR);
+            }
+
+            statement.setInt(2, trainerId);
+
+            isEdited = statement.executeUpdate() == 1;
+
+            logger.debug(isEdited ? "Trainer experience " + trainerId + " was updated" : "Trainer experience " + trainerId + " was not updated");
 
         } catch (SQLException e) {
             throw new DaoException(e);

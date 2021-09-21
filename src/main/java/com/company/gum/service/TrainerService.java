@@ -11,6 +11,8 @@ public interface TrainerService {
 
     boolean editDescription(int trainerId, String description) throws ServiceException;
 
+    boolean editExperience(int trainerId, String experience) throws ServiceException;
+
     boolean editTrainer(Trainer trainer) throws ServiceException;
 
     Trainer findTrainerById(int trainerId) throws ServiceException;

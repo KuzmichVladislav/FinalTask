@@ -14,6 +14,7 @@ import com.company.gum.command.impl.order.CreateOrderCommand;
 import com.company.gum.command.impl.order.DeleteOrderByClientCommand;
 import com.company.gum.command.impl.order.FindAllOrdersByClientCommand;
 import com.company.gum.command.impl.trainer.EditDescriptionCommand;
+import com.company.gum.command.impl.trainer.EditExperienceCommand;
 import com.company.gum.command.impl.trainer.EditTrainerProfileCommand;
 
 public enum CommandType {
@@ -37,7 +38,8 @@ public enum CommandType {
     EDIT_COMMENT(new EditCommentCommand()),
     REFILL_MONEY(new RefillMoneyCommand()),
     EDIT_TRAINER_PROFILE(new EditTrainerProfileCommand()),
-    EDIT_DESCRIPTION(new EditDescriptionCommand());
+    EDIT_DESCRIPTION(new EditDescriptionCommand()),
+    EDIT_EXPERIENCE(new EditExperienceCommand());
 
     private Command command;
 

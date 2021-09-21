@@ -1,21 +1,18 @@
-package com.company.gum.command.impl.client;
+package com.company.gum.command.impl.trainer;
 
 import com.company.gum.command.Command;
 import com.company.gum.command.PagePath;
 import com.company.gum.command.Router;
 import com.company.gum.controller.SessionRequestContent;
-import com.company.gum.entity.Trainer;
 import com.company.gum.exception.CommandException;
 import com.company.gum.exception.ServiceException;
 import com.company.gum.service.TrainerService;
 import com.company.gum.service.impl.TrainerServiceImpl;
 
-import java.util.List;
-
-import static com.company.gum.command.AttributeName.TRAINERS;
+import static com.company.gum.command.AttributeName.*;
 import static com.company.gum.command.Router.RouterType.FORWARD;
 
-public class NewOrderCommand implements Command {
+public class EditExperienceCommand implements Command {
 
     private TrainerService trainerService = TrainerServiceImpl.getInstance();
 
@@ -23,9 +20,15 @@ public class NewOrderCommand implements Command {
     public Router execute(SessionRequestContent requestContent) throws CommandException {
         Router router;
         try {
-            List<Trainer> trainers = trainerService.findAllActiveTrainer();
-            requestContent.putAttribute(TRAINERS, trainers);
-            router = new Router(PagePath.CREATE_ORDER, FORWARD);
+            int trainerId = Integer.parseInt(requestContent.getParameterByName(USER_ID));
+            String experience = requestContent.getParameterByName(EXPERIENCE).strip().equals("")
+                    ? (String) requestContent.getSessionAttributeByName(EXPERIENCE)
+                    : requestContent.getParameterByName(EXPERIENCE).strip().replaceAll("<", "").replaceAll(">", "");
+
+            trainerService.editExperience(trainerId, experience);
+
+            requestContent.putSessionAttribute(EXPERIENCE, experience);
+            router = new Router(PagePath.TRAINER_PROFILE, FORWARD);
         } catch (ServiceException e) {
             throw new CommandException(e);
         }
