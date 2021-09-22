@@ -4,30 +4,33 @@ import com.company.gum.command.Command;
 import com.company.gum.command.PagePath;
 import com.company.gum.command.Router;
 import com.company.gum.controller.SessionRequestContent;
-import com.company.gum.entity.Order;
 import com.company.gum.exception.CommandException;
 import com.company.gum.exception.ServiceException;
 import com.company.gum.service.OrderService;
 import com.company.gum.service.impl.OrderServiceImpl;
 
-import static com.company.gum.command.AttributeName.ORDER;
+import static com.company.gum.command.AttributeName.EXERCISES;
 import static com.company.gum.command.AttributeName.ORDER_ID;
 import static com.company.gum.command.Router.RouterType.FORWARD;
 
-public class showOrderByTrainerCommand implements Command {
+public class EditExercisesCommand implements Command {
+    Router router;
 
-    private OrderService orderService = OrderServiceImpl.getInstance();
+    OrderService orderService = OrderServiceImpl.getInstance();
 
     @Override
     public Router execute(SessionRequestContent requestContent) throws CommandException {
-        Router router;
         try {
             int orderId = Integer.parseInt(requestContent.getParameterByName(ORDER_ID));
-            Order order = orderService.findOrder(orderId);
-            router = new Router(PagePath.TRAINER_ORDER_DETAIL, FORWARD);
-            requestContent.putAttribute(ORDER, order);
+            String exercises = requestContent.getParameterByName(EXERCISES).strip().equals("")
+                    ? (String) requestContent.getSessionAttributeByName(EXERCISES)
+                    : requestContent.getParameterByName(EXERCISES).strip().replaceAll("<", "").replaceAll(">", "");
+
+            orderService.editExercises(orderId, exercises);
+            requestContent.putSessionAttribute(EXERCISES, exercises);//// TODO: 9/22/2021 Не Нужен 
+            router = new Router(PagePath.ORDER_UPDATED, FORWARD);
         } catch (ServiceException e) {
-            throw new CommandException(e);
+            e.printStackTrace();
         }
         return router;
     }

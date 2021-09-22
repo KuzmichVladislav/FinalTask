@@ -42,7 +42,7 @@
                     <div class="row register-form">
                         <div class="col-md-6">
                             <p>${congratulationsMessage}</p>
-                            <a href="${pageContext.request.contextPath}/controller?command=FIND_ALL_ACTIVE_COMMENTS">${comment}</a>
+                            <a href="${pageContext.request.contextPath}/controller?command=SHOW_ALL_ACTIVE_COMMENTS">${comment}</a>
                         </div>
                     </div>
                 </div>

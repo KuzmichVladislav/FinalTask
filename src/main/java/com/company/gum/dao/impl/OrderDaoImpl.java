@@ -10,7 +10,6 @@ import org.apache.logging.log4j.Logger;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 import static com.company.gum.dao.TableColumnName.*;
 
@@ -171,22 +170,32 @@ public class OrderDaoImpl implements OrderDao {
             + "         LEFT JOIN users u2 on o.trainer_id = u2.user_id\n"
             + "WHERE o.is_active = true\n"
             + "  AND o.client_id = ?";
-    private static OrderDaoImpl mInstance;
+    private static final String SQL_EDIT_NUTRITION = "UPDATE orders\n"
+            + "SET nutrition  = IFNULL(?, nutrition)\n"
+            + "WHERE order_id = ?\n";
+    private static final String SQL_EDIT_EXERCISES = "UPDATE orders\n"
+            + "SET exercises  = IFNULL(?, exercises)\n"
+            + "WHERE order_id = ?\n";
+    private static final String SQL_EDIT_ORDER_STATUS = "UPDATE orders\n"
+            + "SET order_status  = IFNULL(?, order_status)\n"
+            + "WHERE order_id = ?\n";
+
+    private static OrderDaoImpl instance;
 
     private OrderDaoImpl() {
     }
 
     public static OrderDaoImpl getInstance() {
-        if (mInstance == null) {
-            mInstance = new OrderDaoImpl();
+        if (instance == null) {
+            instance = new OrderDaoImpl();
         }
-        return mInstance;
+        return instance;
     }
 
     @Override
     public Order createOrder(Order order) throws DaoException {
         try (Connection connection = ConnectionPool.getInstance().takeConnection();
-                PreparedStatement statement = connection.prepareStatement(SQL_CREATE_ORDER, Statement.RETURN_GENERATED_KEYS)) {
+             PreparedStatement statement = connection.prepareStatement(SQL_CREATE_ORDER, Statement.RETURN_GENERATED_KEYS)) {
             statement.setInt(1, order.getClientId());
             statement.setInt(2, order.getTrainerId());
             statement.setString(3, order.getClientComment());
@@ -211,80 +220,81 @@ public class OrderDaoImpl implements OrderDao {
         }
         return order;
     }
-
-    @Override
-    public boolean updateOrder(Order order) throws DaoException {
-        boolean isUpdated;
-
-        try (Connection connection = ConnectionPool.getInstance().takeConnection();
-                PreparedStatement statement = connection.prepareStatement(SQL_UPDATE_QUERY)) {
-            if (order.getClientId() != null) {
-                statement.setInt(1, order.getClientId());
-            } else {
-                statement.setNull(1, Types.INTEGER);
-            }
-            if (order.getTrainerId() != null) {
-                statement.setInt(2, order.getTrainerId());
-            } else {
-                statement.setNull(2, Types.INTEGER);
-            }
-            if (order.getExercises() != null) {
-                statement.setString(3, order.getExercises());
-            } else {
-                statement.setNull(3, Types.VARCHAR);
-            }
-            if (order.getNutrition() != null) {
-                statement.setString(4, order.getNutrition());
-            } else {
-                statement.setNull(4, Types.VARCHAR);
-            }
-            if (order.getStartDate() != null) {
-                statement.setDate(5, Date.valueOf(order.getStartDate()));
-            } else {
-                statement.setNull(5, Types.DATE);
-            }
-            if (order.getEndDate() != null) {
-                statement.setDate(6, Date.valueOf(order.getEndDate()));
-            } else {
-                statement.setNull(6, Types.DATE);
-            }
-            if (order.getPrice() != null) {
-                statement.setBigDecimal(7, order.getPrice());
-            } else {
-                statement.setNull(7, Types.DECIMAL);
-            }
-            if (order.getClientComment() != null) {
-                statement.setString(8, order.getClientComment());
-            } else {
-                statement.setNull(8, Types.VARCHAR);
-            }
-            if (order.getOrderStatus() != null) {
-                statement.setInt(9, order.getOrderStatus().ordinal());
-            } else {
-                statement.setNull(9, Types.INTEGER);
-            }
-            if (order.getActive() != null) {
-                statement.setBoolean(10, order.getActive());
-            } else {
-                statement.setNull(10, Types.INTEGER);
-            }
-            statement.setInt(11, Objects.requireNonNull(order.getId()));
-            isUpdated = statement.executeUpdate() == 1;
-
-            logger.debug(isUpdated ? "Order " + order.getId() + "was updated" : "Order " + order.getId() + "was not updated");
-
-        } catch (SQLException e) {
-            throw new DaoException(e);
-        }
-        return isUpdated;
-
-    }
+//
+//    @Override
+//    public boolean updateOrder(Order order) throws DaoException {
+//        boolean isUpdated;
+//
+//        try (Connection connection = ConnectionPool.getInstance().takeConnection();
+//                PreparedStatement statement = connection.prepareStatement(SQL_UPDATE_QUERY)) {
+//            if (order.getClientId() != null) {
+//                statement.setInt(1, order.getClientId());
+//            } else {
+//                statement.setNull(1, Types.INTEGER);
+//            }
+//            if (order.getTrainerId() != null) {
+//                statement.setInt(2, order.getTrainerId());
+//            } else {
+//                statement.setNull(2, Types.INTEGER);
+//            }
+//            if (order.getExercises() != null) {
+//                statement.setString(3, order.getExercises());
+//            } else {
+//                statement.setNull(3, Types.VARCHAR);
+//            }
+//            if (order.getNutrition() != null) {
+//                statement.setString(4, order.getNutrition());
+//            } else {
+//                statement.setNull(4, Types.VARCHAR);
+//            }
+//            if (order.getStartDate() != null) {
+//                statement.setDate(5, Date.valueOf(order.getStartDate()));
+//            } else {
+//                statement.setNull(5, Types.DATE);
+//            }
+//            if (order.getEndDate() != null) {
+//                statement.setDate(6, Date.valueOf(order.getEndDate()));
+//            } else {
+//                statement.setNull(6, Types.DATE);
+//            }
+//            if (order.getPrice() != null) {
+//                statement.setBigDecimal(7, order.getPrice());
+//            } else {
+//                statement.setNull(7, Types.DECIMAL);
+//            }
+//            if (order.getClientComment() != null) {
+//                statement.setString(8, order.getClientComment());
+//            } else {
+//                statement.setNull(8, Types.VARCHAR);
+//            }
+//            if (order.getOrderStatus() != null) {
+//                statement.setInt(9, order.getOrderStatus().ordinal());
+//            } else {
+//                statement.setNull(9, Types.INTEGER);
+//            }
+//            if (order.getActive() != null) {
+//                statement.setBoolean(10, order.getActive());
+//            } else {
+//                statement.setNull(10, Types.INTEGER);
+//            }
+//            statement.setInt(11, Objects.requireNonNull(order.getId()));
+//            isUpdated = statement.executeUpdate() == 1;
+//
+//            logger.debug(isUpdated ? "Order " + order.getId() + "was updated" : "Order " + order.getId() + "was not updated");
+//
+//        } catch (SQLException e) {
+//            throw new DaoException(e);
+//        }
+//        return isUpdated;
+//
+//    }
+// TODO: 9/22/2021 how to use
 
     @Override
     public boolean deleteOrder(int orderId) throws DaoException {
         boolean isDeleted;
         try (Connection connection = ConnectionPool.getInstance().takeConnection();
-                PreparedStatement statement = connection.prepareStatement(SQL_DELETE_ORDER)) {
+             PreparedStatement statement = connection.prepareStatement(SQL_DELETE_ORDER)) {
             statement.setInt(1, orderId);
             isDeleted = statement.execute();
 
@@ -300,7 +310,7 @@ public class OrderDaoImpl implements OrderDao {
     public Order findOrder(int orderId) throws DaoException {
         Order order = null;
         try (Connection connection = ConnectionPool.getInstance().takeConnection();
-                PreparedStatement statement = connection.prepareStatement(SQL_FIND_ORDER)) {
+             PreparedStatement statement = connection.prepareStatement(SQL_FIND_ORDER)) {
             statement.setInt(1, orderId);
             ResultSet resultSet = statement.executeQuery();
 
@@ -321,7 +331,7 @@ public class OrderDaoImpl implements OrderDao {
     public List<Order> findAllOrder() throws DaoException {
         List<Order> result = new ArrayList<>();
         try (Connection connection = ConnectionPool.getInstance().takeConnection();
-                PreparedStatement statement = connection.prepareStatement(SQL_FIND_ALL_ORDER)) {
+             PreparedStatement statement = connection.prepareStatement(SQL_FIND_ALL_ORDER)) {
             ResultSet resultSet = statement.executeQuery();
 
             while (resultSet.next()) {
@@ -340,7 +350,7 @@ public class OrderDaoImpl implements OrderDao {
 
         List<Order> result = new ArrayList<>();
         try (Connection connection = ConnectionPool.getInstance().takeConnection();
-                PreparedStatement statement = connection.prepareStatement(SQL_FIND_ALL_ORDER_WITH_FILTER)) {
+             PreparedStatement statement = connection.prepareStatement(SQL_FIND_ALL_ORDER_WITH_FILTER)) {
             if (filter.getClientId() != null) {
                 statement.setInt(1, filter.getClientId());
             } else {
@@ -417,7 +427,7 @@ public class OrderDaoImpl implements OrderDao {
         List<Order> result = new ArrayList<>();
 
         try (Connection connection = ConnectionPool.getInstance().takeConnection();
-                PreparedStatement statement = connection.prepareStatement(SQL_FIND_ALL_ACTIVE_ORDER)) {
+             PreparedStatement statement = connection.prepareStatement(SQL_FIND_ALL_ACTIVE_ORDER)) {
             ResultSet resultSet = statement.executeQuery();
 
             while (resultSet.next()) {
@@ -435,7 +445,7 @@ public class OrderDaoImpl implements OrderDao {
     public List<Order> findActiveOrderByTrainer(int trainerId) throws DaoException {
         List<Order> result = new ArrayList<>();
         try (Connection connection = ConnectionPool.getInstance().takeConnection();
-                PreparedStatement statement = connection.prepareStatement(SQL_FIND_ALL_ACTIVE_ORDER_BY_TRAINER)) {
+             PreparedStatement statement = connection.prepareStatement(SQL_FIND_ALL_ACTIVE_ORDER_BY_TRAINER)) {
             statement.setInt(1, trainerId);
 
             ResultSet resultSet = statement.executeQuery();
@@ -455,7 +465,7 @@ public class OrderDaoImpl implements OrderDao {
     public List<Order> findActiveOrderByClient(int clientId) throws DaoException {
         List<Order> result = new ArrayList<>();
         try (Connection connection = ConnectionPool.getInstance().takeConnection();
-                PreparedStatement statement = connection.prepareStatement(SQL_FIND_ALL_ACTIVE_ORDER_BY_CLIENT)) {
+             PreparedStatement statement = connection.prepareStatement(SQL_FIND_ALL_ACTIVE_ORDER_BY_CLIENT)) {
             statement.setInt(1, clientId);
 
             ResultSet resultSet = statement.executeQuery();
@@ -469,6 +479,75 @@ public class OrderDaoImpl implements OrderDao {
             throw new DaoException(e);
         }
         return result;
+    }
+
+    @Override
+    public boolean editNutrition(int orderId, String nutrition) throws DaoException {
+        boolean isEdited;
+        try (Connection connection = ConnectionPool.getInstance().takeConnection();
+             PreparedStatement statement = connection.prepareStatement(SQL_EDIT_NUTRITION)) {
+            if (nutrition != null) {
+                statement.setString(1, nutrition);
+            } else {
+                statement.setNull(1, Types.VARCHAR);
+            }
+
+            statement.setInt(2, orderId);
+
+            isEdited = statement.executeUpdate() == 1;
+
+            logger.debug(isEdited ? "Order nutrition " + orderId + " was updated" : "Order nutrition " + orderId + " was not updated");
+
+        } catch (SQLException e) {
+            throw new DaoException(e);
+        }
+        return isEdited;
+    }
+
+    @Override
+    public boolean editExercises(int orderId, String exercises) throws DaoException {
+        boolean isEdited;
+        try (Connection connection = ConnectionPool.getInstance().takeConnection();
+             PreparedStatement statement = connection.prepareStatement(SQL_EDIT_EXERCISES)) {
+            if (exercises != null) {
+                statement.setString(1, exercises);
+            } else {
+                statement.setNull(1, Types.VARCHAR);
+            }
+
+            statement.setInt(2, orderId);
+
+            isEdited = statement.executeUpdate() == 1;
+
+            logger.debug(isEdited ? "Order exercises " + orderId + " was updated" : "Order exercises " + orderId + " was not updated");
+
+        } catch (SQLException e) {
+            throw new DaoException(e);
+        }
+        return isEdited;
+    }
+
+    @Override
+    public boolean editOrderStatus(int orderId, Order.OrderStatus orderStatus) throws DaoException {
+        boolean isEdited;
+        try (Connection connection = ConnectionPool.getInstance().takeConnection();
+             PreparedStatement statement = connection.prepareStatement(SQL_EDIT_ORDER_STATUS)) {
+            if (orderStatus != null) {
+                statement.setInt(1, orderStatus.ordinal() + 1);
+            } else {
+                statement.setNull(1, Types.INTEGER);
+            }
+
+            statement.setInt(2, orderId);
+
+            isEdited = statement.executeUpdate() == 1;
+
+            logger.debug(isEdited ? "Order status " + orderId + " was updated" : "Order status " + orderId + " was not updated");
+
+        } catch (SQLException e) {
+            throw new DaoException(e);
+        }
+        return isEdited;
     }
 
     private Order getOrderFromResultSet(ResultSet resultSet) throws SQLException {

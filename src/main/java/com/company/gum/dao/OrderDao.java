@@ -9,8 +9,6 @@ public interface OrderDao {
 
     Order createOrder(Order order) throws DaoException;
 
-    boolean updateOrder(Order order) throws DaoException;
-
     boolean deleteOrder(int orderId) throws DaoException;
 
     Order findOrder(int orderId) throws DaoException;
@@ -25,4 +23,9 @@ public interface OrderDao {
 
     List<Order> findActiveOrderByClient(int clientId) throws DaoException;
 
+    boolean editNutrition(int orderId, String nutrition) throws DaoException;
+
+    boolean editExercises(int orderId, String exercises) throws DaoException;
+
+    boolean editOrderStatus(int orderId, Order.OrderStatus orderStatus) throws DaoException;
 }

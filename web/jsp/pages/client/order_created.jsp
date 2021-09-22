@@ -20,7 +20,7 @@
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <meta http-equiv="refresh"
-          content="5;${pageContext.request.contextPath}/controller?command=show_all_orders_by_client">
+          content="5;${pageContext.request.contextPath}/controller?command=SHOW_ALL_ORDERS_BY_CLIENT">
 </head>
 
 <body>
@@ -42,7 +42,7 @@
             <div class="row register-form">
                 <div class="col-md-6">
                     <p>${congratulationsMessage}</p>
-                    <a href="${pageContext.request.contextPath}/controller?command=find_all_orders_by_client">${orders}</a>
+                    <a href="${pageContext.request.contextPath}/controller?command=SHOW_ALL_ORDERS_BY_CLIENT">${orders}</a>
                 </div>
             </div>
         </div>

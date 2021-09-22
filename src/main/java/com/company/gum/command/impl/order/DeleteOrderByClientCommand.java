@@ -22,7 +22,7 @@ public class DeleteOrderByClientCommand implements Command {
         try {
             int orderId = Integer.parseInt(requestContent.getParameterByName(ORDER_ID));
             orderService.deleteOrder(orderId);
-            requestContent.putAttribute(ORDER_ID, orderId);
+            requestContent.putAttribute(ORDER_ID, orderId);// TODO: 9/22/2021 нет необходимости
             router = new Router(PagePath.ORDER_DELETED_BY_CLIENT, REDIRECT);
         } catch (ServiceException e) {
             throw new CommandException(e);

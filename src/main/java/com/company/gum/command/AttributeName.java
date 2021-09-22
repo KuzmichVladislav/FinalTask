@@ -35,6 +35,8 @@ public class AttributeName {
     public static final String DURATION = "duration";
     public static final String ORDERS = "orders";
     public static final String ORDER_ID = "orderId";
+    public static final String ORDER_STATUS = "orderStatus";
+
     public static final String ORDER = "order";
 
     public static final String PAGE = "page";
@@ -43,6 +45,8 @@ public class AttributeName {
     public static final String MONEY = "money";
     public static final String DESCRIPTION = "description";
     public static final String EXPERIENCE = "experience";
+    public static final String NUTRITION = "nutrition";
+    public static final String EXERCISES = "exercises";
 
     private AttributeName() {
     }

@@ -39,11 +39,6 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public boolean updateOrder(Order order) throws ServiceException {
-        return false;
-    }
-
-    @Override
     public boolean deleteOrder(int orderId) throws ServiceException {
         boolean isDeleted;
         try {
@@ -100,5 +95,38 @@ public class OrderServiceImpl implements OrderService {
             throw new ServiceException(e);
         }
         return orders;
+    }
+
+    @Override
+    public boolean editNutrition(int orderId, String nutrition) throws ServiceException {
+        boolean isEdited;
+        try {
+            isEdited = orderDao.editNutrition(orderId, nutrition);
+        } catch (DaoException e) {
+            throw new ServiceException(e);
+        }
+        return isEdited;
+    }
+
+    @Override
+    public boolean editExercises(int orderId, String exercises) throws ServiceException {
+        boolean isEdited;
+        try {
+            isEdited = orderDao.editExercises(orderId, exercises);
+        } catch (DaoException e) {
+            throw new ServiceException(e);
+        }
+        return isEdited;
+    }
+
+    @Override
+    public boolean editOrderStatus(int orderId, Order.OrderStatus orderStatus) throws ServiceException {
+        boolean isEdited;
+        try {
+            isEdited = orderDao.editOrderStatus(orderId, orderStatus);
+        } catch (DaoException e) {
+            throw new ServiceException(e);
+        }
+        return isEdited;
     }
 }

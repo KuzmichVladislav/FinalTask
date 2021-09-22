@@ -39,7 +39,10 @@ public enum CommandType {
     REFILL_MONEY(new RefillMoneyCommand()),
     EDIT_TRAINER_PROFILE(new EditTrainerProfileCommand()),
     EDIT_DESCRIPTION(new EditDescriptionCommand()),
-    EDIT_EXPERIENCE(new EditExperienceCommand());
+    EDIT_EXPERIENCE(new EditExperienceCommand()),
+    EDIT_NUTRITION(new EditNutritionCommand()),
+    EDIT_EXERCISES(new EditExercisesCommand()),
+    UPDATE_ORDER_STATUS(new UpdateOrderStatusCommand());
 
     private Command command;
 

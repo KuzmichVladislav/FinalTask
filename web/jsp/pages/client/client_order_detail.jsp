@@ -79,7 +79,7 @@
                             <label>${startDate}</label>
                         </div>
                         <div class="col-md-6">
-                            <p>$${order.startDate}</p>
+                            <p>${order.startDate}</p>
                         </div>
                     </div>
                     <div class="row">
@@ -114,12 +114,15 @@
                             <p>${order.orderStatus.name()}</p>
                         </div>
                     </div>
-                    <div class="row">
+                </div>
+
+                <div class="col-md-6">
+                    <c:if test="${order.orderStatus.ordinal() == 3}">
                         <div class="col-md-6">
                             <!-- Button trigger modal -->
                             <button type="button" class="btn btn-primary" data-toggle="modal"
-                                    data-target="#exercisesModal">
-                                ${exercises}
+                                    data-target="#editExercisesModal" style="width:200px;">
+                                    ${exercises}
                             </button>
 
                             <!-- Modal -->
@@ -144,11 +147,12 @@
                                 </div>
                             </div>
                         </div>
+
                         <div class="col-md-6">
                             <!-- Button trigger modal -->
                             <button type="button" class="btn btn-primary" data-toggle="modal"
-                                    data-target="#nutritionModal">
-                                ${nutrition}
+                                    data-target="#editNutritionModal" style="margin-top:10px; width:200px;">
+                                    ${nutrition}
                             </button>
 
                             <!-- Modal -->
@@ -173,7 +177,59 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </c:if>
+
+                    <c:if test="${order.orderStatus.ordinal() == 1}">
+                        <div class="col-md-6">
+                            <form class="needs-validation" novalidate>
+                                <input type="hidden" name="command" value="update_order_status">
+                                <input type="hidden" name="orderId" value="${order.id}">
+                                <input type="hidden" name="orderStatus" value="ACCEPTED">
+                                <div class="form-group">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="invalidCheck"
+                                               required>
+                                        <label class="form-check-label" for="invalidCheck">
+                                            Attention, this action is paid. Agree to the terms.
+                                        </label>
+                                        <div class="invalid-feedback">
+                                            You must agree before confirming.
+                                        </div>
+                                    </div>
+                                </div>
+                                <c:if test="${requestScope.errMessage != null}">
+                                    <div class="err-message-from-server">
+                                        <fmt:message key="${requestScope.errMessage}" bundle="${err_rb}"/>
+                                    </div>
+                                </c:if>
+                                <button type="submit" class="btn btn-primary" style="margin-top:10px; width:200px;">
+                                    Send
+                                    for confirmation
+                                </button>
+                            </form>
+                            <script>
+                                // Пример стартового JavaScript для отключения отправки форм при наличии недопустимых полей
+                                (function () {
+                                    'use strict'
+
+                                    // Получите все формы, к которым мы хотим применить пользовательские стили проверки Bootstrap
+                                    var forms = document.querySelectorAll('.needs-validation')
+
+                                    // Зацикливайтесь на них и предотвращайте отправку
+                                    Array.prototype.slice.call(forms)
+                                        .forEach(function (form) {
+                                            form.addEventListener('submit', function (event) {
+                                                if (!form.checkValidity()) {
+                                                    event.preventDefault()
+                                                    event.stopPropagation()
+                                                }
+                                                form.classList.add('was-validated')
+                                            }, false)
+                                        })
+                                })()
+                            </script>
+                        </div>
+                    </c:if>
                 </div>
             </div>
         </div>

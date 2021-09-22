@@ -29,6 +29,7 @@ public class PagePath {
     public static final String PASSWORDS_CHANGED = "jsp/pages/password_changed.jsp";
     public static final String CHANGE_PASSWORD = "jsp/pages/change_password.jsp";
     public static final String TRAINER_ORDER_DETAIL = "jsp/pages/trainer/trainer_order_detail.jsp";
+    public static final String ORDER_UPDATED = "jsp/pages/trainer/order_updated.jsp";
 
     private PagePath() {
     }

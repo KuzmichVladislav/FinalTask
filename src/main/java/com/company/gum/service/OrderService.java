@@ -9,8 +9,6 @@ public interface OrderService {
 
     Order createOrder(Order order) throws ServiceException;
 
-    boolean updateOrder(Order order) throws ServiceException;
-
     boolean deleteOrder(int orderId) throws ServiceException;
 
     Order findOrder(int orderId) throws ServiceException;
@@ -25,4 +23,9 @@ public interface OrderService {
 
     List<Order> findActiveOrderByClient(int clientId) throws ServiceException;
 
+    boolean editNutrition(int orderId, String nutrition) throws ServiceException;
+
+    boolean editExercises(int orderId, String exercises) throws ServiceException;
+
+    boolean editOrderStatus(int orderId, Order.OrderStatus orderStatus) throws ServiceException;
 }

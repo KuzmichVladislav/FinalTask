@@ -310,7 +310,6 @@
                                                 <input type="hidden" name="userId" value="${sessionScope.userId}">
 
                                                 <div class="modal-body">
-                                                    <input type="hidden" name="command" value="edit_trainer">
                                                     <div class="form-group">
                                                         <label for="input_description">Description</label>
                                                         <textarea name="description" class="form-control"
@@ -355,7 +354,6 @@
                                                 <input type="hidden" name="userId" value="${sessionScope.userId}">
 
                                                 <div class="modal-body">
-                                                    <input type="hidden" name="command" value="edit_trainer">
                                                     <div class="form-group">
                                                         <label for="input_experience">Experience</label>
                                                         <textarea name="experience" class="form-control"
