@@ -2,8 +2,6 @@ package com.company.gum.command;
 
 public class ErrorMessageKey {
 
-    public static final String INVALID_LOGIN_OR_PASSWORD = "invalid.login.or.password";
-    public static final String WRONG_LOGIN_OR_PASSWORD = "wrong.login.or.password";
     public static final String INVALID_LOGIN = "invalid.login";
     public static final String INVALID_PASSWORD = "invalid.password";
     public static final String INVALID_CURRENT_PASSWORD = "invalid.current.password";

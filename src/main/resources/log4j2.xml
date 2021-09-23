@@ -1,28 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Configuration status="info">
+<Configuration>
     <Properties>
-        <Property name="logPath">logs</Property>
-        <Property name="rollingFileName">xmlLogs</Property>
+        <property name="pattern_layout_console">%d{dd MMM yyyy HH:mm:ss} %p %c{1} - %m%n</property>
+        <property name="pattern_layout_file">%d %p [%t] %c - %m%n</property>
+        <property name="pattern_file">logs/$${date:yyyy-MM}/app-%d{MM-dd-yyyy}-%i.log.gz</property>
     </Properties>
     <Appenders>
-        <Console name="console" target="SYSTEM_OUT">
-            <PatternLayout
-                pattern="[%highlight{%-5level}] %d{DEFAULT} %c{1}.%M() - %msg%n%throwable{short.lineNumber}"/>
+        <Console name="ConsoleAppender"
+                 target="SYSTEM_OUT">
+            <PatternLayout pattern="${pattern_layout_console}"/>
         </Console>
-        <RollingFile name="rollingFile" fileName="${logPath}/${rollingFileName}.log"
-                     filePattern="${logPath}/${rollingFileName}_%d{yyyy-MM-dd}.log">
-            <PatternLayout
-                pattern="[%highlight{%-5level}] %d{DEFAULT} %c{1}.%M() - %msg%n%throwable{short.lineNumber}"/>
+
+        <RollingFile name="FileAppender"
+                     fileName="logs/recent.log"
+                     filePattern="${pattern_file}">
+            <PatternLayout pattern="${pattern_layout_file}"/>
             <Policies>
-                <OnStartupTriggeringPolicy/>
-                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+                <TimeBasedTriggeringPolicy interval="1"/>
+                <SizeBasedTriggeringPolicy size="20 KB"/>
             </Policies>
         </RollingFile>
     </Appenders>
+
     <Loggers>
-        <Root level="debug" additivity="false">
-            <AppenderRef ref="console"/>
-            <AppenderRef ref="rollingFile"/>
+        <Root level="DEBUG">
+            <AppenderRef ref="ConsoleAppender"/>
+            <AppenderRef ref="FileAppender"/>
         </Root>
     </Loggers>
 </Configuration>

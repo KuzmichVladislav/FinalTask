@@ -12,6 +12,7 @@
 <fmt:message key="form.sign.up.motivation.message" bundle="${rb}" var="motivationMessage"/>
 <fmt:message key="order.empty.order" bundle="${rb}" var="emptyOrdersList"/>
 <fmt:message key="order.register.date" bundle="${rb}" var="registerDate"/>
+<fmt:message key="profile.new.order" bundle="${rb}" var="newOrder"/>
 
 <html>
 <head>
@@ -46,8 +47,7 @@
                         <c:otherwise>
                             <div>
                                 <h2>${emptyOrdersList}</h2>
-                                <a href="${pageContext.request.contextPath}/controller?command=new_order">${newOrder}New
-                                    order</a>
+                                <a href="${pageContext.request.contextPath}/controller?command=new_order">${newOrder}</a>
                             </div>
                         </c:otherwise>
                     </c:choose>

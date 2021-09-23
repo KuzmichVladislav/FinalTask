@@ -14,7 +14,6 @@ public class JBCryptPasswordEncoder {
 
     public boolean matches(final String plainPassword, final String encodedPassword) {
         CommonHelper.assertNotBlank("salt", SALT);
-
         return BCrypt.checkpw(plainPassword, encodedPassword);
     }
 }

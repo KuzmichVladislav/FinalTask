@@ -5,7 +5,7 @@ public class AttributeName {
     public static final String USER_ID = "userId";
     public static final String USER_ROLE = "userRole";
     public static final String USER_NAME = "userName";
-    public static final String USER_SURNAME = "userLastName";
+    public static final String USER_SURNAME = "userSurname";
     public static final String USER_PHONE = "userPhone";
     public static final String USER_LOGIN = "userLogin";
     public static final String USER_PASSWORD = "userPassword";

@@ -39,25 +39,25 @@ public class ClientDaoImpl implements ClientDao {
     private static final String SQL_WITHDRAW_MONEY = "UPDATE clients\n"
             + "SET money = money + ?\n"
             + "WHERE client_id = ?";
-    private static final String SQL_FIND_CLIENT_BY_ID = "SELECT client_id,\n"
-            + "       register_date,\n"
-            + "       phone_number,\n"
-            + "       discount,\n"
-            + "       discount_type,\n"
-            + "       money,\n"
-            + "       login,\n"
-            + "       password,\n"
-            + "       role,\n"
-            + "       name,\n"
-            + "       surname,\n"
-            + "       is_active,\n"
-            + "       mail,\n"
-            + "       is_verified\n,"
-            + "       image\n"
-            + "FROM clients,\n"
-            + "     users\n"
-            + "WHERE client_id = ?\n"
-            + "AND role = 'CLIENT'";
+    private static final String SQL_FIND_CLIENT_BY_ID = "SELECT client_id,\n" +
+            "       register_date,\n" +
+            "       phone_number,\n" +
+            "       discount,\n" +
+            "       discount_type,\n" +
+            "       money,\n" +
+            "       login,\n" +
+            "       password,\n" +
+            "       role,\n" +
+            "       name,\n" +
+            "       surname,\n" +
+            "       is_active,\n" +
+            "       mail,\n" +
+            "       is_verified,\n" +
+            "       image\n" +
+            "FROM users\n" +
+            "LEFT JOIN clients on users.user_id = client_id\n" +
+            "WHERE client_id = ?\n" +
+            "  AND role = 'CLIENT'";
     private static final String SQL_FIND_ALL_CLIENT = "SELECT client_id,\n"
             + "       register_date,\n"
             + "       phone_number,\n"
@@ -113,16 +113,16 @@ public class ClientDaoImpl implements ClientDao {
             + "  AND surname = IFNULL(?, surname)\n"
             + "AND role = 'CLIENT'";
 
-    private static ClientDaoImpl mInstance;
+    private static ClientDaoImpl instance;
 
     private ClientDaoImpl() {
     }
 
     public static ClientDaoImpl getInstance() {
-        if (mInstance == null) {
-            mInstance = new ClientDaoImpl();
+        if (instance == null) {
+            instance = new ClientDaoImpl();
         }
-        return mInstance;
+        return instance;
     }
 
     @Override

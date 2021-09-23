@@ -19,6 +19,9 @@
 <fmt:message key="order.your.comment" bundle="${rb}" var="yourComment"/>
 <fmt:message key="project.navigation.price" bundle="${rb}" var="price"/>
 <fmt:message key="profile.status" bundle="${rb}" var="status"/>
+<fmt:message key="send.for.confirm" bundle="${rb}" var="sendForConfirm"/>
+<fmt:message key="agree.before.confirming" bundle="${rb}" var="agreeBeforeConfirming"/>
+<fmt:message key="action.is.paid" bundle="${rb}" var="actionIsPaid"/>
 
 <html>
 <head>
@@ -190,10 +193,10 @@
                                         <input class="form-check-input" type="checkbox" value="" id="invalidCheck"
                                                required>
                                         <label class="form-check-label" for="invalidCheck">
-                                            Attention, this action is paid. Agree to the terms.
+                                                ${actionIsPaid}
                                         </label>
                                         <div class="invalid-feedback">
-                                            You must agree before confirming.
+                                                ${agreeBeforeConfirming}
                                         </div>
                                     </div>
                                 </div>
@@ -203,8 +206,7 @@
                                     </div>
                                 </c:if>
                                 <button type="submit" class="btn btn-primary" style="margin-top:10px; width:200px;">
-                                    Send
-                                    for confirmation
+                                        ${sendForConfirm}
                                 </button>
                             </form>
                             <script>

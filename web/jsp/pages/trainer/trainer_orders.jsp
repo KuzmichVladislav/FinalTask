@@ -15,6 +15,7 @@
 <fmt:message key="order.end.date" bundle="${rb}" var="endDate"/>
 <fmt:message key="order.status" bundle="${rb}" var="status"/>
 <fmt:message key="order.client.name" bundle="${rb}" var="clientFullName"/>
+<fmt:message key="order.details" bundle="${rb}" var="orderDetails"/>
 
 
 <html>
@@ -68,7 +69,7 @@
                                             <td colspan="5">
                                                 <a href="${pageContext.request.contextPath}/controller?command=SHOW_ORDER_BY_TRAINER&orderId=${order.id}">
                                                     <button class="btn btn-sm btn-outline-primary w-100">
-                                                        ShowDetail${detail}</button>
+                                                        ${orderDetails}</button>
                                                 </a>
                                             </td>
                                         </tr>

@@ -38,7 +38,7 @@ public class MailSender {
         mailSession.setDebug(true);
         message = new MimeMessage(mailSession);
         message.setSubject(SUBJECT_MAIL);
-        message.setContent("Click on this link to verify your account: <a href='http://localhost:8080/gum_war/controller?command=verification&userId=" + userId + "'>verification</a>", "text/html");
+        message.setContent("Click on this link to verify your account: <a href='http://localhost:8080/gum/controller?command=verification&userId=" + userId + "'>verification</a>", "text/html");
         message.setRecipient(Message.RecipientType.TO, new InternetAddress(userMail));
     }
 }

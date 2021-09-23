@@ -10,7 +10,7 @@
 <fmt:message key="project.name" bundle="${rb}" var="title"/>
 <fmt:message key="form.login.placeholder" bundle="${rb}" var="loginPlaceholder"/>
 <fmt:message key="form.name.placeholder" bundle="${rb}" var="namePlaceholder"/>
-<fmt:message key="form.surname.placeholder" bundle="${rb}" var="lastNamePlaceholder"/>
+<fmt:message key="form.surname.placeholder" bundle="${rb}" var="surnamePlaceholder"/>
 <fmt:message key="form.password.placeholder" bundle="${rb}" var="passwordPlaceholder"/>
 <fmt:message key="form.confirm.password.placeholder" bundle="${rb}" var="confirmPasswordPlaceholder"/>
 <fmt:message key="form.phone.placeholder" bundle="${rb}" var="phonePlaceholder"/>
@@ -21,97 +21,186 @@
 <fmt:message key="form.sign.up.message" bundle="${rb}" var="signUpMessage"/>
 
 <html>
-    <head>
-        <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/profile.css">
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.css">
-        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    </head>
+<head>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/profile.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
 
-    <body>
-        <c:import url="../fragment/navbar.jsp"/>
+<body>
+<c:import url="../fragment/navbar.jsp"/>
 
-        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-
-        <div class="container register">
-            <div class="row">
-                <div class="col-md-3 register-left">
-                    <img src="https://i.ibb.co/SsQJHTz/pngegg.png" alt="">
-                    <h3>${tagline}</h3>
-                    <p>${motivationMessage}</p>
-                </div>
-                <div class="col-md-9 register-right">
-                    <h3 class="register-heading">${signUpMessage}</h3>
-                    <form name="signUpForm" action="${pageContext.request.contextPath}/controller" method="POST"
-                          id="form">
-                        <div class="row register-form">
-                            <div class="col-md-6">
-                                <input type="hidden" name="command" value="sign_up">
-
-                                <div class="form-group">
-                                    <label for="input-login"></label>
-                                    <input type="text" name="userLogin" class="form-control" id="input-login"
-                                           placeholder="${loginPlaceholder}" value="">
-                                </div>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 
-                                <div class="form-group">
-                                    <label for="input-name"></label>
-                                    <input type="text" name="userName" class="form-control" id="input-name"
-                                           placeholder="${namePlaceholder}" value="">
-                                </div>
+<div class="container register">
+    <div class="row">
+        <div class="col-md-3 register-left">
+            <img src="https://i.ibb.co/SsQJHTz/pngegg.png" alt="">
+            <h3>${tagline}</h3>
+            <p>${motivationMessage}</p>
+        </div>
+        <div class="col-md-9 register-right">
+            <h3 class="register-heading">${signUpMessage}</h3>
+            <div class="row register-form">
 
+                <form class="needs-validation" novalidate name="registerForm"
+                      action="${pageContext.request.contextPath}/controller" method="POST" style="width:500px;">
+                    <input type="hidden" name="command" value="register">
 
-                                <div class="form-group">
-                                    <label for="input-last-name"></label>
-                                    <input type="text" name="userLastName" class="form-control" id="input-last-name"
-                                           placeholder="${lastNamePlaceholder}" value="">
-                                </div>
-
-
-                                <div class="form-group">
-                                    <label for="input-phone"></label>
-                                    <input type="text" name="userPhone" class="form-control" id="input-phone"
-                                           placeholder="${phonePlaceholder}" value="">
-                                </div>
-                            </div>
-
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="input-mail"></label>
-                                    <input type="email" name="userMail" class="form-control" id="input-mail"
-                                           placeholder="${mailPlaceholder}" value="">
-                                </div>
-
-
-                                <div class="form-group">
-                                    <label for="input-password"></label>
-                                    <input type="password" name="userPassword" class="form-control" id="input-password"
-                                           placeholder="${passwordPlaceholder}" value="">
-                                </div>
-
-
-                                <div class="form-group">
-                                    <label for="input-repeat-password"></label>
-                                    <input type="password" name="repeatPassword" class="form-control"
-                                           id="input-repeat-password" placeholder="${confirmPasswordPlaceholder}"
-                                           value="">
-                                </div>
-                                <c:if test="${requestScope.errMessage != null}">
-                                    <div class="alert alert-danger">
-                                        <span><fmt:message key="${requestScope.errMessage}" bundle="${err_rb}"/></span>
-                                    </div>
-                                </c:if>
-                                <input type="submit" class="btnRegister" id="submit" value="${register}">
+                    <div class="form-group">
+                        <div class="col-md-6 mb-3">
+                            <label for="validationCustom01">${login}</label>
+                            <input type="text" name="userLogin" class="form-control" id="validationCustom01"
+                                   placeholder="${loginPlaceholder}" required
+                                   pattern="[A-Za-z0-9]{3,16}">
+                            <div class="invalid-feedback">
+                                ${invalidLogin}
                             </div>
                         </div>
-                    </form>
-                </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-6 mb-3">
+                            <label for="validationCustom02">Name</label>
+                            <input type="text" name="userName" class="form-control" id="validationCustom02"
+                                   placeholder="${namePlaceholder}" value="" required
+                                   pattern="^[A-ZА-Я]{1}[a-zа-я]{2,20}$">
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <div class="col-md-6 mb-3">
+                            <label for="validationCustom03">Surname</label>
+                            <input type="text" name="userSurname" class="form-control" id="validationCustom03"
+                                   placeholder="${surnamePlaceholder}" value="" required
+                                   pattern="^[A-ZА-Я]{1}[a-zа-я]{2,20}$">
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-6 mb-3">
+                            <label for="validationCustom04">Phone</label>
+                            <input type="text" name="userPhone" class="form-control" id="validationCustom04"
+                                   placeholder="${phonePlaceholder}" value="" required
+                                   pattern="^[+0-9]{1}[0-9]{8,12}$">
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <div class="col-md-6 mb-3">
+                            <label for="validationCustom05">Phone</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="inputGroupPrepend">@</span>
+                                </div>
+                                <input type="email" name="userMail" class="form-control" id="validationCustom05"
+                                       placeholder="${mailPlaceholder}" aria-describedby="inputGroupPrepend" required
+                                       pattern="[_0-9a-z][-_.0-9a-z]*@[0-9a-z][-.0-9a-z]*[0-9a-z]\.[a-z]{2,}">
+                                <div class="invalid-feedback">
+                                    Please enter valid Email.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <div class="col-md-6 mb-3">
+                            <label for="validationCustom06">${password}</label>
+                            <input type="password" name="userPassword" class="form-control" id="validationCustom06"
+                                   placeholder=${passwordPlaceholder}
+                                           required
+                                   pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}">
+                            <div class="invalid-feedback">
+                                ${invalidPassword}
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <div class="col-md-6 mb-3">
+                            <label for="validationCustom07">${confirmPassword}</label>
+                            <input type="password" name="repeatPassword" class="form-control" id="validationCustom07"
+                                   placeholder=${confirmPasswordPlaceholder}
+                                           required
+                                   pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}">
+                            <div class="invalid-feedback">
+                                ${invalidPassword}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
+                            <label class="form-check-label" for="invalidCheck">
+                                Agree to terms and conditions
+                            </label>
+                            <div class="invalid-feedback">
+                                You must agree before submitting.
+                            </div>
+                        </div>
+                    </div>
+
+                    <c:if test="${requestScope.errMessage != null}">
+                        <div class="form-group">
+                            <div class="col-md-6 mb-3">
+                                <div class="err-message-from-server">
+                                    <fmt:message key="${requestScope.errMessage}" bundle="${rb}"/>
+                                </div>
+                            </div>
+                        </div>
+                    </c:if>
+
+                    <div class="form-group">
+                        <div class="col-md-6 mb-3">
+                            <button type="submit" class="btn btn-primary">
+                                ${buttonLogin}
+                            </button>
+                        </div>
+                    </div>
+                </form>
             </div>
+            <script>
+                // Пример стартового JavaScript для отключения отправки форм при наличии недопустимых полей
+                (function () {
+                    'use strict'
+
+                    // Получите все формы, к которым мы хотим применить пользовательские стили проверки Bootstrap
+                    var forms = document.querySelectorAll('.needs-validation')
+
+                    // Зацикливайтесь на них и предотвращайте отправку
+                    Array.prototype.slice.call(forms)
+                        .forEach(function (form) {
+                            form.addEventListener('submit', function (event) {
+                                if (!form.checkValidity()) {
+                                    event.preventDefault()
+                                    event.stopPropagation()
+                                }
+                                form.classList.add('was-validated')
+                            }, false)
+                        })
+                })()
+            </script>
         </div>
-        <c:import url="../fragment/footer.jsp"/>
-    </body>
+    </div>
+</div>
+<c:import url="../fragment/footer.jsp"/>
+</body>
 </html>

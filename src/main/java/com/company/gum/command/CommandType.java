@@ -17,7 +17,7 @@ import com.company.gum.command.impl.order.showOrderByTrainerCommand;
 
 public enum CommandType {
 
-    SIGN_UP(new SignUpCommand()),
+    REGISTER(new RegisterCommand()),
     VERIFICATION(new VerificationCommand()),
     CHANGE_LOCALE(new LocaleCommand()),
     LOGIN(new LoginCommand()),

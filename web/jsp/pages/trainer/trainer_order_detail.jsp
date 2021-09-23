@@ -21,6 +21,13 @@
 <fmt:message key="profile.status" bundle="${rb}" var="status"/>
 <fmt:message key="order.edit.nutrition" bundle="${rb}" var="editNutrition"/>
 <fmt:message key="order.edit.exercises" bundle="${rb}" var="editExercises"/>
+<fmt:message key="agree.to.terms.and.conditions" bundle="${rb}" var="agreeToTermsAndConditions"/>
+<fmt:message key="agree.before.submitting" bundle="${rb}" var="agreeBeforeSubmitting"/>
+<fmt:message key="profile.close" bundle="${rb}" var="close"/>
+<fmt:message key="send.for.confirm" bundle="${rb}" var="sendForConfirm"/>
+<fmt:message key="save" bundle="${rb}" var="save"/>
+<fmt:message key="client.comment" bundle="${rb}" var="clientComment"/>
+
 
 <html>
 <head>
@@ -106,7 +113,7 @@
                     </div>
                     <div class="row">
                         <div class="col-md-6">
-                            <label>Client comment</label>
+                            <label>${clientComment}</label>
                         </div>
                         <div class="col-md-6">
                             <p>${order.clientComment}</p>
@@ -152,7 +159,7 @@
                                             <p>${order.exercises}</p>
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">${close}
                                             </button>
                                         </div>
                                     </div>
@@ -181,7 +188,7 @@
                                             <p>${order.nutrition}</p>
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">${close}
                                             </button>
                                         </div>
                                     </div>
@@ -225,9 +232,9 @@
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary"
                                                         data-dismiss="modal">
-                                                    Close
+                                                        ${close}
                                                 </button>
-                                                <button type="submit" class="btn btn-primary">Save</button>
+                                                <button type="submit" class="btn btn-primary">${save}</button>
                                             </div>
                                         </form>
                                     </div>
@@ -267,9 +274,9 @@
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary"
                                                         data-dismiss="modal">
-                                                    Close
+                                                        ${close}
                                                 </button>
-                                                <button type="submit" class="btn btn-primary">Save</button>
+                                                <button type="submit" class="btn btn-primary">${save}</button>
                                             </div>
                                         </form>
                                     </div>
@@ -286,20 +293,17 @@
                                         <input class="form-check-input" type="checkbox" value="" id="invalidCheck"
                                                required>
                                         <label class="form-check-label" for="invalidCheck">
-                                            Agree to terms and conditions
+                                                ${agreeToTermsAndConditions}
                                         </label>
                                         <div class="invalid-feedback">
-                                            You must agree before submitting.
+                                                ${agreeBeforeSubmitting}
                                         </div>
                                     </div>
                                 </div>
-                                    <button type="submit" class="btn btn-primary" style="margin-top:10px; width:200px;">
-                                        Send
-                                        for confirmation
-                                    </button>
+                                <button type="submit" class="btn btn-primary" style="margin-top:10px; width:200px;">
+                                    ${sendForConfirm}
+                                </button>
                             </form>
-
-
                             <script>
                                 // Пример стартового JavaScript для отключения отправки форм при наличии недопустимых полей
                                 (function () {

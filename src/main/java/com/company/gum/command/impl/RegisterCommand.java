@@ -14,21 +14,27 @@ import static com.company.gum.command.ErrorMessageKey.*;
 import static com.company.gum.command.Router.RouterType.FORWARD;
 import static com.company.gum.command.Router.RouterType.REDIRECT;
 
-public class SignUpCommand implements Command {
+public class RegisterCommand implements Command {
 
     private ClientService clientService = ClientServiceImpl.getInstance();
 
     @Override
     public Router execute(SessionRequestContent requestContent) throws CommandException {
         Router router;
-
         String login = requestContent.getParameterByName(USER_LOGIN).strip();
+
         String password = requestContent.getParameterByName(USER_PASSWORD).strip();
+
         String repeatedPassword = requestContent.getParameterByName(REPEAT_PASSWORD).strip();
+        System.out.println(repeatedPassword);
         String name = requestContent.getParameterByName(USER_NAME).strip();
+        System.out.println(name);
         String surname = requestContent.getParameterByName(USER_SURNAME).strip();
+        System.out.println(surname);
         String phone = requestContent.getParameterByName(USER_PHONE).strip();
+        System.out.println(phone);
         String mail = requestContent.getParameterByName(USER_MAIL).strip();
+        System.out.println(mail);
 
         boolean isValid = true;
 
