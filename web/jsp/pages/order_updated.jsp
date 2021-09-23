@@ -19,12 +19,19 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <meta http-equiv="refresh"
-          content="5;${pageContext.request.contextPath}/controller?command=SHOW_ALL_ORDERS_BY_TRAINER">
+    <c:if test="${sessionScope.userRole == 'CLIENT'}">
+        <meta http-equiv="refresh"
+              content="5;${pageContext.request.contextPath}/controller?command=SHOW_ALL_ORDERS_BY_CLIENT">
+    </c:if>
+    <c:if test="${sessionScope.userRole == 'TRAINER'}">
+        <meta http-equiv="refresh"
+              content="5;${pageContext.request.contextPath}/controller?command=SHOW_ALL_ORDERS_BY_TRAINER">
+    </c:if>
+
 </head>
 
 <body>
-<c:import url="../../fragment/navbar.jsp"/>
+<c:import url="../fragment/navbar.jsp"/>
 
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -42,13 +49,19 @@
             <div class="row register-form">
                 <div class="col-md-6">
                     <p>${updatedMessage}</p>
-                    <a href="${pageContext.request.contextPath}/controller?command=SHOW_ALL_ORDERS_BY_TRAINER">${orders}</a>
+
+                    <c:if test="${sessionScope.userRole == 'CLIENT'}">
+                        <a href="${pageContext.request.contextPath}/controller?command=SHOW_ALL_ORDERS_BY_TRAINER">${orders}</a>
+                    </c:if>
+                    <c:if test="${sessionScope.userRole == 'TRAINER'}">
+                        <a href="${pageContext.request.contextPath}/controller?command=SHOW_ALL_ORDERS_BY_TRAINER">${orders}</a>
+                    </c:if>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-<c:import url="../../fragment/footer.jsp"/>
+<c:import url="../fragment/footer.jsp"/>
 </body>
 </html>
