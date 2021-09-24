@@ -1,6 +1,7 @@
 package com.company.gum.command;
 
 import com.company.gum.command.impl.*;
+import com.company.gum.command.impl.admin.RegisterTrainerCommand;
 import com.company.gum.command.impl.client.ChangePasswordCommand;
 import com.company.gum.command.impl.client.EditClientProfileCommand;
 import com.company.gum.command.impl.client.NewOrderCommand;
@@ -18,6 +19,7 @@ import com.company.gum.command.impl.order.showOrderByTrainerCommand;
 public enum CommandType {
 
     REGISTER(new RegisterCommand()),
+    REGISTER_TRAINER(new RegisterTrainerCommand()),
     VERIFICATION(new VerificationCommand()),
     CHANGE_LOCALE(new LocaleCommand()),
     LOGIN(new LoginCommand()),

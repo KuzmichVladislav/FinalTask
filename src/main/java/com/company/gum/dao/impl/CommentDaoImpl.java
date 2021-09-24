@@ -147,7 +147,6 @@ public class CommentDaoImpl implements CommentDao {
              PreparedStatement statement = connection.prepareStatement(SQL_DELETE_COMMENT)) {
             statement.setInt(1, commentId);
             isDeleted = statement.executeUpdate() == 1;
-
             logger.debug(isDeleted ? "Comment with id " + commentId + " has been deleted" : "Can't delete comment with id " + commentId);
 
         } catch (SQLException e) {

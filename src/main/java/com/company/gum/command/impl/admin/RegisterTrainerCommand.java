@@ -1,12 +1,16 @@
-package com.company.gum.command.impl;
+package com.company.gum.command.impl.admin;
 
-import com.company.gum.command.*;
+import com.company.gum.command.AttributeName;
+import com.company.gum.command.Command;
+import com.company.gum.command.PagePath;
+import com.company.gum.command.Router;
 import com.company.gum.controller.SessionRequestContent;
-import com.company.gum.entity.Client;
+import com.company.gum.entity.Trainer;
+import com.company.gum.entity.User;
 import com.company.gum.exception.CommandException;
 import com.company.gum.exception.ServiceException;
-import com.company.gum.service.ClientService;
-import com.company.gum.service.impl.ClientServiceImpl;
+import com.company.gum.service.TrainerService;
+import com.company.gum.service.impl.TrainerServiceImpl;
 import com.company.gum.util.Validator;
 
 import static com.company.gum.command.AttributeName.*;
@@ -14,9 +18,9 @@ import static com.company.gum.command.ErrorMessageKey.*;
 import static com.company.gum.command.Router.RouterType.FORWARD;
 import static com.company.gum.command.Router.RouterType.REDIRECT;
 
-public class RegisterCommand implements Command {
+public class RegisterTrainerCommand implements Command {
 
-    private ClientService clientService = ClientServiceImpl.getInstance();
+    private TrainerService trainerService = TrainerServiceImpl.getInstance();
 
     @Override
     public Router execute(SessionRequestContent requestContent) throws CommandException {
@@ -28,6 +32,7 @@ public class RegisterCommand implements Command {
         String surname = requestContent.getParameterByName(USER_SURNAME).strip();
         String phone = requestContent.getParameterByName(USER_PHONE).strip();
         String mail = requestContent.getParameterByName(USER_MAIL).strip();
+        User.UserRole role = User.UserRole.TRAINER;
 
         boolean isValid = true;
 
@@ -63,15 +68,16 @@ public class RegisterCommand implements Command {
         try {
             if (isValid) {
 
-                Client client = new Client.Builder().login(login)
+                Trainer trainer = new Trainer.Builder().login(login)
                         .password(password)
                         .mail(mail)
                         .name(name)
                         .surname(surname)
                         .phone(phone)
+                        .role(role)
                         .build();
 
-                clientService.createClient(client);
+                trainerService.createTrainer(trainer);
 
                 router = new Router(PagePath.CLIENT_CREATED, REDIRECT);
             } else {

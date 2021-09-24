@@ -21,7 +21,7 @@ public class TrainerDaoImpl implements TrainerDao {
     private static final String SQL_CREATE_USER = "INSERT INTO users(login, password, name, surname, mail, role)\n"
             + "VALUES (?, ?, ?, ?, ?, ?)";
     private static final String SQL_CREATE_TRAINER = "INSERT INTO trainers(trainer_id, phone_number)\n"
-            + "VALUES (?, ?, ?, ?)";
+            + "VALUES (?, ?)";
 
     private static final String SQL_EDIT_DESCRIPTION = "UPDATE trainers\n"
             + "SET description  = IFNULL(?, description)\n"
@@ -119,32 +119,22 @@ public class TrainerDaoImpl implements TrainerDao {
 
                 ResultSet resultSet = userStatement.getGeneratedKeys();
                 if (resultSet.next()) {
-                    int clientId = resultSet.getInt(1);
-                    trainer.setId(clientId);
+                    int trainerId = resultSet.getInt(1);
+                    trainer.setId(trainerId);
                 }
-
                 trainerStatement.setInt(1, trainer.getId());
                 if (trainer.getPhone() != null) {
                     trainerStatement.setString(2, trainer.getPhone());
                 } else {
-                    trainerStatement.setNull(2, Types.NULL);
+                    trainerStatement.setNull(2, Types.VARCHAR);
                 }
-                if (trainer.getPhone() != null) {
-                    trainerStatement.setString(3, trainer.getDescription());
-                } else {
-                    trainerStatement.setNull(3, Types.NULL);
-                }
-                if (trainer.getPhone() != null) {
-                    trainerStatement.setString(4, trainer.getExperience());
-                } else {
-                    trainerStatement.setNull(4, Types.NULL);
-                }
-                trainerStatement.execute();
 
+                trainerStatement.execute();
                 connection.commit();
                 logger.debug("Trainer {} was created", trainer);
+
             } catch (SQLException e) {
-                logger.debug("Trainer was not created");
+                logger.debug("Trainer was not created", e);
                 connection.rollback();
                 throw new DaoException(e);
             } finally {

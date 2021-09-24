@@ -46,7 +46,7 @@
 </head>
 
 <body>
-<c:import url="../fragment/navbar.jsp"/>
+<c:import url="../../fragment/navbar.jsp"/>
 
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -65,7 +65,7 @@
 
                 <form class="needs-validation" novalidate name="registerForm"
                       action="${pageContext.request.contextPath}/controller" method="POST" style="width:500px;">
-                    <input type="hidden" name="command" value="register">
+                    <input type="hidden" name="command" value="register_trainer">
 
                     <div class="form-group">
                         <div class="col-md-6 mb-3">
@@ -217,6 +217,6 @@
         </div>
     </div>
 </div>
-<c:import url="../fragment/footer.jsp"/>
+<c:import url="../../fragment/footer.jsp"/>
 </body>
 </html>

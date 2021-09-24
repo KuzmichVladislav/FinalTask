@@ -80,7 +80,7 @@
             <div class="col-md-6" style="max-width:42%;">
                 <div class="profile-head">
                     <h5>
-                        ${sessionScope.userName} ${sessionScope.userLastName}
+                        ${sessionScope.userName} ${sessionScope.userSurname}
                     </h5>
                     <h6>
                         ${sessionScope.userRole}
@@ -137,7 +137,7 @@
                                 <label>${fullName}</label>
                             </div>
                             <div class="col-md-6">
-                                <p> ${sessionScope.userName} ${sessionScope.userLastName}</p>
+                                <p> ${sessionScope.userName} ${sessionScope.userSurname}</p>
                             </div>
                         </div>
                         <div class="row">

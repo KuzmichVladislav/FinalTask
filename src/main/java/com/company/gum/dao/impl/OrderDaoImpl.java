@@ -296,8 +296,7 @@ public class OrderDaoImpl implements OrderDao {
         try (Connection connection = ConnectionPool.getInstance().takeConnection();
              PreparedStatement statement = connection.prepareStatement(SQL_DELETE_ORDER)) {
             statement.setInt(1, orderId);
-            isDeleted = statement.execute();
-
+            isDeleted = statement.executeUpdate() == 1;
             logger.debug(isDeleted ? "Order with id " + orderId + " has been deleted" : "Can't delete order with id " + orderId);
 
         } catch (SQLException e) {

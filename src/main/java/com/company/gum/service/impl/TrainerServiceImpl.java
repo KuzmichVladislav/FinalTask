@@ -7,6 +7,7 @@ import com.company.gum.exception.DaoException;
 import com.company.gum.exception.ServiceException;
 import com.company.gum.service.TrainerService;
 import com.company.gum.util.JBCryptPasswordEncoder;
+import com.company.gum.util.MailSender;
 
 import java.util.List;
 
@@ -29,12 +30,21 @@ public class TrainerServiceImpl implements TrainerService {
     @Override
     public Trainer createTrainer(Trainer trainer) throws ServiceException {
         Trainer createdTrainer;
-        trainer.setPassword(JBCryptPasswordEncoder.encode(trainer.getPassword()));
+        String password = trainer.getPassword();
         try {
+            trainer.setPassword(JBCryptPasswordEncoder.encode(password));
             createdTrainer = trainerDao.createTrainer(trainer);
         } catch (DaoException e) {
             throw new ServiceException(e);
         }
+        MailSender sender = new MailSender();
+        // FIXME: 9/24/2021 
+        sender.send(trainer.getId(), trainer.getMail(), "Hello, we are glad to welcome you.\n " +
+                "To access our site as a trainer Use your login: \""
+                + trainer.getLogin() + "\", and password: \"" + password +
+                "\"\nClick on this link to verify your account: " +
+                "<a href='http://localhost:8080/gum/controller?command=verification&userId="
+                + trainer.getId() + "'>verification</a>");
         return createdTrainer;
     }
 

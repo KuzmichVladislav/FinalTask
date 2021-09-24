@@ -145,7 +145,6 @@ public class ClientDaoImpl implements ClientDao {
                     int clientId = resultSet.getInt(1);
                     client.setId(clientId);
                 }
-
                 clientStatement.setInt(1, client.getId());
                 if (client.getPhone() != null) {
                     clientStatement.setString(2, client.getPhone());

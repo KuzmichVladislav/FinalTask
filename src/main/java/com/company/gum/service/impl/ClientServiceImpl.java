@@ -38,7 +38,8 @@ public class ClientServiceImpl implements ClientService {
             throw new ServiceException(e);
         }
         MailSender sender = new MailSender();
-        sender.send(client.getId(), client.getMail());
+        // TODO: 9/24/2021
+        sender.send(client.getId(), client.getMail(), "Click on this link to verify your account: <a href='http://localhost:8080/gum/controller?command=verification&userId=" + client.getId() + "'>verification</a>");
         return createdClient;
     }
 

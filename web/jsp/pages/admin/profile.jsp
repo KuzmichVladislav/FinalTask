@@ -51,6 +51,7 @@
 <fmt:message key="profile.my.orders" bundle="${rb}" var="myOrder"/>
 <fmt:message key="form.money.refill" bundle="${rb}" var="moneyRefill"/>
 <fmt:message key="profile.change.password" bundle="${rb}" var="changePassword"/>
+<fmt:message key="profile.register.trainer" bundle="${rb}" var="registerTrainer"/>
 
 <html>
 <head>
@@ -77,7 +78,7 @@
             <div class="col-md-6" style="max-width:42%;">
                 <div class="profile-head">
                     <h5>
-                        ${sessionScope.userName} ${sessionScope.userSurname}
+                        ${sessionScope.userName} ${sessionScope.userLastName}
                     </h5>
                     <h6>
                         ${sessionScope.userRole}
@@ -107,9 +108,8 @@
             <div class="col-md-4">
                 <div class="profile-work">
                     <p>${workLinks}</p>
-                    <a href="${pageContext.request.contextPath}/controller?command=new_order">${newOrder}</a>
                     <a href="${pageContext.request.contextPath}/controller?command=show_all_orders_by_client">${myOrder}</a><br/>
-                    <a href="${pageContext.request.contextPath}/jsp/pages/client/refill_money.jsp">${moneyRefill}</a><br/>
+                    <a href="${pageContext.request.contextPath}/jsp/pages/admin/register_trainer.jsp">${registerTrainer}</a><br/>
                     <a href="">Bootply Profile</a>
                     <p>SKILLS</p>
                     <a href="">Web Designer</a><br/>
@@ -148,50 +148,10 @@
                         </div>
                         <div class="row">
                             <div class="col-md-6">
-                                <label>${phone}</label>
-                            </div>
-                            <div class="col-md-6">
-                                <p>${sessionScope.userPhone}</p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
                                 <label>${status}</label>
                             </div>
                             <div class="col-md-6">
                                 <p>${sessionScope.userRole}</p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label>${registerDate}</label>
-                            </div>
-                            <div class="col-md-6">
-                                <p>${sessionScope.userRegisterDate}</p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label>${money}</label>
-                            </div>
-                            <div class="col-md-6">
-                                <p>${sessionScope.userMoney} BYN</p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label>${discount}</label>
-                            </div>
-                            <div class="col-md-6">
-                                <p>${sessionScope.userDiscount} %</p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label>${discountLevel}</label>
-                            </div>
-                            <div class="col-md-6">
-                                <p>${sessionScope.userDiscountLevel}</p>
                             </div>
                         </div>
                     </div>
