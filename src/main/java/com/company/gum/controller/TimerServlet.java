@@ -6,6 +6,8 @@ import org.apache.logging.log4j.Logger;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebInitParam;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -17,6 +19,11 @@ import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
 
+
+@WebServlet(value = "/TimerServlet", initParams = {
+        @WebInitParam(name = "initialTime", value = "01:30:00 AM"),
+        @WebInitParam(name = "delay", value = "86400000")
+}, loadOnStartup = 1)
 public class TimerServlet extends HttpServlet {
     private static final Logger logger = LogManager.getLogger();
 

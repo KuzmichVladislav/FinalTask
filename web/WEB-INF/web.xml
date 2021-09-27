@@ -29,23 +29,4 @@
         <session-timeout>15</session-timeout>
     </session-config>
 
-    <servlet-mapping>
-        <servlet-name>TimerServlet</servlet-name>
-        <url-pattern>/TimerServlet</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
-        <servlet-name>TimerServlet</servlet-name>
-        <servlet-class>com.company.gum.controller.TimerServlet</servlet-class>
-        <init-param>
-            <param-name>initialTime</param-name>
-            <param-value>03:00:00 AM</param-value>
-        </init-param>
-        <init-param>
-            <param-name>delay</param-name>
-            <param-value>86400000</param-value>
-        </init-param>
-        <load-on-startup>1</load-on-startup>
-    </servlet>
-
 </web-app>
