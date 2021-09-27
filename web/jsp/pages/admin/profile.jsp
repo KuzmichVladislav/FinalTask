@@ -108,7 +108,7 @@
             <div class="col-md-4">
                 <div class="profile-work">
                     <p>${workLinks}</p>
-                    <a href="${pageContext.request.contextPath}/controller?command=show_all_orders_by_client">${myOrder}</a><br/>
+                    <a href="${pageContext.request.contextPath}/controller?command=show_users">Show users</a><br/>
                     <a href="${pageContext.request.contextPath}/jsp/pages/admin/register_trainer.jsp">${registerTrainer}</a><br/>
                     <a href="">Bootply Profile</a>
                     <p>SKILLS</p>

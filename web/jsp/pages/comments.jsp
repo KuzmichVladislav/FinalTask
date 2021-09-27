@@ -15,6 +15,7 @@
 <fmt:message key="comment.save.changes" bundle="${rb}" var="saveChanges"/>
 <fmt:message key="comment.add.your.comment" bundle="${rb}" var="addYourComment"/>
 <fmt:message key="comment.send.comment" bundle="${rb}" var="sendComment"/>
+<fmt:message key="comment.delete" bundle="${rb}" var="delete"/>
 
 
 <html>
@@ -145,7 +146,7 @@
                                     </c:if>
                                     <c:if test="${sessionScope.userId != comment.userId && sessionScope.userRole == 'ADMIN'}">
                                         <a href="controller?command=DELETE_COMMENT&commentId=${comment.id}">
-                                            <button class="btn btn-sm btn-outline-primary w-100">Delete</button>
+                                            <button class="btn btn-sm btn-outline-primary w-100">${delete}</button>
                                         </a>
                                     </c:if>
                                 </div>

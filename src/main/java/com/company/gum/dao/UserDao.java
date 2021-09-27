@@ -3,6 +3,8 @@ package com.company.gum.dao;
 import com.company.gum.entity.User;
 import com.company.gum.exception.DaoException;
 
+import java.util.List;
+
 public interface UserDao {
 
     User findUserById(int userId) throws DaoException;
@@ -19,4 +21,5 @@ public interface UserDao {
 
     boolean restoreUser(int userId) throws DaoException;
 
+    List<User> findAllUser() throws DaoException;
 }

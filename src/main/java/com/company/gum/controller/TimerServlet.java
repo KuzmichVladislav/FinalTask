@@ -72,7 +72,7 @@ public class TimerServlet extends HttpServlet {
             if (time.before(startTime)) {
                 time = startTime;
             }
-            logger.info("TimerServlet: Timer has been set for {} ({})", time.getTime(), delay);
+            logger.info("Timer has been set for {} ({})", time.getTime(), delay);
 
             TimerTask deleteObsoleteOrders = new DeleteObsoleteOrders();
             timer.schedule(deleteObsoleteOrders, time.getTime(), delay);

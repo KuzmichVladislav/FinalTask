@@ -10,6 +10,8 @@ import com.company.gum.util.JBCryptPasswordEncoder;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.List;
+
 public class UserServiceImpl implements UserService {
 
     private static final Logger logger = LogManager.getLogger();
@@ -110,6 +112,17 @@ public class UserServiceImpl implements UserService {
             throw new ServiceException(e);
         }
         return isRestored;
+    }
+
+    @Override
+    public List<User> findAllUser() throws ServiceException {
+        List<User> users;
+        try {
+            users = userDao.findAllUser();
+        } catch (DaoException e) {
+            throw new ServiceException(e);
+        }
+        return users;
     }
 
     // FIXME: 9/7/2021

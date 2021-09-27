@@ -29,7 +29,7 @@
         </c:when>
         <c:when test="${sessionScope.userRole == 'ADMIN'}">
             <meta http-equiv="refresh"
-                  content="5;{pageContext.request.contextPath}/jsp/pages/admin/profile.jsp">${account}</a>
+                  content="5;${pageContext.request.contextPath}/jsp/pages/admin/profile.jsp">${account}</a>
         </c:when>
     </c:choose>
 </head>

@@ -3,6 +3,8 @@ package com.company.gum.service;
 import com.company.gum.entity.User;
 import com.company.gum.exception.ServiceException;
 
+import java.util.List;
+
 public interface UserService {
 
     User findUserById(int userId) throws ServiceException;
@@ -18,6 +20,8 @@ public interface UserService {
     boolean deleteUser(int userId) throws ServiceException;
 
     boolean restoreUser(int userId) throws ServiceException;
+
+    List<User> findAllUser() throws ServiceException;
 
     // FIXME: 9/7/2021
     boolean updateUserImage2(User user) throws ServiceException;

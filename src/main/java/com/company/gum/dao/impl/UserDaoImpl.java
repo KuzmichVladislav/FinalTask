@@ -11,6 +11,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import static com.company.gum.dao.TableColumnName.*;
 
@@ -66,6 +68,17 @@ public class UserDaoImpl implements UserDao {
     private static final String SQL_UPDATE_USER_IMAGE = "UPDATE users\n"
             + "SET image = IFNULL(?, image)\n"
             + "WHERE user_id = ?";
+    private static final String SQL_FIND_ALL_USER = "SELECT user_id,\n"
+            + "       login,\n"
+            + "       password,\n"
+            + "       image,\n"
+            + "       role,\n"
+            + "       name,\n"
+            + "       surname,\n"
+            + "       is_active,\n"
+            + "       mail,\n"
+            + "       is_verified\n"
+            + "FROM   users \n";
 
     private static UserDaoImpl instance;
 
@@ -211,6 +224,26 @@ public class UserDaoImpl implements UserDao {
             throw new DaoException(e);
         }
         return isRestored;
+    }
+
+    @Override
+    public List<User> findAllUser() throws DaoException {
+        List<User> resultArray = new ArrayList<>();
+        try (Connection connection = ConnectionPool.getInstance().takeConnection();
+             PreparedStatement statement = connection.prepareStatement(SQL_FIND_ALL_USER)) {
+            ResultSet resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+                User client = getUserFromResultSet(resultSet);
+                resultArray.add(client);
+            }
+
+            logger.debug(resultArray.isEmpty() ? "No users found" : "Found {} users:\n{}", resultArray.size(), resultArray);
+
+        } catch (SQLException e) {
+            throw new DaoException(e);
+        }
+        return resultArray;
     }
 
     private User getUserFromResultSet(ResultSet resultSet) throws SQLException {
