@@ -156,6 +156,14 @@
                         </div>
                     </div>
                     <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                        <form method="post" action="${pageContext.request.contextPath}/uploadServlet"
+                              enctype="multipart/form-data" class="upload-form">
+                            <div class="form-group">
+                                <input type="hidden" name="command" value="upload_image">
+                                <div class="col-lg-4">
+                                </div>
+                            </div>
+                        </form>
                         ${uploadProfileImage}
                         <form method="post" action="${pageContext.request.contextPath}/uploadServlet"
                               enctype="multipart/form-data" class="upload-form">
@@ -166,7 +174,7 @@
                         </form>
                         <form name="profileEditForm" action="${pageContext.request.contextPath}/controller"
                               method="POST">
-                            <input type="hidden" name="command" value="EDIT_CLIENT_PROFILE">
+                            <input type="hidden" name="command" value="edit_admin_profile">
                             <input type="hidden" name="userId" value="${sessionScope.userId}">
                             <div class="form-group">
                                 <label for="input-name">${name}</label>
@@ -174,18 +182,10 @@
                                        placeholder="${name}" value="">
                             </div>
 
-
                             <div class="form-group">
-                                <label for="input-last-name">${surname}</label>
-                                <input type="text" name="userLastName" class="form-control" id="input-last-name"
+                                <label for="input-surname">${surname}</label>
+                                <input type="text" name="userSurname" class="form-control" id="input-surname"
                                        placeholder="${surname}" value="">
-                            </div>
-
-
-                            <div class="form-group">
-                                <label for="input-phone">${phone}</label>
-                                <input type="text" name="userPhone" class="form-control" id="input-phone"
-                                       placeholder="${phone}" value="">
                             </div>
 
                             <div class="form-group">

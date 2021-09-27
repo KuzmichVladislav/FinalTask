@@ -8,17 +8,14 @@ import com.company.gum.pool.ConnectionPool;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 import static com.company.gum.dao.TableColumnName.*;
 
 public class AdminDaoImpl implements AdminDao {
-
+    private static final Logger logger = LogManager.getLogger();
     private static final String SQL_FIND_ADMIN_BY_ID = "SELECT user_id,\n"
             + "       login,\n"
             + "       password,\n"
@@ -40,25 +37,29 @@ public class AdminDaoImpl implements AdminDao {
             + "       mail\n"
             + "FROM users\n"
             + "WHERE role = 'ADMIN'";
+    private static final String SQL_EDIT_ADMIN = "UPDATE users\n"
+            + "SET name  = IFNULL(?, name),\n"
+            + "    surname      = IFNULL(?, surname),\n"
+            + "    mail = IFNULL(?, mail)\n"
+            + "WHERE user_id = ?\n";
 
-    private static final Logger logger = LogManager.getLogger();
-    private static AdminDaoImpl mInstance;
+    private static AdminDaoImpl instance;
 
     private AdminDaoImpl() {
     }
 
     public static AdminDaoImpl getInstance() {
-        if (mInstance == null) {
-            mInstance = new AdminDaoImpl();
+        if (instance == null) {
+            instance = new AdminDaoImpl();
         }
-        return mInstance;
+        return instance;
     }
 
     @Override
     public Admin findAdminById(int adminId) throws DaoException {
         Admin admin = new Admin();
         try (Connection connection = ConnectionPool.getInstance().takeConnection();
-                PreparedStatement statement = connection.prepareStatement(SQL_FIND_ADMIN_BY_ID)) {
+             PreparedStatement statement = connection.prepareStatement(SQL_FIND_ADMIN_BY_ID)) {
             statement.setInt(1, adminId);
             ResultSet resultSet = statement.executeQuery();
 
@@ -78,7 +79,7 @@ public class AdminDaoImpl implements AdminDao {
     public List<Admin> findAllAdmin() throws DaoException {
         List<Admin> resultArray = new ArrayList<>();
         try (Connection connection = ConnectionPool.getInstance().takeConnection();
-                PreparedStatement statement = connection.prepareStatement(SQL_FIND_ALL_ADMIN)) {
+             PreparedStatement statement = connection.prepareStatement(SQL_FIND_ALL_ADMIN)) {
             ResultSet resultSet = statement.executeQuery();
 
             while (resultSet.next()) {
@@ -92,6 +93,38 @@ public class AdminDaoImpl implements AdminDao {
             throw new DaoException(e);
         }
         return resultArray;
+    }
+
+    @Override
+    public boolean editAdmin(Admin admin) throws DaoException {
+        boolean isEdited;
+        try (Connection connection = ConnectionPool.getInstance().takeConnection();
+             PreparedStatement statement = connection.prepareStatement(SQL_EDIT_ADMIN)) {
+            if (admin.getName() != null) {
+                statement.setString(1, admin.getName());
+            } else {
+                statement.setNull(1, Types.VARCHAR);
+            }
+            if (admin.getSurname() != null) {
+                statement.setString(2, admin.getSurname());
+            } else {
+                statement.setNull(2, Types.VARCHAR);
+            }
+            if (admin.getMail() != null) {
+                statement.setString(3, admin.getMail());
+            } else {
+                statement.setNull(3, Types.VARCHAR);
+            }
+            statement.setInt(4, admin.getId());
+
+            isEdited = statement.executeUpdate() == 1;
+
+            logger.debug(isEdited ? "Admin " + admin.getId() + " was updated" : "Admin " + admin.getId() + " was not updated");
+
+        } catch (SQLException e) {
+            throw new DaoException(e);
+        }
+        return isEdited;
     }
 
     private Admin getAdminFromResultSet(ResultSet resultSet) throws SQLException {

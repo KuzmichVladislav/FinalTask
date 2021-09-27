@@ -46,4 +46,15 @@ public class AdminServiceImpl implements AdminService {
         }
         return admins;
     }
+
+    @Override
+    public boolean editAdmin(Admin admin) throws ServiceException {
+        boolean isUpdated;
+        try {
+            isUpdated = adminDao.editAdmin(admin);
+        } catch (DaoException e) {
+            throw new ServiceException(e);
+        }
+        return isUpdated;
+    }
 }

@@ -14,7 +14,6 @@ public class AttributeName {
     public static final String USER_DISCOUNT = "userDiscount";
     public static final String USER_DISCOUNT_LEVEL = "userDiscountLevel";
     public static final String USER_MONEY = "userMoney";
-    public static final String USER_PROFILE_PHOTO_PATH = "profileImage";
     public static final String USER_PHOTO = "userPhoto";
 
     public static final String USER_AUTHORIZATION = "authorization";

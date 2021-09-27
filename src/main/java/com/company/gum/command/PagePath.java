@@ -12,6 +12,7 @@ public class PagePath {
     public static final String CLIENT_CREATED = "jsp/pages/client_created.jsp";
     public static final String WELCOME = "jsp/pages/welcome.jsp";
     public static final String CLIENT_PROFILE = "jsp/pages/client/profile.jsp";
+    public static final String ADMIN_PROFILE = "jsp/pages/admin/profile.jsp";
     public static final String CREATE_ORDER = "jsp/pages/client/create_order.jsp";
     public static final String MAIN_CONTROLLER = "/controller";
     public static final String ORDER_CREATED = "jsp/pages/client/order_created.jsp";

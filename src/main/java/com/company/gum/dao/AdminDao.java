@@ -10,4 +10,6 @@ public interface AdminDao {
     Admin findAdminById(int adminId) throws DaoException;
 
     List<Admin> findAllAdmin() throws DaoException;
+
+    boolean editAdmin(Admin admin)  throws DaoException;
 }

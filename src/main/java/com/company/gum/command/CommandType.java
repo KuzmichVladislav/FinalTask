@@ -1,6 +1,7 @@
 package com.company.gum.command;
 
 import com.company.gum.command.impl.*;
+import com.company.gum.command.impl.admin.EditAdminProfileCommand;
 import com.company.gum.command.impl.admin.RegisterTrainerCommand;
 import com.company.gum.command.impl.client.ChangePasswordCommand;
 import com.company.gum.command.impl.client.EditClientProfileCommand;
@@ -14,7 +15,6 @@ import com.company.gum.command.impl.order.*;
 import com.company.gum.command.impl.trainer.EditDescriptionCommand;
 import com.company.gum.command.impl.trainer.EditExperienceCommand;
 import com.company.gum.command.impl.trainer.EditTrainerProfileCommand;
-import com.company.gum.command.impl.order.showOrderByTrainerCommand;
 
 public enum CommandType {
 
@@ -40,6 +40,7 @@ public enum CommandType {
     EDIT_COMMENT(new EditCommentCommand()),
     REFILL_MONEY(new RefillMoneyCommand()),
     EDIT_TRAINER_PROFILE(new EditTrainerProfileCommand()),
+    EDIT_ADMIN_PROFILE(new EditAdminProfileCommand()),
     EDIT_DESCRIPTION(new EditDescriptionCommand()),
     EDIT_EXPERIENCE(new EditExperienceCommand()),
     EDIT_NUTRITION(new EditNutritionCommand()),

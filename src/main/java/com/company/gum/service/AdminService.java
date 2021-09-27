@@ -10,4 +10,6 @@ public interface AdminService {
     Admin findAdminById(int adminId) throws ServiceException;
 
     List<Admin> findAllAdmin() throws ServiceException;
+
+    boolean editAdmin(Admin admin) throws ServiceException;
 }

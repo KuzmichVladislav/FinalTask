@@ -99,7 +99,7 @@
                                                                 class="rounded" width="80">
                                         </div>
                                         <div class="ml-3 w-100">
-                                            <h4 class="mb-0 mt-0">${sessionScope.userName} ${sessionScope.userLastName}</h4>
+                                            <h4 class="mb-0 mt-0">${sessionScope.userName} ${sessionScope.userSurname}</h4>
                                             <span>${role} ${sessionScope.userRole}</span>
                                             <br>
                                             <c:if test="${sessionScope.userRole == 'CLIENT'}">

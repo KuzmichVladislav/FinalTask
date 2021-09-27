@@ -2,8 +2,6 @@ package com.company.gum.controller;
 
 import com.company.gum.command.AttributeName;
 import com.company.gum.command.PagePath;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -21,8 +19,6 @@ import java.io.InputStream;
         maxRequestSize = 1024 * 1024 * 5 * 5)
 public class UploadServlet extends HttpServlet {
 
-    private static final Logger logger = LogManager.getLogger();
-
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         InputStream inputStream = null;
@@ -31,7 +27,7 @@ public class UploadServlet extends HttpServlet {
                 inputStream = part.getInputStream();
             }
         }
-        req.setAttribute(AttributeName.USER_PROFILE_PHOTO_PATH, inputStream);
+        req.setAttribute(AttributeName.USER_PHOTO, inputStream);
         req.getRequestDispatcher(PagePath.MAIN_CONTROLLER).forward(req, resp);
     }
 }

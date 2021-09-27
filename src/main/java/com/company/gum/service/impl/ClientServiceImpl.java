@@ -14,19 +14,20 @@ import java.util.List;
 
 public class ClientServiceImpl implements ClientService {
 
-    private static ClientService instance;
+    private static ClientServiceImpl instance;
 
     private ClientDao clientDao = ClientDaoImpl.getInstance();
 
     private ClientServiceImpl() {
     }
 
-    public static ClientService getInstance() {
+    public static ClientServiceImpl getInstance() {
         if (instance == null) {
             instance = new ClientServiceImpl();
         }
         return instance;
     }
+
 
     @Override
     public Client createClient(Client client) throws ServiceException {
