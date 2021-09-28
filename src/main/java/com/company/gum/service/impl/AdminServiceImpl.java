@@ -57,4 +57,26 @@ public class AdminServiceImpl implements AdminService {
         }
         return isUpdated;
     }
+
+    @Override
+    public boolean deleteUser(int userId) throws ServiceException {
+        boolean isDeleted;
+        try{
+            isDeleted = adminDao.deleteUser(userId);
+        } catch (DaoException e) {
+            throw new ServiceException(e);
+        }
+        return isDeleted;
+    }
+
+    @Override
+    public boolean restoreUser(int userId) throws ServiceException {
+        boolean isRestored;
+        try{
+            isRestored = adminDao.restoreUser(userId);
+        } catch (DaoException e) {
+            throw new ServiceException(e);
+        }
+        return isRestored;
+    }
 }

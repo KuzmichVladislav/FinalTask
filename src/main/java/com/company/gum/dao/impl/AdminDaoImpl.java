@@ -42,6 +42,12 @@ public class AdminDaoImpl implements AdminDao {
             + "    surname      = IFNULL(?, surname),\n"
             + "    mail = IFNULL(?, mail)\n"
             + "WHERE user_id = ?\n";
+    private static final String SQL_DELETE_USER = "UPDATE users\n"
+            + "SET is_active = false\n"
+            + "WHERE user_id = ?";
+    private static final String SQL_RESTORE_USER = "UPDATE users\n"
+            + "SET is_active = true\n"
+            + "WHERE user_id = ?";
 
     private static AdminDaoImpl instance;
 
@@ -125,6 +131,36 @@ public class AdminDaoImpl implements AdminDao {
             throw new DaoException(e);
         }
         return isEdited;
+    }
+
+    @Override
+    public boolean deleteUser(int userId) throws DaoException {
+        boolean isDeleted;
+        try (Connection connection = ConnectionPool.getInstance().takeConnection();
+             PreparedStatement statement = connection.prepareStatement(SQL_DELETE_USER)) {
+            statement.setInt(1, userId);
+            isDeleted = statement.executeUpdate() == 1;
+            logger.debug(isDeleted ? "User with id " + userId + " has been deleted" : "Can't delete user with id " + userId);
+
+        } catch (SQLException e) {
+            throw new DaoException(e);
+        }
+        return isDeleted;
+    }
+
+    @Override
+    public boolean restoreUser(int userId) throws DaoException {
+        boolean isRestored;
+        try (Connection connection = ConnectionPool.getInstance().takeConnection();
+             PreparedStatement statement = connection.prepareStatement(SQL_RESTORE_USER)) {
+            statement.setInt(1, userId);
+            isRestored = statement.executeUpdate() == 1;
+            logger.debug(isRestored ? "User with id " + userId + " has been restored" : "Can't restore user with id " + userId);
+
+        } catch (SQLException e) {
+            throw new DaoException(e);
+        }
+        return isRestored;
     }
 
     private Admin getAdminFromResultSet(ResultSet resultSet) throws SQLException {

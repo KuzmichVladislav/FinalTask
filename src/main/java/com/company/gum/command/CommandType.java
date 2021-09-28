@@ -1,9 +1,7 @@
 package com.company.gum.command;
 
 import com.company.gum.command.impl.*;
-import com.company.gum.command.impl.admin.EditAdminProfileCommand;
-import com.company.gum.command.impl.admin.RegisterTrainerCommand;
-import com.company.gum.command.impl.admin.ShowUsersCommand;
+import com.company.gum.command.impl.admin.*;
 import com.company.gum.command.impl.client.ChangePasswordCommand;
 import com.company.gum.command.impl.client.EditClientProfileCommand;
 import com.company.gum.command.impl.client.NewOrderCommand;
@@ -47,7 +45,9 @@ public enum CommandType {
     EDIT_NUTRITION(new EditNutritionCommand()),
     EDIT_EXERCISES(new EditExercisesCommand()),
     SHOW_USERS(new ShowUsersCommand()),
-    UPDATE_ORDER_STATUS(new UpdateOrderStatusCommand());
+    UPDATE_ORDER_STATUS(new UpdateOrderStatusCommand()),
+    DELETE_USER(new DeleteUserCommand()),
+    RESTORE_USER(new RestoreUserCommand());
 
     private Command command;
 

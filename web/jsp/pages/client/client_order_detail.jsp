@@ -22,6 +22,7 @@
 <fmt:message key="send.for.confirm" bundle="${rb}" var="sendForConfirm"/>
 <fmt:message key="agree.before.confirming" bundle="${rb}" var="agreeBeforeConfirming"/>
 <fmt:message key="action.is.paid" bundle="${rb}" var="actionIsPaid"/>
+<fmt:message key="profile.close" bundle="${rb}" var="close"/>
 
 <html>
 <head>
@@ -124,7 +125,7 @@
                         <div class="col-md-6">
                             <!-- Button trigger modal -->
                             <button type="button" class="btn btn-primary" data-toggle="modal"
-                                    data-target="#editExercisesModal" style="width:200px;">
+                                    data-target="#exercisesModal" style="width:200px;">
                                     ${exercises}
                             </button>
 
@@ -143,7 +144,7 @@
                                             <p>${order.exercises}</p>
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">${close}
                                             </button>
                                         </div>
                                     </div>
@@ -154,7 +155,7 @@
                         <div class="col-md-6">
                             <!-- Button trigger modal -->
                             <button type="button" class="btn btn-primary" data-toggle="modal"
-                                    data-target="#editNutritionModal" style="margin-top:10px; width:200px;">
+                                    data-target="#nutritionModal" style="margin-top:10px; width:200px;">
                                     ${nutrition}
                             </button>
 
@@ -173,7 +174,7 @@
                                             <p>${order.nutrition}</p>
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">${close}
                                             </button>
                                         </div>
                                     </div>

@@ -32,6 +32,8 @@ public class PagePath {
     public static final String TRAINER_ORDER_DETAIL = "jsp/pages/trainer/trainer_order_detail.jsp";
     public static final String ORDER_UPDATED = "jsp/pages/trainer/order_updated.jsp";
     public static final String SHOW_ALL_USERS = "jsp/pages/admin/show_all_users.jsp";
+    public static final String USER_DELETED = "jsp/pages/admin/user_deleted.jsp";
+    public static final String USER_RESTORED = "jsp/pages/admin/user_restored.jsp";
 
     private PagePath() {
     }

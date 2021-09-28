@@ -11,5 +11,9 @@ public interface AdminDao {
 
     List<Admin> findAllAdmin() throws DaoException;
 
-    boolean editAdmin(Admin admin)  throws DaoException;
+    boolean editAdmin(Admin admin) throws DaoException;
+
+    boolean deleteUser(int userId) throws DaoException;
+
+    boolean restoreUser(int userId) throws DaoException;
 }

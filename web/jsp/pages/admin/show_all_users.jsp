@@ -51,24 +51,6 @@
             <h3 class="register-heading">${filterableTable}</h3>
             <div class="row register-form">
                 <div class="container mt-3">
-
-                    <%--                    <form class="filter-form" id="filterButton" action="${pageContext.request.contextPath}/controller"--%>
-                    <%--                          method="POST">--%>
-                    <%--                        <input type="hidden" name="command" value="FIND_USERS_BY_FILTER">--%>
-                    <%--                        <div class="form-row">--%>
-                    <%--                            <div class="form-group col-md-4">--%>
-                    <%--                                <label for="inputStatus">${filterRole}</label>--%>
-                    <%--                                <select id="inputStatus" class="form-control" name="userRole">--%>
-                    <%--                                    <option value="CLIENT">${roleClient}</option>--%>
-                    <%--                                    <option value="TRAINER">${roleTrainer}</option>--%>
-                    <%--                                    <option value="" selected>${roleAny}</option>--%>
-                    <%--                                </select>--%>
-                    <%--                            </div>--%>
-                    <%--                        </div>--%>
-                    <%--                        <button type="submit" class="btn btn-success">${btnFilter}</button>--%>
-                    <%--                    </form>--%>
-
-
                     <p>${filterMessage}</p>
                     <input class="form-control" id="myInput" type="text" placeholder="${tableSearch}">
                     <br>
@@ -94,13 +76,14 @@
                             <td>${user.role}</td>
                             <td>${user.active}</td>
                             <td>
-                                <c:if test="${user.active}">
-                                    <a href="${pageContext.request.contextPath}/controller?command=DELETE_USER_BY_ADMIN&userId=${user.id}">${delete}</a>
-                                </c:if>
-                                <c:if test="${user.active}">
-                                    <todo>Сделать</todo>
-                                    <a href="${pageContext.request.contextPath}/controller?command=DELETE_USER_BY_ADMIN&userId=${user.id}">${restore}</a>
-                                </c:if>
+                                <c:choose>
+                                    <c:when test="${user.active}">
+                                        <a href="${pageContext.request.contextPath}/controller?command=DELETE_USER&userId=${user.id}">${delete}</a>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <a href="${pageContext.request.contextPath}/controller?command=RESTORE_USER&userId=${user.id}">${restore}</a>
+                                    </c:otherwise>
+                                </c:choose>
                             </td>
                             </c:forEach>
                         </tr>

@@ -52,6 +52,7 @@
 <fmt:message key="form.money.refill" bundle="${rb}" var="moneyRefill"/>
 <fmt:message key="profile.change.password" bundle="${rb}" var="changePassword"/>
 <fmt:message key="profile.register.trainer" bundle="${rb}" var="registerTrainer"/>
+<fmt:message key="show.users" bundle="${rb}" var="showUsers"/>
 
 <html>
 <head>
@@ -108,7 +109,7 @@
             <div class="col-md-4">
                 <div class="profile-work">
                     <p>${workLinks}</p>
-                    <a href="${pageContext.request.contextPath}/controller?command=show_users">Show users</a><br/>
+                    <a href="${pageContext.request.contextPath}/controller?command=show_users">${showUsers}</a><br/>
                     <a href="${pageContext.request.contextPath}/jsp/pages/admin/register_trainer.jsp">${registerTrainer}</a><br/>
                     <a href="">Bootply Profile</a>
                     <p>SKILLS</p>
