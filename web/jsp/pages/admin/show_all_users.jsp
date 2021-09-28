@@ -71,7 +71,8 @@
                         <jsp:useBean id="user" type="com.company.gum.entity.User"/>
                         <tr>
                             <td>${user.id}</td>
-                            <td>${user.name} ${user.surname}</td>
+                            <td><a href="${pageContext.request.contextPath}/controller?command=SHOW_USER_PROFILE&userId=${user.id}&userRole=${user.role}">${user.name} ${user.surname}</a></td>
+
                             <td>${user.mail}</td>
                             <td>${user.role}</td>
                             <td>${user.active}</td>

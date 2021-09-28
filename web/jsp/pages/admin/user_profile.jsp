@@ -30,7 +30,7 @@
 <fmt:message key="form.sign.up.motivation.message" bundle="${rb}" var="motivationMessage"/>
 <fmt:message key="form.sign.up.message" bundle="${rb}" var="signUpMessage"/>
 <fmt:message key="form.log.in.message" bundle="${rb}" var="logInMessage"/>
-<fmt:message key="profile.details" bundle="${rb}" var="profileDetails"/>
+<fmt:message key="user.profile.details" bundle="${rb}" var="userProfileDetails"/>
 <fmt:message key="profile.about" bundle="${rb}" var="profileAbout"/>
 <fmt:message key="profile.edit" bundle="${rb}" var="profileEdit"/>
 <fmt:message key="profile.work.links" bundle="${rb}" var="workLinks"/>
@@ -51,9 +51,6 @@
 <fmt:message key="profile.my.orders" bundle="${rb}" var="myOrder"/>
 <fmt:message key="form.money.refill" bundle="${rb}" var="moneyRefill"/>
 <fmt:message key="profile.change.password" bundle="${rb}" var="changePassword"/>
-<fmt:message key="profile.register.trainer" bundle="${rb}" var="registerTrainer"/>
-<fmt:message key="show.users" bundle="${rb}" var="showUsers"/>
-<fmt:message key="show.orders" bundle="${rb}" var="showOrders"/>
 
 <html>
 <head>
@@ -68,7 +65,12 @@
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
+<%--<c:choose>--%>
+<%--    <c:when test="${requestScope.user.role == 'CLIENT'}">--%>
 <div class="container emp-profile">
+    <c:set var="client" value="${requestScope.user}"/>
+    <jsp:useBean id="client" type="com.company.gum.entity.Client"/>
+
     <form method="post">
         <div class="row">
             <div class="col-md-4">
@@ -80,12 +82,12 @@
             <div class="col-md-6" style="max-width:42%;">
                 <div class="profile-head">
                     <h5>
-                        ${sessionScope.userName} ${sessionScope.userLastName}
+                        ${client.name} ${client.surname}
                     </h5>
                     <h6>
-                        ${sessionScope.userRole}
+                        ${client.role}
                     </h6>
-                    <p class="proile-rating">${profileDetails}</p>
+                    <p class="proile-rating">${userProfileDetails}</p>
                     <ul class="nav nav-tabs" id="myTab" role="tablist">
                         <li class="nav-item">
                             <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab"
@@ -98,28 +100,21 @@
                     </ul>
                 </div>
             </div>
-            <div class="col-md-2">
-                <a href="${pageContext.request.contextPath}/jsp/pages/change_password.jsp">
-                    <button type="button" class="btn btn-primary">
-                        ${changePassword}
-                    </button>
-                </a>
-            </div>
         </div>
         <div class="row">
             <div class="col-md-4">
                 <div class="profile-work">
-                    <p>${workLinks}</p>
-                    <a href="${pageContext.request.contextPath}/controller?command=SHOW_USERS">${showUsers}</a><br/>
-                    <a href="${pageContext.request.contextPath}/controller?command=SHOW_ALL_ORDERS_BY_ADMIN">${showOrders}</a><br/>
-                    <a href="${pageContext.request.contextPath}/jsp/pages/admin/register_trainer.jsp">${registerTrainer}</a><br/>
-                    <a href="">Bootply Profile</a>
-                    <p>SKILLS</p>
-                    <a href="">Web Designer</a><br/>
-                    <a href="">Web Developer</a><br/>
-                    <a href="">WordPress</a><br/>
-                    <a href="">WooCommerce</a><br/>
-                    <a href="">PHP, .Net</a><br/>
+                    <%--                        <p>${workLinks}</p>--%>
+                    <%--                        <a href="${pageContext.request.contextPath}/controller?command=new_order">${newOrder}</a>--%>
+                    <%--                        <a href="${pageContext.request.contextPath}/controller?command=show_all_orders_by_client">${myOrder}</a><br/>--%>
+                    <%--                        <a href="${pageContext.request.contextPath}/jsp/pages/client/refill_money.jsp">${moneyRefill}</a><br/>--%>
+                    <%--                        <a href="">Bootply Profile</a>--%>
+                    <%--                        <p>SKILLS</p>--%>
+                    <%--                        <a href="">Web Designer</a><br/>--%>
+                    <%--                        <a href="">Web Developer</a><br/>--%>
+                    <%--                        <a href="">WordPress</a><br/>--%>
+                    <%--                        <a href="">WooCommerce</a><br/>--%>
+                    <%--                        <a href="">PHP, .Net</a><br/>--%>
                 </div>
             </div>
             <div class="col-md-8">
@@ -130,7 +125,7 @@
                                 <label>${userLogin}</label>
                             </div>
                             <div class="col-md-6">
-                                <p>${sessionScope.userLogin}</p>
+                                <p>${client.login}</p>
                             </div>
                         </div>
                         <div class="row">
@@ -138,7 +133,7 @@
                                 <label>${fullName}</label>
                             </div>
                             <div class="col-md-6">
-                                <p> ${sessionScope.userName} ${sessionScope.userSurname}</p>
+                                <p> ${client.name} ${client.surname}</p>
                             </div>
                         </div>
                         <div class="row">
@@ -146,7 +141,15 @@
                                 <label>${mail}</label>
                             </div>
                             <div class="col-md-6">
-                                <p>${sessionScope.userMail}</p>
+                                <p>${client.mail}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>${phone}</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>${client.phone}</p>
                             </div>
                         </div>
                         <div class="row">
@@ -154,51 +157,50 @@
                                 <label>${status}</label>
                             </div>
                             <div class="col-md-6">
-                                <p>${sessionScope.userRole}</p>
+                                <p>${client.role}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>${registerDate}</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>${client.registerDate}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>${money}</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>${client.money} BYN</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>${discount}</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>${client.discount} %</p>
                             </div>
                         </div>
                     </div>
                     <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                        <form method="post" action="${pageContext.request.contextPath}/uploadServlet"
-                              enctype="multipart/form-data" class="upload-form">
-                            <div class="form-group">
-                                <input type="hidden" name="command" value="upload_image">
-                                <div class="col-lg-4">
-                                </div>
-                            </div>
-                        </form>
-                        ${uploadProfileImage}
-                        <form method="post" action="${pageContext.request.contextPath}/uploadServlet"
-                              enctype="multipart/form-data" class="upload-form">
-                            <input type="hidden" name="command" value="upload_image">
-                            <input type="file" class="btn btn-primary" name="multiPartServlet" id="file"
-                                   onchange="this.form.submit();"
-                                   accept="image/jpeg,image/png,image/gif"/>
-                        </form>
                         <form name="profileEditForm" action="${pageContext.request.contextPath}/controller"
                               method="POST">
-                            <input type="hidden" name="command" value="edit_admin_profile">
-                            <input type="hidden" name="userId" value="${sessionScope.userId}">
-                            <div class="form-group">
-                                <label for="input-name">${name}</label>
-                                <input type="text" name="userName" class="form-control" id="input-name"
-                                       placeholder="${name}" value="">
-                            </div>
+                            <input type="hidden" name="command" value="edit_client_discount">
+                            <input type="hidden" name="userId" value="${client.id}">
 
                             <div class="form-group">
-                                <label for="input-surname">${surname}</label>
-                                <input type="text" name="userSurname" class="form-control" id="input-surname"
-                                       placeholder="${surname}" value="">
+                                <label for="input-discount">${discount}</label>
+                                <input type="text" name="discount" class="form-control" id="input-discount"
+                                       placeholder="${name}" value="${client.discount}">
                             </div>
 
-                            <div class="form-group">
-                                <label for="input-mail">${mail}</label>
-                                <input type="email" name="userMail" class="form-control" id="input-mail"
-                                       placeholder="${mail}" value="">
-                            </div>
                             <c:if test="${requestScope.errMessage != null}">
                                 <div class="alert alert-danger">
-                                    <span><fmt:message key="${requestScope.errMessage}" bundle="${err_rb}"/></span>
+                                            <span><fmt:message key="${requestScope.errMessage}"
+                                                               bundle="${err_rb}"/></span>
                                 </div>
                             </c:if>
                             <button type="submit" class="btn btn-primary">${confirm}</button>
@@ -209,6 +211,8 @@
         </div>
     </form>
 </div>
+<%--    </c:when>--%>
+<%--</c:choose>--%>
 <c:import url="../../fragment/footer.jsp"/>
 </body>
 </html>

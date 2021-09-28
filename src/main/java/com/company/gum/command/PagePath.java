@@ -34,6 +34,8 @@ public class PagePath {
     public static final String SHOW_ALL_USERS = "jsp/pages/admin/show_all_users.jsp";
     public static final String USER_DELETED = "jsp/pages/admin/user_deleted.jsp";
     public static final String USER_RESTORED = "jsp/pages/admin/user_restored.jsp";
+    public static final String ADMIN_ORDERS = "jsp/pages/admin/all_orders.jsp";
+    public static final String USER_PROFILE = "jsp/pages/admin/user_profile.jsp";
 
     private PagePath() {
     }

@@ -44,14 +44,14 @@ public class TimerServlet extends HttpServlet {
         try {
             initialTime = format.parse(config.getInitParameter("initialTime"));
         } catch (ParseException pe) {
-            logger.info("startTime could not be parsed from web.xml file");
+            logger.info("startTime could not be parsed from @WebInitParam");
             initialTime = new Date();
         }
 
         try {
             delay = Long.parseLong(config.getInitParameter("delay"));
         } catch (Exception e) {
-            logger.info("delay Parameter could not be parsed from web.xml file");
+            logger.info("delay Parameter could not be parsed from @WebInitParam");
             delay = HOURS_24;
         }
 

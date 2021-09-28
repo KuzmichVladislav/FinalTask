@@ -62,7 +62,13 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public List<Order> findAllOrder() throws ServiceException {
-        return null;
+        List<Order> orders;
+        try {
+            orders = orderDao.findAllOrder();
+        } catch (DaoException e) {
+            throw new ServiceException(e);
+        }
+        return orders;
     }
 
     @Override

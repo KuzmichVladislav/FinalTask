@@ -6,7 +6,7 @@
 <fmt:setBundle basename="bundle/message" var="rb"/>
 
 <fmt:message key="project.name" bundle="${rb}" var="projectName"/>
-<fmt:message key="profile.my.orders" bundle="${rb}" var="myOrder"/>
+<fmt:message key="profile.all.orders" bundle="${rb}" var="allOrders"/>
 <fmt:message key="form.sign.up.tagline" bundle="${rb}" var="tagline"/>
 <fmt:message key="form.sign.up.motivation.message" bundle="${rb}" var="motivationMessage"/>
 <fmt:message key="order.empty.order.at.all" bundle="${rb}" var="emptyOrdersListAtAll"/>
@@ -16,6 +16,7 @@
 <fmt:message key="order.status" bundle="${rb}" var="status"/>
 <fmt:message key="order.client.name" bundle="${rb}" var="clientFullName"/>
 <fmt:message key="order.details" bundle="${rb}" var="orderDetails"/>
+<fmt:message key="order.trainer.name" bundle="${rb}" var="trainerFullName"/>
 
 
 <html>
@@ -39,7 +40,7 @@
         </div>
         <div class="col-md-9 register-right">
 
-            <h3 class="register-heading">${myOrder}</h3>
+            <h3 class="register-heading">${allOrders}</h3>
 
             <div class="row register-form">
                 <div class="col-md-6 ">
@@ -54,6 +55,7 @@
                                         <tr>
                                             <th>${registerDate}</th>
                                             <th>${clientFullName}</th>
+                                            <th>${trainerFullName}</th>
                                             <th>${startDate}</th>
                                             <th>${endDate}</th>
                                             <th>${status}</th>
@@ -61,15 +63,16 @@
                                         <tr>
                                             <td>${order.registerDate}</td>
                                             <td>${order.clientName} ${order.clientSurname}</td>
+                                            <td>${order.trainerName} ${order.trainerSurname}</td>
                                             <td>${order.startDate}</td>
                                             <td>${order.endDate}</td>
                                             <td>${order.orderStatus}</td>
                                         </tr>
                                         <tr>
-                                            <td colspan="5">
-                                                <a href="${pageContext.request.contextPath}/controller?command=SHOW_ORDER_BY_TRAINER&orderId=${order.id}">
+                                            <td colspan="6">
+                                                <a href="${pageContext.request.contextPath}/controller?command=SHOW_ORDER_BY_ADMIN&orderId=${order.id}">
                                                     <button class="btn btn-sm btn-outline-primary w-100">
-                                                            ${orderDetails}</button>
+                                                        ${orderDetails}</button>
                                                 </a>
                                             </td>
                                         </tr>

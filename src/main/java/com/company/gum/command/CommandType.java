@@ -31,8 +31,10 @@ public enum CommandType {
     DELETE_ORDER_BY_CLIENT(new DeleteOrderByClientCommand()),
     SHOW_ALL_ORDERS_BY_CLIENT(new ShowAllOrdersByClientCommand()),
     SHOW_ALL_ORDERS_BY_TRAINER(new ShowAllOrdersByTrainerCommand()),
+    SHOW_ALL_ORDERS_BY_ADMIN(new ShowAllOrdersByAdminCommand()),
     SHOW_ORDER_BY_CLIENT(new showOrderByClientCommand()),
     SHOW_ORDER_BY_TRAINER(new showOrderByTrainerCommand()),
+    //SHOW_ORDER_BY_ADMIN(new showOrderByAdminCommand()),
     CREATE_NEW_COMMENT(new CreateNewCommentCommand()),
     SHOW_ALL_ACTIVE_COMMENTS(new ShowAllActiveCommentsCommand()),
     DELETE_COMMENT(new DeleteCommentCommand()),
@@ -47,7 +49,8 @@ public enum CommandType {
     SHOW_USERS(new ShowUsersCommand()),
     UPDATE_ORDER_STATUS(new UpdateOrderStatusCommand()),
     DELETE_USER(new DeleteUserCommand()),
-    RESTORE_USER(new RestoreUserCommand());
+    RESTORE_USER(new RestoreUserCommand()),
+    SHOW_USER_PROFILE(new ShowUserProfileCommand());
 
     private Command command;
 
