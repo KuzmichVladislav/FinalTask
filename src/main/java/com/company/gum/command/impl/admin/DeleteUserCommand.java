@@ -14,18 +14,18 @@ import static com.company.gum.command.Router.RouterType.REDIRECT;
 
 public class DeleteUserCommand implements Command {
 
-    AdminService adminService = AdminServiceImpl.getInstance();
+	AdminService adminService = AdminServiceImpl.getInstance();
 
-    @Override
-    public Router execute(SessionRequestContent requestContent) throws CommandException {
-        Router router;
-        try {
-            int userId = Integer.parseInt(requestContent.getParameterByName(USER_ID));
-            adminService.deleteUser(userId);
-            router = new Router(PagePath.USER_DELETED, REDIRECT);
-        } catch (ServiceException e) {
-            throw new CommandException(e);
-        }
-        return router;
-    }
+	@Override
+	public Router execute(SessionRequestContent requestContent) throws CommandException {
+		Router router;
+		try {
+			int userId = Integer.parseInt(requestContent.getParameterByName(USER_ID));
+			adminService.deleteUser(userId);
+			router = new Router(PagePath.USER_DELETED, REDIRECT);
+		} catch (ServiceException e) {
+			throw new CommandException(e);
+		}
+		return router;
+	}
 }

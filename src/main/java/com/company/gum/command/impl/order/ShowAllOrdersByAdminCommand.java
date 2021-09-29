@@ -17,19 +17,19 @@ import static com.company.gum.command.Router.RouterType.FORWARD;
 
 public class ShowAllOrdersByAdminCommand implements Command {
 
-    private OrderService orderService = OrderServiceImpl.getInstance();
+	private OrderService orderService = OrderServiceImpl.getInstance();
 
-    @Override
-    public Router execute(SessionRequestContent requestContent) throws CommandException {
-        Router router;
-        try {
-            List<Order> orders;
-            orders = orderService.findAllOrder();
-            router = new Router(PagePath.ADMIN_ORDERS, FORWARD);
-            requestContent.putAttribute(ORDERS, orders);
-        } catch (ServiceException e) {
-            throw new CommandException(e);
-        }
-        return router;
-    }
+	@Override
+	public Router execute(SessionRequestContent requestContent) throws CommandException {
+		Router router;
+		try {
+			List<Order> orders;
+			orders = orderService.findAllOrder();
+			router = new Router(PagePath.ADMIN_ORDERS, FORWARD);
+			requestContent.putAttribute(ORDERS, orders);
+		} catch (ServiceException e) {
+			throw new CommandException(e);
+		}
+		return router;
+	}
 }

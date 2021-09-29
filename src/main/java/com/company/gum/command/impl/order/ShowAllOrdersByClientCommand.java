@@ -18,20 +18,20 @@ import static com.company.gum.command.Router.RouterType.FORWARD;
 
 public class ShowAllOrdersByClientCommand implements Command {
 
-    private OrderService orderService = OrderServiceImpl.getInstance();
+	private OrderService orderService = OrderServiceImpl.getInstance();
 
-    @Override
-    public Router execute(SessionRequestContent requestContent) throws CommandException {
-        Router router;
-        try {
-            int clientId = (Integer) requestContent.getSessionAttributeByName(USER_ID);
-            List<Order> orders;
-            orders = orderService.findActiveOrderByClient(clientId);
-            router = new Router(PagePath.CLIENT_ORDERS, FORWARD);
-            requestContent.putAttribute(ORDERS, orders);
-        } catch (ServiceException e) {
-            throw new CommandException(e);
-        }
-        return router;
-    }
+	@Override
+	public Router execute(SessionRequestContent requestContent) throws CommandException {
+		Router router;
+		try {
+			int clientId = (Integer) requestContent.getSessionAttributeByName(USER_ID);
+			List<Order> orders;
+			orders = orderService.findActiveOrderByClient(clientId);
+			router = new Router(PagePath.CLIENT_ORDERS, FORWARD);
+			requestContent.putAttribute(ORDERS, orders);
+		} catch (ServiceException e) {
+			throw new CommandException(e);
+		}
+		return router;
+	}
 }

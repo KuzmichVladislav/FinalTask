@@ -14,19 +14,19 @@ import static com.company.gum.command.Router.RouterType.REDIRECT;
 
 public class DeleteOrderByClientCommand implements Command {
 
-    private OrderService orderService = OrderServiceImpl.getInstance();
+	private OrderService orderService = OrderServiceImpl.getInstance();
 
-    @Override
-    public Router execute(SessionRequestContent requestContent) throws CommandException {
-        Router router;
-        try {
-            int orderId = Integer.parseInt(requestContent.getParameterByName(ORDER_ID));
-            orderService.deleteOrder(orderId);
-            requestContent.putAttribute(ORDER_ID, orderId);// TODO: 9/22/2021 нет необходимости
-            router = new Router(PagePath.ORDER_DELETED_BY_CLIENT, REDIRECT);
-        } catch (ServiceException e) {
-            throw new CommandException(e);
-        }
-        return router;
-    }
+	@Override
+	public Router execute(SessionRequestContent requestContent) throws CommandException {
+		Router router;
+		try {
+			int orderId = Integer.parseInt(requestContent.getParameterByName(ORDER_ID));
+			orderService.deleteOrder(orderId);
+			requestContent.putAttribute(ORDER_ID, orderId);// TODO: 9/22/2021 нет необходимости
+			router = new Router(PagePath.ORDER_DELETED_BY_CLIENT, REDIRECT);
+		} catch (ServiceException e) {
+			throw new CommandException(e);
+		}
+		return router;
+	}
 }

@@ -21,36 +21,36 @@ import static com.company.gum.command.Router.RouterType.REDIRECT;
 
 public class RefillMoneyCommand implements Command {
 
-    ClientService clientService = ClientServiceImpl.getInstance();
+	ClientService clientService = ClientServiceImpl.getInstance();
 
-    @Override
-    public Router execute(SessionRequestContent requestContent) throws CommandException {
-        Router router;
-        try {
-            int clientId = (Integer) requestContent.getSessionAttributeByName(USER_ID);
-            boolean isValid = true;
-            String StringMoney = requestContent.getParameterByName(MONEY);
-            if (!Validator.checkMoney(StringMoney)) {
-                requestContent.putAttribute(ERR_MESSAGE, INVALID_MONEY);
-                isValid = false;
-            }
-            if (isValid) {
-                BigDecimal money = new BigDecimal(StringMoney, MathContext.DECIMAL32);
-                boolean isUpdated = clientService.refillMoney(clientId, money);
-                if (isUpdated) {
-                    requestContent.putAttribute(MONEY, money.doubleValue());
-                    Client client = clientService.findClientById(clientId);
-                    requestContent.putSessionAttribute(USER_MONEY, client.getMoney());
-                    router = new Router(PagePath.MONEY_REFILLED, REDIRECT);
-                } else {
-                    router = new Router(PagePath.REFILL_MONEY, FORWARD);
-                }
-            } else {
-                router = new Router(PagePath.REFILL_MONEY, FORWARD);
-            }
-        } catch (ServiceException e) {
-            throw new CommandException(e);
-        }
-        return router;
-    }
+	@Override
+	public Router execute(SessionRequestContent requestContent) throws CommandException {
+		Router router;
+		try {
+			int clientId = (Integer) requestContent.getSessionAttributeByName(USER_ID);
+			boolean isValid = true;
+			String StringMoney = requestContent.getParameterByName(MONEY);
+			if (!Validator.checkMoney(StringMoney)) {
+				requestContent.putAttribute(ERR_MESSAGE, INVALID_MONEY);
+				isValid = false;
+			}
+			if (isValid) {
+				BigDecimal money = new BigDecimal(StringMoney, MathContext.DECIMAL32);
+				boolean isUpdated = clientService.refillMoney(clientId, money);
+				if (isUpdated) {
+					requestContent.putAttribute(MONEY, money.doubleValue());
+					Client client = clientService.findClientById(clientId);
+					requestContent.putSessionAttribute(USER_MONEY, client.getMoney());
+					router = new Router(PagePath.MONEY_REFILLED, REDIRECT);
+				} else {
+					router = new Router(PagePath.REFILL_MONEY, FORWARD);
+				}
+			} else {
+				router = new Router(PagePath.REFILL_MONEY, FORWARD);
+			}
+		} catch (ServiceException e) {
+			throw new CommandException(e);
+		}
+		return router;
+	}
 }

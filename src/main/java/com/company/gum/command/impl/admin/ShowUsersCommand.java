@@ -18,19 +18,19 @@ import static com.company.gum.command.Router.RouterType.FORWARD;
 
 public class ShowUsersCommand implements Command {
 
-    private UserService userService = UserServiceImpl.getInstance();
+	private UserService userService = UserServiceImpl.getInstance();
 
-    @Override
-    public Router execute(SessionRequestContent requestContent) throws CommandException {
-        Router router;
-        List<User> users = new ArrayList<>();
-        try {
-            users.addAll(userService.findAllUser());
-            router = new Router(PagePath.SHOW_ALL_USERS, FORWARD);
-            requestContent.putAttribute(AttributeName.USERS, users);
-        } catch (ServiceException e) {
-            throw new CommandException(e);
-        }
-        return router;
-    }
+	@Override
+	public Router execute(SessionRequestContent requestContent) throws CommandException {
+		Router router;
+		List<User> users = new ArrayList<>();
+		try {
+			users.addAll(userService.findAllUser());
+			router = new Router(PagePath.SHOW_ALL_USERS, FORWARD);
+			requestContent.putAttribute(AttributeName.USERS, users);
+		} catch (ServiceException e) {
+			throw new CommandException(e);
+		}
+		return router;
+	}
 }

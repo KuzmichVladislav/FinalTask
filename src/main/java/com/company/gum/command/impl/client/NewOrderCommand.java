@@ -17,18 +17,18 @@ import static com.company.gum.command.Router.RouterType.FORWARD;
 
 public class NewOrderCommand implements Command {
 
-    private TrainerService trainerService = TrainerServiceImpl.getInstance();
+	private TrainerService trainerService = TrainerServiceImpl.getInstance();
 
-    @Override
-    public Router execute(SessionRequestContent requestContent) throws CommandException {
-        Router router;
-        try {
-            List<Trainer> trainers = trainerService.findAllActiveTrainer();
-            requestContent.putAttribute(TRAINERS, trainers);
-            router = new Router(PagePath.CREATE_ORDER, FORWARD);
-        } catch (ServiceException e) {
-            throw new CommandException(e);
-        }
-        return router;
-    }
+	@Override
+	public Router execute(SessionRequestContent requestContent) throws CommandException {
+		Router router;
+		try {
+			List<Trainer> trainers = trainerService.findAllActiveTrainer();
+			requestContent.putAttribute(TRAINERS, trainers);
+			router = new Router(PagePath.CREATE_ORDER, FORWARD);
+		} catch (ServiceException e) {
+			throw new CommandException(e);
+		}
+		return router;
+	}
 }

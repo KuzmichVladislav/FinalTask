@@ -7,25 +7,40 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
-@WebFilter(urlPatterns = {"/*"})
+// TODO: Auto-generated Javadoc
+/**
+ * The Class CurrentPageFilter.
+ */
+@WebFilter(urlPatterns = { "/*" })
 public class CurrentPageFilter implements Filter {
 
-    @Override
-    public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws IOException, ServletException {
-        HttpServletRequest httpRequest = (HttpServletRequest) req;
-        String currentPage = httpRequest.getRequestURL().toString();
-        if (currentPage.contains("jsp/")) {
-            int index = currentPage.indexOf("jsp/");
-            currentPage = currentPage.substring(index);
-            httpRequest.getSession().setAttribute(AttributeName.CURRENT_PAGE, currentPage);
+	/**
+	 * Do filter.
+	 *
+	 * @param req the req
+	 * @param resp the resp
+	 * @param chain the chain
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws ServletException the servlet exception
+	 */
+	@Override
+	public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain)
+			throws IOException, ServletException {
+		HttpServletRequest httpRequest = (HttpServletRequest) req;
+		String currentPage = httpRequest.getRequestURL().toString();
+		if (currentPage.contains("jsp/")) {
+			int index = currentPage.indexOf("jsp/");
+			currentPage = currentPage.substring(index);
+			httpRequest.getSession().setAttribute(AttributeName.CURRENT_PAGE, currentPage);
 
-        } else if (currentPage.contains("controller") && !httpRequest.getParameterMap().isEmpty()) {
-            if (httpRequest.getQueryString() != null && !httpRequest.getQueryString().contains("command=change_locale")) {
-                int index = currentPage.indexOf("controller");
-                currentPage = currentPage.substring(index) + "?" + httpRequest.getQueryString();
-                httpRequest.getSession().setAttribute(AttributeName.CURRENT_PAGE, currentPage);
-            }
-        }
-        chain.doFilter(httpRequest, resp);
-    }
+		} else if (currentPage.contains("controller") && !httpRequest.getParameterMap().isEmpty()) {
+			if (httpRequest.getQueryString() != null
+					&& !httpRequest.getQueryString().contains("command=change_locale")) {
+				int index = currentPage.indexOf("controller");
+				currentPage = currentPage.substring(index) + "?" + httpRequest.getQueryString();
+				httpRequest.getSession().setAttribute(AttributeName.CURRENT_PAGE, currentPage);
+			}
+		}
+		chain.doFilter(httpRequest, resp);
+	}
 }

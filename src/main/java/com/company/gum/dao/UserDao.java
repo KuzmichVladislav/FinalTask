@@ -7,19 +7,19 @@ import java.util.List;
 
 public interface UserDao {
 
-    User findUserById(int userId) throws DaoException;
+	User findUserById(int userId) throws DaoException;
 
-    User findUserByLogin(String login) throws DaoException;
+	User findUserByLogin(String login) throws DaoException;
 
-    User findUserByLoginAndPassword(String login, String password) throws DaoException;
+	User findUserByLoginAndPassword(String login, String password) throws DaoException;
 
-    boolean updateUserPassword(User user) throws DaoException;
+	boolean updateUserPassword(User user) throws DaoException;
 
-    boolean updateUserImage(User user) throws DaoException;
+	boolean updateUserImage(User user) throws DaoException;
 
-    boolean deleteUser(int userId) throws DaoException;
+	boolean deleteUser(int userId) throws DaoException;
 
-    boolean restoreUser(int userId) throws DaoException;
+	boolean restoreUser(int userId) throws DaoException;
 
-    List<User> findAllUser() throws DaoException;
+	List<User> findAllUser() throws DaoException;
 }

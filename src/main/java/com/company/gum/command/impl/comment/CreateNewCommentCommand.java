@@ -16,25 +16,26 @@ import static com.company.gum.command.Router.RouterType.FORWARD;
 
 public class CreateNewCommentCommand implements Command {
 
-    private CommentService commentService = CommentServiceImpl.getInstance();
+	private CommentService commentService = CommentServiceImpl.getInstance();
 
-    @Override
-    public Router execute(SessionRequestContent requestContent) throws CommandException {
-        Router router;
-        try {
+	@Override
+	public Router execute(SessionRequestContent requestContent) throws CommandException {
+		Router router;
+		try {
 
-            int userId = (Integer) requestContent.getSessionAttributeByName(AttributeName.USER_ID);
-            String commentText = requestContent.getParameterByName(COMMENT).strip().replaceAll("<", "").replaceAll(">", "");
+			int userId = (Integer) requestContent.getSessionAttributeByName(AttributeName.USER_ID);
+			String commentText = requestContent.getParameterByName(COMMENT).strip().replaceAll("<", "").replaceAll(">",
+					"");
 
-            Comment comment = new Comment.Builder().build();
-            comment.setUserId(userId);
-            comment.setCommentText(commentText);
+			Comment comment = new Comment.Builder().build();
+			comment.setUserId(userId);
+			comment.setCommentText(commentText);
 
-            commentService.createComment(comment);
-            router = new Router((String) requestContent.getSessionAttributeByName(CURRENT_PAGE), FORWARD);
-        } catch (ServiceException e) {
-            throw new CommandException(e);
-        }
-        return router;
-    }
+			commentService.createComment(comment);
+			router = new Router((String) requestContent.getSessionAttributeByName(CURRENT_PAGE), FORWARD);
+		} catch (ServiceException e) {
+			throw new CommandException(e);
+		}
+		return router;
+	}
 }

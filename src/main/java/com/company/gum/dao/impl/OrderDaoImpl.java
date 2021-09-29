@@ -15,211 +15,140 @@ import static com.company.gum.dao.TableColumnName.*;
 
 public class OrderDaoImpl implements OrderDao {
 
-    private static final Logger logger = LogManager.getLogger();
+	private static final Logger logger = LogManager.getLogger();
 
-    private static final String SQL_CREATE_ORDER = "INSERT INTO orders(client_id, trainer_id, client_comment, start_order_date, end_order_date, price, nutrition, exercises)\n"
-            + "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-    private static final String SQL_UPDATE_QUERY = "UPDATE orders\n"
-            + "SET client_id        = IFNULL(?, client_id),\n"
-            + "    trainer_id       = IFNULL(?, trainer_id),\n"
-            + "    exercises        = IFNULL(?, exercises),\n"
-            + "    nutrition        = IFNULL(?, nutrition),\n"
-            + "    start_order_date = IFNULL(?, start_order_date),\n"
-            + "    end_order_date   = IFNULL(?, end_order_date),\n"
-            + "    price            = IFNULL(?, price),\n"
-            + "    client_comment   = IFNULL(?, client_comment),\n"
-            + "    order_status     = IFNULL(?, order_status),\n"
-            + "    is_active        = IFNULL(?, is_active)\n"
-            + "WHERE order_id = ?";
-    private static final String SQL_DELETE_ORDER = "UPDATE orders\n"
-            + "SET is_active = false\n"
-            + "WHERE order_id = ?";
-    private static final String SQL_FIND_ORDER = "SELECT o.order_id,\n"
-            + "       o.client_id,\n"
-            + "       (SELECT u1.name where u1.user_id = o.client_id) AS client_name,\n"
-            + "       (SELECT u1.surname where u1.user_id = o.client_id) AS client_surname,\n"
-            + "       o.trainer_id,\n"
-            + "       (SELECT u2.name where u2.user_id = o.trainer_id) as trainer_name,\n"
-            + "       (SELECT u2.surname where u2.user_id = o.trainer_id) AS trainer_surname,\n"
-            + "       o.register_date,\n"
-            + "       o.exercises,\n"
-            + "       o.nutrition,\n"
-            + "       o.start_order_date,\n"
-            + "       o.end_order_date,\n"
-            + "       o.price,\n"
-            + "       o.client_comment,\n"
-            + "       o.order_status,\n"
-            + "       o.is_active\n"
-            + "FROM orders o\n"
-            + "         LEFT JOIN users u1 on o.client_id = u1.user_id\n"
-            + "         LEFT JOIN users u2 on o.trainer_id = u2.user_id\n"
-            + "WHERE o.order_id = ?";
+	private static final String SQL_CREATE_ORDER = "INSERT INTO orders(client_id, trainer_id, client_comment, start_order_date, end_order_date, price, nutrition, exercises)\n"
+			+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+	// TODO fix not used
+	private static final String SQL_UPDATE_QUERY = "UPDATE orders\n" + "SET client_id        = IFNULL(?, client_id),\n"
+			+ "    trainer_id       = IFNULL(?, trainer_id),\n" + "    exercises        = IFNULL(?, exercises),\n"
+			+ "    nutrition        = IFNULL(?, nutrition),\n" + "    start_order_date = IFNULL(?, start_order_date),\n"
+			+ "    end_order_date   = IFNULL(?, end_order_date),\n" + "    price            = IFNULL(?, price),\n"
+			+ "    client_comment   = IFNULL(?, client_comment),\n"
+			+ "    order_status     = IFNULL(?, order_status),\n" + "    is_active        = IFNULL(?, is_active)\n"
+			+ "WHERE order_id = ?";
+	private static final String SQL_DELETE_ORDER = "UPDATE orders\n" + "SET is_active = false\n" + "WHERE order_id = ?";
+	private static final String SQL_FIND_ORDER = "SELECT o.order_id,\n" + "       o.client_id,\n"
+			+ "       (SELECT u1.name where u1.user_id = o.client_id) AS client_name,\n"
+			+ "       (SELECT u1.surname where u1.user_id = o.client_id) AS client_surname,\n"
+			+ "       o.trainer_id,\n" + "       (SELECT u2.name where u2.user_id = o.trainer_id) as trainer_name,\n"
+			+ "       (SELECT u2.surname where u2.user_id = o.trainer_id) AS trainer_surname,\n"
+			+ "       o.register_date,\n" + "       o.exercises,\n" + "       o.nutrition,\n"
+			+ "       o.start_order_date,\n" + "       o.end_order_date,\n" + "       o.price,\n"
+			+ "       o.client_comment,\n" + "       o.order_status,\n" + "       o.is_active\n" + "FROM orders o\n"
+			+ "         LEFT JOIN users u1 on o.client_id = u1.user_id\n"
+			+ "         LEFT JOIN users u2 on o.trainer_id = u2.user_id\n" + "WHERE o.order_id = ?";
 
-    private static final String SQL_FIND_ALL_ORDER = "SELECT o.order_id,\n"
-            + "       o.client_id,\n"
-            + "       (SELECT u1.name where u1.user_id = o.client_id)     AS client_name,\n"
-            + "       (SELECT u1.surname where u1.user_id = o.client_id)  AS client_surname,\n"
-            + "       o.trainer_id,\n"
-            + "       (SELECT u2.name where u2.user_id = o.trainer_id)    as trainer_name,\n"
-            + "       (SELECT u2.surname where u2.user_id = o.trainer_id) AS trainer_surname,\n"
-            + "       o.register_date,\n"
-            + "       o.exercises,\n"
-            + "       o.nutrition,\n"
-            + "       o.start_order_date,\n"
-            + "       o.end_order_date,\n"
-            + "       o.price,\n"
-            + "       o.client_comment,\n"
-            + "       o.order_status,\n"
-            + "       o.is_active\n"
-            + "FROM orders o\n"
-            + "         LEFT JOIN users u1 on o.client_id = u1.user_id\n"
-            + "         LEFT JOIN users u2 on o.trainer_id = u2.user_id";
+	private static final String SQL_FIND_ALL_ORDER = "SELECT o.order_id,\n" + "       o.client_id,\n"
+			+ "       (SELECT u1.name where u1.user_id = o.client_id)     AS client_name,\n"
+			+ "       (SELECT u1.surname where u1.user_id = o.client_id)  AS client_surname,\n"
+			+ "       o.trainer_id,\n" + "       (SELECT u2.name where u2.user_id = o.trainer_id)    as trainer_name,\n"
+			+ "       (SELECT u2.surname where u2.user_id = o.trainer_id) AS trainer_surname,\n"
+			+ "       o.register_date,\n" + "       o.exercises,\n" + "       o.nutrition,\n"
+			+ "       o.start_order_date,\n" + "       o.end_order_date,\n" + "       o.price,\n"
+			+ "       o.client_comment,\n" + "       o.order_status,\n" + "       o.is_active\n" + "FROM orders o\n"
+			+ "         LEFT JOIN users u1 on o.client_id = u1.user_id\n"
+			+ "         LEFT JOIN users u2 on o.trainer_id = u2.user_id";
 
-    private static final String SQL_FIND_ALL_ORDER_WITH_FILTER = "SELECT o.order_id,\n"
-            + "       o.client_id,\n"
-            + "       (SELECT u1.name where u1.user_id = o.client_id)     AS client_name,\n"
-            + "       (SELECT u1.surname where u1.user_id = o.client_id)  AS client_surname,\n"
-            + "       o.trainer_id,\n"
-            + "       (SELECT u2.name where u2.user_id = o.trainer_id)    as trainer_name,\n"
-            + "       (SELECT u2.surname where u2.user_id = o.trainer_id) AS trainer_surname,\n"
-            + "       o.register_date,\n"
-            + "       o.exercises,\n"
-            + "       o.nutrition,\n"
-            + "       o.start_order_date,\n"
-            + "       o.end_order_date,\n"
-            + "       o.price,\n"
-            + "       o.client_comment,\n"
-            + "       o.order_status,\n"
-            + "       o.is_active\n"
-            + "FROM orders o\n"
-            + "         LEFT JOIN users u1 on o.client_id = u1.user_id\n"
-            + "         LEFT JOIN users u2 on o.trainer_id = u2.user_id\n"
-            + "WHERE u1.user_id = IFNULL(?, u1.user_id)\n"
-            + "  AND u1.name = IFNULL(?, u1.name)\n"
-            + "  AND u1.surname = IFNULL(?, u1.surname)\n"
-            + "  AND u2.user_id = IFNULL(?, u2.user_id)\n"
-            + "  AND u2.name = IFNULL(?, u2.name)\n"
-            + "  AND u2.surname = IFNULL(?, u2.surname)\n"
-            + "  AND start_order_date >= IFNULL(?, start_order_date)\n"
-            + "  AND end_order_date <= IFNULL(?, end_order_date)\n"
-            + "  AND price = IFNULL(?, price)\n"
-            + "  AND order_status = IFNULL(?, order_status)\n"
-            + "  AND o.is_active = IFNULL(?, o.is_active)";
+	private static final String SQL_FIND_ALL_ORDER_WITH_FILTER = "SELECT o.order_id,\n" + "       o.client_id,\n"
+			+ "       (SELECT u1.name where u1.user_id = o.client_id)     AS client_name,\n"
+			+ "       (SELECT u1.surname where u1.user_id = o.client_id)  AS client_surname,\n"
+			+ "       o.trainer_id,\n" + "       (SELECT u2.name where u2.user_id = o.trainer_id)    as trainer_name,\n"
+			+ "       (SELECT u2.surname where u2.user_id = o.trainer_id) AS trainer_surname,\n"
+			+ "       o.register_date,\n" + "       o.exercises,\n" + "       o.nutrition,\n"
+			+ "       o.start_order_date,\n" + "       o.end_order_date,\n" + "       o.price,\n"
+			+ "       o.client_comment,\n" + "       o.order_status,\n" + "       o.is_active\n" + "FROM orders o\n"
+			+ "         LEFT JOIN users u1 on o.client_id = u1.user_id\n"
+			+ "         LEFT JOIN users u2 on o.trainer_id = u2.user_id\n"
+			+ "WHERE u1.user_id = IFNULL(?, u1.user_id)\n" + "  AND u1.name = IFNULL(?, u1.name)\n"
+			+ "  AND u1.surname = IFNULL(?, u1.surname)\n" + "  AND u2.user_id = IFNULL(?, u2.user_id)\n"
+			+ "  AND u2.name = IFNULL(?, u2.name)\n" + "  AND u2.surname = IFNULL(?, u2.surname)\n"
+			+ "  AND start_order_date >= IFNULL(?, start_order_date)\n"
+			+ "  AND end_order_date <= IFNULL(?, end_order_date)\n" + "  AND price = IFNULL(?, price)\n"
+			+ "  AND order_status = IFNULL(?, order_status)\n" + "  AND o.is_active = IFNULL(?, o.is_active)";
 
-    private static final String SQL_FIND_ALL_ACTIVE_ORDER = "SELECT o.order_id,\n"
-            + "       o.client_id,\n"
-            + "       (SELECT u1.name where u1.user_id = o.client_id)     AS client_name,\n"
-            + "       (SELECT u1.surname where u1.user_id = o.client_id)  AS client_surname,\n"
-            + "       o.trainer_id,\n"
-            + "       (SELECT u2.name where u2.user_id = o.trainer_id)    as trainer_name,\n"
-            + "       (SELECT u2.surname where u2.user_id = o.trainer_id) AS trainer_surname,\n"
-            + "       o.register_date,\n"
-            + "       o.exercises,\n"
-            + "       o.nutrition,\n"
-            + "       o.start_order_date,\n"
-            + "       o.end_order_date,\n"
-            + "       o.price,\n"
-            + "       o.client_comment,\n"
-            + "       o.order_status,\n"
-            + "       o.is_active\n"
-            + "FROM orders o\n"
-            + "         LEFT JOIN users u1 on o.client_id = u1.user_id\n"
-            + "         LEFT JOIN users u2 on o.trainer_id = u2.user_id\n"
-            + "WHERE o.is_active = true";
+	private static final String SQL_FIND_ALL_ACTIVE_ORDER = "SELECT o.order_id,\n" + "       o.client_id,\n"
+			+ "       (SELECT u1.name where u1.user_id = o.client_id)     AS client_name,\n"
+			+ "       (SELECT u1.surname where u1.user_id = o.client_id)  AS client_surname,\n"
+			+ "       o.trainer_id,\n" + "       (SELECT u2.name where u2.user_id = o.trainer_id)    as trainer_name,\n"
+			+ "       (SELECT u2.surname where u2.user_id = o.trainer_id) AS trainer_surname,\n"
+			+ "       o.register_date,\n" + "       o.exercises,\n" + "       o.nutrition,\n"
+			+ "       o.start_order_date,\n" + "       o.end_order_date,\n" + "       o.price,\n"
+			+ "       o.client_comment,\n" + "       o.order_status,\n" + "       o.is_active\n" + "FROM orders o\n"
+			+ "         LEFT JOIN users u1 on o.client_id = u1.user_id\n"
+			+ "         LEFT JOIN users u2 on o.trainer_id = u2.user_id\n" + "WHERE o.is_active = true";
 
-    private static final String SQL_FIND_ALL_ACTIVE_ORDER_BY_TRAINER = "SELECT o.order_id,\n"
-            + "       o.client_id,\n"
-            + "       (SELECT u1.name where u1.user_id = o.client_id)     AS client_name,\n"
-            + "       (SELECT u1.surname where u1.user_id = o.client_id)  AS client_surname,\n"
-            + "       o.trainer_id,\n"
-            + "       (SELECT u2.name where u2.user_id = o.trainer_id)    as trainer_name,\n"
-            + "       (SELECT u2.surname where u2.user_id = o.trainer_id) AS trainer_surname,\n"
-            + "       o.register_date,\n"
-            + "       o.exercises,\n"
-            + "       o.nutrition,\n"
-            + "       o.start_order_date,\n"
-            + "       o.end_order_date,\n"
-            + "       o.price,\n"
-            + "       o.client_comment,\n"
-            + "       o.order_status,\n"
-            + "       o.is_active\n"
-            + "FROM orders o\n"
-            + "         LEFT JOIN users u1 on o.client_id = u1.user_id\n"
-            + "         LEFT JOIN users u2 on o.trainer_id = u2.user_id\n"
-            + "WHERE o.is_active = true\n"
-            + "  AND o.trainer_id = ?";
+	private static final String SQL_FIND_ALL_ACTIVE_ORDER_BY_TRAINER = "SELECT o.order_id,\n" + "       o.client_id,\n"
+			+ "       (SELECT u1.name where u1.user_id = o.client_id)     AS client_name,\n"
+			+ "       (SELECT u1.surname where u1.user_id = o.client_id)  AS client_surname,\n"
+			+ "       o.trainer_id,\n" + "       (SELECT u2.name where u2.user_id = o.trainer_id)    as trainer_name,\n"
+			+ "       (SELECT u2.surname where u2.user_id = o.trainer_id) AS trainer_surname,\n"
+			+ "       o.register_date,\n" + "       o.exercises,\n" + "       o.nutrition,\n"
+			+ "       o.start_order_date,\n" + "       o.end_order_date,\n" + "       o.price,\n"
+			+ "       o.client_comment,\n" + "       o.order_status,\n" + "       o.is_active\n" + "FROM orders o\n"
+			+ "         LEFT JOIN users u1 on o.client_id = u1.user_id\n"
+			+ "         LEFT JOIN users u2 on o.trainer_id = u2.user_id\n" + "WHERE o.is_active = true\n"
+			+ "  AND o.trainer_id = ?";
 
-    private static final String SQL_FIND_ALL_ACTIVE_ORDER_BY_CLIENT = "SELECT o.order_id,\n"
-            + "       o.client_id,\n"
-            + "       (SELECT u1.name where u1.user_id = o.client_id)     AS client_name,\n"
-            + "       (SELECT u1.surname where u1.user_id = o.client_id)  AS client_surname,\n"
-            + "       o.trainer_id,\n"
-            + "       (SELECT u2.name where u2.user_id = o.trainer_id)    as trainer_name,\n"
-            + "       (SELECT u2.surname where u2.user_id = o.trainer_id) AS trainer_surname,\n"
-            + "       o.register_date,\n"
-            + "       o.exercises,\n"
-            + "       o.nutrition,\n"
-            + "       o.start_order_date,\n"
-            + "       o.end_order_date,\n"
-            + "       o.price,\n"
-            + "       o.client_comment,\n"
-            + "       o.order_status,\n"
-            + "       o.is_active\n"
-            + "FROM orders o\n"
-            + "         LEFT JOIN users u1 on o.client_id = u1.user_id\n"
-            + "         LEFT JOIN users u2 on o.trainer_id = u2.user_id\n"
-            + "WHERE o.is_active = true\n"
-            + "  AND o.client_id = ?";
-    private static final String SQL_EDIT_NUTRITION = "UPDATE orders\n"
-            + "SET nutrition  = IFNULL(?, nutrition)\n"
-            + "WHERE order_id = ?\n";
-    private static final String SQL_EDIT_EXERCISES = "UPDATE orders\n"
-            + "SET exercises  = IFNULL(?, exercises)\n"
-            + "WHERE order_id = ?\n";
-    private static final String SQL_EDIT_ORDER_STATUS = "UPDATE orders\n"
-            + "SET order_status  = IFNULL(?, order_status)\n"
-            + "WHERE order_id = ?\n";
+	private static final String SQL_FIND_ALL_ACTIVE_ORDER_BY_CLIENT = "SELECT o.order_id,\n" + "       o.client_id,\n"
+			+ "       (SELECT u1.name where u1.user_id = o.client_id)     AS client_name,\n"
+			+ "       (SELECT u1.surname where u1.user_id = o.client_id)  AS client_surname,\n"
+			+ "       o.trainer_id,\n" + "       (SELECT u2.name where u2.user_id = o.trainer_id)    as trainer_name,\n"
+			+ "       (SELECT u2.surname where u2.user_id = o.trainer_id) AS trainer_surname,\n"
+			+ "       o.register_date,\n" + "       o.exercises,\n" + "       o.nutrition,\n"
+			+ "       o.start_order_date,\n" + "       o.end_order_date,\n" + "       o.price,\n"
+			+ "       o.client_comment,\n" + "       o.order_status,\n" + "       o.is_active\n" + "FROM orders o\n"
+			+ "         LEFT JOIN users u1 on o.client_id = u1.user_id\n"
+			+ "         LEFT JOIN users u2 on o.trainer_id = u2.user_id\n" + "WHERE o.is_active = true\n"
+			+ "  AND o.client_id = ?";
+	private static final String SQL_EDIT_NUTRITION = "UPDATE orders\n" + "SET nutrition  = IFNULL(?, nutrition)\n"
+			+ "WHERE order_id = ?\n";
+	private static final String SQL_EDIT_EXERCISES = "UPDATE orders\n" + "SET exercises  = IFNULL(?, exercises)\n"
+			+ "WHERE order_id = ?\n";
+	private static final String SQL_EDIT_ORDER_STATUS = "UPDATE orders\n"
+			+ "SET order_status  = IFNULL(?, order_status)\n" + "WHERE order_id = ?\n";
 
-    private static OrderDaoImpl instance;
+	private static OrderDaoImpl instance;
 
-    private OrderDaoImpl() {
-    }
+	private OrderDaoImpl() {
+	}
 
-    public static OrderDaoImpl getInstance() {
-        if (instance == null) {
-            instance = new OrderDaoImpl();
-        }
-        return instance;
-    }
+	public static OrderDaoImpl getInstance() {
+		if (instance == null) {
+			instance = new OrderDaoImpl();
+		}
+		return instance;
+	}
 
-    @Override
-    public Order createOrder(Order order) throws DaoException {
-        try (Connection connection = ConnectionPool.getInstance().takeConnection();
-             PreparedStatement statement = connection.prepareStatement(SQL_CREATE_ORDER, Statement.RETURN_GENERATED_KEYS)) {
-            statement.setInt(1, order.getClientId());
-            statement.setInt(2, order.getTrainerId());
-            statement.setString(3, order.getClientComment());
-            statement.setDate(4, Date.valueOf(order.getStartDate()));
-            statement.setDate(5, Date.valueOf(order.getEndDate()));
-            statement.setBigDecimal(6, order.getPrice());
-            statement.setString(7, "Please wait, your order is still being processed.");// FIXME: 9/20/2021
-            statement.setString(8, "Please wait, your order is still being processed.");
-            statement.execute();
+	@Override
+	public Order createOrder(Order order) throws DaoException {
+		try (Connection connection = ConnectionPool.getInstance().takeConnection();
+				PreparedStatement statement = connection.prepareStatement(SQL_CREATE_ORDER,
+						Statement.RETURN_GENERATED_KEYS)) {
+			statement.setInt(1, order.getClientId());
+			statement.setInt(2, order.getTrainerId());
+			statement.setString(3, order.getClientComment());
+			statement.setDate(4, Date.valueOf(order.getStartDate()));
+			statement.setDate(5, Date.valueOf(order.getEndDate()));
+			statement.setBigDecimal(6, order.getPrice());
+			statement.setString(7, "Please wait, your order is still being processed.");// FIXME: 9/20/2021
+			statement.setString(8, "Please wait, your order is still being processed.");
+			statement.execute();
 
-            ResultSet resultSet = statement.getGeneratedKeys();
-            if (resultSet.next()) {
-                int orderId = resultSet.getInt(1);
-                order.setId(orderId);
-                logger.debug("Order {} was created", order);
-            } else {
-                logger.debug("Order {} was not created");
-            }
+			ResultSet resultSet = statement.getGeneratedKeys();
+			if (resultSet.next()) {
+				int orderId = resultSet.getInt(1);
+				order.setId(orderId);
+				logger.debug("Order {} was created", order);
+			} else {
+				logger.debug("Order {} was not created");
+			}
 
-        } catch (SQLException e) {
-            throw new DaoException(e);
-        }
-        return order;
-    }
+		} catch (SQLException e) {
+			throw new DaoException(e);
+		}
+		return order;
+	}
 //
 //    @Override
 //    public boolean updateOrder(Order order) throws DaoException {
@@ -290,283 +219,281 @@ public class OrderDaoImpl implements OrderDao {
 //    }
 // TODO: 9/22/2021 how to use
 
-    @Override
-    public boolean deleteOrder(int orderId) throws DaoException {
-        boolean isDeleted;
-        try (Connection connection = ConnectionPool.getInstance().takeConnection();
-             PreparedStatement statement = connection.prepareStatement(SQL_DELETE_ORDER)) {
-            statement.setInt(1, orderId);
-            isDeleted = statement.executeUpdate() == 1;
-            logger.debug(isDeleted ? "Order with id " + orderId + " has been deleted" : "Can't delete order with id " + orderId);
+	@Override
+	public boolean deleteOrder(int orderId) throws DaoException {
+		boolean isDeleted;
+		try (Connection connection = ConnectionPool.getInstance().takeConnection();
+				PreparedStatement statement = connection.prepareStatement(SQL_DELETE_ORDER)) {
+			statement.setInt(1, orderId);
+			isDeleted = statement.executeUpdate() == 1;
+			logger.debug(isDeleted ? "Order with id " + orderId + " has been deleted"
+					: "Can't delete order with id " + orderId);
 
-        } catch (SQLException e) {
-            throw new DaoException(e);
-        }
-        return isDeleted;
-    }
+		} catch (SQLException e) {
+			throw new DaoException(e);
+		}
+		return isDeleted;
+	}
 
-    @Override
-    public Order findOrder(int orderId) throws DaoException {
-        Order order = null;
-        try (Connection connection = ConnectionPool.getInstance().takeConnection();
-             PreparedStatement statement = connection.prepareStatement(SQL_FIND_ORDER)) {
-            statement.setInt(1, orderId);
-            ResultSet resultSet = statement.executeQuery();
+	@Override
+	public Order findOrder(int orderId) throws DaoException {
+		Order order = null;
+		try (Connection connection = ConnectionPool.getInstance().takeConnection();
+				PreparedStatement statement = connection.prepareStatement(SQL_FIND_ORDER)) {
+			statement.setInt(1, orderId);
+			ResultSet resultSet = statement.executeQuery();
 
-            if (resultSet.next()) {
-                order = getOrderFromResultSet(resultSet);
-                logger.debug("Order with id \"{}\" was found: {}", order.getId(), order);
-            } else {
-                logger.debug("Order with id \"{}\" was not found: {}", order.getId(), order);
-            }
+			if (resultSet.next()) {
+				order = getOrderFromResultSet(resultSet);
+				logger.debug("Order with id \"{}\" was found: {}", order.getId(), order);
+			} else {
+				logger.debug("Order with id \"{}\" was not found: {}", orderId, order);
+			}
 
-        } catch (SQLException e) {
-            throw new DaoException(e);
-        }
-        return order;
-    }
+		} catch (SQLException e) {
+			throw new DaoException(e);
+		}
+		return order;
+	}
 
-    @Override
-    public List<Order> findAllOrder() throws DaoException {
-        List<Order> result = new ArrayList<>();
-        try (Connection connection = ConnectionPool.getInstance().takeConnection();
-             PreparedStatement statement = connection.prepareStatement(SQL_FIND_ALL_ORDER)) {
-            ResultSet resultSet = statement.executeQuery();
+	@Override
+	public List<Order> findAllOrder() throws DaoException {
+		List<Order> result = new ArrayList<>();
+		try (Connection connection = ConnectionPool.getInstance().takeConnection();
+				PreparedStatement statement = connection.prepareStatement(SQL_FIND_ALL_ORDER)) {
+			ResultSet resultSet = statement.executeQuery();
 
-            while (resultSet.next()) {
-                Order order = getOrderFromResultSet(resultSet);
-                result.add(order);
-            }
-            logger.debug("Found {} orders: {}", result.size(), result);
-        } catch (SQLException e) {
-            throw new DaoException(e);
-        }
-        return result;
-    }
+			while (resultSet.next()) {
+				Order order = getOrderFromResultSet(resultSet);
+				result.add(order);
+			}
+			logger.debug("Found {} orders: {}", result.size(), result);
+		} catch (SQLException e) {
+			throw new DaoException(e);
+		}
+		return result;
+	}
 
-    @Override
-    public List<Order> findOrderWithFilter(Order filter) throws DaoException {
+	@Override
+	public List<Order> findOrderWithFilter(Order filter) throws DaoException {
 
-        List<Order> result = new ArrayList<>();
-        try (Connection connection = ConnectionPool.getInstance().takeConnection();
-             PreparedStatement statement = connection.prepareStatement(SQL_FIND_ALL_ORDER_WITH_FILTER)) {
-            if (filter.getClientId() != null) {
-                statement.setInt(1, filter.getClientId());
-            } else {
-                statement.setNull(1, Types.INTEGER);
-            }
-            if (filter.getClientName() != null) {
-                statement.setString(2, filter.getClientName());
-            } else {
-                statement.setNull(2, Types.VARCHAR);
-            }
-            if (filter.getClientSurname() != null) {
-                statement.setString(3, filter.getClientSurname());
-            } else {
-                statement.setNull(3, Types.VARCHAR);
-            }
-            if (filter.getTrainerId() != null) {
-                statement.setInt(4, filter.getTrainerId());
-            } else {
-                statement.setNull(4, Types.INTEGER);
-            }
-            if (filter.getTrainerName() != null) {
-                statement.setString(5, filter.getTrainerName());
-            } else {
-                statement.setNull(5, Types.VARCHAR);
-            }
-            if (filter.getTrainerSurname() != null) {
-                statement.setString(6, filter.getTrainerSurname());
-            } else {
-                statement.setNull(6, Types.VARCHAR);
-            }
-            if (filter.getStartDate() != null) {
-                statement.setDate(7, Date.valueOf(filter.getStartDate()));
-            } else {
-                statement.setNull(7, Types.DATE);
-            }
-            if (filter.getEndDate() != null) {
-                statement.setDate(8, Date.valueOf(filter.getEndDate()));
-            } else {
-                statement.setNull(8, Types.DATE);
-            }
-            if (filter.getPrice() != null) {
-                statement.setBigDecimal(9, filter.getPrice());
-            } else {
-                statement.setNull(9, Types.DECIMAL);
-            }
-            if (filter.getOrderStatus() != null) {
-                statement.setInt(10, filter.getOrderStatus().ordinal());
-            } else {
-                statement.setNull(10, Types.INTEGER);
-            }
-            if (filter.getActive() != null) {
-                statement.setBoolean(11, filter.getActive());
-            } else {
-                statement.setNull(11, Types.BOOLEAN);
-            }
+		List<Order> result = new ArrayList<>();
+		try (Connection connection = ConnectionPool.getInstance().takeConnection();
+				PreparedStatement statement = connection.prepareStatement(SQL_FIND_ALL_ORDER_WITH_FILTER)) {
+			if (filter.getClientId() != null) {
+				statement.setInt(1, filter.getClientId());
+			} else {
+				statement.setNull(1, Types.INTEGER);
+			}
+			if (filter.getClientName() != null) {
+				statement.setString(2, filter.getClientName());
+			} else {
+				statement.setNull(2, Types.VARCHAR);
+			}
+			if (filter.getClientSurname() != null) {
+				statement.setString(3, filter.getClientSurname());
+			} else {
+				statement.setNull(3, Types.VARCHAR);
+			}
+			if (filter.getTrainerId() != null) {
+				statement.setInt(4, filter.getTrainerId());
+			} else {
+				statement.setNull(4, Types.INTEGER);
+			}
+			if (filter.getTrainerName() != null) {
+				statement.setString(5, filter.getTrainerName());
+			} else {
+				statement.setNull(5, Types.VARCHAR);
+			}
+			if (filter.getTrainerSurname() != null) {
+				statement.setString(6, filter.getTrainerSurname());
+			} else {
+				statement.setNull(6, Types.VARCHAR);
+			}
+			if (filter.getStartDate() != null) {
+				statement.setDate(7, Date.valueOf(filter.getStartDate()));
+			} else {
+				statement.setNull(7, Types.DATE);
+			}
+			if (filter.getEndDate() != null) {
+				statement.setDate(8, Date.valueOf(filter.getEndDate()));
+			} else {
+				statement.setNull(8, Types.DATE);
+			}
+			if (filter.getPrice() != null) {
+				statement.setBigDecimal(9, filter.getPrice());
+			} else {
+				statement.setNull(9, Types.DECIMAL);
+			}
+			if (filter.getOrderStatus() != null) {
+				statement.setInt(10, filter.getOrderStatus().ordinal());
+			} else {
+				statement.setNull(10, Types.INTEGER);
+			}
+			if (filter.getActive() != null) {
+				statement.setBoolean(11, filter.getActive());
+			} else {
+				statement.setNull(11, Types.BOOLEAN);
+			}
 
-            ResultSet resultSet = statement.executeQuery();
+			ResultSet resultSet = statement.executeQuery();
 
-            while (resultSet.next()) {
-                Order order = getOrderFromResultSet(resultSet);
-                result.add(order);
-            }
+			while (resultSet.next()) {
+				Order order = getOrderFromResultSet(resultSet);
+				result.add(order);
+			}
 
-            logger.debug("Found {} orders with filter: {}", result.size(), result);
+			logger.debug("Found {} orders with filter: {}", result.size(), result);
 
-        } catch (SQLException e) {
-            throw new DaoException(e);
-        }
-        return result;
-    }
+		} catch (SQLException e) {
+			throw new DaoException(e);
+		}
+		return result;
+	}
 
-    @Override
-    public List<Order> findAllActiveOrder() throws DaoException {
-        List<Order> result = new ArrayList<>();
+	@Override
+	public List<Order> findAllActiveOrder() throws DaoException {
+		List<Order> result = new ArrayList<>();
 
-        try (Connection connection = ConnectionPool.getInstance().takeConnection();
-             PreparedStatement statement = connection.prepareStatement(SQL_FIND_ALL_ACTIVE_ORDER)) {
-            ResultSet resultSet = statement.executeQuery();
+		try (Connection connection = ConnectionPool.getInstance().takeConnection();
+				PreparedStatement statement = connection.prepareStatement(SQL_FIND_ALL_ACTIVE_ORDER)) {
+			ResultSet resultSet = statement.executeQuery();
 
-            while (resultSet.next()) {
-                Order order = getOrderFromResultSet(resultSet);
-                result.add(order);
-            }
-            logger.debug("Found {} active orders: {}", result.size(), result);
-        } catch (SQLException e) {
-            throw new DaoException(e);
-        }
-        return result;
-    }
+			while (resultSet.next()) {
+				Order order = getOrderFromResultSet(resultSet);
+				result.add(order);
+			}
+			logger.debug("Found {} active orders: {}", result.size(), result);
+		} catch (SQLException e) {
+			throw new DaoException(e);
+		}
+		return result;
+	}
 
-    @Override
-    public List<Order> findActiveOrderByTrainer(int trainerId) throws DaoException {
-        List<Order> result = new ArrayList<>();
-        try (Connection connection = ConnectionPool.getInstance().takeConnection();
-             PreparedStatement statement = connection.prepareStatement(SQL_FIND_ALL_ACTIVE_ORDER_BY_TRAINER)) {
-            statement.setInt(1, trainerId);
+	@Override
+	public List<Order> findActiveOrderByTrainer(int trainerId) throws DaoException {
+		List<Order> result = new ArrayList<>();
+		try (Connection connection = ConnectionPool.getInstance().takeConnection();
+				PreparedStatement statement = connection.prepareStatement(SQL_FIND_ALL_ACTIVE_ORDER_BY_TRAINER)) {
+			statement.setInt(1, trainerId);
 
-            ResultSet resultSet = statement.executeQuery();
+			ResultSet resultSet = statement.executeQuery();
 
-            while (resultSet.next()) {
-                Order order = getOrderFromResultSet(resultSet);
-                result.add(order);
-            }
-            logger.debug("Trainer with id \"{}\" found {} active orders: {}", trainerId, result.size(), result);
-        } catch (SQLException e) {
-            throw new DaoException(e);
-        }
-        return result;
-    }
+			while (resultSet.next()) {
+				Order order = getOrderFromResultSet(resultSet);
+				result.add(order);
+			}
+			logger.debug("Trainer with id \"{}\" found {} active orders: {}", trainerId, result.size(), result);
+		} catch (SQLException e) {
+			throw new DaoException(e);
+		}
+		return result;
+	}
 
-    @Override
-    public List<Order> findActiveOrderByClient(int clientId) throws DaoException {
-        List<Order> result = new ArrayList<>();
-        try (Connection connection = ConnectionPool.getInstance().takeConnection();
-             PreparedStatement statement = connection.prepareStatement(SQL_FIND_ALL_ACTIVE_ORDER_BY_CLIENT)) {
-            statement.setInt(1, clientId);
+	@Override
+	public List<Order> findActiveOrderByClient(int clientId) throws DaoException {
+		List<Order> result = new ArrayList<>();
+		try (Connection connection = ConnectionPool.getInstance().takeConnection();
+				PreparedStatement statement = connection.prepareStatement(SQL_FIND_ALL_ACTIVE_ORDER_BY_CLIENT)) {
+			statement.setInt(1, clientId);
 
-            ResultSet resultSet = statement.executeQuery();
+			ResultSet resultSet = statement.executeQuery();
 
-            while (resultSet.next()) {
-                Order order = getOrderFromResultSet(resultSet);
-                result.add(order);
-            }
-            logger.debug("Client with id \"{}\" found {} orders: {}", clientId, result.size(), result);
-        } catch (SQLException e) {
-            throw new DaoException(e);
-        }
-        return result;
-    }
+			while (resultSet.next()) {
+				Order order = getOrderFromResultSet(resultSet);
+				result.add(order);
+			}
+			logger.debug("Client with id \"{}\" found {} orders: {}", clientId, result.size(), result);
+		} catch (SQLException e) {
+			throw new DaoException(e);
+		}
+		return result;
+	}
 
-    @Override
-    public boolean editNutrition(int orderId, String nutrition) throws DaoException {
-        boolean isEdited;
-        try (Connection connection = ConnectionPool.getInstance().takeConnection();
-             PreparedStatement statement = connection.prepareStatement(SQL_EDIT_NUTRITION)) {
-            if (nutrition != null) {
-                statement.setString(1, nutrition);
-            } else {
-                statement.setNull(1, Types.VARCHAR);
-            }
+	@Override
+	public boolean editNutrition(int orderId, String nutrition) throws DaoException {
+		boolean isEdited;
+		try (Connection connection = ConnectionPool.getInstance().takeConnection();
+				PreparedStatement statement = connection.prepareStatement(SQL_EDIT_NUTRITION)) {
+			if (nutrition != null) {
+				statement.setString(1, nutrition);
+			} else {
+				statement.setNull(1, Types.VARCHAR);
+			}
 
-            statement.setInt(2, orderId);
+			statement.setInt(2, orderId);
 
-            isEdited = statement.executeUpdate() == 1;
+			isEdited = statement.executeUpdate() == 1;
 
-            logger.debug(isEdited ? "Order nutrition " + orderId + " was updated" : "Order nutrition " + orderId + " was not updated");
+			logger.debug(isEdited ? "Order nutrition " + orderId + " was updated"
+					: "Order nutrition " + orderId + " was not updated");
 
-        } catch (SQLException e) {
-            throw new DaoException(e);
-        }
-        return isEdited;
-    }
+		} catch (SQLException e) {
+			throw new DaoException(e);
+		}
+		return isEdited;
+	}
 
-    @Override
-    public boolean editExercises(int orderId, String exercises) throws DaoException {
-        boolean isEdited;
-        try (Connection connection = ConnectionPool.getInstance().takeConnection();
-             PreparedStatement statement = connection.prepareStatement(SQL_EDIT_EXERCISES)) {
-            if (exercises != null) {
-                statement.setString(1, exercises);
-            } else {
-                statement.setNull(1, Types.VARCHAR);
-            }
+	@Override
+	public boolean editExercises(int orderId, String exercises) throws DaoException {
+		boolean isEdited;
+		try (Connection connection = ConnectionPool.getInstance().takeConnection();
+				PreparedStatement statement = connection.prepareStatement(SQL_EDIT_EXERCISES)) {
+			if (exercises != null) {
+				statement.setString(1, exercises);
+			} else {
+				statement.setNull(1, Types.VARCHAR);
+			}
 
-            statement.setInt(2, orderId);
+			statement.setInt(2, orderId);
 
-            isEdited = statement.executeUpdate() == 1;
+			isEdited = statement.executeUpdate() == 1;
 
-            logger.debug(isEdited ? "Order exercises " + orderId + " was updated" : "Order exercises " + orderId + " was not updated");
+			logger.debug(isEdited ? "Order exercises " + orderId + " was updated"
+					: "Order exercises " + orderId + " was not updated");
 
-        } catch (SQLException e) {
-            throw new DaoException(e);
-        }
-        return isEdited;
-    }
+		} catch (SQLException e) {
+			throw new DaoException(e);
+		}
+		return isEdited;
+	}
 
-    @Override
-    public boolean editOrderStatus(int orderId, Order.OrderStatus orderStatus) throws DaoException {
-        boolean isEdited;
-        try (Connection connection = ConnectionPool.getInstance().takeConnection();
-             PreparedStatement statement = connection.prepareStatement(SQL_EDIT_ORDER_STATUS)) {
-            if (orderStatus != null) {
-                statement.setInt(1, orderStatus.ordinal() + 1);
-            } else {
-                statement.setNull(1, Types.INTEGER);
-            }
+	@Override
+	public boolean editOrderStatus(int orderId, Order.OrderStatus orderStatus) throws DaoException {
+		boolean isEdited;
+		try (Connection connection = ConnectionPool.getInstance().takeConnection();
+				PreparedStatement statement = connection.prepareStatement(SQL_EDIT_ORDER_STATUS)) {
+			if (orderStatus != null) {
+				statement.setInt(1, orderStatus.ordinal() + 1);
+			} else {
+				statement.setNull(1, Types.INTEGER);
+			}
 
-            statement.setInt(2, orderId);
+			statement.setInt(2, orderId);
 
-            isEdited = statement.executeUpdate() == 1;
+			isEdited = statement.executeUpdate() == 1;
 
-            logger.debug(isEdited ? "Order status " + orderId + " was updated" : "Order status " + orderId + " was not updated");
+			logger.debug(isEdited ? "Order status " + orderId + " was updated"
+					: "Order status " + orderId + " was not updated");
 
-        } catch (SQLException e) {
-            throw new DaoException(e);
-        }
-        return isEdited;
-    }
+		} catch (SQLException e) {
+			throw new DaoException(e);
+		}
+		return isEdited;
+	}
 
-    private Order getOrderFromResultSet(ResultSet resultSet) throws SQLException {
-        Date date;
-        return new Order.Builder().id(resultSet.getInt(ORDER_ID))
-                .clientId(resultSet.getInt(CLIENT_ID))
-                .clientName(resultSet.getString(CLIENT_NAME))
-                .clientSurname(resultSet.getString(CLIENT_SURNAME))
-                .trainerId(resultSet.getInt(TRAINER_ID))
-                .trainerName(resultSet.getString(TRAINER_NAME))
-                .trainerSurname(resultSet.getString(TRAINER_SURNAME))
-                .registerDate(resultSet.getTimestamp(ORDER_REGISTER_DATE).toLocalDateTime())
-                .exercises(resultSet.getString(ORDER_EXERCISES))
-                .nutrition(resultSet.getString(ORDER_NUTRITION))
-                .startDate((date = resultSet.getDate(START_ORDER_DATE)) != null ? date.toLocalDate() : null)
-                .endDate((date = resultSet.getDate(END_ORDER_DATE)) != null ? date.toLocalDate() : null)
-                .price(resultSet.getBigDecimal(PRICE))
-                .clientComment(resultSet.getString(CLIENT_COMMENT))
-                .orderStatus(Order.OrderStatus.valueOf(resultSet.getString(ORDER_STATUS).toUpperCase()))
-                .active(resultSet.getBoolean(IS_ACTIVE))
-                .build();
-    }
+	private Order getOrderFromResultSet(ResultSet resultSet) throws SQLException {
+		Date date;
+		return new Order.Builder().id(resultSet.getInt(ORDER_ID)).clientId(resultSet.getInt(CLIENT_ID))
+				.clientName(resultSet.getString(CLIENT_NAME)).clientSurname(resultSet.getString(CLIENT_SURNAME))
+				.trainerId(resultSet.getInt(TRAINER_ID)).trainerName(resultSet.getString(TRAINER_NAME))
+				.trainerSurname(resultSet.getString(TRAINER_SURNAME))
+				.registerDate(resultSet.getTimestamp(ORDER_REGISTER_DATE).toLocalDateTime())
+				.exercises(resultSet.getString(ORDER_EXERCISES)).nutrition(resultSet.getString(ORDER_NUTRITION))
+				.startDate((date = resultSet.getDate(START_ORDER_DATE)) != null ? date.toLocalDate() : null)
+				.endDate((date = resultSet.getDate(END_ORDER_DATE)) != null ? date.toLocalDate() : null)
+				.price(resultSet.getBigDecimal(PRICE)).clientComment(resultSet.getString(CLIENT_COMMENT))
+				.orderStatus(Order.OrderStatus.valueOf(resultSet.getString(ORDER_STATUS).toUpperCase()))
+				.active(resultSet.getBoolean(IS_ACTIVE)).build();
+	}
 }

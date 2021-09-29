@@ -19,35 +19,35 @@ import static com.company.gum.command.Router.RouterType.REDIRECT;
 
 public class AssignDiscountCommand implements Command {
 
-    ClientService clientService = ClientServiceImpl.getInstance();
+	ClientService clientService = ClientServiceImpl.getInstance();
 
-    @Override
-    public Router execute(SessionRequestContent requestContent) throws CommandException {
-        Router router;
-        try {
-            boolean isValid = true;
-            int clientId = Integer.parseInt(requestContent.getParameterByName(CLIENT_ID));
-            String stringDiscount = requestContent.getParameterByName(DISCOUNT);
-            if (!Validator.checkDiscount(stringDiscount)) {
-                requestContent.putAttribute(ERR_MESSAGE, INVALID_DISCOUNT);
-                isValid = false;
-            }
-            if (isValid) {
-                BigDecimal discount = new BigDecimal(stringDiscount, MathContext.DECIMAL32);
-                boolean isUpdated = clientService.assignDiscount(clientId, discount);
-                if (isUpdated) {
-                    router = new Router((String) requestContent.getSessionAttributeByName(CURRENT_PAGE), REDIRECT);
-                } else {
-                    requestContent.putAttribute(ERR_MESSAGE, INVALID_DISCOUNT);
-                    router = new Router((String) requestContent.getSessionAttributeByName(CURRENT_PAGE), FORWARD);
-                }
-            } else {
-                requestContent.putAttribute(ERR_MESSAGE, INVALID_DISCOUNT);
-                router = new Router((String) requestContent.getSessionAttributeByName(CURRENT_PAGE), FORWARD);
-            }
-        } catch (ServiceException e) {
-            throw new CommandException(e);
-        }
-        return router;
-    }
+	@Override
+	public Router execute(SessionRequestContent requestContent) throws CommandException {
+		Router router;
+		try {
+			boolean isValid = true;
+			int clientId = Integer.parseInt(requestContent.getParameterByName(CLIENT_ID));
+			String stringDiscount = requestContent.getParameterByName(DISCOUNT);
+			if (!Validator.checkDiscount(stringDiscount)) {
+				requestContent.putAttribute(ERR_MESSAGE, INVALID_DISCOUNT);
+				isValid = false;
+			}
+			if (isValid) {
+				BigDecimal discount = new BigDecimal(stringDiscount, MathContext.DECIMAL32);
+				boolean isUpdated = clientService.assignDiscount(clientId, discount);
+				if (isUpdated) {
+					router = new Router((String) requestContent.getSessionAttributeByName(CURRENT_PAGE), REDIRECT);
+				} else {
+					requestContent.putAttribute(ERR_MESSAGE, INVALID_DISCOUNT);
+					router = new Router((String) requestContent.getSessionAttributeByName(CURRENT_PAGE), FORWARD);
+				}
+			} else {
+				requestContent.putAttribute(ERR_MESSAGE, INVALID_DISCOUNT);
+				router = new Router((String) requestContent.getSessionAttributeByName(CURRENT_PAGE), FORWARD);
+			}
+		} catch (ServiceException e) {
+			throw new CommandException(e);
+		}
+		return router;
+	}
 }
