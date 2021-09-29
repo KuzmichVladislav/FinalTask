@@ -11,6 +11,7 @@ import org.apache.logging.log4j.Logger;
 import java.math.BigDecimal;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 
 import static com.company.gum.dao.TableColumnName.*;
@@ -422,6 +423,8 @@ public class ClientDaoImpl implements ClientDao {
                 .money(resultSet.getBigDecimal(MONEY))
                 .photo(resultSet.getBytes(PHOTO))
                 .verification(resultSet.getBoolean(VERIFICATION))
+                .base64Image(resultSet.getBytes(PHOTO) != null ? "data:image/jpg;base64," + Base64.getEncoder().encodeToString(resultSet.getBytes(PHOTO))
+                        : "https://i.ibb.co/mDTmCZn/png-transparent-computer-icons-user-profile-user-avatar-blue-heroes-electric-blue.png") // FIXME: 9/21/2021
                 .build();
     }
 }

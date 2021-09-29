@@ -13,8 +13,8 @@ public class User extends AbstractEntity {
     private String mail;
     private boolean verification;
     private byte[] photo;
-    public User() {
-    }
+    private String base64Image;
+
     private User(Builder builder) {
         setId(builder.id);
         setRole(builder.role);
@@ -26,6 +26,7 @@ public class User extends AbstractEntity {
         setMail(builder.mail);
         setVerification(builder.verification);
         setPhoto(builder.photo);
+        setBase64Image(builder.base64Image);
     }
 
     @Override
@@ -39,6 +40,8 @@ public class User extends AbstractEntity {
         sb.append(", isActive=").append(isActive);
         sb.append(", mail='").append(mail).append('\'');
         sb.append(", verification=").append(verification);
+        sb.append(", photo=").append(Arrays.toString(photo));
+        sb.append(", base64Image='").append(base64Image).append('\'');
         sb.append('}');
         return sb.toString();
     }
@@ -60,7 +63,8 @@ public class User extends AbstractEntity {
         if (getName() != null ? !getName().equals(user.getName()) : user.getName() != null) return false;
         if (getSurname() != null ? !getSurname().equals(user.getSurname()) : user.getSurname() != null) return false;
         if (getMail() != null ? !getMail().equals(user.getMail()) : user.getMail() != null) return false;
-        return Arrays.equals(getPhoto(), user.getPhoto());
+        if (!Arrays.equals(getPhoto(), user.getPhoto())) return false;
+        return getBase64Image() != null ? getBase64Image().equals(user.getBase64Image()) : user.getBase64Image() == null;
     }
 
     @Override
@@ -75,6 +79,7 @@ public class User extends AbstractEntity {
         result = 31 * result + (getMail() != null ? getMail().hashCode() : 0);
         result = 31 * result + (isVerification() ? 1 : 0);
         result = 31 * result + Arrays.hashCode(getPhoto());
+        result = 31 * result + (getBase64Image() != null ? getBase64Image().hashCode() : 0);
         return result;
     }
 
@@ -150,6 +155,18 @@ public class User extends AbstractEntity {
         this.photo = photo;
     }
 
+    public String getBase64Image() {
+        return base64Image;
+    }
+
+    public void setBase64Image(String base64Image) {
+        this.base64Image = base64Image;
+    }
+
+    public User() {
+    }
+
+
     public enum UserRole {
         ADMIN,
         TRAINER,
@@ -160,7 +177,6 @@ public class User extends AbstractEntity {
      * {@code User} builder static inner class.
      */
     public static final class Builder {
-
         private Integer id;
         private UserRole role;
         private String login;
@@ -171,13 +187,13 @@ public class User extends AbstractEntity {
         private String mail;
         private boolean verification;
         private byte[] photo;
+        private String base64Image;
 
         public Builder() {
         }
 
         /**
-         * Sets the {@code id} and returns a reference to this Builder so that
-         * the methods can be chained together.
+         * Sets the {@code id} and returns a reference to this Builder so that the methods can be chained together.
          *
          * @param val the {@code id} to set
          * @return a reference to this Builder
@@ -188,8 +204,7 @@ public class User extends AbstractEntity {
         }
 
         /**
-         * Sets the {@code role} and returns a reference to this Builder so that
-         * the methods can be chained together.
+         * Sets the {@code role} and returns a reference to this Builder so that the methods can be chained together.
          *
          * @param val the {@code role} to set
          * @return a reference to this Builder
@@ -200,8 +215,7 @@ public class User extends AbstractEntity {
         }
 
         /**
-         * Sets the {@code login} and returns a reference to this Builder so
-         * that the methods can be chained together.
+         * Sets the {@code login} and returns a reference to this Builder so that the methods can be chained together.
          *
          * @param val the {@code login} to set
          * @return a reference to this Builder
@@ -212,8 +226,7 @@ public class User extends AbstractEntity {
         }
 
         /**
-         * Sets the {@code password} and returns a reference to this Builder so
-         * that the methods can be chained together.
+         * Sets the {@code password} and returns a reference to this Builder so that the methods can be chained together.
          *
          * @param val the {@code password} to set
          * @return a reference to this Builder
@@ -224,8 +237,7 @@ public class User extends AbstractEntity {
         }
 
         /**
-         * Sets the {@code name} and returns a reference to this Builder so that
-         * the methods can be chained together.
+         * Sets the {@code name} and returns a reference to this Builder so that the methods can be chained together.
          *
          * @param val the {@code name} to set
          * @return a reference to this Builder
@@ -236,8 +248,7 @@ public class User extends AbstractEntity {
         }
 
         /**
-         * Sets the {@code surname} and returns a reference to this Builder so
-         * that the methods can be chained together.
+         * Sets the {@code surname} and returns a reference to this Builder so that the methods can be chained together.
          *
          * @param val the {@code surname} to set
          * @return a reference to this Builder
@@ -248,8 +259,7 @@ public class User extends AbstractEntity {
         }
 
         /**
-         * Sets the {@code isActive} and returns a reference to this Builder so
-         * that the methods can be chained together.
+         * Sets the {@code isActive} and returns a reference to this Builder so that the methods can be chained together.
          *
          * @param val the {@code isActive} to set
          * @return a reference to this Builder
@@ -260,8 +270,7 @@ public class User extends AbstractEntity {
         }
 
         /**
-         * Sets the {@code mail} and returns a reference to this Builder so that
-         * the methods can be chained together.
+         * Sets the {@code mail} and returns a reference to this Builder so that the methods can be chained together.
          *
          * @param val the {@code mail} to set
          * @return a reference to this Builder
@@ -272,8 +281,7 @@ public class User extends AbstractEntity {
         }
 
         /**
-         * Sets the {@code verification} and returns a reference to this Builder
-         * so that the methods can be chained together.
+         * Sets the {@code verification} and returns a reference to this Builder so that the methods can be chained together.
          *
          * @param val the {@code verification} to set
          * @return a reference to this Builder
@@ -284,8 +292,7 @@ public class User extends AbstractEntity {
         }
 
         /**
-         * Sets the {@code photo} and returns a reference to this Builder so
-         * that the methods can be chained together.
+         * Sets the {@code photo} and returns a reference to this Builder so that the methods can be chained together.
          *
          * @param val the {@code photo} to set
          * @return a reference to this Builder
@@ -296,10 +303,20 @@ public class User extends AbstractEntity {
         }
 
         /**
+         * Sets the {@code base64Image} and returns a reference to this Builder so that the methods can be chained together.
+         *
+         * @param val the {@code base64Image} to set
+         * @return a reference to this Builder
+         */
+        public Builder base64Image(String val) {
+            base64Image = val;
+            return this;
+        }
+
+        /**
          * Returns a {@code User} built from the parameters previously set.
          *
-         * @return a {@code User} built with parameters of this
-         * {@code User.Builder}
+         * @return a {@code User} built with parameters of this {@code User.Builder}
          */
         public User build() {
             return new User(this);

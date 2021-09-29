@@ -20,8 +20,6 @@ import com.company.gum.service.impl.TrainerServiceImpl;
 import com.company.gum.service.impl.UserServiceImpl;
 import com.company.gum.util.Validator;
 
-import java.util.Base64;
-
 import static com.company.gum.command.AttributeName.*;
 import static com.company.gum.command.Router.RouterType.FORWARD;
 import static com.company.gum.command.Router.RouterType.REDIRECT;
@@ -45,13 +43,7 @@ public class LoginCommand implements Command {
                 if (user != null) {
                     if (user.isVerification()) {
                         requestContent.putSessionAttribute(USER_ID, user.getId());
-                        String base64Image;
-                        if (user.getPhoto() != null) {
-                            base64Image = "data:image/jpg;base64," + Base64.getEncoder().encodeToString(user.getPhoto());
-                        } else {
-                            base64Image = "https://i.ibb.co/mDTmCZn/png-transparent-computer-icons-user-profile-user-avatar-blue-heroes-electric-blue.png";// FIXME: 9/18/2021
-                        }
-                        requestContent.putSessionAttribute(USER_PHOTO, base64Image);
+                        requestContent.putSessionAttribute(USER_PHOTO, user.getBase64Image());
 // TODO: 9/23/2021 объединить повторяющиеся
                         switch (user.getRole()) {
                             case ADMIN:

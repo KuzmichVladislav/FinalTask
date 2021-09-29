@@ -34,7 +34,7 @@ public enum CommandType {
     SHOW_ALL_ORDERS_BY_ADMIN(new ShowAllOrdersByAdminCommand()),
     SHOW_ORDER_BY_CLIENT(new showOrderByClientCommand()),
     SHOW_ORDER_BY_TRAINER(new showOrderByTrainerCommand()),
-    //SHOW_ORDER_BY_ADMIN(new showOrderByAdminCommand()),
+    SHOW_ORDER_BY_ADMIN(new showOrderByAdminCommand()),
     CREATE_NEW_COMMENT(new CreateNewCommentCommand()),
     SHOW_ALL_ACTIVE_COMMENTS(new ShowAllActiveCommentsCommand()),
     DELETE_COMMENT(new DeleteCommentCommand()),

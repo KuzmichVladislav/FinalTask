@@ -20,7 +20,7 @@
         <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <meta http-equiv="refresh"
-              content="5;${pageContext.request.contextPath}/controller?command=SHOW_ALL_ACTIVE_COMMENTS">
+              content="5;${pageContext.request.contextPath}/controller?command=show_all_active_comments&page=1">
     </head>
 
     <body>
@@ -42,7 +42,7 @@
                     <div class="row register-form">
                         <div class="col-md-6">
                             <p>${commentDeletedMessage}</p>
-                            <a href="${pageContext.request.contextPath}/controller?command=SHOW_ALL_ACTIVE_COMMENTS">${comments}</a>
+                            <a href="${pageContext.request.contextPath}/controller?command=show_all_active_comments&page=1">${comments}</a>
                         </div>
                     </div>
                 </div>

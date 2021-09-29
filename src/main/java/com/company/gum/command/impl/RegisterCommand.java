@@ -75,11 +75,11 @@ public class RegisterCommand implements Command {
 
                 router = new Router(PagePath.CLIENT_CREATED, REDIRECT);
             } else {
-                router = new Router(PagePath.SIGN_UP, FORWARD);
+                router = new Router(PagePath.REGISTER, FORWARD);
             }
         } catch (ServiceException e) {
             requestContent.putAttribute(ERR_MESSAGE, LOGIN_ALREADY_EXIST);
-            router = new Router(PagePath.SIGN_UP, FORWARD);
+            router = new Router(PagePath.REGISTER, FORWARD);
         }
         return router;
     }

@@ -1,7 +1,6 @@
 package com.company.gum.command.impl.order;
 
 import com.company.gum.command.Command;
-import com.company.gum.command.PagePath;
 import com.company.gum.command.Router;
 import com.company.gum.controller.SessionRequestContent;
 import com.company.gum.exception.CommandException;
@@ -9,8 +8,7 @@ import com.company.gum.exception.ServiceException;
 import com.company.gum.service.OrderService;
 import com.company.gum.service.impl.OrderServiceImpl;
 
-import static com.company.gum.command.AttributeName.EXERCISES;
-import static com.company.gum.command.AttributeName.ORDER_ID;
+import static com.company.gum.command.AttributeName.*;
 import static com.company.gum.command.Router.RouterType.FORWARD;
 
 public class EditExercisesCommand implements Command {
@@ -27,8 +25,7 @@ public class EditExercisesCommand implements Command {
                     : requestContent.getParameterByName(EXERCISES).strip().replaceAll("<", "").replaceAll(">", "");
 
             orderService.editExercises(orderId, exercises);
-            requestContent.putSessionAttribute(EXERCISES, exercises);//// TODO: 9/22/2021 Не Нужен 
-            router = new Router(PagePath.ORDER_UPDATED, FORWARD);
+            router = new Router((String) requestContent.getSessionAttributeByName(CURRENT_PAGE), FORWARD);
         } catch (ServiceException e) {
             e.printStackTrace();
         }

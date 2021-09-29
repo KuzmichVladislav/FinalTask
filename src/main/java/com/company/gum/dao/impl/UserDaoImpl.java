@@ -12,6 +12,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 
 import static com.company.gum.dao.TableColumnName.*;
@@ -259,6 +260,8 @@ public class UserDaoImpl implements UserDao {
                 .isActive(resultSet.getBoolean(IS_ACTIVE))
                 .photo(resultSet.getBytes(PHOTO))
                 .verification(resultSet.getBoolean(VERIFICATION))
+                .base64Image(resultSet.getBytes(PHOTO) != null ? "data:image/jpg;base64," + Base64.getEncoder().encodeToString(resultSet.getBytes(PHOTO))
+                        : "https://i.ibb.co/mDTmCZn/png-transparent-computer-icons-user-profile-user-avatar-blue-heroes-electric-blue.png") // FIXME: 9/21/2021
                 .build();
     }
 }

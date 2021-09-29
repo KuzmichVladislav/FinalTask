@@ -15,7 +15,9 @@ public class Admin extends User {
         setSurname(builder.surname);
         setMail(builder.mail);
         setVerification(builder.verification);
+        setActive(builder.isActive);
         setPhoto(builder.photo);
+        setBase64Image(builder.base64Image);
     }
 
     @Override
@@ -38,7 +40,9 @@ public class Admin extends User {
         private String surname;
         private String mail;
         private boolean verification;
+        private boolean isActive;
         private byte[] photo;
+        private String base64Image;
 
         public Builder() {
         }
@@ -132,6 +136,17 @@ public class Admin extends User {
         }
 
         /**
+         * Sets the {@code isActive} and returns a reference to this Builder so that the methods can be chained together.
+         *
+         * @param val the {@code isActive} to set
+         * @return a reference to this Builder
+         */
+        public Builder isActive(boolean val) {
+            isActive = val;
+            return this;
+        }
+
+        /**
          * Sets the {@code photo} and returns a reference to this Builder so that the methods can be chained together.
          *
          * @param val the {@code photo} to set
@@ -139,6 +154,17 @@ public class Admin extends User {
          */
         public Builder photo(byte[] val) {
             photo = val;
+            return this;
+        }
+
+        /**
+         * Sets the {@code base64Image} and returns a reference to this Builder so that the methods can be chained together.
+         *
+         * @param val the {@code base64Image} to set
+         * @return a reference to this Builder
+         */
+        public Builder base64Image(String val) {
+            base64Image = val;
             return this;
         }
 
@@ -152,3 +178,4 @@ public class Admin extends User {
         }
     }
 }
+

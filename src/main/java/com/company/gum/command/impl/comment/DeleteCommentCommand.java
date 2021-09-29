@@ -23,6 +23,8 @@ public class DeleteCommentCommand implements Command {
             int commentId = Integer.parseInt(requestContent.getParameterByName(COMMENT_ID));
             commentService.deleteComment(commentId);
             requestContent.putAttribute(COMMENT_ID, commentId);
+// TODO: 9/29/2021 SOF             router = new Router((String) requestContent.getSessionAttributeByName(CURRENT_PAGE), FORWARD);
+
             router = new Router(PagePath.COMMENT_DELETED, FORWARD);
         } catch (ServiceException e) {
             throw new CommandException(e);

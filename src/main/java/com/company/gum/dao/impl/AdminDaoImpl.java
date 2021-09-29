@@ -10,6 +10,7 @@ import org.apache.logging.log4j.Logger;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 
 import static com.company.gum.dao.TableColumnName.*;
@@ -23,6 +24,8 @@ public class AdminDaoImpl implements AdminDao {
             + "       name,\n"
             + "       surname,\n"
             + "       is_active,\n"
+            + "       image,\n"
+            + "       is_verified,\n"
             + "       mail\n"
             + "FROM users\n"
             + "WHERE user_id = ?\n"
@@ -34,6 +37,8 @@ public class AdminDaoImpl implements AdminDao {
             + "       name,\n"
             + "       surname,\n"
             + "       is_active,\n"
+            + "       image,\n"
+            + "       is_verified,\n"
             + "       mail\n"
             + "FROM users\n"
             + "WHERE role = 'ADMIN'";
@@ -164,15 +169,18 @@ public class AdminDaoImpl implements AdminDao {
     }
 
     private Admin getAdminFromResultSet(ResultSet resultSet) throws SQLException {
-        Admin admin = new Admin();
-        admin.setId(resultSet.getInt(USER_ID));
-        admin.setLogin(resultSet.getString(USER_LOGIN));
-        admin.setPassword(resultSet.getString(USER_PASSWORD));
-        admin.setRole(User.UserRole.valueOf(resultSet.getString(USER_ROLE).toUpperCase()));
-        admin.setMail(resultSet.getString(MAIL));
-        admin.setName(resultSet.getString(USER_NAME));
-        admin.setSurname(resultSet.getString(USER_SURNAME));
-        admin.setActive(resultSet.getBoolean(IS_ACTIVE));
-        return admin;
+        return new Admin.Builder().id(resultSet.getInt(USER_ID))
+                .login(resultSet.getString(USER_LOGIN))
+                .password(resultSet.getString(USER_PASSWORD))
+                .role(User.UserRole.valueOf(resultSet.getString(USER_ROLE).toUpperCase()))
+                .mail(resultSet.getString(MAIL))
+                .name(resultSet.getString(USER_NAME))
+                .surname(resultSet.getString(USER_SURNAME))
+                .isActive(resultSet.getBoolean(IS_ACTIVE))
+                .photo(resultSet.getBytes(PHOTO))
+                .verification(resultSet.getBoolean(VERIFICATION))
+                .base64Image(resultSet.getBytes(PHOTO) != null ? "data:image/jpg;base64," + Base64.getEncoder().encodeToString(resultSet.getBytes(PHOTO))
+                        : "https://i.ibb.co/mDTmCZn/png-transparent-computer-icons-user-profile-user-avatar-blue-heroes-electric-blue.png") // FIXME: 9/21/2021
+                .build();
     }
 }

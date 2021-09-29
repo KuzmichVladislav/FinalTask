@@ -38,7 +38,6 @@ public class AttributeName {
 
     public static final String ORDER = "order";
 
-    public static final String PAGE = "page";
     public static final String COMMENTS = "comments";
     public static final String COMMENT_ID = "commentId";
     public static final String MONEY = "money";
@@ -49,6 +48,9 @@ public class AttributeName {
     public static final String USERS = "users";
     public static final String USER = "user";
     public static final String DISCOUNT = "discount";
+    public static final String PAGE = "page";
+    public static final String NUMBER_OF_PAGES = "numberOfPages";
+    public static final String CURRENT_NUMBER_PAGE = "currentNumberPage";
 
     private AttributeName() {
     }

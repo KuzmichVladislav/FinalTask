@@ -24,27 +24,13 @@ public class ShowUsersCommand implements Command {
     public Router execute(SessionRequestContent requestContent) throws CommandException {
         Router router;
         List<User> users = new ArrayList<>();
-
         try {
-
-        //    String userRole = requestContent.getParameterByName(AttributeName.USER_ROLE).strip();
-
-//            if (userRole.matches(User.UserRole.CLIENT.name()) || userRole.matches(User.UserRole.TRAINER.name())) {
-//                User.UserRole role = User.UserRole.valueOf(userRole);
-//                users.addAll(clientService.findAllActiveByNameAndLastName(userName, userLastName));
-//
-//            } else {
             users.addAll(userService.findAllUser());
-//            }
-
-
             router = new Router(PagePath.SHOW_ALL_USERS, FORWARD);
             requestContent.putAttribute(AttributeName.USERS, users);
-
         } catch (ServiceException e) {
             throw new CommandException(e);
         }
-
         return router;
     }
 }

@@ -1,5 +1,6 @@
 package com.company.gum.command.impl.comment;
 
+import com.company.gum.command.AttributeName;
 import com.company.gum.command.Command;
 import com.company.gum.command.PagePath;
 import com.company.gum.command.Router;
@@ -13,7 +14,7 @@ import com.company.gum.service.impl.CommentServiceImpl;
 import java.util.Collections;
 import java.util.List;
 
-import static com.company.gum.command.AttributeName.COMMENTS;
+import static com.company.gum.command.AttributeName.*;
 import static com.company.gum.command.Router.RouterType.FORWARD;
 
 public class ShowAllActiveCommentsCommand implements Command {
@@ -25,15 +26,15 @@ public class ShowAllActiveCommentsCommand implements Command {
         Router router;
         List<Comment> comments;
         try { // TODO: 9/20/2021 pagination
-//            Integer pageNumber = Integer.parseInt(requestContent.getParameterByName(AttributeName.PAGE));
-//            Integer numberOsComments = commentService.commentCount(true);
+            int pageNumber = Integer.parseInt(requestContent.getParameterByName(AttributeName.PAGE));
             comments = commentService.findAllActiveComment();
+            int commentsCount = comments.size();
             Collections.reverse(comments);
-//            int numberOfPages = new BigDecimal(numberOsComments).divide(new BigDecimal(5), MathContext.DECIMAL32).setScale(0, RoundingMode.UP).intValue();
-//            requestContent.putAttribute(AttributeName.NUMBER_OF_PAGES, numberOfPages);
-//            requestContent.putAttribute(AttributeName.CURRENT_NUMBER_PAGE, pageNumber);
-            requestContent.putAttribute(COMMENTS, comments);
-            requestContent.putAttribute(COMMENTS, comments);
+            int numberOfPages = (int) Math.ceil((commentsCount) / 5d);
+            List<Comment> showComments = comments.subList((pageNumber - 1) * 5, Math.min(pageNumber * 5, commentsCount));
+            requestContent.putAttribute(NUMBER_OF_PAGES, numberOfPages);
+            requestContent.putAttribute(CURRENT_NUMBER_PAGE, pageNumber);
+            requestContent.putAttribute(COMMENTS, showComments);
             router = new Router(PagePath.COMMENTS, FORWARD);
 
         } catch (ServiceException e) {

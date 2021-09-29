@@ -81,7 +81,7 @@
                     <div class="col-md-4">
 
                         <div class="profile-img">
-                                <img src="${sessionScope.userPhoto}"/>
+                                <img src="${trainer.base64Image}"/>
                         </div>
                     </div>
                     <div class="col-md-6" style="max-width:42%;">
@@ -235,7 +235,7 @@
                     <div class="col-md-4">
 
                         <div class="profile-img">
-                                <img src="${sessionScope.userPhoto}"/>
+                                <img src="${client.base64Image}"/>
                         </div>
                     </div>
                     <div class="col-md-6" style="max-width:42%;">
@@ -346,7 +346,8 @@
 
                                         <div class="form-group">
                                             <label for="input_money">${discount}</label>
-                                            <input type="text" name="discount" class="form-control" id="input_money" value="${client.discount}">
+                                            <input type="text" name="discount" class="form-control" id="input_money"
+                                                   value="${client.discount}">
                                         </div>
                                         <c:if test="${requestScope.errMessage != null}">
                                             <div class="alert alert-danger">

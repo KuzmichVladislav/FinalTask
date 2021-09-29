@@ -10,6 +10,7 @@ import org.apache.logging.log4j.Logger;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 
 import static com.company.gum.dao.TableColumnName.*;
@@ -46,7 +47,7 @@ public class TrainerDaoImpl implements TrainerDao {
             + "       name,\n"
             + "       surname,\n"
             + "       is_active,\n"
-            + "       profile_image,\n"
+            + "       image,\n"
             + "       mail,\n"
             + "       description,\n"
             + "       experience,\n"
@@ -67,6 +68,7 @@ public class TrainerDaoImpl implements TrainerDao {
             + "       mail,\n"
             + "       description,\n"
             + "       experience,\n"
+            + "       image,\n"
             + "       is_verified\n"
             + "FROM trainers\n"
             + "     JOIN users on user_id = trainer_id\n"
@@ -83,6 +85,7 @@ public class TrainerDaoImpl implements TrainerDao {
             + "       mail,\n"
             + "       description,\n"
             + "       experience,\n"
+            + "       image,\n"
             + "       is_verified\n"
             + "FROM trainers\n"
             + "     JOIN users on user_id = trainer_id\n"
@@ -293,19 +296,22 @@ public class TrainerDaoImpl implements TrainerDao {
     }
 
     private Trainer getTrainerFromResultSet(ResultSet resultSet) throws SQLException {
-        Trainer trainer = new Trainer();
-        trainer.setId(resultSet.getInt(TRAINER_ID));
-        trainer.setLogin(resultSet.getString(USER_LOGIN));
-        trainer.setPassword(resultSet.getString(USER_PASSWORD));
-        trainer.setRole(User.UserRole.valueOf(resultSet.getString(USER_ROLE).toUpperCase()));
-        trainer.setMail(resultSet.getString(MAIL));
-        trainer.setName(resultSet.getString(USER_NAME));
-        trainer.setSurname(resultSet.getString(USER_SURNAME));
-        trainer.setActive(resultSet.getBoolean(IS_ACTIVE));
-        trainer.setRegisterDate(resultSet.getTimestamp(REGISTER_DATE).toLocalDateTime());
-        trainer.setPhone(resultSet.getString(PHONE_NUMBER));
-        trainer.setDescription(resultSet.getString(DESCRIPTION));
-        trainer.setExperience(resultSet.getString(EXPERIENCE));
-        return trainer;
+        return new Trainer.Builder().id(resultSet.getInt(TRAINER_ID))
+                .login(resultSet.getString(USER_LOGIN))
+                .password(resultSet.getString(USER_PASSWORD))
+                .role(User.UserRole.valueOf(resultSet.getString(USER_ROLE).toUpperCase()))
+                .mail(resultSet.getString(MAIL))
+                .name(resultSet.getString(USER_NAME))
+                .surname(resultSet.getString(USER_SURNAME))
+                .isActive(resultSet.getBoolean(IS_ACTIVE))
+                .registerDate(resultSet.getTimestamp(REGISTER_DATE).toLocalDateTime())
+                .phone(resultSet.getString(PHONE_NUMBER))
+                .verification(resultSet.getBoolean(VERIFICATION))
+                .experience(resultSet.getString(EXPERIENCE))
+                .description(resultSet.getString(DESCRIPTION))
+                .photo(resultSet.getBytes(PHOTO))
+                .base64Image(resultSet.getBytes(PHOTO) != null ? "data:image/jpg;base64," + Base64.getEncoder().encodeToString(resultSet.getBytes(PHOTO))
+                        : "https://i.ibb.co/mDTmCZn/png-transparent-computer-icons-user-profile-user-avatar-blue-heroes-electric-blue.png") // FIXME: 9/21/2021
+                .build();
     }
 }

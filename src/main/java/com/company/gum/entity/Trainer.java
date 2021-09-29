@@ -14,6 +14,25 @@ public class Trainer extends User {
         role = UserRole.TRAINER;
     }
 
+    private Trainer(Builder builder) {
+        setId(builder.id);
+        setRole(builder.role);
+        setLogin(builder.login);
+        setPassword(builder.password);
+        setName(builder.name);
+        setSurname(builder.surname);
+        setMail(builder.mail);
+        setVerification(builder.verification);
+        setActive(builder.isActive);
+        setPhoto(builder.photo);
+        setBase64Image(builder.base64Image);
+        setRegisterDate(builder.registerDate);
+        setPhone(builder.phone);
+        setMail(builder.mail);
+        setDescription(builder.description);
+        setExperience(builder.experience);
+    }
+
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("Trainer{");
@@ -53,23 +72,6 @@ public class Trainer extends User {
         result = 31 * result + (getDescription() != null ? getDescription().hashCode() : 0);
         result = 31 * result + (getExperience() != null ? getExperience().hashCode() : 0);
         return result;
-    }
-
-    private Trainer(Builder builder) {
-        setId(builder.id);
-        setRole(builder.role);
-        setLogin(builder.login);
-        setPassword(builder.password);
-        setName(builder.name);
-        setSurname(builder.surname);
-        setMail(builder.mail);
-        setVerification(builder.verification);
-        setPhoto(builder.photo);
-        setRegisterDate(builder.registerDate);
-        setPhone(builder.phone);
-        setMail(builder.mail);
-        setDescription(builder.description);
-        setExperience(builder.experience);
     }
 
     public LocalDateTime getRegisterDate() {
@@ -118,7 +120,6 @@ public class Trainer extends User {
      * {@code Trainer} builder static inner class.
      */
     public static final class Builder {
-
         private Integer id;
         private UserRole role;
         private String login;
@@ -129,7 +130,9 @@ public class Trainer extends User {
         private String description;
         private String experience;
         private boolean verification;
+        private boolean isActive;
         private byte[] photo;
+        private String base64Image;
         private LocalDateTime registerDate;
         private String phone;
 
@@ -137,8 +140,7 @@ public class Trainer extends User {
         }
 
         /**
-         * Sets the {@code id} and returns a reference to this Builder so that
-         * the methods can be chained together.
+         * Sets the {@code id} and returns a reference to this Builder so that the methods can be chained together.
          *
          * @param val the {@code id} to set
          * @return a reference to this Builder
@@ -149,8 +151,7 @@ public class Trainer extends User {
         }
 
         /**
-         * Sets the {@code role} and returns a reference to this Builder so that
-         * the methods can be chained together.
+         * Sets the {@code role} and returns a reference to this Builder so that the methods can be chained together.
          *
          * @param val the {@code role} to set
          * @return a reference to this Builder
@@ -161,8 +162,7 @@ public class Trainer extends User {
         }
 
         /**
-         * Sets the {@code login} and returns a reference to this Builder so
-         * that the methods can be chained together.
+         * Sets the {@code login} and returns a reference to this Builder so that the methods can be chained together.
          *
          * @param val the {@code login} to set
          * @return a reference to this Builder
@@ -173,8 +173,7 @@ public class Trainer extends User {
         }
 
         /**
-         * Sets the {@code password} and returns a reference to this Builder so
-         * that the methods can be chained together.
+         * Sets the {@code password} and returns a reference to this Builder so that the methods can be chained together.
          *
          * @param val the {@code password} to set
          * @return a reference to this Builder
@@ -185,8 +184,7 @@ public class Trainer extends User {
         }
 
         /**
-         * Sets the {@code name} and returns a reference to this Builder so that
-         * the methods can be chained together.
+         * Sets the {@code name} and returns a reference to this Builder so that the methods can be chained together.
          *
          * @param val the {@code name} to set
          * @return a reference to this Builder
@@ -197,8 +195,7 @@ public class Trainer extends User {
         }
 
         /**
-         * Sets the {@code surname} and returns a reference to this Builder so
-         * that the methods can be chained together.
+         * Sets the {@code surname} and returns a reference to this Builder so that the methods can be chained together.
          *
          * @param val the {@code surname} to set
          * @return a reference to this Builder
@@ -209,8 +206,7 @@ public class Trainer extends User {
         }
 
         /**
-         * Sets the {@code mail} and returns a reference to this Builder so that
-         * the methods can be chained together.
+         * Sets the {@code mail} and returns a reference to this Builder so that the methods can be chained together.
          *
          * @param val the {@code mail} to set
          * @return a reference to this Builder
@@ -221,8 +217,7 @@ public class Trainer extends User {
         }
 
         /**
-         * Sets the {@code description} and returns a reference to this Builder
-         * so that the methods can be chained together.
+         * Sets the {@code description} and returns a reference to this Builder so that the methods can be chained together.
          *
          * @param val the {@code description} to set
          * @return a reference to this Builder
@@ -233,8 +228,7 @@ public class Trainer extends User {
         }
 
         /**
-         * Sets the {@code experience} and returns a reference to this Builder
-         * so that the methods can be chained together.
+         * Sets the {@code experience} and returns a reference to this Builder so that the methods can be chained together.
          *
          * @param val the {@code experience} to set
          * @return a reference to this Builder
@@ -247,16 +241,14 @@ public class Trainer extends User {
         /**
          * Returns a {@code Trainer} built from the parameters previously set.
          *
-         * @return a {@code Trainer} built with parameters of this
-         * {@code Trainer.Builder}
+         * @return a {@code Trainer} built with parameters of this {@code Trainer.Builder}
          */
         public Trainer build() {
             return new Trainer(this);
         }
 
         /**
-         * Sets the {@code verification} and returns a reference to this Builder
-         * so that the methods can be chained together.
+         * Sets the {@code verification} and returns a reference to this Builder so that the methods can be chained together.
          *
          * @param val the {@code verification} to set
          * @return a reference to this Builder
@@ -267,8 +259,18 @@ public class Trainer extends User {
         }
 
         /**
-         * Sets the {@code photo} and returns a reference to this Builder so
-         * that the methods can be chained together.
+         * Sets the {@code isActive} and returns a reference to this Builder so that the methods can be chained together.
+         *
+         * @param val the {@code isActive} to set
+         * @return a reference to this Builder
+         */
+        public Builder isActive(boolean val) {
+            isActive = val;
+            return this;
+        }
+
+        /**
+         * Sets the {@code photo} and returns a reference to this Builder so that the methods can be chained together.
          *
          * @param val the {@code photo} to set
          * @return a reference to this Builder
@@ -279,8 +281,18 @@ public class Trainer extends User {
         }
 
         /**
-         * Sets the {@code registerDate} and returns a reference to this Builder
-         * so that the methods can be chained together.
+         * Sets the {@code base64Image} and returns a reference to this Builder so that the methods can be chained together.
+         *
+         * @param val the {@code base64Image} to set
+         * @return a reference to this Builder
+         */
+        public Builder base64Image(String val) {
+            base64Image = val;
+            return this;
+        }
+
+        /**
+         * Sets the {@code registerDate} and returns a reference to this Builder so that the methods can be chained together.
          *
          * @param val the {@code registerDate} to set
          * @return a reference to this Builder
@@ -291,8 +303,7 @@ public class Trainer extends User {
         }
 
         /**
-         * Sets the {@code phone} and returns a reference to this Builder so
-         * that the methods can be chained together.
+         * Sets the {@code phone} and returns a reference to this Builder so that the methods can be chained together.
          *
          * @param val the {@code phone} to set
          * @return a reference to this Builder

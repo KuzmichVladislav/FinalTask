@@ -12,6 +12,7 @@
 <fmt:message key="order.end.date" bundle="${rb}" var="endDate"/>
 <fmt:message key="order.details" bundle="${rb}" var="oderDetails"/>
 <fmt:message key="order.id" bundle="${rb}" var="orderId"/>
+<fmt:message key="order.trainer.name" bundle="${rb}" var="trainerFullName"/>
 <fmt:message key="order.client.name" bundle="${rb}" var="clientFullName"/>
 <fmt:message key="order.register.date" bundle="${rb}" var="registerDate"/>
 <fmt:message key="order.exercises" bundle="${rb}" var="exercises"/>
@@ -77,6 +78,14 @@
                         </div>
                         <div class="col-md-6">
                             <p>${order.id}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>${trainerFullName}</label>
+                        </div>
+                        <div class="col-md-6">
+                            <p> ${order.trainerName} ${order.trainerSurname}</p>
                         </div>
                     </div>
                     <div class="row">
@@ -199,137 +208,6 @@
                         </div>
                     </div>
                 </div>
-                <c:if test="${order.orderStatus.ordinal() == 0}">
-                    <div class="col-md-6">
-                        <div class="col-md-6">
-                            <!-- Button trigger modal -->
-                            <button type="button" class="btn btn-primary" data-toggle="modal"
-                                    data-target="#editExercisesModal" style="width:200px;">
-                                    ${editExercises}
-                            </button>
-
-                            <!-- Modal -->
-                            <div class="modal fade" id="editExercisesModal" tabindex="-1" role="dialog"
-                                 aria-labelledby="editExercisesModalLabel" aria-hidden="true">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="editExercisesModalLabel">${exercises}</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <form name="loginForm"
-                                              action="${pageContext.request.contextPath}/controller"
-                                              method="POST">
-                                            <input type="hidden" name="command" value="edit_exercises">
-                                            <input type="hidden" name="orderId" value="${order.id}">
-                                            <div class="modal-body">
-                                                <div class="form-group">
-                                                    <label for="input_exercises">${nutrition}</label>
-                                                    <textarea name="exercises" class="form-control"
-                                                              id="input_exercises">${order.exercises}</textarea>
-                                                </div>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary"
-                                                        data-dismiss="modal">
-                                                        ${close}
-                                                </button>
-                                                <button type="submit" class="btn btn-primary">${save}</button>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <!-- Button trigger modal -->
-                            <button type="button" class="btn btn-primary" data-toggle="modal"
-                                    data-target="#editNutritionModal" style="margin-top:10px; width:200px;">
-                                    ${editNutrition}
-                            </button>
-
-                            <!-- Modal -->
-                            <div class="modal fade" id="editNutritionModal" tabindex="-1" role="dialog"
-                                 aria-labelledby="editNutritionModalLabel" aria-hidden="true">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="editNutritionModalLabel">${nutrition}</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <form name="loginForm"
-                                              action="${pageContext.request.contextPath}/controller"
-                                              method="POST">
-                                            <input type="hidden" name="command" value="edit_nutrition">
-                                            <input type="hidden" name="orderId" value="${order.id}">
-                                            <div class="modal-body">
-                                                <div class="form-group">
-                                                    <label for="input_nutrition">${nutrition}</label>
-                                                    <textarea name="nutrition" class="form-control"
-                                                              id="input_nutrition">${order.nutrition}</textarea>
-                                                </div>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary"
-                                                        data-dismiss="modal">
-                                                        ${close}
-                                                </button>
-                                                <button type="submit" class="btn btn-primary">${save}</button>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <form class="needs-validation" novalidate>
-                                <input type="hidden" name="command" value="update_order_status">
-                                <input type="hidden" name="orderId" value="${order.id}">
-                                <input type="hidden" name="orderStatus" value="REVIEWED">
-                                <div class="form-group">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="" id="invalidCheck"
-                                               required>
-                                        <label class="form-check-label" for="invalidCheck">
-                                                ${agreeToTermsAndConditions}
-                                        </label>
-                                        <div class="invalid-feedback">
-                                                ${agreeBeforeSubmitting}
-                                        </div>
-                                    </div>
-                                </div>
-                                <button type="submit" class="btn btn-primary" style="margin-top:10px; width:200px;">
-                                        ${sendForConfirm}
-                                </button>
-                            </form>
-                            <script>
-                                // Пример стартового JavaScript для отключения отправки форм при наличии недопустимых полей
-                                (function () {
-                                    'use strict'
-
-                                    // Получите все формы, к которым мы хотим применить пользовательские стили проверки Bootstrap
-                                    var forms = document.querySelectorAll('.needs-validation')
-
-                                    // Зацикливайтесь на них и предотвращайте отправку
-                                    Array.prototype.slice.call(forms)
-                                        .forEach(function (form) {
-                                            form.addEventListener('submit', function (event) {
-                                                if (!form.checkValidity()) {
-                                                    event.preventDefault()
-                                                    event.stopPropagation()
-                                                }
-                                                form.classList.add('was-validated')
-                                            }, false)
-                                        })
-                                })()
-                            </script>
-                        </div>
-                    </div>
-                </c:if>
             </div>
         </div>
     </div>
