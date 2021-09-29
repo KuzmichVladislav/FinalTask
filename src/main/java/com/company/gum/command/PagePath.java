@@ -36,6 +36,7 @@ public class PagePath {
     public static final String USER_RESTORED = "jsp/pages/admin/user_restored.jsp";
     public static final String ADMIN_ORDERS = "jsp/pages/admin/all_orders.jsp";
     public static final String USER_PROFILE = "jsp/pages/admin/user_profile.jsp";
+    public static final String DISCOUNT_ASSIGNED = "jsp/pages/admin/discount_assigned.jsp";
 
     private PagePath() {
     }

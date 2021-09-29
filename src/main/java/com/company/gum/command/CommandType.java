@@ -50,7 +50,8 @@ public enum CommandType {
     UPDATE_ORDER_STATUS(new UpdateOrderStatusCommand()),
     DELETE_USER(new DeleteUserCommand()),
     RESTORE_USER(new RestoreUserCommand()),
-    SHOW_USER_PROFILE(new ShowUserProfileCommand());
+    SHOW_USER_PROFILE(new ShowUserProfileCommand()),
+    ASSIGN_DISCOUNT(new AssignDiscountCommand());
 
     private Command command;
 

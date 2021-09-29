@@ -18,11 +18,13 @@ public interface ClientService {
 
     boolean withdrawMoney(int clientId, BigDecimal amount) throws ServiceException;
 
+    boolean assignDiscount(int clientId, BigDecimal discount) throws ServiceException;
+
     Client findClientById(int clientId) throws ServiceException;
 
-    List<Client> findAllClient() throws ServiceException;
+    List<Client> findAllClient() throws ServiceException;// TODO: 9/29/2021
 
-    List<Client> findAllActiveClient() throws ServiceException;
+    List<Client> findAllActiveClient() throws ServiceException;// TODO: 9/29/2021
 
-    List<Client> findAllClientByAnthroponym(String name, String surname) throws ServiceException;
+    List<Client> findAllClientByAnthroponym(String name, String surname) throws ServiceException;// TODO: 9/29/2021
 }

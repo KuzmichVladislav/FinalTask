@@ -54,6 +54,14 @@
 <fmt:message key="profile.my.orders" bundle="${rb}" var="myOrder"/>
 <fmt:message key="form.money.refill" bundle="${rb}" var="moneyRefill"/>
 
+<fmt:message key="profile.close" bundle="${rb}" var="close"/>
+<fmt:message key="profile.description" bundle="${rb}" var="description"/>
+<fmt:message key="profile.description.programs" bundle="${rb}" var="descriptionPrograms"/>
+<fmt:message key="profile.experience" bundle="${rb}" var="experience"/>
+<fmt:message key="profile.experience.trainer" bundle="${rb}" var="experienceTrainer"/>
+
+<fmt:message key="profile.save.changes" bundle="${rb}" var="saveChanges"/>
+
 
 <html>
 <head>
@@ -177,7 +185,7 @@
                                 <!-- Button trigger modal -->
                                 <button type="button" class="btn btn-primary" data-toggle="modal"
                                         data-target="#descriptionModal">
-                                    Description
+                                    ${description}
                                 </button>
 
                                 <!-- Modal -->
@@ -186,8 +194,8 @@
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title" id="descriptionModalLabel">Description of the
-                                                    proposed training programs</h5>
+                                                <h5 class="modal-title"
+                                                    id="descriptionModalLabel">${descriptionPrograms}</h5>
                                                 <button type="button" class="close" data-dismiss="modal"
                                                         aria-label="Close">
                                                     <span aria-hidden="true">&times;</span>
@@ -198,7 +206,7 @@
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">
-                                                    Close
+                                                    ${close}
                                                 </button>
                                             </div>
                                         </div>
@@ -209,7 +217,7 @@
                                 <!-- Button trigger modal -->
                                 <button type="button" class="btn btn-primary" data-toggle="modal"
                                         data-target="#experienceModal">
-                                    Experience
+                                    ${experience}
                                 </button>
                                 <!-- Modal -->
                                 <div class="modal fade" id="experienceModal" tabindex="-1" role="dialog"
@@ -217,8 +225,8 @@
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title" id="experienceModalLabel">Experience as a
-                                                    trainer</h5>
+                                                <h5 class="modal-title"
+                                                    id="experienceModalLabel">${experienceTrainer}</h5>
                                                 <button type="button" class="close" data-dismiss="modal"
                                                         aria-label="Close">
                                                     <span aria-hidden="true">&times;</span>
@@ -229,7 +237,7 @@
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">
-                                                    Close
+                                                    ${close}
                                                 </button>
                                             </div>
                                         </div>
@@ -294,7 +302,7 @@
                                 <!-- Button trigger modal -->
                                 <button type="button" class="btn btn-primary" data-toggle="modal"
                                         data-target="#descriptionEditModal">
-                                    Description
+                                    ${description}
                                 </button>
 
                                 <!-- Modal -->
@@ -303,9 +311,8 @@
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title" id="descriptionEditModalLabel">Description
-                                                    of
-                                                    the proposed training programs</h5>
+                                                <h5 class="modal-title" id="descriptionEditModalLabel">
+                                                    ${descriptionPrograms}</h5>
                                                 <button type="button" class="close" data-dismiss="modal"
                                                         aria-label="Close">
                                                     <span aria-hidden="true">&times;</span>
@@ -319,7 +326,7 @@
 
                                                 <div class="modal-body">
                                                     <div class="form-group">
-                                                        <label for="input_description">Description</label>
+                                                        <label for="input_description">${description}</label>
                                                         <textarea name="description" class="form-control"
                                                                   id="input_description">${sessionScope.description}</textarea>
                                                     </div>
@@ -327,9 +334,10 @@
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary"
                                                             data-dismiss="modal">
-                                                        Close
+                                                        ${close}
                                                     </button>
-                                                    <button type="submit" class="btn btn-primary">Save changes</button>
+                                                    <button type="submit"
+                                                            class="btn btn-primary">${saveChanges}</button>
                                                 </div>
                                             </form>
                                         </div>
@@ -340,7 +348,7 @@
                                 <!-- Button trigger modal -->
                                 <button type="button" class="btn btn-primary" data-toggle="modal"
                                         data-target="#experienceEditModal">
-                                    Experience
+                                    ${experience}
                                 </button>
                                 <!-- Modal -->
                                 <div class="modal fade" id="experienceEditModal" tabindex="-1" role="dialog"
@@ -348,9 +356,8 @@
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title" id="experienceEditModalLabel">Experience as
-                                                    a
-                                                    trainer</h5>
+                                                <h5 class="modal-title" id="experienceEditModalLabel">
+                                                    ${experienceTrainer}</h5>
                                                 <button type="button" class="close" data-dismiss="modal"
                                                         aria-label="Close">
                                                     <span aria-hidden="true">&times;</span>
@@ -363,7 +370,7 @@
 
                                                 <div class="modal-body">
                                                     <div class="form-group">
-                                                        <label for="input_experience">Experience</label>
+                                                        <label for="input_experience">${experience}</label>
                                                         <textarea name="experience" class="form-control"
                                                                   id="input_experience">${sessionScope.experience}</textarea>
                                                     </div>
@@ -371,9 +378,10 @@
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary"
                                                             data-dismiss="modal">
-                                                        Close
+                                                        ${close}
                                                     </button>
-                                                    <button type="submit" class="btn btn-primary">Save changes</button>
+                                                    <button type="submit"
+                                                            class="btn btn-primary">${saveChanges}</button>
                                                 </div>
                                             </form>
                                         </div>

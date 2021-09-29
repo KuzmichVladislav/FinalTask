@@ -12,8 +12,9 @@ public class ErrorMessageKey {
     public static final String INVALID_PHONE = "invalid.phone";
     public static final String INVALID_EMAIL = "invalid.email";
     public static final String LOGIN_ALREADY_EXIST = "login.already.exist";
-    public static final Object INVALID_MONEY = "invalid.entered.money.value";
-    public static final Object ACCOUNT_NOT_ENOUGH_AMOUNT = "account.not.enough.amount";
+    public static final String INVALID_MONEY = "invalid.entered.money.value";
+    public static final String INVALID_DISCOUNT = "invalid.entered.discount.value";
+    public static final String ACCOUNT_NOT_ENOUGH_AMOUNT = "account.not.enough.amount";
 
     private ErrorMessageKey() {
     }

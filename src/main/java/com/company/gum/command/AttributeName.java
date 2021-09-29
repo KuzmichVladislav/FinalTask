@@ -48,6 +48,7 @@ public class AttributeName {
     public static final String EXERCISES = "exercises";
     public static final String USERS = "users";
     public static final String USER = "user";
+    public static final String DISCOUNT = "discount";
 
     private AttributeName() {
     }

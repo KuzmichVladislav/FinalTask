@@ -89,6 +89,17 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
+    public boolean assignDiscount(int clientId, BigDecimal discount) throws ServiceException {
+        boolean isUpdated;
+        try {
+            isUpdated = clientDao.assignDiscount(clientId, discount);
+        } catch (DaoException e) {
+            throw new ServiceException(e);
+        }
+        return isUpdated;
+    }
+
+    @Override
     public Client findClientById(int clientId) throws ServiceException {
         Client client;
         try {
