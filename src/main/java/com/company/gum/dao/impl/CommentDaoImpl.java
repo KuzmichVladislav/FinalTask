@@ -45,16 +45,16 @@ public class CommentDaoImpl implements CommentDao {
             + "         LEFT JOIN users u ON comments.user_id = u.user_id\n"
             + "WHERE comments.is_active = true";
 
-    private static CommentDaoImpl mInstance;
+    private static CommentDaoImpl instance;
 
     private CommentDaoImpl() {
     }
 
     public static CommentDaoImpl getInstance() {
-        if (mInstance == null) {
-            mInstance = new CommentDaoImpl();
+        if (instance == null) {
+            instance = new CommentDaoImpl();
         }
-        return mInstance;
+        return instance;
     }
 
     @Override

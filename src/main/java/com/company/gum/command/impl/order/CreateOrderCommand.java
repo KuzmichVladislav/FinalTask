@@ -33,7 +33,7 @@ public class CreateOrderCommand implements Command {
             String clientComment = requestContent.getParameterByName(COMMENT).strip().replaceAll("<", "")
                     .replaceAll(">", "");
             String date = requestContent.getParameterByName(START_DATE);
-            LocalDate startDate = LocalDate.parse(date);
+            LocalDate startDate = date.isEmpty() ? LocalDate.now() : LocalDate.parse(date);
             String duration = requestContent.getParameterByName(DURATION);
             Duration training = Duration.values()[Integer.parseInt(duration)];
             LocalDate endDate = startDate.plus(training.day(), ChronoUnit.DAYS);

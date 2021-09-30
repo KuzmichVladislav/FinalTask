@@ -1,7 +1,6 @@
 package com.company.gum.command.impl.order;
 
 import com.company.gum.command.Command;
-import com.company.gum.command.PagePath;
 import com.company.gum.command.Router;
 import com.company.gum.controller.SessionRequestContent;
 import com.company.gum.exception.CommandException;
@@ -9,8 +8,9 @@ import com.company.gum.exception.ServiceException;
 import com.company.gum.service.OrderService;
 import com.company.gum.service.impl.OrderServiceImpl;
 
+import static com.company.gum.command.AttributeName.CURRENT_PAGE;
 import static com.company.gum.command.AttributeName.ORDER_ID;
-import static com.company.gum.command.Router.RouterType.REDIRECT;
+import static com.company.gum.command.Router.RouterType.FORWARD;
 
 public class DeleteOrderByClientCommand implements Command {
 
@@ -22,8 +22,7 @@ public class DeleteOrderByClientCommand implements Command {
         try {
             int orderId = Integer.parseInt(requestContent.getParameterByName(ORDER_ID));
             orderService.deleteOrder(orderId);
-            requestContent.putAttribute(ORDER_ID, orderId);// TODO: 9/22/2021 нет необходимо�?ти
-            router = new Router(PagePath.ORDER_DELETED_BY_CLIENT, REDIRECT);
+            router = new Router((String) requestContent.getSessionAttributeByName(CURRENT_PAGE), FORWARD);
         } catch (ServiceException e) {
             throw new CommandException(e);
         }

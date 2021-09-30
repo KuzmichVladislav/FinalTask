@@ -51,6 +51,7 @@
 <fmt:message key="profile.my.orders" bundle="${rb}" var="myOrder"/>
 <fmt:message key="form.money.refill" bundle="${rb}" var="moneyRefill"/>
 <fmt:message key="profile.change.password" bundle="${rb}" var="changePassword"/>
+<fmt:message key="profile.show.trainers" bundle="${rb}" var="showTrainers"/>
 
 <html>
     <head>
@@ -107,10 +108,10 @@
                     <div class="col-md-4">
                         <div class="profile-work">
                             <p>${workLinks}</p>
-                            <a href="${pageContext.request.contextPath}/controller?command=new_order">${newOrder}</a>
-                            <a href="${pageContext.request.contextPath}/controller?command=show_all_orders_by_client">${myOrder}</a><br/>
+                            <a href="${pageContext.request.contextPath}/controller?command=NEW_ORDER">${newOrder}</a>
+                            <a href="${pageContext.request.contextPath}/controller?command=SHOW_ALL_ORDERS_BY_CLIENT">${myOrder}</a><br/>
                             <a href="${pageContext.request.contextPath}/jsp/pages/client/refill_money.jsp">${moneyRefill}</a><br/>
-                            <a href="">Bootply Profile</a>
+                            <a href="${pageContext.request.contextPath}/controller?command=SHOW_ALL_TRAINERS">${showTrainers}</a><br/>
                             <p>SKILLS</p>
                             <a href="">Web Designer</a><br/>
                             <a href="">Web Developer</a><br/>

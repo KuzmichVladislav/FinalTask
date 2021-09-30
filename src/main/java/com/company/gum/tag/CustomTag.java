@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Properties;
 
 // TODO: Auto-generated Javadoc
+
 /**
  * The Class CustomTag.
  */
@@ -29,8 +30,6 @@ public class CustomTag extends TagSupport {
         HttpSession session = pageContext.getSession();
         String language = String.valueOf(session.getAttribute("locale"));
         Properties properties = PropertyLoader.loadProperty("bundle/message_" + language + ".properties");
-//		ResourceBundle rb = ResourceBundle.getBundle("bundle/message", new Locale(language));
-// FIXME: 9/30/2021 java.util.MissingResourceException: Can't find bundle for base name bundle/message, locale en_en
 
         String registerDate = properties.getProperty("profile.register.date");
         String trainerFio = properties.getProperty("order.trainer.name");
@@ -68,8 +67,11 @@ public class CustomTag extends TagSupport {
                 if (order.getOrderStatus() == Order.OrderStatus.NEW
                         || order.getOrderStatus() == Order.OrderStatus.REVIEWED
                         || order.getOrderStatus() == Order.OrderStatus.REJECTED) {
-                    out.write("<a href=\"controller?command=DELETE_ORDER_BY_CLIENT&orderId=" + order.getId()
-                            + "\"><button class=\"btn btn-sm btn-outline-primary w-100\">" + delete + "</button></a>");
+                    out.write("<form name=\"delete_form\" action=\"controller\" method=\"POST\">");
+                    out.write("<input type=\"hidden\" name=\"command\" value=\"DELETE_ORDER_BY_CLIENT\">");
+                    out.write("<input type=\"hidden\" name=\"orderId\" value="+order.getId()+">");
+                    out.write("<button type=\"submit\" class=\"btn btn-sm btn-outline-primary w-100\">" + delete + "</button>");
+                    out.write("</form>");
                 }
                 out.write("</td>");
                 out.write("</tr>");
