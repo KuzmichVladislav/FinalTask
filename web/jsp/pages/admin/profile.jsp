@@ -56,159 +56,159 @@
 <fmt:message key="show.orders" bundle="${rb}" var="showOrders"/>
 
 <html>
-<head>
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/profile.css">
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-</head>
-<body>
-<c:import url="../../fragment/navbar.jsp"/>
+    <head>
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/profile.css">
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    </head>
+    <body>
+        <c:import url="../../fragment/navbar.jsp"/>
 
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-<div class="container emp-profile">
-    <form method="post">
-        <div class="row">
-            <div class="col-md-4">
+        <div class="container emp-profile">
+            <form method="post">
+                <div class="row">
+                    <div class="col-md-4">
 
-                <div class="profile-img">
-                        <img src="${sessionScope.userPhoto}"/>
-                </div>
-            </div>
-            <div class="col-md-6" style="max-width:42%;">
-                <div class="profile-head">
-                    <h5>
-                        ${sessionScope.userName} ${sessionScope.userLastName}
-                    </h5>
-                    <h6>
-                        ${sessionScope.userRole}
-                    </h6>
-                    <p class="proile-rating">${profileDetails}</p>
-                    <ul class="nav nav-tabs" id="myTab" role="tablist">
-                        <li class="nav-item">
-                            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab"
-                               aria-controls="home" aria-selected="true">${profileAbout}</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
-                               aria-controls="profile" aria-selected="false">${profileEdit}</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-md-2">
-                <a href="${pageContext.request.contextPath}/jsp/pages/change_password.jsp">
-                    <button type="button" class="btn btn-primary">
-                        ${changePassword}
-                    </button>
-                </a>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-4">
-                <div class="profile-work">
-                    <p>${workLinks}</p>
-                    <a href="${pageContext.request.contextPath}/controller?command=SHOW_USERS">${showUsers}</a><br/>
-                    <a href="${pageContext.request.contextPath}/controller?command=SHOW_ALL_ORDERS_BY_ADMIN">${showOrders}</a><br/>
-                    <a href="${pageContext.request.contextPath}/jsp/pages/admin/register_trainer.jsp">${registerTrainer}</a><br/>
-                    <a href="">Bootply Profile</a>
-                    <p>SKILLS</p>
-                    <a href="">Web Designer</a><br/>
-                    <a href="">Web Developer</a><br/>
-                    <a href="">WordPress</a><br/>
-                    <a href="">WooCommerce</a><br/>
-                    <a href="">PHP, .Net</a><br/>
-                </div>
-            </div>
-            <div class="col-md-8">
-                <div class="tab-content profile-tab" id="myTabContent">
-                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label>${userLogin}</label>
-                            </div>
-                            <div class="col-md-6">
-                                <p>${sessionScope.userLogin}</p>
-                            </div>
+                        <div class="profile-img">
+                                <img src="${sessionScope.userPhoto}"/>
                         </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label>${fullName}</label>
-                            </div>
-                            <div class="col-md-6">
-                                <p> ${sessionScope.userName} ${sessionScope.userSurname}</p>
-                            </div>
+                    </div>
+                    <div class="col-md-6" style="max-width:42%;">
+                        <div class="profile-head">
+                            <h5>
+                                ${sessionScope.userName} ${sessionScope.userLastName}
+                            </h5>
+                            <h6>
+                                ${sessionScope.userRole}
+                            </h6>
+                            <p class="proile-rating">${profileDetails}</p>
+                            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab"
+                                       aria-controls="home" aria-selected="true">${profileAbout}</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
+                                       aria-controls="profile" aria-selected="false">${profileEdit}</a>
+                                </li>
+                            </ul>
                         </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label>${mail}</label>
-                            </div>
-                            <div class="col-md-6">
-                                <p>${sessionScope.userMail}</p>
-                            </div>
+                    </div>
+                    <div class="col-md-2">
+                        <a href="${pageContext.request.contextPath}/jsp/pages/change_password.jsp">
+                            <button type="button" class="btn btn-primary">
+                                ${changePassword}
+                            </button>
+                        </a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="profile-work">
+                            <p>${workLinks}</p>
+                            <a href="${pageContext.request.contextPath}/controller?command=SHOW_USERS">${showUsers}</a><br/>
+                            <a href="${pageContext.request.contextPath}/controller?command=SHOW_ALL_ORDERS_BY_ADMIN">${showOrders}</a><br/>
+                            <a href="${pageContext.request.contextPath}/jsp/pages/admin/register_trainer.jsp">${registerTrainer}</a><br/>
+                            <a href="">Bootply Profile</a>
+                            <p>SKILLS</p>
+                            <a href="">Web Designer</a><br/>
+                            <a href="">Web Developer</a><br/>
+                            <a href="">WordPress</a><br/>
+                            <a href="">WooCommerce</a><br/>
+                            <a href="">PHP, .Net</a><br/>
                         </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label>${status}</label>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="tab-content profile-tab" id="myTabContent">
+                            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>${userLogin}</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>${sessionScope.userLogin}</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>${fullName}</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p> ${sessionScope.userName} ${sessionScope.userSurname}</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>${mail}</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>${sessionScope.userMail}</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>${status}</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>${sessionScope.userRole}</p>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="col-md-6">
-                                <p>${sessionScope.userRole}</p>
+                            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                                <form method="post" action="${pageContext.request.contextPath}/uploadServlet"
+                                      enctype="multipart/form-data" class="upload-form">
+                                    <div class="form-group">
+                                        <input type="hidden" name="command" value="upload_image">
+                                        <div class="col-lg-4">
+                                        </div>
+                                    </div>
+                                </form>
+                                ${uploadProfileImage}
+                                <form method="post" action="${pageContext.request.contextPath}/uploadServlet"
+                                      enctype="multipart/form-data" class="upload-form">
+                                    <input type="hidden" name="command" value="upload_image">
+                                    <input type="file" class="btn btn-primary" name="multiPartServlet" id="file"
+                                           onchange="this.form.submit();"
+                                           accept="image/jpeg,image/png,image/gif"/>
+                                </form>
+                                <form name="profileEditForm" action="${pageContext.request.contextPath}/controller"
+                                      method="POST">
+                                    <input type="hidden" name="command" value="edit_admin_profile">
+                                    <input type="hidden" name="userId" value="${sessionScope.userId}">
+                                    <div class="form-group">
+                                        <label for="input-name">${name}</label>
+                                        <input type="text" name="userName" class="form-control" id="input-name"
+                                               placeholder="${name}" value="">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="input-surname">${surname}</label>
+                                        <input type="text" name="userSurname" class="form-control" id="input-surname"
+                                               placeholder="${surname}" value="">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="input-mail">${mail}</label>
+                                        <input type="email" name="userMail" class="form-control" id="input-mail"
+                                               placeholder="${mail}" value="">
+                                    </div>
+                                    <c:if test="${requestScope.errMessage != null}">
+                                        <div class="alert alert-danger">
+                                            <span><fmt:message key="${requestScope.errMessage}" bundle="${err_rb}"/></span>
+                                        </div>
+                                    </c:if>
+                                    <button type="submit" class="btn btn-primary">${confirm}</button>
+                                </form>
                             </div>
                         </div>
                     </div>
-                    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                        <form method="post" action="${pageContext.request.contextPath}/uploadServlet"
-                              enctype="multipart/form-data" class="upload-form">
-                            <div class="form-group">
-                                <input type="hidden" name="command" value="upload_image">
-                                <div class="col-lg-4">
-                                </div>
-                            </div>
-                        </form>
-                        ${uploadProfileImage}
-                        <form method="post" action="${pageContext.request.contextPath}/uploadServlet"
-                              enctype="multipart/form-data" class="upload-form">
-                            <input type="hidden" name="command" value="upload_image">
-                            <input type="file" class="btn btn-primary" name="multiPartServlet" id="file"
-                                   onchange="this.form.submit();"
-                                   accept="image/jpeg,image/png,image/gif"/>
-                        </form>
-                        <form name="profileEditForm" action="${pageContext.request.contextPath}/controller"
-                              method="POST">
-                            <input type="hidden" name="command" value="edit_admin_profile">
-                            <input type="hidden" name="userId" value="${sessionScope.userId}">
-                            <div class="form-group">
-                                <label for="input-name">${name}</label>
-                                <input type="text" name="userName" class="form-control" id="input-name"
-                                       placeholder="${name}" value="">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="input-surname">${surname}</label>
-                                <input type="text" name="userSurname" class="form-control" id="input-surname"
-                                       placeholder="${surname}" value="">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="input-mail">${mail}</label>
-                                <input type="email" name="userMail" class="form-control" id="input-mail"
-                                       placeholder="${mail}" value="">
-                            </div>
-                            <c:if test="${requestScope.errMessage != null}">
-                                <div class="alert alert-danger">
-                                    <span><fmt:message key="${requestScope.errMessage}" bundle="${err_rb}"/></span>
-                                </div>
-                            </c:if>
-                            <button type="submit" class="btn btn-primary">${confirm}</button>
-                        </form>
-                    </div>
                 </div>
-            </div>
+            </form>
         </div>
-    </form>
-</div>
-<c:import url="../../fragment/footer.jsp"/>
-</body>
+        <c:import url="../../fragment/footer.jsp"/>
+    </body>
 </html>

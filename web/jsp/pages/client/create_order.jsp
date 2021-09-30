@@ -22,74 +22,74 @@
 
 
 <html>
-<head>
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/profile.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.css">
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-</head>
+    <head>
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/profile.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.css">
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    </head>
 
-<body>
-<c:import url="../../fragment/navbar.jsp"/>
+    <body>
+        <c:import url="../../fragment/navbar.jsp"/>
 
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 
-<div class="container register">
-    <div class="row">
-        <div class="col-md-3 register-left">
-            <img src="https://i.ibb.co/SsQJHTz/pngegg.png" alt="">
-            <h3>${tagline}</h3>
-            <p>${motivationMessage}</p>
-        </div>
-        <div class="col-md-9 register-right">
-            <h3 class="register-heading">${newOrderMessage}</h3>
+        <div class="container register">
+            <div class="row">
+                <div class="col-md-3 register-left">
+                    <img src="https://i.ibb.co/SsQJHTz/pngegg.png" alt="">
+                    <h3>${tagline}</h3>
+                    <p>${motivationMessage}</p>
+                </div>
+                <div class="col-md-9 register-right">
+                    <h3 class="register-heading">${newOrderMessage}</h3>
 
-            <div class="row register-form">
-                <div class="col-md-6">
+                    <div class="row register-form">
+                        <div class="col-md-6">
 
-                    <form name="createOrderForm" action="${pageContext.request.contextPath}/controller"
-                          method="POST" accept-charset="UTF-8">
-                        <input type="hidden" name="command" value="CREATE_NEW_ORDER">
-                        <div class="form-group">
-                            <label for="inputTrainerId">${chooseTrainer}</label>
-                            <select id="inputTrainerId" class="form-control" name="trainerId">
-                                <c:forEach items="${requestScope.trainers}" var="trainer">
-                                    <jsp:useBean id="trainer" class="com.company.gum.entity.Trainer"/>
-                                    <option value="${trainer.id}">${trainer.surname} ${trainer.name}</option>
-                                </c:forEach>
-                            </select>
+                            <form name="createOrderForm" action="${pageContext.request.contextPath}/controller"
+                                  method="POST" accept-charset="UTF-8">
+                                <input type="hidden" name="command" value="CREATE_NEW_ORDER">
+                                <div class="form-group">
+                                    <label for="inputTrainerId">${chooseTrainer}</label>
+                                    <select id="inputTrainerId" class="form-control" name="trainerId">
+                                        <c:forEach items="${requestScope.trainers}" var="trainer">
+                                            <jsp:useBean id="trainer" class="com.company.gum.entity.Trainer"/>
+                                            <option value="${trainer.id}">${trainer.surname} ${trainer.name}</option>
+                                        </c:forEach>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="input-start-date">${startDate}</label>
+                                    <input type="date" name="startDate" class="form-control create-order-form-date"
+                                           id="input-start-date">
+                                </div>
+                                <div class="form-group" id="training">
+                                    <label for="duration">${duration}</label>
+                                    <select id="duration" class="form-control" name="duration">
+                                        <option value="0">${week}</option>
+                                        <option value="1">${month}</option>
+                                        <option value="2">${halfYear}</option>
+                                        <option value="3">${year}</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="input-comment">${orderComment}</label>
+                                    <textarea name="comment" class="form-control" id="input-comment"
+                                              placeholder="${commentPlaceholder}"></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-primary">${confirm}</button>
+                            </form>
                         </div>
-                        <div class="form-group">
-                            <label for="input-start-date">${startDate}</label>
-                            <input type="date" name="startDate" class="form-control create-order-form-date"
-                                   id="input-start-date">
-                        </div>
-                        <div class="form-group" id="training">
-                            <label for="duration">${duration}</label>
-                            <select id="duration" class="form-control" name="duration">
-                                <option value="0">${week}</option>
-                                <option value="1">${month}</option>
-                                <option value="2">${halfYear}</option>
-                                <option value="3">${year}</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="input-comment">${orderComment}</label>
-                            <textarea name="comment" class="form-control" id="input-comment"
-                                      placeholder="${commentPlaceholder}"></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary">${confirm}</button>
-                    </form>
+                    </div>
+
                 </div>
             </div>
-
         </div>
-    </div>
-</div>
 
-<c:import url="../../fragment/footer.jsp"/>
-</body>
+        <c:import url="../../fragment/footer.jsp"/>
+    </body>
 </html>

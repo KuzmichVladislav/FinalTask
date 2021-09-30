@@ -12,6 +12,8 @@
         <jdk-version>11</jdk-version>
         <sourceEncoding>UTF-8</sourceEncoding>
         <outputEncoding>UTF-8</outputEncoding>
+        <maven.compiler.source>13</maven.compiler.source>
+        <maven.compiler.target>13</maven.compiler.target>
     </properties>
 
     <dependencies>

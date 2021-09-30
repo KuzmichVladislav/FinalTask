@@ -1,20 +1,43 @@
 package com.company.gum.exception;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class CommandException.
+ */
 public class CommandException extends Exception {
 
-	public CommandException() {
-		super();
-	}
+    /**
+     * Instantiates a new command exception.
+     */
+    public CommandException() {
+        super();
+    }
 
-	public CommandException(String message) {
-		super(message);
-	}
+    /**
+     * Instantiates a new command exception.
+     *
+     * @param message the message
+     */
+    public CommandException(String message) {
+        super(message);
+    }
 
-	public CommandException(String message, Throwable cause) {
-		super(message, cause);
-	}
+    /**
+     * Instantiates a new command exception.
+     *
+     * @param message the message
+     * @param cause the cause
+     */
+    public CommandException(String message, Throwable cause) {
+        super(message, cause);
+    }
 
-	public CommandException(Throwable cause) {
-		super(cause);
-	}
+    /**
+     * Instantiates a new command exception.
+     *
+     * @param cause the cause
+     */
+    public CommandException(Throwable cause) {
+        super(cause);
+    }
 }

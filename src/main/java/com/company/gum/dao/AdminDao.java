@@ -7,13 +7,13 @@ import java.util.List;
 
 public interface AdminDao {
 
-	Admin findAdminById(int adminId) throws DaoException;
+    Admin findAdminById(int adminId) throws DaoException;
 
-	List<Admin> findAllAdmin() throws DaoException;
+    List<Admin> findAllAdmin() throws DaoException;
 
-	boolean editAdmin(Admin admin) throws DaoException;
+    boolean editAdmin(Admin admin) throws DaoException;
 
-	boolean deleteUser(int userId) throws DaoException;
+    boolean deleteUser(int userId) throws DaoException;
 
-	boolean restoreUser(int userId) throws DaoException;
+    boolean restoreUser(int userId) throws DaoException;
 }

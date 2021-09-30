@@ -12,23 +12,24 @@ import static com.company.gum.command.AttributeName.*;
 import static com.company.gum.command.Router.RouterType.FORWARD;
 
 public class EditExercisesCommand implements Command {
-	Router router;
 
-	OrderService orderService = OrderServiceImpl.getInstance();
+    Router router;
 
-	@Override
-	public Router execute(SessionRequestContent requestContent) throws CommandException {
-		try {
-			int orderId = Integer.parseInt(requestContent.getParameterByName(ORDER_ID));
-			String exercises = requestContent.getParameterByName(EXERCISES).strip().equals("")
-					? (String) requestContent.getSessionAttributeByName(EXERCISES)
-					: requestContent.getParameterByName(EXERCISES).strip().replaceAll("<", "").replaceAll(">", "");
+    OrderService orderService = OrderServiceImpl.getInstance();
 
-			orderService.editExercises(orderId, exercises);
-			router = new Router((String) requestContent.getSessionAttributeByName(CURRENT_PAGE), FORWARD);
-		} catch (ServiceException e) {
-			e.printStackTrace();
-		}
-		return router;
-	}
+    @Override
+    public Router execute(SessionRequestContent requestContent) throws CommandException {
+        try {
+            int orderId = Integer.parseInt(requestContent.getParameterByName(ORDER_ID));
+            String exercises = requestContent.getParameterByName(EXERCISES).strip().equals("")
+                    ? (String) requestContent.getSessionAttributeByName(EXERCISES)
+                    : requestContent.getParameterByName(EXERCISES).strip().replaceAll("<", "").replaceAll(">", "");
+
+            orderService.editExercises(orderId, exercises);
+            router = new Router((String) requestContent.getSessionAttributeByName(CURRENT_PAGE), FORWARD);
+        } catch (ServiceException e) {
+            e.printStackTrace();
+        }
+        return router;
+    }
 }

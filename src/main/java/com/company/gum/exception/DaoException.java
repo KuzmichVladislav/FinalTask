@@ -1,20 +1,43 @@
 package com.company.gum.exception;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class DaoException.
+ */
 public class DaoException extends Exception {
 
-	public DaoException() {
-		super();
-	}
+    /**
+     * Instantiates a new dao exception.
+     */
+    public DaoException() {
+        super();
+    }
 
-	public DaoException(String message) {
-		super(message);
-	}
+    /**
+     * Instantiates a new dao exception.
+     *
+     * @param message the message
+     */
+    public DaoException(String message) {
+        super(message);
+    }
 
-	public DaoException(String message, Throwable cause) {
-		super(message, cause);
-	}
+    /**
+     * Instantiates a new dao exception.
+     *
+     * @param message the message
+     * @param cause the cause
+     */
+    public DaoException(String message, Throwable cause) {
+        super(message, cause);
+    }
 
-	public DaoException(Throwable cause) {
-		super(cause);
-	}
+    /**
+     * Instantiates a new dao exception.
+     *
+     * @param cause the cause
+     */
+    public DaoException(Throwable cause) {
+        super(cause);
+    }
 }

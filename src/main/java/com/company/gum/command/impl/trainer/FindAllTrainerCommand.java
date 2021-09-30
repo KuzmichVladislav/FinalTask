@@ -17,16 +17,16 @@ import com.company.gum.service.impl.TrainerServiceImpl;
 
 public class FindAllTrainerCommand implements Command {
 
-	private TrainerService trainerService = TrainerServiceImpl.getInstance();
+    private TrainerService trainerService = TrainerServiceImpl.getInstance();
 
-	@Override
-	public Router execute(SessionRequestContent requestContent) throws CommandException {
-		try {
-			List<Trainer> trainers = trainerService.findAllActiveTrainer();
-			requestContent.putAttribute(AttributeName.TRAINERS, trainers);
-		} catch (ServiceException e) {
-			throw new CommandException(e);
-		}
-		return new Router(PagePath.CLIENT_PROFILE, FORWARD);
-	}
+    @Override
+    public Router execute(SessionRequestContent requestContent) throws CommandException {
+        try {
+            List<Trainer> trainers = trainerService.findAllActiveTrainer();
+            requestContent.putAttribute(AttributeName.TRAINERS, trainers);
+        } catch (ServiceException e) {
+            throw new CommandException(e);
+        }
+        return new Router(PagePath.CLIENT_PROFILE, FORWARD);
+    }
 }

@@ -8,23 +8,27 @@ import java.util.List;
 
 public interface ClientService {
 
-	Client createClient(Client client) throws ServiceException;
+    String MAIL_MESSAGE_PART_1 = "Click on this link to verify your account: <a href='http://localhost:8080/gum/controller?command=verification&userId=";
 
-	boolean editClient(Client client) throws ServiceException;
+    String MAIL_MESSAGE_PART_2 = ">verification</a>";
 
-	boolean verification(int clientId) throws ServiceException;
+    Client createClient(Client client) throws ServiceException;
 
-	boolean refillMoney(int clientId, BigDecimal amount) throws ServiceException;
+    boolean editClient(Client client) throws ServiceException;
 
-	boolean withdrawMoney(int clientId, BigDecimal amount) throws ServiceException;
+    boolean verification(int clientId) throws ServiceException;
 
-	boolean assignDiscount(int clientId, BigDecimal discount) throws ServiceException;
+    boolean refillMoney(int clientId, BigDecimal amount) throws ServiceException;
 
-	Client findClientById(int clientId) throws ServiceException;
+    boolean withdrawMoney(int clientId, BigDecimal amount) throws ServiceException;
 
-	List<Client> findAllClient() throws ServiceException;// TODO: 9/29/2021
+    boolean assignDiscount(int clientId, BigDecimal discount) throws ServiceException;
 
-	List<Client> findAllActiveClient() throws ServiceException;// TODO: 9/29/2021
+    Client findClientById(int clientId) throws ServiceException;
 
-	List<Client> findAllClientByAnthroponym(String name, String surname) throws ServiceException;// TODO: 9/29/2021
+    List<Client> findAllClient() throws ServiceException;// TODO: 9/29/2021
+
+    List<Client> findAllActiveClient() throws ServiceException;// TODO: 9/29/2021
+
+    List<Client> findAllClientByAnthroponym(String name, String surname) throws ServiceException;// TODO: 9/29/2021
 }

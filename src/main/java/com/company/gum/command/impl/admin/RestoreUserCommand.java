@@ -14,18 +14,18 @@ import static com.company.gum.command.Router.RouterType.REDIRECT;
 
 public class RestoreUserCommand implements Command {
 
-	AdminService adminService = AdminServiceImpl.getInstance();
+    AdminService adminService = AdminServiceImpl.getInstance();
 
-	@Override
-	public Router execute(SessionRequestContent requestContent) throws CommandException {
-		Router router;
-		try {
-			int userId = Integer.parseInt(requestContent.getParameterByName(USER_ID));
-			adminService.restoreUser(userId);
-			router = new Router(PagePath.USER_RESTORED, REDIRECT);
-		} catch (ServiceException e) {
-			throw new CommandException(e);
-		}
-		return router;
-	}
+    @Override
+    public Router execute(SessionRequestContent requestContent) throws CommandException {
+        Router router;
+        try {
+            int userId = Integer.parseInt(requestContent.getParameterByName(USER_ID));
+            adminService.restoreUser(userId);
+            router = new Router(PagePath.USER_RESTORED, REDIRECT);
+        } catch (ServiceException e) {
+            throw new CommandException(e);
+        }
+        return router;
+    }
 }

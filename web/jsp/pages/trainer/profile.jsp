@@ -64,181 +64,327 @@
 
 
 <html>
-<head>
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/profile.css">
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-</head>
-<body>
-<c:import url="../../fragment/navbar.jsp"/>
+    <head>
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/profile.css">
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    </head>
+    <body>
+        <c:import url="../../fragment/navbar.jsp"/>
 
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-<div class="container emp-profile">
-    <form method="post">
-        <div class="row">
-            <div class="col-md-4">
+        <div class="container emp-profile">
+            <form method="post">
+                <div class="row">
+                    <div class="col-md-4">
 
-                <div class="profile-img">
-                        <img src="${sessionScope.userPhoto}"/>
+                        <div class="profile-img">
+                                <img src="${sessionScope.userPhoto}"/>
+                        </div>
+                    </div>
+                    <div class="col-md-6" style="max-width:42%;">
+                        <div class="profile-head">
+                            <h5>
+                                ${sessionScope.userName} ${sessionScope.userSurname}
+                            </h5>
+                            <h6>
+                                ${sessionScope.userRole}
+                            </h6>
+                            <p class="proile-rating">${profileDetails}</p>
+                            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab"
+                                       aria-controls="home" aria-selected="true">${profileAbout}</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
+                                       aria-controls="profile" aria-selected="false">${profileEdit}</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <a href="${pageContext.request.contextPath}/jsp/pages/change_password.jsp">
+                            <button type="button" class="btn btn-primary">
+                                ${changePassword}
+                            </button>
+                        </a>
+                    </div>
                 </div>
-            </div>
-            <div class="col-md-6" style="max-width:42%;">
-                <div class="profile-head">
-                    <h5>
-                        ${sessionScope.userName} ${sessionScope.userSurname}
-                    </h5>
-                    <h6>
-                        ${sessionScope.userRole}
-                    </h6>
-                    <p class="proile-rating">${profileDetails}</p>
-                    <ul class="nav nav-tabs" id="myTab" role="tablist">
-                        <li class="nav-item">
-                            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab"
-                               aria-controls="home" aria-selected="true">${profileAbout}</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
-                               aria-controls="profile" aria-selected="false">${profileEdit}</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-md-2">
-                <a href="${pageContext.request.contextPath}/jsp/pages/change_password.jsp">
-                    <button type="button" class="btn btn-primary">
-                        ${changePassword}
-                    </button>
-                </a>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-4">
-                <div class="profile-work">
-                    <p>${workLinks}</p>
-                    <a href="${pageContext.request.contextPath}/controller?command=show_all_orders_by_trainer">${myOrder}</a><br/>
-                    <a href="${pageContext.request.contextPath}/jsp/pages/client/refill_money.jsp">${moneyRefill}</a><br/>
-                    <a href="">Bootply Profile</a>
-                    <p>SKILLS</p>
-                    <a href="">Web Designer</a><br/>
-                    <a href="">Web Developer</a><br/>
-                    <a href="">WordPress</a><br/>
-                    <a href="">WooCommerce</a><br/>
-                    <a href="">PHP, .Net</a><br/>
-                </div>
-            </div>
-            <div class="col-md-8">
-                <div class="tab-content profile-tab" id="myTabContent">
-                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label>${userLogin}</label>
-                            </div>
-                            <div class="col-md-6">
-                                <p>${sessionScope.userLogin}</p>
-                            </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="profile-work">
+                            <p>${workLinks}</p>
+                            <a href="${pageContext.request.contextPath}/controller?command=show_all_orders_by_trainer">${myOrder}</a><br/>
+                            <a href="${pageContext.request.contextPath}/jsp/pages/client/refill_money.jsp">${moneyRefill}</a><br/>
+                            <a href="">Bootply Profile</a>
+                            <p>SKILLS</p>
+                            <a href="">Web Designer</a><br/>
+                            <a href="">Web Developer</a><br/>
+                            <a href="">WordPress</a><br/>
+                            <a href="">WooCommerce</a><br/>
+                            <a href="">PHP, .Net</a><br/>
                         </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label>${fullName}</label>
-                            </div>
-                            <div class="col-md-6">
-                                <p> ${sessionScope.userName} ${sessionScope.userSurname}</p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label>${mail}</label>
-                            </div>
-                            <div class="col-md-6">
-                                <p>${sessionScope.userMail}</p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label>${phone}</label>
-                            </div>
-                            <div class="col-md-6">
-                                <p>${sessionScope.userPhone}</p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label>${status}</label>
-                            </div>
-                            <div class="col-md-6">
-                                <p>${sessionScope.userRole}</p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label>${registerDate}</label>
-                            </div>
-                            <div class="col-md-6">
-                                <p>${sessionScope.userRegisterDate}</p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <!-- Button trigger modal -->
-                                <button type="button" class="btn btn-primary" data-toggle="modal"
-                                        data-target="#descriptionModal">
-                                    ${description}
-                                </button>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="tab-content profile-tab" id="myTabContent">
+                            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>${userLogin}</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>${sessionScope.userLogin}</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>${fullName}</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p> ${sessionScope.userName} ${sessionScope.userSurname}</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>${mail}</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>${sessionScope.userMail}</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>${phone}</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>${sessionScope.userPhone}</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>${status}</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>${sessionScope.userRole}</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>${registerDate}</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>${sessionScope.userRegisterDate}</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <!-- Button trigger modal -->
+                                        <button type="button" class="btn btn-primary" data-toggle="modal"
+                                                data-target="#descriptionModal">
+                                            ${description}
+                                        </button>
 
-                                <!-- Modal -->
-                                <div class="modal fade" id="descriptionModal" tabindex="-1" role="dialog"
-                                     aria-labelledby="descriptionModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title"
-                                                    id="descriptionModalLabel">${descriptionPrograms}</h5>
-                                                <button type="button" class="close" data-dismiss="modal"
-                                                        aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="descriptionModal" tabindex="-1" role="dialog"
+                                             aria-labelledby="descriptionModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title"
+                                                            id="descriptionModalLabel">${descriptionPrograms}</h5>
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        ${sessionScope.description}
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                                            ${close}
+                                                        </button>
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <div class="modal-body">
-                                                ${sessionScope.description}
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">
-                                                    ${close}
-                                                </button>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <!-- Button trigger modal -->
+                                        <button type="button" class="btn btn-primary" data-toggle="modal"
+                                                data-target="#experienceModal">
+                                            ${experience}
+                                        </button>
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="experienceModal" tabindex="-1" role="dialog"
+                                             aria-labelledby="experienceModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title"
+                                                            id="experienceModalLabel">${experienceTrainer}</h5>
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        ${sessionScope.experience}
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                                            ${close}
+                                                        </button>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-6">
-                                <!-- Button trigger modal -->
-                                <button type="button" class="btn btn-primary" data-toggle="modal"
-                                        data-target="#experienceModal">
-                                    ${experience}
-                                </button>
-                                <!-- Modal -->
-                                <div class="modal fade" id="experienceModal" tabindex="-1" role="dialog"
-                                     aria-labelledby="experienceModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title"
-                                                    id="experienceModalLabel">${experienceTrainer}</h5>
-                                                <button type="button" class="close" data-dismiss="modal"
-                                                        aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
+                            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                                <form method="post" action="${pageContext.request.contextPath}/uploadServlet"
+                                      enctype="multipart/form-data" class="upload-form">
+                                    <div class="form-group">
+                                        <input type="hidden" name="command" value="upload_image">
+                                        <div class="col-lg-4">
+                                        </div>
+                                    </div>
+                                </form>
+                                ${uploadProfileImage}
+                                <form method="post" action="${pageContext.request.contextPath}/uploadServlet"
+                                      enctype="multipart/form-data" class="upload-form">
+                                    <input type="hidden" name="command" value="upload_image">
+                                    <input type="file" class="btn btn-primary" name="multiPartServlet" id="file"
+                                           onchange="this.form.submit();"
+                                           accept="image/jpeg,image/png,image/gif"/>
+                                </form>
+                                <form name="profileEditForm" action="${pageContext.request.contextPath}/controller"
+                                      method="POST">
+                                    <input type="hidden" name="command" value="edit_trainer_profile">
+                                    <input type="hidden" name="userId" value="${sessionScope.userId}">
+                                    <div class="form-group">
+                                        <label for="input-name">${name}</label>
+                                        <input type="text" name="userName" class="form-control" id="input-name"
+                                               placeholder="${name}" value="">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="input-surname">${surname}</label>
+                                        <input type="text" name="userSurname" class="form-control" id="input-surname"
+                                               placeholder="${surname}" value="">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="input-phone">${phone}</label>
+                                        <input type="text" name="userPhone" class="form-control" id="input-phone"
+                                               placeholder="${phone}" value="">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="input-mail">${mail}</label>
+                                        <input type="email" name="userMail" class="form-control" id="input-mail"
+                                               placeholder="${mail}" value="">
+                                    </div>
+                                    <c:if test="${requestScope.errMessage != null}">
+                                        <div class="alert alert-danger">
+                                            <span><fmt:message key="${requestScope.errMessage}" bundle="${err_rb}"/></span>
+                                        </div>
+                                    </c:if>
+                                    <button type="submit" class="btn btn-primary">${confirm}</button>
+                                </form>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <!-- Button trigger modal -->
+                                        <button type="button" class="btn btn-primary" data-toggle="modal"
+                                                data-target="#descriptionEditModal">
+                                            ${description}
+                                        </button>
+
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="descriptionEditModal" tabindex="-1" role="dialog"
+                                             aria-labelledby="descriptionEditModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="descriptionEditModalLabel">
+                                                            ${descriptionPrograms}</h5>
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <form name="loginForm"
+                                                          action="${pageContext.request.contextPath}/controller"
+                                                          method="POST">
+                                                        <input type="hidden" name="command" value="EDIT_DESCRIPTION">
+                                                        <input type="hidden" name="userId" value="${sessionScope.userId}">
+
+                                                        <div class="modal-body">
+                                                            <div class="form-group">
+                                                                <label for="input_description">${description}</label>
+                                                                <textarea name="description" class="form-control"
+                                                                          id="input_description">${sessionScope.description}</textarea>
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary"
+                                                                    data-dismiss="modal">
+                                                                ${close}
+                                                            </button>
+                                                            <button type="submit"
+                                                                    class="btn btn-primary">${saveChanges}</button>
+                                                        </div>
+                                                    </form>
+                                                </div>
                                             </div>
-                                            <div class="modal-body">
-                                                ${sessionScope.experience}
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">
-                                                    ${close}
-                                                </button>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <!-- Button trigger modal -->
+                                        <button type="button" class="btn btn-primary" data-toggle="modal"
+                                                data-target="#experienceEditModal">
+                                            ${experience}
+                                        </button>
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="experienceEditModal" tabindex="-1" role="dialog"
+                                             aria-labelledby="experienceEditModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="experienceEditModalLabel">
+                                                            ${experienceTrainer}</h5>
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <form name="loginForm"
+                                                          action="${pageContext.request.contextPath}/controller" method="POST">
+                                                        <input type="hidden" name="command" value="EDIT_EXPERIENCE">
+                                                        <input type="hidden" name="userId" value="${sessionScope.userId}">
+
+                                                        <div class="modal-body">
+                                                            <div class="form-group">
+                                                                <label for="input_experience">${experience}</label>
+                                                                <textarea name="experience" class="form-control"
+                                                                          id="input_experience">${sessionScope.experience}</textarea>
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary"
+                                                                    data-dismiss="modal">
+                                                                ${close}
+                                                            </button>
+                                                            <button type="submit"
+                                                                    class="btn btn-primary">${saveChanges}</button>
+                                                        </div>
+                                                    </form>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -246,155 +392,9 @@
                             </div>
                         </div>
                     </div>
-                    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                        <form method="post" action="${pageContext.request.contextPath}/uploadServlet"
-                              enctype="multipart/form-data" class="upload-form">
-                            <div class="form-group">
-                                <input type="hidden" name="command" value="upload_image">
-                                <div class="col-lg-4">
-                                </div>
-                            </div>
-                        </form>
-                        ${uploadProfileImage}
-                        <form method="post" action="${pageContext.request.contextPath}/uploadServlet"
-                              enctype="multipart/form-data" class="upload-form">
-                            <input type="hidden" name="command" value="upload_image">
-                            <input type="file" class="btn btn-primary" name="multiPartServlet" id="file"
-                                   onchange="this.form.submit();"
-                                   accept="image/jpeg,image/png,image/gif"/>
-                        </form>
-                        <form name="profileEditForm" action="${pageContext.request.contextPath}/controller"
-                              method="POST">
-                            <input type="hidden" name="command" value="edit_trainer_profile">
-                            <input type="hidden" name="userId" value="${sessionScope.userId}">
-                            <div class="form-group">
-                                <label for="input-name">${name}</label>
-                                <input type="text" name="userName" class="form-control" id="input-name"
-                                       placeholder="${name}" value="">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="input-surname">${surname}</label>
-                                <input type="text" name="userSurname" class="form-control" id="input-surname"
-                                       placeholder="${surname}" value="">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="input-phone">${phone}</label>
-                                <input type="text" name="userPhone" class="form-control" id="input-phone"
-                                       placeholder="${phone}" value="">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="input-mail">${mail}</label>
-                                <input type="email" name="userMail" class="form-control" id="input-mail"
-                                       placeholder="${mail}" value="">
-                            </div>
-                            <c:if test="${requestScope.errMessage != null}">
-                                <div class="alert alert-danger">
-                                    <span><fmt:message key="${requestScope.errMessage}" bundle="${err_rb}"/></span>
-                                </div>
-                            </c:if>
-                            <button type="submit" class="btn btn-primary">${confirm}</button>
-                        </form>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <!-- Button trigger modal -->
-                                <button type="button" class="btn btn-primary" data-toggle="modal"
-                                        data-target="#descriptionEditModal">
-                                    ${description}
-                                </button>
-
-                                <!-- Modal -->
-                                <div class="modal fade" id="descriptionEditModal" tabindex="-1" role="dialog"
-                                     aria-labelledby="descriptionEditModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="descriptionEditModalLabel">
-                                                    ${descriptionPrograms}</h5>
-                                                <button type="button" class="close" data-dismiss="modal"
-                                                        aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-                                            <form name="loginForm"
-                                                  action="${pageContext.request.contextPath}/controller"
-                                                  method="POST">
-                                                <input type="hidden" name="command" value="EDIT_DESCRIPTION">
-                                                <input type="hidden" name="userId" value="${sessionScope.userId}">
-
-                                                <div class="modal-body">
-                                                    <div class="form-group">
-                                                        <label for="input_description">${description}</label>
-                                                        <textarea name="description" class="form-control"
-                                                                  id="input_description">${sessionScope.description}</textarea>
-                                                    </div>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary"
-                                                            data-dismiss="modal">
-                                                        ${close}
-                                                    </button>
-                                                    <button type="submit"
-                                                            class="btn btn-primary">${saveChanges}</button>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <!-- Button trigger modal -->
-                                <button type="button" class="btn btn-primary" data-toggle="modal"
-                                        data-target="#experienceEditModal">
-                                    ${experience}
-                                </button>
-                                <!-- Modal -->
-                                <div class="modal fade" id="experienceEditModal" tabindex="-1" role="dialog"
-                                     aria-labelledby="experienceEditModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="experienceEditModalLabel">
-                                                    ${experienceTrainer}</h5>
-                                                <button type="button" class="close" data-dismiss="modal"
-                                                        aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-                                            <form name="loginForm"
-                                                  action="${pageContext.request.contextPath}/controller" method="POST">
-                                                <input type="hidden" name="command" value="EDIT_EXPERIENCE">
-                                                <input type="hidden" name="userId" value="${sessionScope.userId}">
-
-                                                <div class="modal-body">
-                                                    <div class="form-group">
-                                                        <label for="input_experience">${experience}</label>
-                                                        <textarea name="experience" class="form-control"
-                                                                  id="input_experience">${sessionScope.experience}</textarea>
-                                                    </div>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary"
-                                                            data-dismiss="modal">
-                                                        ${close}
-                                                    </button>
-                                                    <button type="submit"
-                                                            class="btn btn-primary">${saveChanges}</button>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
-            </div>
+            </form>
         </div>
-    </form>
-</div>
-<c:import url="../../fragment/footer.jsp"/>
-</body>
+        <c:import url="../../fragment/footer.jsp"/>
+    </body>
 </html>

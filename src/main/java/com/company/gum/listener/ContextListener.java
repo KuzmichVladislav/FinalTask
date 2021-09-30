@@ -8,10 +8,9 @@ import javax.servlet.annotation.WebListener;
 
 // TODO: Auto-generated Javadoc
 /**
- * The listener interface for receiving context events.
- * The class that is interested in processing a context
- * event implements this interface, and the object created
- * with that class is registered with a component using the
+ * The listener interface for receiving context events. The class that is
+ * interested in processing a context event implements this interface, and the
+ * object created with that class is registered with a component using the
  * component's <code>addContextListener<code> method. When
  * the context event occurs, that object's appropriate
  * method is invoked.
@@ -21,23 +20,23 @@ import javax.servlet.annotation.WebListener;
 @WebListener
 public class ContextListener implements ServletContextListener {
 
-	/**
-	 * Context initialized.
-	 *
-	 * @param sce the sce
-	 */
-	@Override
-	public void contextInitialized(ServletContextEvent sce) {
-		ConnectionPool.initPool();
-	}
+    /**
+     * Context initialized.
+     *
+     * @param sce the sce
+     */
+    @Override
+    public void contextInitialized(ServletContextEvent sce) {
+        ConnectionPool.initPool();
+    }
 
-	/**
-	 * Context destroyed.
-	 *
-	 * @param sce the sce
-	 */
-	@Override
-	public void contextDestroyed(ServletContextEvent sce) {
-		ConnectionPool.getInstance().closeAllConnections();
-	}
+    /**
+     * Context destroyed.
+     *
+     * @param sce the sce
+     */
+    @Override
+    public void contextDestroyed(ServletContextEvent sce) {
+        ConnectionPool.getInstance().closeAllConnections();
+    }
 }

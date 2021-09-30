@@ -7,13 +7,11 @@
 
     <tlib-version>1.0</tlib-version>
     <short-name>ctg</short-name>
-    <uri>http://mycompany.com</uri>
 
     <tag>
         <name>order_table</name>
         <tag-class>com.company.gum.tag.CustomTag</tag-class>
         <body-content>empty</body-content>
     </tag>
-
 
 </taglib>

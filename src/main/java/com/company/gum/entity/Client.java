@@ -3,348 +3,504 @@ package com.company.gum.entity;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class Client.
+ */
 public class Client extends User {
 
-	private LocalDateTime registerDate;
-	private Integer discount;
-	private Integer discountLevel;
-	private String phone;
-	private BigDecimal money;
+    /**
+     * The register date.
+     */
+    private LocalDateTime registerDate;
 
-	public Client() {
-		role = UserRole.CLIENT;
-	}
+    /**
+     * The discount.
+     */
+    private Integer discount;
 
-	private Client(Builder builder) {
-		setId(builder.id);
-		setRole(builder.role);
-		setLogin(builder.login);
-		setPassword(builder.password);
-		setName(builder.name);
-		setSurname(builder.surname);
-		setMail(builder.mail);
-		setVerification(builder.verification);
-		setActive(builder.isActive);
-		setPhoto(builder.photo);
-		setBase64Image(builder.base64Image);
-		setRegisterDate(builder.registerDate);
-		setDiscount(builder.discount);
-		setDiscountLevel(builder.discountLevel);
-		setPhone(builder.phone);
-		setMoney(builder.money);
-	}
+    /**
+     * The discount level.
+     */
+    private Integer discountLevel;
 
-	@Override
-	public String toString() {
-		final StringBuilder sb = new StringBuilder("Client{");
-		sb.append("registerDate=").append(registerDate);
-		sb.append(", discount=").append(discount);
-		sb.append(", discountLevel=").append(discountLevel);
-		sb.append(", phone='").append(phone).append('\'');
-		sb.append(", money=").append(money);
-		sb.append(", role=").append(role);
-		sb.append('}');
-		return sb.toString();
-	}
+    /**
+     * The phone.
+     */
+    private String phone;
 
-	@Override
-	public boolean equals(Object o) {
-		if (this == o)
-			return true;
-		if (!(o instanceof Client))
-			return false;
-		if (!super.equals(o))
-			return false;
+    /**
+     * The money.
+     */
+    private BigDecimal money;
 
-		Client client = (Client) o;
+    /**
+     * Instantiates a new client.
+     */
+    public Client() {
+        role = UserRole.CLIENT;
+    }
 
-		if (getRegisterDate() != null ? !getRegisterDate().equals(client.getRegisterDate())
-				: client.getRegisterDate() != null)
-			return false;
-		if (getDiscount() != null ? !getDiscount().equals(client.getDiscount()) : client.getDiscount() != null)
-			return false;
-		if (getDiscountLevel() != null ? !getDiscountLevel().equals(client.getDiscountLevel())
-				: client.getDiscountLevel() != null)
-			return false;
-		if (getPhone() != null ? !getPhone().equals(client.getPhone()) : client.getPhone() != null)
-			return false;
-		return getMoney() != null ? getMoney().equals(client.getMoney()) : client.getMoney() == null;
-	}
+    /**
+     * Instantiates a new client.
+     *
+     * @param builder the builder
+     */
+    private Client(Builder builder) {
+        setId(builder.id);
+        setRole(builder.role);
+        setLogin(builder.login);
+        setPassword(builder.password);
+        setName(builder.name);
+        setSurname(builder.surname);
+        setMail(builder.mail);
+        setVerification(builder.verification);
+        setActive(builder.isActive);
+        setPhoto(builder.photo);
+        setBase64Image(builder.base64Image);
+        setRegisterDate(builder.registerDate);
+        setDiscount(builder.discount);
+        setDiscountLevel(builder.discountLevel);
+        setPhone(builder.phone);
+        setMoney(builder.money);
+    }
 
-	@Override
-	public int hashCode() {
-		int result = super.hashCode();
-		result = 31 * result + (getRegisterDate() != null ? getRegisterDate().hashCode() : 0);
-		result = 31 * result + (getDiscount() != null ? getDiscount().hashCode() : 0);
-		result = 31 * result + (getDiscountLevel() != null ? getDiscountLevel().hashCode() : 0);
-		result = 31 * result + (getPhone() != null ? getPhone().hashCode() : 0);
-		result = 31 * result + (getMoney() != null ? getMoney().hashCode() : 0);
-		return result;
-	}
+    /**
+     * To string.
+     *
+     * @return the string
+     */
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("Client{");
+        sb.append("registerDate=").append(registerDate);
+        sb.append(", discount=").append(discount);
+        sb.append(", discountLevel=").append(discountLevel);
+        sb.append(", phone='").append(phone).append('\'');
+        sb.append(", money=").append(money);
+        sb.append(", role=").append(role);
+        sb.append('}');
+        return sb.toString();
+    }
 
-	public LocalDateTime getRegisterDate() {
-		return registerDate;
-	}
+    /**
+     * Equals.
+     *
+     * @param o the o
+     * @return true, if successful
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Client)) {
+            return false;
+        }
+        if (!super.equals(o)) {
+            return false;
+        }
 
-	public void setRegisterDate(LocalDateTime registerDate) {
-		this.registerDate = registerDate;
-	}
+        Client client = (Client) o;
 
-	public Integer getDiscount() {
-		return discount;
-	}
+        if (getRegisterDate() != null ? !getRegisterDate().equals(client.getRegisterDate())
+                : client.getRegisterDate() != null) {
+            return false;
+        }
+        if (getDiscount() != null ? !getDiscount().equals(client.getDiscount()) : client.getDiscount() != null) {
+            return false;
+        }
+        if (getDiscountLevel() != null ? !getDiscountLevel().equals(client.getDiscountLevel())
+                : client.getDiscountLevel() != null) {
+            return false;
+        }
+        if (getPhone() != null ? !getPhone().equals(client.getPhone()) : client.getPhone() != null) {
+            return false;
+        }
+        return getMoney() != null ? getMoney().equals(client.getMoney()) : client.getMoney() == null;
+    }
 
-	public void setDiscount(Integer discount) {
-		this.discount = discount;
-	}
+    /**
+     * Hash code.
+     *
+     * @return the int
+     */
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + (getRegisterDate() != null ? getRegisterDate().hashCode() : 0);
+        result = 31 * result + (getDiscount() != null ? getDiscount().hashCode() : 0);
+        result = 31 * result + (getDiscountLevel() != null ? getDiscountLevel().hashCode() : 0);
+        result = 31 * result + (getPhone() != null ? getPhone().hashCode() : 0);
+        result = 31 * result + (getMoney() != null ? getMoney().hashCode() : 0);
+        return result;
+    }
 
-	public Integer getDiscountLevel() {
-		return discountLevel;
-	}
+    /**
+     * Gets the register date.
+     *
+     * @return the register date
+     */
+    public LocalDateTime getRegisterDate() {
+        return registerDate;
+    }
 
-	public void setDiscountLevel(Integer discountLevel) {
-		this.discountLevel = discountLevel;
-	}
+    /**
+     * Sets the register date.
+     *
+     * @param registerDate the new register date
+     */
+    public void setRegisterDate(LocalDateTime registerDate) {
+        this.registerDate = registerDate;
+    }
 
-	public String getPhone() {
-		return phone;
-	}
+    /**
+     * Gets the discount.
+     *
+     * @return the discount
+     */
+    public Integer getDiscount() {
+        return discount;
+    }
 
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
+    /**
+     * Sets the discount.
+     *
+     * @param discount the new discount
+     */
+    public void setDiscount(Integer discount) {
+        this.discount = discount;
+    }
 
-	public BigDecimal getMoney() {
-		return money;
-	}
+    /**
+     * Gets the discount level.
+     *
+     * @return the discount level
+     */
+    public Integer getDiscountLevel() {
+        return discountLevel;
+    }
 
-	public void setMoney(BigDecimal money) {
-		this.money = money;
-	}
+    /**
+     * Sets the discount level.
+     *
+     * @param discountLevel the new discount level
+     */
+    public void setDiscountLevel(Integer discountLevel) {
+        this.discountLevel = discountLevel;
+    }
 
-	/**
-	 * {@code Client} builder static inner class.
-	 */
-	public static final class Builder {
-		private Integer id;
-		private UserRole role;
-		private String login;
-		private String password;
-		private String name;
-		private String surname;
-		private String mail;
-		private boolean verification;
-		private boolean isActive;
-		private byte[] photo;
-		private String base64Image;
-		private LocalDateTime registerDate;
-		private Integer discount;
-		private Integer discountLevel;
-		private String phone;
-		private BigDecimal money;
+    /**
+     * Gets the phone.
+     *
+     * @return the phone
+     */
+    public String getPhone() {
+        return phone;
+    }
 
-		public Builder() {
-		}
+    /**
+     * Sets the phone.
+     *
+     * @param phone the new phone
+     */
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
 
-		/**
-		 * Sets the {@code id} and returns a reference to this Builder so that the
-		 * methods can be chained together.
-		 *
-		 * @param val the {@code id} to set
-		 * @return a reference to this Builder
-		 */
-		public Builder id(Integer val) {
-			id = val;
-			return this;
-		}
+    /**
+     * Gets the money.
+     *
+     * @return the money
+     */
+    public BigDecimal getMoney() {
+        return money;
+    }
 
-		/**
-		 * Sets the {@code role} and returns a reference to this Builder so that the
-		 * methods can be chained together.
-		 *
-		 * @param val the {@code role} to set
-		 * @return a reference to this Builder
-		 */
-		public Builder role(UserRole val) {
-			role = val;
-			return this;
-		}
+    /**
+     * Sets the money.
+     *
+     * @param money the new money
+     */
+    public void setMoney(BigDecimal money) {
+        this.money = money;
+    }
 
-		/**
-		 * Sets the {@code login} and returns a reference to this Builder so that the
-		 * methods can be chained together.
-		 *
-		 * @param val the {@code login} to set
-		 * @return a reference to this Builder
-		 */
-		public Builder login(String val) {
-			login = val;
-			return this;
-		}
+    /**
+     * The Class Builder.
+     */
+    public static final class Builder {
 
-		/**
-		 * Sets the {@code password} and returns a reference to this Builder so that the
-		 * methods can be chained together.
-		 *
-		 * @param val the {@code password} to set
-		 * @return a reference to this Builder
-		 */
-		public Builder password(String val) {
-			password = val;
-			return this;
-		}
+        /**
+         * The id.
+         */
+        private Integer id;
 
-		/**
-		 * Sets the {@code name} and returns a reference to this Builder so that the
-		 * methods can be chained together.
-		 *
-		 * @param val the {@code name} to set
-		 * @return a reference to this Builder
-		 */
-		public Builder name(String val) {
-			name = val;
-			return this;
-		}
+        /**
+         * The role.
+         */
+        private UserRole role;
 
-		/**
-		 * Sets the {@code surname} and returns a reference to this Builder so that the
-		 * methods can be chained together.
-		 *
-		 * @param val the {@code surname} to set
-		 * @return a reference to this Builder
-		 */
-		public Builder surname(String val) {
-			surname = val;
-			return this;
-		}
+        /**
+         * The login.
+         */
+        private String login;
 
-		/**
-		 * Sets the {@code mail} and returns a reference to this Builder so that the
-		 * methods can be chained together.
-		 *
-		 * @param val the {@code mail} to set
-		 * @return a reference to this Builder
-		 */
-		public Builder mail(String val) {
-			mail = val;
-			return this;
-		}
+        /**
+         * The password.
+         */
+        private String password;
 
-		/**
-		 * Sets the {@code verification} and returns a reference to this Builder so that
-		 * the methods can be chained together.
-		 *
-		 * @param val the {@code verification} to set
-		 * @return a reference to this Builder
-		 */
-		public Builder verification(boolean val) {
-			verification = val;
-			return this;
-		}
+        /**
+         * The name.
+         */
+        private String name;
 
-		/**
-		 * Sets the {@code isActive} and returns a reference to this Builder so that the
-		 * methods can be chained together.
-		 *
-		 * @param val the {@code isActive} to set
-		 * @return a reference to this Builder
-		 */
-		public Builder isActive(boolean val) {
-			isActive = val;
-			return this;
-		}
+        /**
+         * The surname.
+         */
+        private String surname;
 
-		/**
-		 * Sets the {@code photo} and returns a reference to this Builder so that the
-		 * methods can be chained together.
-		 *
-		 * @param val the {@code photo} to set
-		 * @return a reference to this Builder
-		 */
-		public Builder photo(byte[] val) {
-			photo = val;
-			return this;
-		}
+        /**
+         * The mail.
+         */
+        private String mail;
 
-		/**
-		 * Sets the {@code base64Image} and returns a reference to this Builder so that
-		 * the methods can be chained together.
-		 *
-		 * @param val the {@code base64Image} to set
-		 * @return a reference to this Builder
-		 */
-		public Builder base64Image(String val) {
-			base64Image = val;
-			return this;
-		}
+        /**
+         * The verification.
+         */
+        private boolean verification;
 
-		/**
-		 * Sets the {@code registerDate} and returns a reference to this Builder so that
-		 * the methods can be chained together.
-		 *
-		 * @param val the {@code registerDate} to set
-		 * @return a reference to this Builder
-		 */
-		public Builder registerDate(LocalDateTime val) {
-			registerDate = val;
-			return this;
-		}
+        /**
+         * The is active.
+         */
+        private boolean isActive;
 
-		/**
-		 * Sets the {@code discount} and returns a reference to this Builder so that the
-		 * methods can be chained together.
-		 *
-		 * @param val the {@code discount} to set
-		 * @return a reference to this Builder
-		 */
-		public Builder discount(Integer val) {
-			discount = val;
-			return this;
-		}
+        /**
+         * The photo.
+         */
+        private byte[] photo;
 
-		/**
-		 * Sets the {@code discountLevel} and returns a reference to this Builder so
-		 * that the methods can be chained together.
-		 *
-		 * @param val the {@code discountLevel} to set
-		 * @return a reference to this Builder
-		 */
-		public Builder discountLevel(Integer val) {
-			discountLevel = val;
-			return this;
-		}
+        /**
+         * The base 64 image.
+         */
+        private String base64Image;
 
-		/**
-		 * Sets the {@code phone} and returns a reference to this Builder so that the
-		 * methods can be chained together.
-		 *
-		 * @param val the {@code phone} to set
-		 * @return a reference to this Builder
-		 */
-		public Builder phone(String val) {
-			phone = val;
-			return this;
-		}
+        /**
+         * The register date.
+         */
+        private LocalDateTime registerDate;
 
-		/**
-		 * Sets the {@code money} and returns a reference to this Builder so that the
-		 * methods can be chained together.
-		 *
-		 * @param val the {@code money} to set
-		 * @return a reference to this Builder
-		 */
-		public Builder money(BigDecimal val) {
-			money = val;
-			return this;
-		}
+        /**
+         * The discount.
+         */
+        private Integer discount;
 
-		/**
-		 * Returns a {@code Client} built from the parameters previously set.
-		 *
-		 * @return a {@code Client} built with parameters of this {@code Client.Builder}
-		 */
-		public Client build() {
-			return new Client(this);
-		}
-	}
+        /**
+         * The discount level.
+         */
+        private Integer discountLevel;
+
+        /**
+         * The phone.
+         */
+        private String phone;
+
+        /**
+         * The money.
+         */
+        private BigDecimal money;
+
+        /**
+         * Instantiates a new builder.
+         */
+        public Builder() {
+            // TODO document why this constructor is empty
+        }
+
+        /**
+         * Id.
+         *
+         * @param val the val
+         * @return the builder
+         */
+        public Builder id(Integer val) {
+            id = val;
+            return this;
+        }
+
+        /**
+         * Role.
+         *
+         * @param val the val
+         * @return the builder
+         */
+        public Builder role(UserRole val) {
+            role = val;
+            return this;
+        }
+
+        /**
+         * Login.
+         *
+         * @param val the val
+         * @return the builder
+         */
+        public Builder login(String val) {
+            login = val;
+            return this;
+        }
+
+        /**
+         * Password.
+         *
+         * @param val the val
+         * @return the builder
+         */
+        public Builder password(String val) {
+            password = val;
+            return this;
+        }
+
+        /**
+         * Name.
+         *
+         * @param val the val
+         * @return the builder
+         */
+        public Builder name(String val) {
+            name = val;
+            return this;
+        }
+
+        /**
+         * Surname.
+         *
+         * @param val the val
+         * @return the builder
+         */
+        public Builder surname(String val) {
+            surname = val;
+            return this;
+        }
+
+        /**
+         * Mail.
+         *
+         * @param val the val
+         * @return the builder
+         */
+        public Builder mail(String val) {
+            mail = val;
+            return this;
+        }
+
+        /**
+         * Verification.
+         *
+         * @param val the val
+         * @return the builder
+         */
+        public Builder verification(boolean val) {
+            verification = val;
+            return this;
+        }
+
+        /**
+         * Checks if is active.
+         *
+         * @param val the val
+         * @return the builder
+         */
+        public Builder isActive(boolean val) {
+            isActive = val;
+            return this;
+        }
+
+        /**
+         * Photo.
+         *
+         * @param val the val
+         * @return the builder
+         */
+        public Builder photo(byte[] val) {
+            photo = val;
+            return this;
+        }
+
+        /**
+         * Base 64 image.
+         *
+         * @param val the val
+         * @return the builder
+         */
+        public Builder base64Image(String val) {
+            base64Image = val;
+            return this;
+        }
+
+        /**
+         * Register date.
+         *
+         * @param val the val
+         * @return the builder
+         */
+        public Builder registerDate(LocalDateTime val) {
+            registerDate = val;
+            return this;
+        }
+
+        /**
+         * Discount.
+         *
+         * @param val the val
+         * @return the builder
+         */
+        public Builder discount(Integer val) {
+            discount = val;
+            return this;
+        }
+
+        /**
+         * Discount level.
+         *
+         * @param val the val
+         * @return the builder
+         */
+        public Builder discountLevel(Integer val) {
+            discountLevel = val;
+            return this;
+        }
+
+        /**
+         * Phone.
+         *
+         * @param val the val
+         * @return the builder
+         */
+        public Builder phone(String val) {
+            phone = val;
+            return this;
+        }
+
+        /**
+         * Money.
+         *
+         * @param val the val
+         * @return the builder
+         */
+        public Builder money(BigDecimal val) {
+            money = val;
+            return this;
+        }
+
+        /**
+         * Builds the.
+         *
+         * @return the client
+         */
+        public Client build() {
+            return new Client(this);
+        }
+    }
 }

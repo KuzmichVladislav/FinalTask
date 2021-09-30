@@ -3,286 +3,470 @@ package com.company.gum.entity;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class Comment.
+ */
 public class Comment extends AbstractEntity {
 
-	private Integer userId;
-	private String userName;
-	private String userSurname;
-	private byte[] photo;
-	private String base64Image;
-	private LocalDateTime commentDate;
-	private String commentText;
-	private Boolean active;
+    /**
+     * The user id.
+     */
+    private Integer userId;
 
-	private Comment(Builder builder) {
-		setId(builder.id);
-		setUserId(builder.userId);
-		setUserName(builder.userName);
-		setUserSurname(builder.userSurname);
-		setPhoto(builder.photo);
-		setCommentDate(builder.commentDate);
-		setCommentText(builder.commentText);
-		setActive(builder.active);
-		setBase64Image(builder.base64Image);
-	}
+    /**
+     * The user name.
+     */
+    private String userName;
 
-	public String getBase64Image() {
-		return base64Image;
-	}
+    /**
+     * The user surname.
+     */
+    private String userSurname;
 
-	public void setBase64Image(String base64Image) {
-		this.base64Image = base64Image;
-	}
+    /**
+     * The photo.
+     */
+    private byte[] photo;
 
-	public Integer getUserId() {
-		return userId;
-	}
+    /**
+     * The base 64 image.
+     */
+    private String base64Image;
 
-	public void setUserId(Integer userId) {
-		this.userId = userId;
-	}
+    /**
+     * The comment date.
+     */
+    private LocalDateTime commentDate;
 
-	public String getUserName() {
-		return userName;
-	}
+    /**
+     * The comment text.
+     */
+    private String commentText;
 
-	public void setUserName(String userName) {
-		this.userName = userName;
-	}
+    /**
+     * The active.
+     */
+    private Boolean active;
 
-	public String getUserSurname() {
-		return userSurname;
-	}
+    /**
+     * Instantiates a new comment.
+     *
+     * @param builder the builder
+     */
+    private Comment(Builder builder) {
+        setId(builder.id);
+        setUserId(builder.userId);
+        setUserName(builder.userName);
+        setUserSurname(builder.userSurname);
+        setPhoto(builder.photo);
+        setCommentDate(builder.commentDate);
+        setCommentText(builder.commentText);
+        setActive(builder.active);
+        setBase64Image(builder.base64Image);
+    }
 
-	public void setUserSurname(String userSurname) {
-		this.userSurname = userSurname;
-	}
+    /**
+     * Gets the base 64 image.
+     *
+     * @return the base 64 image
+     */
+    public String getBase64Image() {
+        return base64Image;
+    }
 
-	public byte[] getPhoto() {
-		return photo;
-	}
+    /**
+     * Sets the base 64 image.
+     *
+     * @param base64Image the new base 64 image
+     */
+    public void setBase64Image(String base64Image) {
+        this.base64Image = base64Image;
+    }
 
-	public void setPhoto(byte[] photo) {
-		this.photo = photo;
-	}
+    /**
+     * Gets the user id.
+     *
+     * @return the user id
+     */
+    public Integer getUserId() {
+        return userId;
+    }
 
-	public LocalDateTime getCommentDate() {
-		return commentDate;
-	}
+    /**
+     * Sets the user id.
+     *
+     * @param userId the new user id
+     */
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
 
-	public void setCommentDate(LocalDateTime commentDate) {
-		this.commentDate = commentDate;
-	}
+    /**
+     * Gets the user name.
+     *
+     * @return the user name
+     */
+    public String getUserName() {
+        return userName;
+    }
 
-	public String getCommentText() {
-		return commentText;
-	}
+    /**
+     * Sets the user name.
+     *
+     * @param userName the new user name
+     */
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
 
-	public void setCommentText(String commentText) {
-		this.commentText = commentText;
-	}
+    /**
+     * Gets the user surname.
+     *
+     * @return the user surname
+     */
+    public String getUserSurname() {
+        return userSurname;
+    }
 
-	public Boolean getActive() {
-		return active;
-	}
+    /**
+     * Sets the user surname.
+     *
+     * @param userSurname the new user surname
+     */
+    public void setUserSurname(String userSurname) {
+        this.userSurname = userSurname;
+    }
 
-	public void setActive(Boolean active) {
-		this.active = active;
-	}
+    /**
+     * Gets the photo.
+     *
+     * @return the photo
+     */
+    public byte[] getPhoto() {
+        return photo;
+    }
 
-	@Override
-	public String toString() {
-		final StringBuilder sb = new StringBuilder("Comment{");
-		sb.append("userId=").append(userId);
-		sb.append(", userName='").append(userName).append('\'');
-		sb.append(", userSurname='").append(userSurname).append('\'');
-		sb.append(", commentDate=").append(commentDate);
-		sb.append(", commentText='").append(commentText).append('\'');
-		sb.append(", active=").append(active);
-		sb.append('}');
-		return sb.toString();
-	}
+    /**
+     * Sets the photo.
+     *
+     * @param photo the new photo
+     */
+    public void setPhoto(byte[] photo) {
+        this.photo = photo;
+    }
 
-	@Override
-	public boolean equals(Object o) {
-		if (this == o)
-			return true;
-		if (!(o instanceof Comment))
-			return false;
-		if (!super.equals(o))
-			return false;
+    /**
+     * Gets the comment date.
+     *
+     * @return the comment date
+     */
+    public LocalDateTime getCommentDate() {
+        return commentDate;
+    }
 
-		Comment comment = (Comment) o;
+    /**
+     * Sets the comment date.
+     *
+     * @param commentDate the new comment date
+     */
+    public void setCommentDate(LocalDateTime commentDate) {
+        this.commentDate = commentDate;
+    }
 
-		if (getUserId() != null ? !getUserId().equals(comment.getUserId()) : comment.getUserId() != null)
-			return false;
-		if (getUserName() != null ? !getUserName().equals(comment.getUserName()) : comment.getUserName() != null)
-			return false;
-		if (getUserSurname() != null ? !getUserSurname().equals(comment.getUserSurname())
-				: comment.getUserSurname() != null)
-			return false;
-		if (!Arrays.equals(getPhoto(), comment.getPhoto()))
-			return false;
-		if (getBase64Image() != null ? !getBase64Image().equals(comment.getBase64Image())
-				: comment.getBase64Image() != null)
-			return false;
-		if (getCommentDate() != null ? !getCommentDate().equals(comment.getCommentDate())
-				: comment.getCommentDate() != null)
-			return false;
-		if (getCommentText() != null ? !getCommentText().equals(comment.getCommentText())
-				: comment.getCommentText() != null)
-			return false;
-		return getActive() != null ? getActive().equals(comment.getActive()) : comment.getActive() == null;
-	}
+    /**
+     * Gets the comment text.
+     *
+     * @return the comment text
+     */
+    public String getCommentText() {
+        return commentText;
+    }
 
-	@Override
-	public int hashCode() {
-		int result = super.hashCode();
-		result = 31 * result + (getUserId() != null ? getUserId().hashCode() : 0);
-		result = 31 * result + (getUserName() != null ? getUserName().hashCode() : 0);
-		result = 31 * result + (getUserSurname() != null ? getUserSurname().hashCode() : 0);
-		result = 31 * result + Arrays.hashCode(getPhoto());
-		result = 31 * result + (getBase64Image() != null ? getBase64Image().hashCode() : 0);
-		result = 31 * result + (getCommentDate() != null ? getCommentDate().hashCode() : 0);
-		result = 31 * result + (getCommentText() != null ? getCommentText().hashCode() : 0);
-		result = 31 * result + (getActive() != null ? getActive().hashCode() : 0);
-		return result;
-	}
+    /**
+     * Sets the comment text.
+     *
+     * @param commentText the new comment text
+     */
+    public void setCommentText(String commentText) {
+        this.commentText = commentText;
+    }
 
-	/**
-	 * {@code Comment} builder static inner class.
-	 */
-	public static final class Builder {
+    /**
+     * Gets the active.
+     *
+     * @return the active
+     */
+    public Boolean getActive() {
+        return active;
+    }
 
-		private Integer id;
-		private Integer userId;
-		private String userName;
-		private String userSurname;
-		private byte[] photo;
-		private LocalDateTime commentDate;
-		private String commentText;
-		private Boolean active;
-		private String base64Image;
+    /**
+     * Sets the active.
+     *
+     * @param active the new active
+     */
+    public void setActive(Boolean active) {
+        this.active = active;
+    }
 
-		public Builder() {
-		}
+    /**
+     * To string.
+     *
+     * @return the string
+     */
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("Comment{");
+        sb.append("userId=").append(userId);
+        sb.append(", userName='").append(userName).append('\'');
+        sb.append(", userSurname='").append(userSurname).append('\'');
+        sb.append(", commentDate=").append(commentDate);
+        sb.append(", commentText='").append(commentText).append('\'');
+        sb.append(", active=").append(active);
+        sb.append('}');
+        return sb.toString();
+    }
 
-		/**
-		 * Sets the {@code id} and returns a reference to this Builder so that the
-		 * methods can be chained together.
-		 *
-		 * @param val the {@code id} to set
-		 * @return a reference to this Builder
-		 */
-		public Builder id(Integer val) {
-			id = val;
-			return this;
-		}
+    /**
+     * Equals.
+     *
+     * @param o the o
+     * @return true, if successful
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Comment)) {
+            return false;
+        }
+        if (!super.equals(o)) {
+            return false;
+        }
 
-		/**
-		 * Sets the {@code userId} and returns a reference to this Builder so that the
-		 * methods can be chained together.
-		 *
-		 * @param val the {@code userId} to set
-		 * @return a reference to this Builder
-		 */
-		public Builder userId(Integer val) {
-			userId = val;
-			return this;
-		}
+        Comment comment = (Comment) o;
 
-		/**
-		 * Sets the {@code userName} and returns a reference to this Builder so that the
-		 * methods can be chained together.
-		 *
-		 * @param val the {@code userName} to set
-		 * @return a reference to this Builder
-		 */
-		public Builder userName(String val) {
-			userName = val;
-			return this;
-		}
+        if (getUserId() != null ? !getUserId().equals(comment.getUserId()) : comment.getUserId() != null) {
+            return false;
+        }
+        if (getUserName() != null ? !getUserName().equals(comment.getUserName()) : comment.getUserName() != null) {
+            return false;
+        }
+        if (getUserSurname() != null ? !getUserSurname().equals(comment.getUserSurname())
+                : comment.getUserSurname() != null) {
+            return false;
+        }
+        if (!Arrays.equals(getPhoto(), comment.getPhoto())) {
+            return false;
+        }
+        if (getBase64Image() != null ? !getBase64Image().equals(comment.getBase64Image())
+                : comment.getBase64Image() != null) {
+            return false;
+        }
+        if (getCommentDate() != null ? !getCommentDate().equals(comment.getCommentDate())
+                : comment.getCommentDate() != null) {
+            return false;
+        }
+        if (getCommentText() != null ? !getCommentText().equals(comment.getCommentText())
+                : comment.getCommentText() != null) {
+            return false;
+        }
+        return getActive() != null ? getActive().equals(comment.getActive()) : comment.getActive() == null;
+    }
 
-		/**
-		 * Sets the {@code userSurname} and returns a reference to this Builder so that
-		 * the methods can be chained together.
-		 *
-		 * @param val the {@code userSurname} to set
-		 * @return a reference to this Builder
-		 */
-		public Builder userSurname(String val) {
-			userSurname = val;
-			return this;
-		}
+    /**
+     * Hash code.
+     *
+     * @return the int
+     */
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + (getUserId() != null ? getUserId().hashCode() : 0);
+        result = 31 * result + (getUserName() != null ? getUserName().hashCode() : 0);
+        result = 31 * result + (getUserSurname() != null ? getUserSurname().hashCode() : 0);
+        result = 31 * result + Arrays.hashCode(getPhoto());
+        result = 31 * result + (getBase64Image() != null ? getBase64Image().hashCode() : 0);
+        result = 31 * result + (getCommentDate() != null ? getCommentDate().hashCode() : 0);
+        result = 31 * result + (getCommentText() != null ? getCommentText().hashCode() : 0);
+        result = 31 * result + (getActive() != null ? getActive().hashCode() : 0);
+        return result;
+    }
 
-		/**
-		 * Sets the {@code photo} and returns a reference to this Builder so that the
-		 * methods can be chained together.
-		 *
-		 * @param val the {@code photo} to set
-		 * @return a reference to this Builder
-		 */
-		public Builder photo(byte[] val) {
-			photo = val;
-			return this;
-		}
+    /**
+     * {@code Comment} builder static inner class.
+     */
+    public static final class Builder {
 
-		/**
-		 * Sets the {@code commentDate} and returns a reference to this Builder so that
-		 * the methods can be chained together.
-		 *
-		 * @param val the {@code commentDate} to set
-		 * @return a reference to this Builder
-		 */
-		public Builder commentDate(LocalDateTime val) {
-			commentDate = val;
-			return this;
-		}
+        /**
+         * The id.
+         */
+        private Integer id;
 
-		/**
-		 * Sets the {@code commentText} and returns a reference to this Builder so that
-		 * the methods can be chained together.
-		 *
-		 * @param val the {@code commentText} to set
-		 * @return a reference to this Builder
-		 */
-		public Builder commentText(String val) {
-			commentText = val;
-			return this;
-		}
+        /**
+         * The user id.
+         */
+        private Integer userId;
 
-		/**
-		 * Sets the {@code active} and returns a reference to this Builder so that the
-		 * methods can be chained together.
-		 *
-		 * @param val the {@code active} to set
-		 * @return a reference to this Builder
-		 */
-		public Builder active(Boolean val) {
-			active = val;
-			return this;
-		}
+        /**
+         * The user name.
+         */
+        private String userName;
 
-		/**
-		 * Sets the {@code base64Image} and returns a reference to this Builder so that
-		 * the methods can be chained together.
-		 *
-		 * @param val the {@code base64Image} to set
-		 * @return a reference to this Builder
-		 */
-		public Builder base64Image(String val) {
-			base64Image = val;
-			return this;
-		}
+        /**
+         * The user surname.
+         */
+        private String userSurname;
 
-		/**
-		 * Returns a {@code Comment} built from the parameters previously set.
-		 *
-		 * @return a {@code Comment} built with parameters of this
-		 *         {@code Comment.Builder}
-		 */
-		public Comment build() {
-			return new Comment(this);
-		}
-	}
+        /**
+         * The photo.
+         */
+        private byte[] photo;
+
+        /**
+         * The comment date.
+         */
+        private LocalDateTime commentDate;
+
+        /**
+         * The comment text.
+         */
+        private String commentText;
+
+        /**
+         * The active.
+         */
+        private Boolean active;
+
+        /**
+         * The base 64 image.
+         */
+        private String base64Image;
+
+        /**
+         * Instantiates a new builder.
+         */
+        public Builder() {
+        }
+
+        /**
+         * Sets the {@code id} and returns a reference to this Builder so that
+         * the methods can be chained together.
+         *
+         * @param val the {@code id} to set
+         * @return a reference to this Builder
+         */
+        public Builder id(Integer val) {
+            id = val;
+            return this;
+        }
+
+        /**
+         * Sets the {@code userId} and returns a reference to this Builder so
+         * that the methods can be chained together.
+         *
+         * @param val the {@code userId} to set
+         * @return a reference to this Builder
+         */
+        public Builder userId(Integer val) {
+            userId = val;
+            return this;
+        }
+
+        /**
+         * Sets the {@code userName} and returns a reference to this Builder so
+         * that the methods can be chained together.
+         *
+         * @param val the {@code userName} to set
+         * @return a reference to this Builder
+         */
+        public Builder userName(String val) {
+            userName = val;
+            return this;
+        }
+
+        /**
+         * Sets the {@code userSurname} and returns a reference to this Builder
+         * so that the methods can be chained together.
+         *
+         * @param val the {@code userSurname} to set
+         * @return a reference to this Builder
+         */
+        public Builder userSurname(String val) {
+            userSurname = val;
+            return this;
+        }
+
+        /**
+         * Sets the {@code photo} and returns a reference to this Builder so
+         * that the methods can be chained together.
+         *
+         * @param val the {@code photo} to set
+         * @return a reference to this Builder
+         */
+        public Builder photo(byte[] val) {
+            photo = val;
+            return this;
+        }
+
+        /**
+         * Sets the {@code commentDate} and returns a reference to this Builder
+         * so that the methods can be chained together.
+         *
+         * @param val the {@code commentDate} to set
+         * @return a reference to this Builder
+         */
+        public Builder commentDate(LocalDateTime val) {
+            commentDate = val;
+            return this;
+        }
+
+        /**
+         * Sets the {@code commentText} and returns a reference to this Builder
+         * so that the methods can be chained together.
+         *
+         * @param val the {@code commentText} to set
+         * @return a reference to this Builder
+         */
+        public Builder commentText(String val) {
+            commentText = val;
+            return this;
+        }
+
+        /**
+         * Sets the {@code active} and returns a reference to this Builder so
+         * that the methods can be chained together.
+         *
+         * @param val the {@code active} to set
+         * @return a reference to this Builder
+         */
+        public Builder active(Boolean val) {
+            active = val;
+            return this;
+        }
+
+        /**
+         * Sets the {@code base64Image} and returns a reference to this Builder
+         * so that the methods can be chained together.
+         *
+         * @param val the {@code base64Image} to set
+         * @return a reference to this Builder
+         */
+        public Builder base64Image(String val) {
+            base64Image = val;
+            return this;
+        }
+
+        /**
+         * Returns a {@code Comment} built from the parameters previously set.
+         *
+         * @return a {@code Comment} built with parameters of this
+         * {@code Comment.Builder}
+         */
+        public Comment build() {
+            return new Comment(this);
+        }
+    }
 }

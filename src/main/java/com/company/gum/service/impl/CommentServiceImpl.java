@@ -11,80 +11,75 @@ import java.util.List;
 
 public class CommentServiceImpl implements CommentService {
 
-	public CommentDao commentDao = CommentDaoImpl.getInstance();
-	private static CommentServiceImpl instance;
+    public CommentDao commentDao = CommentDaoImpl.getInstance();
+    private static CommentServiceImpl instance;
 
-	private CommentServiceImpl() {
-	}
+    private CommentServiceImpl() {
+    }
 
-	public static CommentServiceImpl getInstance() {
-		if (instance == null) {
-			instance = new CommentServiceImpl();
-		}
-		return instance;
-	}
+    public static CommentServiceImpl getInstance() {
+        if (instance == null) {
+            instance = new CommentServiceImpl();
+        }
+        return instance;
+    }
 
-	@Override
-	public Comment createComment(Comment comment) throws ServiceException {
-		Comment createdComment;
-		try {
-			createdComment = commentDao.createComment(comment);
-		} catch (DaoException e) {
-			throw new ServiceException(e);
-		}
-		return createdComment;
-	}
+    @Override
+    public Comment createComment(Comment comment) throws ServiceException {
+        Comment createdComment;
+        try {
+            createdComment = commentDao.createComment(comment);
+        } catch (DaoException e) {
+            throw new ServiceException(e);
+        }
+        return createdComment;
+    }
 
-	@Override
-	public boolean updateComment(int commentId, String commentText) throws ServiceException {
-		boolean isUpdated;
-		try {
-			isUpdated = commentDao.updateComment(commentId, commentText);
-		} catch (DaoException e) {
-			throw new ServiceException(e);
-		}
-		return isUpdated;
-	}
+    @Override
+    public boolean updateComment(int commentId, String commentText) throws ServiceException {
+        boolean isUpdated;
+        try {
+            isUpdated = commentDao.updateComment(commentId, commentText);
+        } catch (DaoException e) {
+            throw new ServiceException(e);
+        }
+        return isUpdated;
+    }
 
-	@Override
-	public boolean deleteComment(int commentId) throws ServiceException {
-		boolean isDeleted;
-		try {
-			isDeleted = commentDao.deleteComment(commentId);
-		} catch (DaoException e) {
-			throw new ServiceException(e);
-		}
-		return isDeleted;
-	}
+    @Override
+    public boolean deleteComment(int commentId) throws ServiceException {
+        boolean isDeleted;
+        try {
+            isDeleted = commentDao.deleteComment(commentId);
+        } catch (DaoException e) {
+            throw new ServiceException(e);
+        }
+        return isDeleted;
+    }
 
-	@Override
-	public Comment findComment(int commentId) throws ServiceException {
-		return null;
-	}
+    @Override
+    public Comment findComment(int commentId) throws ServiceException {
+        return null;
+    }
 
-	@Override
-	public List<Comment> findAllComment() throws ServiceException {
-		return null;
-	}
+    @Override
+    public List<Comment> findAllComment() throws ServiceException {
+        return null;
+    }
 
-	@Override
-	public List<Comment> findAllActiveComment() throws ServiceException {
-		List<Comment> activeComments;
-		try {
-			activeComments = commentDao.findAllActiveComment();
-		} catch (DaoException e) {
-			throw new ServiceException(e);
-		}
-		return activeComments;
-	}
+    @Override
+    public List<Comment> findAllActiveComment() throws ServiceException {
+        List<Comment> activeComments;
+        try {
+            activeComments = commentDao.findAllActiveComment();
+        } catch (DaoException e) {
+            throw new ServiceException(e);
+        }
+        return activeComments;
+    }
 
-	@Override
-	public List<Comment> findCommentWithFilter(Comment filter) throws ServiceException {
-		return null;
-	}
-
-	@Override
-	public int commentCount(Boolean active) throws ServiceException {
-		return 0;
-	}
+    @Override
+    public List<Comment> findCommentWithFilter(Comment filter) throws ServiceException {
+        return null;
+    }
 }

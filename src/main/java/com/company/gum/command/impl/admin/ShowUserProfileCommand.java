@@ -17,35 +17,35 @@ import static com.company.gum.command.Router.RouterType.FORWARD;
 
 public class ShowUserProfileCommand implements Command {
 
-	private ClientService clientService = ClientServiceImpl.getInstance();
-	private TrainerService trainerService = TrainerServiceImpl.getInstance();
+    private ClientService clientService = ClientServiceImpl.getInstance();
+    private TrainerService trainerService = TrainerServiceImpl.getInstance();
 
-	@Override
-	public Router execute(SessionRequestContent requestContent) throws CommandException {
-		Router router;
-		User user;
-		try {
-			int userId = Integer.parseInt(requestContent.getParameterByName(AttributeName.USER_ID));
-			User.UserRole role = User.UserRole
-					.valueOf(requestContent.getParameterByName(AttributeName.USER_ROLE).toUpperCase());
+    @Override
+    public Router execute(SessionRequestContent requestContent) throws CommandException {
+        Router router;
+        User user;
+        try {
+            int userId = Integer.parseInt(requestContent.getParameterByName(AttributeName.USER_ID));
+            User.UserRole role = User.UserRole
+                    .valueOf(requestContent.getParameterByName(AttributeName.USER_ROLE).toUpperCase());
 
-			switch (role) {
-			case CLIENT:
-				user = clientService.findClientById(userId);
-				break;
-			case TRAINER:
-				user = trainerService.findTrainerById(userId);
-				break;
-			default:
-				throw new CommandException();// TODO: 9/28/2021 невозможная комманда (отладочная)
-			}
+            switch (role) {
+                case CLIENT:
+                    user = clientService.findClientById(userId);
+                    break;
+                case TRAINER:
+                    user = trainerService.findTrainerById(userId);
+                    break;
+                default:
+                    throw new CommandException();// TODO: 9/28/2021 невозможна�? комманда (отладочна�?)
+            }
 
-			requestContent.putAttribute(AttributeName.USER, user);
-			router = new Router(PagePath.USER_PROFILE, FORWARD);
+            requestContent.putAttribute(AttributeName.USER, user);
+            router = new Router(PagePath.USER_PROFILE, FORWARD);
 
-		} catch (ServiceException e) {
-			throw new CommandException(e);
-		}
-		return router;
-	}
+        } catch (ServiceException e) {
+            throw new CommandException(e);
+        }
+        return router;
+    }
 }

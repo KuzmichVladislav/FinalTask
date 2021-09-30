@@ -14,126 +14,126 @@ import java.util.List;
 
 public class UserServiceImpl implements UserService {
 
-	private static final Logger logger = LogManager.getLogger();
-	private static UserServiceImpl mInstance;
+    private static final Logger logger = LogManager.getLogger();
+    private static UserServiceImpl mInstance;
 
-	private UserDao userDao = UserDaoImpl.getInstance();
+    private UserDao userDao = UserDaoImpl.getInstance();
 
-	private UserServiceImpl() {
-	}
+    private UserServiceImpl() {
+    }
 
-	public static UserServiceImpl getInstance() {
-		if (mInstance == null) {
-			mInstance = new UserServiceImpl();
-		}
-		return mInstance;
-	}
+    public static UserServiceImpl getInstance() {
+        if (mInstance == null) {
+            mInstance = new UserServiceImpl();
+        }
+        return mInstance;
+    }
 
-	@Override
-	public User findUserById(int userId) throws ServiceException {
-		User user;
-		try {
-			user = userDao.findUserById(userId);
-		} catch (DaoException e) {
-			logger.warn(e);
-			throw new ServiceException(e);
-		}
-		return user;
-	}
+    @Override
+    public User findUserById(int userId) throws ServiceException {
+        User user;
+        try {
+            user = userDao.findUserById(userId);
+        } catch (DaoException e) {
+            logger.warn(e);
+            throw new ServiceException(e);
+        }
+        return user;
+    }
 
-	@Override
-	public User findUserByLogin(String login) throws ServiceException {
-		User user;
-		try {
-			user = userDao.findUserByLogin(login);
-		} catch (DaoException e) {
-			logger.warn(e);
-			throw new ServiceException(e);
-		}
-		return user;
-	}
+    @Override
+    public User findUserByLogin(String login) throws ServiceException {
+        User user;
+        try {
+            user = userDao.findUserByLogin(login);
+        } catch (DaoException e) {
+            logger.warn(e);
+            throw new ServiceException(e);
+        }
+        return user;
+    }
 
-	@Override
-	public User findUserByLoginAndPassword(String login, String password) throws ServiceException {
-		User user;
-		try {
-			user = userDao.findUserByLoginAndPassword(login, JBCryptPasswordEncoder.encode(password));
-		} catch (DaoException e) {
-			logger.warn(e);
-			throw new ServiceException(e);
-		}
-		return user;
-	}
+    @Override
+    public User findUserByLoginAndPassword(String login, String password) throws ServiceException {
+        User user;
+        try {
+            user = userDao.findUserByLoginAndPassword(login, JBCryptPasswordEncoder.encode(password));
+        } catch (DaoException e) {
+            logger.warn(e);
+            throw new ServiceException(e);
+        }
+        return user;
+    }
 
-	@Override
-	public boolean updateUserPassword(User user) throws ServiceException {
-		boolean isUpdated;
-		try {
-			user.setPassword(JBCryptPasswordEncoder.encode(user.getPassword()));
-			isUpdated = userDao.updateUserPassword(user);
-		} catch (DaoException e) {
-			logger.warn(e);
-			throw new ServiceException(e);
-		}
-		return isUpdated;
-	}
+    @Override
+    public boolean updateUserPassword(User user) throws ServiceException {
+        boolean isUpdated;
+        try {
+            user.setPassword(JBCryptPasswordEncoder.encode(user.getPassword()));
+            isUpdated = userDao.updateUserPassword(user);
+        } catch (DaoException e) {
+            logger.warn(e);
+            throw new ServiceException(e);
+        }
+        return isUpdated;
+    }
 
-	@Override
-	public boolean updateUserImage(User user) throws ServiceException {
-		boolean isUpdated;
-		try {
-			isUpdated = userDao.updateUserImage(user);
-		} catch (DaoException e) {
-			logger.warn(e);
-			throw new ServiceException(e);
-		}
-		return isUpdated;
-	}
+    @Override
+    public boolean updateUserImage(User user) throws ServiceException {
+        boolean isUpdated;
+        try {
+            isUpdated = userDao.updateUserImage(user);
+        } catch (DaoException e) {
+            logger.warn(e);
+            throw new ServiceException(e);
+        }
+        return isUpdated;
+    }
 
-	@Override
-	public boolean deleteUser(int userId) throws ServiceException {
-		boolean isDeleted;
-		try {
-			isDeleted = userDao.deleteUser(userId);
-		} catch (DaoException e) {
-			logger.warn(e);
-			throw new ServiceException(e);
-		}
-		return isDeleted;
-	}
+    @Override
+    public boolean deleteUser(int userId) throws ServiceException {
+        boolean isDeleted;
+        try {
+            isDeleted = userDao.deleteUser(userId);
+        } catch (DaoException e) {
+            logger.warn(e);
+            throw new ServiceException(e);
+        }
+        return isDeleted;
+    }
 
-	@Override
-	public boolean restoreUser(int userId) throws ServiceException {
-		boolean isRestored;
-		try {
-			isRestored = userDao.restoreUser(userId);
-		} catch (DaoException e) {
-			logger.warn(e);
-			throw new ServiceException(e);
-		}
-		return isRestored;
-	}
+    @Override
+    public boolean restoreUser(int userId) throws ServiceException {
+        boolean isRestored;
+        try {
+            isRestored = userDao.restoreUser(userId);
+        } catch (DaoException e) {
+            logger.warn(e);
+            throw new ServiceException(e);
+        }
+        return isRestored;
+    }
 
-	@Override
-	public List<User> findAllUser() throws ServiceException {
-		List<User> users;
-		try {
-			users = userDao.findAllUser();
-		} catch (DaoException e) {
-			throw new ServiceException(e);
-		}
-		return users;
-	}
+    @Override
+    public List<User> findAllUser() throws ServiceException {
+        List<User> users;
+        try {
+            users = userDao.findAllUser();
+        } catch (DaoException e) {
+            throw new ServiceException(e);
+        }
+        return users;
+    }
 
-	// FIXME: 9/7/2021
-	public boolean updateUserImage2(User user) throws ServiceException {
-		boolean isUpdated;
-		try {
-			isUpdated = userDao.updateUserImage(user);
-		} catch (DaoException e) {
-			logger.warn(e);
-			throw new ServiceException(e);
-		}
-		return isUpdated;
-	}
+    // FIXME: 9/7/2021
+    public boolean updateUserImage2(User user) throws ServiceException {
+        boolean isUpdated;
+        try {
+            isUpdated = userDao.updateUserImage(user);
+        } catch (DaoException e) {
+            logger.warn(e);
+            throw new ServiceException(e);
+        }
+        return isUpdated;
+    }
 }

@@ -58,316 +58,316 @@
 <fmt:message key="profile.experience.trainer" bundle="${rb}" var="experienceTrainer"/>
 
 <html>
-<head>
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/profile.css">
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-</head>
-<body>
-<c:import url="../../fragment/navbar.jsp"/>
+    <head>
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/profile.css">
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    </head>
+    <body>
+        <c:import url="../../fragment/navbar.jsp"/>
 
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-<c:choose>
-    <c:when test="${requestScope.user.role == 'TRAINER'}">
-        <div class="container emp-profile">
-            <c:set var="trainer" value="${requestScope.user}"/>
-            <jsp:useBean id="trainer" type="com.company.gum.entity.Trainer"/>
+        <c:choose>
+            <c:when test="${requestScope.user.role == 'TRAINER'}">
+                <div class="container emp-profile">
+                    <c:set var="trainer" value="${requestScope.user}"/>
+                    <jsp:useBean id="trainer" type="com.company.gum.entity.Trainer"/>
 
-            <form method="post">
-                <div class="row">
-                    <div class="col-md-4">
+                    <form method="post">
+                        <div class="row">
+                            <div class="col-md-4">
 
-                        <div class="profile-img">
-                                <img src="${trainer.base64Image}"/>
+                                <div class="profile-img">
+                                        <img src="${trainer.base64Image}"/>
+                                </div>
+                            </div>
+                            <div class="col-md-6" style="max-width:42%;">
+                                <div class="profile-head">
+                                    <h5>
+                                        ${trainer.name} ${trainer.surname}
+                                    </h5>
+                                    <h6>
+                                        ${trainer.role}
+                                    </h6>
+                                    <p class="proile-rating">${userProfileDetails}</p>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-6" style="max-width:42%;">
-                        <div class="profile-head">
-                            <h5>
-                                    ${trainer.name} ${trainer.surname}
-                            </h5>
-                            <h6>
-                                    ${trainer.role}
-                            </h6>
-                            <p class="proile-rating">${userProfileDetails}</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-4">
-                    </div>
-                    <div class="col-md-8">
-                        <div class="tab-content profile-tab" id="trainerTabContent">
-                            <div class="tab-pane fade show active" id="trainer_home" role="tabpanel"
-                                 aria-labelledby="trainer-home-tab">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label>${userLogin}</label>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <p>${trainer.login}</p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label>${fullName}</label>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <p> ${trainer.name} ${trainer.surname}</p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label>${mail}</label>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <p>${trainer.mail}</p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label>${phone}</label>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <p>${trainer.phone}</p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label>${status}</label>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <p>${trainer.role}</p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label>${registerDate}</label>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <p>${trainer.registerDate}</p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <!-- Button trigger modal -->
-                                        <button type="button" class="btn btn-primary" data-toggle="modal"
-                                                data-target="#descriptionModal">
-                                                ${description}
-                                        </button>
+                        <div class="row">
+                            <div class="col-md-4">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="tab-content profile-tab" id="trainerTabContent">
+                                    <div class="tab-pane fade show active" id="trainer_home" role="tabpanel"
+                                         aria-labelledby="trainer-home-tab">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>${userLogin}</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>${trainer.login}</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>${fullName}</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p> ${trainer.name} ${trainer.surname}</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>${mail}</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>${trainer.mail}</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>${phone}</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>${trainer.phone}</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>${status}</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>${trainer.role}</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>${registerDate}</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>${trainer.registerDate}</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <!-- Button trigger modal -->
+                                                <button type="button" class="btn btn-primary" data-toggle="modal"
+                                                        data-target="#descriptionModal">
+                                                    ${description}
+                                                </button>
 
-                                        <!-- Modal -->
-                                        <div class="modal fade" id="descriptionModal" tabindex="-1" role="dialog"
-                                             aria-labelledby="descriptionModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title"
-                                                            id="descriptionModalLabel">${descriptionPrograms}</h5>
-                                                        <button type="button" class="close" data-dismiss="modal"
-                                                                aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button>
+                                                <!-- Modal -->
+                                                <div class="modal fade" id="descriptionModal" tabindex="-1" role="dialog"
+                                                     aria-labelledby="descriptionModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title"
+                                                                    id="descriptionModalLabel">${descriptionPrograms}</h5>
+                                                                <button type="button" class="close" data-dismiss="modal"
+                                                                        aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                ${trainer.description}
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary"
+                                                                        data-dismiss="modal">
+                                                                    ${close}
+                                                                </button>
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                    <div class="modal-body">
-                                                            ${trainer.description}
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary"
-                                                                data-dismiss="modal">
-                                                                ${close}
-                                                        </button>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <!-- Button trigger modal -->
+                                                <button type="button" class="btn btn-primary" data-toggle="modal"
+                                                        data-target="#experienceModal">
+                                                    ${experience}
+                                                </button>
+                                                <!-- Modal -->
+                                                <div class="modal fade" id="experienceModal" tabindex="-1" role="dialog"
+                                                     aria-labelledby="experienceModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title"
+                                                                    id="experienceModalLabel">${experienceTrainer}</h5>
+                                                                <button type="button" class="close" data-dismiss="modal"
+                                                                        aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                ${trainer.experience}
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary"
+                                                                        data-dismiss="modal">
+                                                                    ${close}
+                                                                </button>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
-                                        <!-- Button trigger modal -->
-                                        <button type="button" class="btn btn-primary" data-toggle="modal"
-                                                data-target="#experienceModal">
-                                                ${experience}
-                                        </button>
-                                        <!-- Modal -->
-                                        <div class="modal fade" id="experienceModal" tabindex="-1" role="dialog"
-                                             aria-labelledby="experienceModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title"
-                                                            id="experienceModalLabel">${experienceTrainer}</h5>
-                                                        <button type="button" class="close" data-dismiss="modal"
-                                                                aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                            ${trainer.experience}
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary"
-                                                                data-dismiss="modal">
-                                                                ${close}
-                                                        </button>
-                                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </c:when>
+            <c:when test="${requestScope.user.role == 'CLIENT'}">
+                <div class="container emp-profile">
+                    <c:set var="client" value="${requestScope.user}"/>
+                    <jsp:useBean id="client" type="com.company.gum.entity.Client"/>
+
+                    <form method="post">
+                        <div class="row">
+                            <div class="col-md-4">
+
+                                <div class="profile-img">
+                                        <img src="${client.base64Image}"/>
+                                </div>
+                            </div>
+                            <div class="col-md-6" style="max-width:42%;">
+                                <div class="profile-head">
+                                    <h5>
+                                        ${client.name} ${client.surname}
+                                    </h5>
+                                    <h6>
+                                        ${client.role}
+                                    </h6>
+                                    <p class="proile-rating">${userProfileDetails}</p>
+                                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                        <li class="nav-item">
+                                            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab"
+                                               aria-controls="home" aria-selected="true">${profileAbout}</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
+                                               aria-controls="profile" aria-selected="false">${assignDiscount}</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="tab-content profile-tab" id="myTabContent">
+                                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>${userLogin}</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>${client.login}</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>${fullName}</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p> ${client.name} ${client.surname}</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>${mail}</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>${client.mail}</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>${phone}</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>${client.phone}</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>${status}</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>${client.role}</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>${registerDate}</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>${client.registerDate}</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>${money}</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>${client.money} BYN</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>${discount}</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>${client.discount} %</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+
+                                        <form name="loginForm"
+                                              action="${pageContext.request.contextPath}/controller"
+                                              method="POST">
+
+                                        </form>
+                                        <div class="col-md-6">
+                                            <form name="refill_money_form"
+                                                  action="${pageContext.request.contextPath}/controller" method="POST">
+                                                <input type="hidden" name="command" value="ASSIGN_DISCOUNT">
+                                                <input type="hidden" name="clientId" value="${client.id}">
+
+                                                <div class="form-group">
+                                                    <label for="input_money">${discount}</label>
+                                                    <input type="text" name="discount" class="form-control" id="input_money"
+                                                           value="${client.discount}">
                                                 </div>
-                                            </div>
+                                                <c:if test="${requestScope.errMessage != null}">
+                                                    <div class="alert alert-danger">
+                                                        <span><fmt:message key="${requestScope.errMessage}"
+                                                                     bundle="${err_rb}"/></span>
+                                                    </div>
+                                                </c:if>
+                                                <button type="submit"
+                                                        class="btn btn-primary">${confirm}
+                                                </button>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
-            </form>
-        </div>
-    </c:when>
-    <c:when test="${requestScope.user.role == 'CLIENT'}">
-        <div class="container emp-profile">
-            <c:set var="client" value="${requestScope.user}"/>
-            <jsp:useBean id="client" type="com.company.gum.entity.Client"/>
-
-            <form method="post">
-                <div class="row">
-                    <div class="col-md-4">
-
-                        <div class="profile-img">
-                                <img src="${client.base64Image}"/>
-                        </div>
-                    </div>
-                    <div class="col-md-6" style="max-width:42%;">
-                        <div class="profile-head">
-                            <h5>
-                                    ${client.name} ${client.surname}
-                            </h5>
-                            <h6>
-                                    ${client.role}
-                            </h6>
-                            <p class="proile-rating">${userProfileDetails}</p>
-                            <ul class="nav nav-tabs" id="myTab" role="tablist">
-                                <li class="nav-item">
-                                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab"
-                                       aria-controls="home" aria-selected="true">${profileAbout}</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
-                                       aria-controls="profile" aria-selected="false">${assignDiscount}</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-4">
-                    </div>
-                    <div class="col-md-8">
-                        <div class="tab-content profile-tab" id="myTabContent">
-                            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label>${userLogin}</label>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <p>${client.login}</p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label>${fullName}</label>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <p> ${client.name} ${client.surname}</p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label>${mail}</label>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <p>${client.mail}</p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label>${phone}</label>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <p>${client.phone}</p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label>${status}</label>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <p>${client.role}</p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label>${registerDate}</label>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <p>${client.registerDate}</p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label>${money}</label>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <p>${client.money} BYN</p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label>${discount}</label>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <p>${client.discount} %</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-
-                                <form name="loginForm"
-                                      action="${pageContext.request.contextPath}/controller"
-                                      method="POST">
-
-                                </form>
-                                <div class="col-md-6">
-                                    <form name="refill_money_form"
-                                          action="${pageContext.request.contextPath}/controller" method="POST">
-                                        <input type="hidden" name="command" value="ASSIGN_DISCOUNT">
-                                        <input type="hidden" name="clientId" value="${client.id}">
-
-                                        <div class="form-group">
-                                            <label for="input_money">${discount}</label>
-                                            <input type="text" name="discount" class="form-control" id="input_money"
-                                                   value="${client.discount}">
-                                        </div>
-                                        <c:if test="${requestScope.errMessage != null}">
-                                            <div class="alert alert-danger">
-                                                <span><fmt:message key="${requestScope.errMessage}"
-                                                                   bundle="${err_rb}"/></span>
-                                            </div>
-                                        </c:if>
-                                        <button type="submit"
-                                                class="btn btn-primary">${confirm}
-                                        </button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </c:when>
-</c:choose>
-<c:import url="../../fragment/footer.jsp"/>
-</body>
+            </c:when>
+        </c:choose>
+        <c:import url="../../fragment/footer.jsp"/>
+    </body>
 </html>

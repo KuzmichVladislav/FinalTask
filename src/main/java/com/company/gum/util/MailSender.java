@@ -18,53 +18,63 @@ import java.util.Properties;
  */
 public class MailSender {
 
-	/** The Constant logger. */
-	private static final Logger logger = LogManager.getLogger();
+    /**
+     * The Constant logger.
+     */
+    private static final Logger logger = LogManager.getLogger();
 
-	/** The Constant PROPERTY_PATH. */
-	private static final String PROPERTY_PATH = "mail/mail.properties";
-	
-	/** The Constant SUBJECT_MAIL. */
-	private static final String SUBJECT_MAIL = "Verification";
-	
-	/** The Constant properties. */
-	private static final Properties properties = PropertyLoader.loadProperty(PROPERTY_PATH);
+    /**
+     * The Constant PROPERTY_PATH.
+     */
+    private static final String PROPERTY_PATH = "mail/mail.properties";
 
-	/** The message. */
-	private MimeMessage message;
+    /**
+     * The Constant SUBJECT_MAIL.
+     */
+    private static final String SUBJECT_MAIL = "Verification";
 
-	/**
-	 * Send.
-	 *
-	 * @param userId the user id
-	 * @param userMail the user mail
-	 * @param messageText the message text
-	 */
-	public void send(int userId, String userMail, String messageText) {
-		try {
-			initMessage(userId, userMail, messageText);
-			Transport.send(message);
-		} catch (AddressException e) {
-			logger.warn("Invalid address: {} {}", userMail, e);
-		} catch (MessagingException e) {
-			logger.warn("Error generating or sending message: ", e);
-		}	
-	}
+    /**
+     * The Constant properties.
+     */
+    private static final Properties properties = PropertyLoader.loadProperty(PROPERTY_PATH);
 
-	/**
-	 * Inits the message.
-	 *
-	 * @param userId the user id
-	 * @param userMail the user mail
-	 * @param messageText the message text
-	 * @throws MessagingException the messaging exception
-	 */
-	private void initMessage(int userId, String userMail, String messageText) throws MessagingException {
-		Session mailSession = SessionFactory.createSession(properties);
-		mailSession.setDebug(true);
-		message = new MimeMessage(mailSession);
-		message.setSubject(SUBJECT_MAIL);
-		message.setContent(messageText, "text/html");
-		message.setRecipient(Message.RecipientType.TO, new InternetAddress(userMail));
-	}
+    /**
+     * The message.
+     */
+    private MimeMessage message;
+
+    /**
+     * Send.
+     *
+     * @param userId the user id
+     * @param userMail the user mail
+     * @param messageText the message text
+     */
+    public void send(int userId, String userMail, String messageText) {
+        try {
+            initMessage(userId, userMail, messageText);
+            Transport.send(message);
+        } catch (AddressException e) {
+            logger.warn("Invalid address: {} {}", userMail, e);
+        } catch (MessagingException e) {
+            logger.warn("Error generating or sending message: ", e);
+        }
+    }
+
+    /**
+     * Inits the message.
+     *
+     * @param userId the user id
+     * @param userMail the user mail
+     * @param messageText the message text
+     * @throws MessagingException the messaging exception
+     */
+    private void initMessage(int userId, String userMail, String messageText) throws MessagingException {
+        Session mailSession = SessionFactory.createSession(properties);
+        mailSession.setDebug(true);
+        message = new MimeMessage(mailSession);
+        message.setSubject(SUBJECT_MAIL);
+        message.setContent(messageText, "text/html");
+        message.setRecipient(Message.RecipientType.TO, new InternetAddress(userMail));
+    }
 }

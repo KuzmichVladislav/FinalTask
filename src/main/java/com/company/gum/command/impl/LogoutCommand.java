@@ -10,10 +10,10 @@ import static com.company.gum.command.Router.RouterType.REDIRECT;
 
 public class LogoutCommand implements Command {
 
-	@Override
-	public Router execute(SessionRequestContent requestContent) throws CommandException {
+    @Override
+    public Router execute(SessionRequestContent requestContent) throws CommandException {
 
-		requestContent.invalidateSession();
-		return new Router(PagePath.INDEX, REDIRECT);
-	}
+        requestContent.invalidateSession();
+        return new Router(PagePath.INDEX, REDIRECT);
+    }
 }
