@@ -109,6 +109,7 @@ public class Admin extends User {
          * Instantiates a new builder.
          */
         public Builder() {
+            // TODO document why this constructor is empty
         }
 
         /**

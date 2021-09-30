@@ -312,6 +312,7 @@ public class Trainer extends User {
          * Instantiates a new builder.
          */
         public Builder() {
+            // TODO document why this constructor is empty
         }
 
         /**

@@ -4,21 +4,20 @@ import com.company.gum.command.Command;
 import com.company.gum.command.PagePath;
 import com.company.gum.command.Router;
 import com.company.gum.controller.SessionRequestContent;
-import com.company.gum.entity.Admin;
 import com.company.gum.entity.Client;
 import com.company.gum.entity.Trainer;
 import com.company.gum.entity.User;
 import com.company.gum.exception.CommandException;
 import com.company.gum.exception.ServiceException;
-import com.company.gum.service.AdminService;
 import com.company.gum.service.ClientService;
 import com.company.gum.service.TrainerService;
 import com.company.gum.service.UserService;
-import com.company.gum.service.impl.AdminServiceImpl;
 import com.company.gum.service.impl.ClientServiceImpl;
 import com.company.gum.service.impl.TrainerServiceImpl;
 import com.company.gum.service.impl.UserServiceImpl;
 import com.company.gum.util.Validator;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import static com.company.gum.command.AttributeName.*;
 import static com.company.gum.command.Router.RouterType.FORWARD;
@@ -26,8 +25,9 @@ import static com.company.gum.command.Router.RouterType.REDIRECT;
 
 public class LoginCommand implements Command {
 
+    private static final Logger logger = LogManager.getLogger();
+
     private UserService userService = UserServiceImpl.getInstance();
-    private AdminService adminService = AdminServiceImpl.getInstance();
     private TrainerService trainerService = TrainerServiceImpl.getInstance();
     private ClientService clientService = ClientServiceImpl.getInstance();
 
@@ -43,48 +43,36 @@ public class LoginCommand implements Command {
                 if (user != null) {
                     if (user.isVerification()) {
                         requestContent.putSessionAttribute(USER_ID, user.getId());
+                        requestContent.putSessionAttribute(USER_LOGIN, user.getLogin());
+                        requestContent.putSessionAttribute(USER_ROLE, user.getRole().name());
+                        requestContent.putSessionAttribute(USER_NAME, user.getName());
+                        requestContent.putSessionAttribute(USER_SURNAME, user.getSurname());
+                        requestContent.putSessionAttribute(USER_MAIL, user.getMail());
                         requestContent.putSessionAttribute(USER_PHOTO, user.getBase64Image());
-// TODO: 9/23/2021 объединить повтор�?ющие�?�?
                         switch (user.getRole()) {
                             case ADMIN:
-                                Admin admin = adminService.findAdminById(user.getId());
-                                requestContent.putSessionAttribute(USER_LOGIN, admin.getLogin());
-                                requestContent.putSessionAttribute(USER_ROLE, admin.getRole().name());
-                                requestContent.putSessionAttribute(USER_NAME, admin.getName());
-                                requestContent.putSessionAttribute(USER_SURNAME, admin.getSurname());
-                                requestContent.putSessionAttribute(USER_MAIL, admin.getMail());
                                 router = new Router(PagePath.WELCOME, REDIRECT);
                                 break;
                             case TRAINER:
                                 Trainer trainer = trainerService.findTrainerById(user.getId());
-                                requestContent.putSessionAttribute(USER_LOGIN, trainer.getLogin());
-                                requestContent.putSessionAttribute(USER_ROLE, trainer.getRole().name());
-                                requestContent.putSessionAttribute(USER_NAME, trainer.getName());
-                                requestContent.putSessionAttribute(USER_SURNAME, trainer.getSurname());
                                 requestContent.putSessionAttribute(USER_REGISTER_DATE, trainer.getRegisterDate());
                                 requestContent.putSessionAttribute(USER_PHONE, trainer.getPhone());
-                                requestContent.putSessionAttribute(USER_MAIL, trainer.getMail());
                                 requestContent.putSessionAttribute(DESCRIPTION, trainer.getDescription());
                                 requestContent.putSessionAttribute(EXPERIENCE, trainer.getExperience());
                                 router = new Router(PagePath.WELCOME, REDIRECT);
                                 break;
                             case CLIENT:
                                 Client client = clientService.findClientById(user.getId());
-                                requestContent.putSessionAttribute(USER_LOGIN, client.getLogin());
-                                requestContent.putSessionAttribute(USER_ROLE, client.getRole().name());
-                                requestContent.putSessionAttribute(USER_NAME, client.getName());
-                                requestContent.putSessionAttribute(USER_SURNAME, client.getSurname());
                                 requestContent.putSessionAttribute(USER_REGISTER_DATE, client.getRegisterDate());
                                 requestContent.putSessionAttribute(USER_DISCOUNT, client.getDiscount());
                                 requestContent.putSessionAttribute(USER_DISCOUNT_LEVEL, client.getDiscountLevel());
                                 requestContent.putSessionAttribute(USER_PHONE, client.getPhone());
                                 requestContent.putSessionAttribute(USER_MONEY, client.getMoney());
-                                requestContent.putSessionAttribute(USER_MAIL, client.getMail());
                                 router = new Router(PagePath.WELCOME, REDIRECT);
                                 break;
                             default:
-                                throw new CommandException("");
-                            // TODO: 9/21/2021 попытка ввода не�?уще�?твующего пользовател�?
+                                logger.debug("Debug exception for testing. When adding a user with a new role.");
+                                throw new CommandException("Debug exception for testing. When adding a user with a new role.");
                         }
                         requestContent.putSessionAttribute(USER_AUTHORIZATION, true);
                     } else {
@@ -102,7 +90,6 @@ public class LoginCommand implements Command {
         } catch (ServiceException e) {
             throw new CommandException(e);
         }
-
         return router;
     }
 }

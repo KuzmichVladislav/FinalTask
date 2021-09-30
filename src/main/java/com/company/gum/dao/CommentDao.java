@@ -18,6 +18,4 @@ public interface CommentDao {
     List<Comment> findAllComment() throws DaoException;
 
     List<Comment> findAllActiveComment() throws DaoException;
-
-    List<Comment> findCommentWithFilter(Comment filter) throws DaoException;
 }

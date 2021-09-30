@@ -19,11 +19,6 @@ public class MainController extends HttpServlet {
     private static final Logger logger = LogManager.getLogger();
 
     @Override
-    public void init() throws ServletException {
-        super.init();
-    }
-
-    @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         doProcess(req, resp);
     }
@@ -58,10 +53,5 @@ public class MainController extends HttpServlet {
             req.setAttribute(AttributeName.ERROR, e);
             req.getRequestDispatcher(PagePath.ERROR).forward(req, resp);
         }
-    }
-
-    @Override
-    public void destroy() {
-        super.destroy();
     }
 }

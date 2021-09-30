@@ -29,13 +29,13 @@ public class RefillMoneyCommand implements Command {
         try {
             int clientId = (Integer) requestContent.getSessionAttributeByName(USER_ID);
             boolean isValid = true;
-            String StringMoney = requestContent.getParameterByName(MONEY);
-            if (!Validator.checkMoney(StringMoney)) {
+            String stringMoney = requestContent.getParameterByName(MONEY);
+            if (!Validator.checkMoney(stringMoney)) {
                 requestContent.putAttribute(ERR_MESSAGE, INVALID_MONEY);
                 isValid = false;
             }
             if (isValid) {
-                BigDecimal money = new BigDecimal(StringMoney, MathContext.DECIMAL32);
+                BigDecimal money = new BigDecimal(stringMoney, MathContext.DECIMAL32);
                 boolean isUpdated = clientService.refillMoney(clientId, money);
                 if (isUpdated) {
                     requestContent.putAttribute(MONEY, money.doubleValue());

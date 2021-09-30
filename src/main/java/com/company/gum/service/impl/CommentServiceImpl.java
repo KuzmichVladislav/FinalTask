@@ -77,9 +77,4 @@ public class CommentServiceImpl implements CommentService {
         }
         return activeComments;
     }
-
-    @Override
-    public List<Comment> findCommentWithFilter(Comment filter) throws ServiceException {
-        return null;
-    }
 }

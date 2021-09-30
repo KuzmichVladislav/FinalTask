@@ -14,7 +14,7 @@ import static com.company.gum.command.AttributeName.ORDER;
 import static com.company.gum.command.AttributeName.ORDER_ID;
 import static com.company.gum.command.Router.RouterType.FORWARD;
 
-public class showOrderByClientCommand implements Command {
+public class ShowOrderByClientCommand implements Command {
 
     private OrderService orderService = OrderServiceImpl.getInstance();
 

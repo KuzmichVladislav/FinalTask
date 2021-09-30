@@ -662,6 +662,7 @@ public class Order extends AbstractEntity {
          * Instantiates a new builder.
          */
         public Builder() {
+            // TODO document why this constructor is empty
         }
 
         /**

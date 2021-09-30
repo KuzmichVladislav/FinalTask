@@ -18,6 +18,4 @@ public interface CommentService {
     List<Comment> findAllComment() throws ServiceException;
 
     List<Comment> findAllActiveComment() throws ServiceException;
-
-    List<Comment> findCommentWithFilter(Comment filter) throws ServiceException;
 }

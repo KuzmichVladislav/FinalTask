@@ -4,18 +4,11 @@ import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 import java.util.Properties;
 
-// TODO: Auto-generated Javadoc
-/**
- * A factory for creating Session objects.
- */
 public class SessionFactory {
 
-    /**
-     * Creates a new Session object.
-     *
-     * @param configProperties the config properties
-     * @return the session
-     */
+    private SessionFactory() {
+    }
+
     public static Session createSession(Properties configProperties) {
         String userName = configProperties.getProperty("mail.user.name");
         String userPassword = configProperties.getProperty("mail.user.password");

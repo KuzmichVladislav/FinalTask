@@ -124,16 +124,4 @@ public class UserServiceImpl implements UserService {
         }
         return users;
     }
-
-    // FIXME: 9/7/2021
-    public boolean updateUserImage2(User user) throws ServiceException {
-        boolean isUpdated;
-        try {
-            isUpdated = userDao.updateUserImage(user);
-        } catch (DaoException e) {
-            logger.warn(e);
-            throw new ServiceException(e);
-        }
-        return isUpdated;
-    }
 }

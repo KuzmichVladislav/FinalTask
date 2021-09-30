@@ -23,6 +23,4 @@ public interface UserService {
 
     List<User> findAllUser() throws ServiceException;
 
-    // FIXME: 9/7/2021
-    boolean updateUserImage2(User user) throws ServiceException;
 }

@@ -3,19 +3,10 @@ package com.company.gum.command;
 import com.company.gum.controller.SessionRequestContent;
 import com.company.gum.exception.CommandException;
 
-// TODO: Auto-generated Javadoc
-/**
- * The Interface Command.
- */
 @FunctionalInterface
 public interface Command {
 
-    /**
-     * Execute.
-     *
-     * @param requestContent the request content
-     * @return the router
-     * @throws CommandException the command exception
-     */
+    String IMAGE_SRC_PREFIX = "data:image/jpg;base64,";
+
     Router execute(SessionRequestContent requestContent) throws CommandException;
 }

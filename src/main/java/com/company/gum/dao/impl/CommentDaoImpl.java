@@ -35,21 +35,15 @@ public class CommentDaoImpl implements CommentDao {
             + "FROM comments\n" + "         LEFT JOIN users u ON comments.user_id = u.user_id";
 
     private static final String SQL_FIND_ALL_ACTIVE_COMMENT = "SELECT comments.comment_id,\n"
-            + "       comments.user_id,\n" + "       u.name    AS user_name,\n" + "       u.surname AS user_surname,\n"
-            + "       u.image,\n" + "       comments.comment_date,\n" + "       comments.comment_text,\n"
-            + "       comments.is_active\n" + "FROM comments\n"
-            + "         LEFT JOIN users u ON comments.user_id = u.user_id\n" + "WHERE comments.is_active = true";
-
-    private static final String SQL_FIND_ALL_COMMENT_WITH_FILTER = "SELECT comments.comment_id,\n"
-            + "    comments.user_id,\n" + "    u.name    AS user_name,\n" + "    u.surname AS user_surname,\n"
-            + "    u.image,\n" + "    comments.comment_date,\n" + "    comments.comment_text,\n"
-            + "    comments.is_active\n" + "FROM comments\n" + "    LEFT JOIN users u ON comments.user_id = u.user_id\n"
-            + "WHERE u.name = IFNULL(?, u.name)\n" + "  AND u.surname = IFNULL(?, u.surname)\n"
-            + "  AND CAST(comments.comment_date AS date) = IFNULL(?, CAST(comments.comment_date AS date))\n"
-            + "  AND comments.is_active = IFNULL(?, comments.is_active)";
-
-    private static final String SQL_COMMENT_COUNT = "SELECT COUNT(comments.comment_id)\n" + "FROM comments\n"
-            + "WHERE is_active = IFNULL(?, is_active)";
+            + "       comments.user_id,\n"
+            + "       u.name    AS user_name,\n"
+            + "       u.surname AS user_surname,\n"
+            + "       u.image,\n" + "       comments.comment_date,\n"
+            + "       comments.comment_text,\n"
+            + "       comments.is_active\n"
+            + "FROM comments\n"
+            + "         LEFT JOIN users u ON comments.user_id = u.user_id\n"
+            + "WHERE comments.is_active = true";
 
     private static CommentDaoImpl mInstance;
 
@@ -188,47 +182,6 @@ public class CommentDaoImpl implements CommentDao {
             }
 
             logger.debug("Found {} active comments: {}", comments.size(), comments);
-
-        } catch (SQLException e) {
-            throw new DaoException(e);
-        }
-        return comments;
-    }
-
-    @Override
-    public List<Comment> findCommentWithFilter(Comment filter) throws DaoException {
-        List<Comment> comments = new ArrayList<>();
-
-        try (Connection connection = ConnectionPool.getInstance().takeConnection();
-                PreparedStatement statement = connection.prepareStatement(SQL_FIND_ALL_COMMENT_WITH_FILTER)) {
-            if (filter.getUserName() != null) {
-                statement.setString(1, filter.getUserName());
-            } else {
-                statement.setNull(1, Types.VARCHAR);
-            }
-            if (filter.getUserSurname() != null) {
-                statement.setString(2, filter.getUserSurname());
-            } else {
-                statement.setNull(2, Types.VARCHAR);
-            }
-            if (filter.getCommentDate() != null) {
-                statement.setDate(3, Date.valueOf(filter.getCommentDate().toLocalDate()));
-            } else {
-                statement.setNull(3, Types.DATE);
-            }
-            if (filter.getActive() != null) {
-                statement.setBoolean(4, filter.getActive());
-            } else {
-                statement.setNull(4, Types.INTEGER);
-            }
-            ResultSet resultSet = statement.executeQuery();
-
-            while (resultSet.next()) {
-                Comment comment = getCommentFromResultSet(resultSet);
-                comments.add(comment);
-            }
-
-            logger.debug("Found {} comments with filter: {}", comments.size(), comments);
 
         } catch (SQLException e) {
             throw new DaoException(e);

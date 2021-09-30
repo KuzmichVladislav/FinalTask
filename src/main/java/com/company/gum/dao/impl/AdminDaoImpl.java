@@ -18,17 +18,41 @@ import static com.company.gum.dao.TableColumnName.*;
 public class AdminDaoImpl implements AdminDao {
 
     private static final Logger logger = LogManager.getLogger();
-    private static final String SQL_FIND_ADMIN_BY_ID = "SELECT user_id,\n" + "       login,\n" + "       password,\n"
-            + "       role,\n" + "       name,\n" + "       surname,\n" + "       is_active,\n" + "       image,\n"
-            + "       is_verified,\n" + "       mail\n" + "FROM users\n" + "WHERE user_id = ?\n"
+    private static final String SQL_FIND_ADMIN_BY_ID = "SELECT user_id,\n"
+            + "       login,\n"
+            + "       password,\n"
+            + "       role,\n"
+            + "       name,\n"
+            + "       surname,\n"
+            + "       is_active,\n"
+            + "       image,\n"
+            + "       is_verified,\n"
+            + "       mail\n" + "FROM users\n"
+            + "WHERE user_id = ?\n"
             + "  AND role = 'ADMIN'";
-    private static final String SQL_FIND_ALL_ADMIN = "SELECT user_id,\n" + "       login,\n" + "       password,\n"
-            + "       role,\n" + "       name,\n" + "       surname,\n" + "       is_active,\n" + "       image,\n"
-            + "       is_verified,\n" + "       mail\n" + "FROM users\n" + "WHERE role = 'ADMIN'";
-    private static final String SQL_EDIT_ADMIN = "UPDATE users\n" + "SET name  = IFNULL(?, name),\n"
-            + "    surname      = IFNULL(?, surname),\n" + "    mail = IFNULL(?, mail)\n" + "WHERE user_id = ?\n";
-    private static final String SQL_DELETE_USER = "UPDATE users\n" + "SET is_active = false\n" + "WHERE user_id = ?";
-    private static final String SQL_RESTORE_USER = "UPDATE users\n" + "SET is_active = true\n" + "WHERE user_id = ?";
+    private static final String SQL_FIND_ALL_ADMIN = "SELECT user_id,\n"
+            + "       login,\n"
+            + "       password,\n"
+            + "       role,\n"
+            + "       name,\n"
+            + "       surname,\n"
+            + "       is_active,\n"
+            + "       image,\n"
+            + "       is_verified,\n"
+            + "       mail\n"
+            + "FROM users\n"
+            + "WHERE role = 'ADMIN'";
+    private static final String SQL_EDIT_ADMIN = "UPDATE users\n"
+            + "SET name  = IFNULL(?, name),\n"
+            + "    surname      = IFNULL(?, surname),\n"
+            + "    mail = IFNULL(?, mail)\n"
+            + "WHERE user_id = ?\n";
+    private static final String SQL_DELETE_USER = "UPDATE users\n"
+            + "SET is_active = false\n"
+            + "WHERE user_id = ?";
+    private static final String SQL_RESTORE_USER = "UPDATE users\n"
+            + "SET is_active = true\n"
+            + "WHERE user_id = ?";
 
     private static AdminDaoImpl instance;
 
@@ -46,7 +70,7 @@ public class AdminDaoImpl implements AdminDao {
     public Admin findAdminById(int adminId) throws DaoException {
         Admin admin = new Admin();
         try (Connection connection = ConnectionPool.getInstance().takeConnection();
-                PreparedStatement statement = connection.prepareStatement(SQL_FIND_ADMIN_BY_ID)) {
+             PreparedStatement statement = connection.prepareStatement(SQL_FIND_ADMIN_BY_ID)) {
             statement.setInt(1, adminId);
             ResultSet resultSet = statement.executeQuery();
 
@@ -66,7 +90,7 @@ public class AdminDaoImpl implements AdminDao {
     public List<Admin> findAllAdmin() throws DaoException {
         List<Admin> resultArray = new ArrayList<>();
         try (Connection connection = ConnectionPool.getInstance().takeConnection();
-                PreparedStatement statement = connection.prepareStatement(SQL_FIND_ALL_ADMIN)) {
+             PreparedStatement statement = connection.prepareStatement(SQL_FIND_ALL_ADMIN)) {
             ResultSet resultSet = statement.executeQuery();
 
             while (resultSet.next()) {
@@ -87,17 +111,24 @@ public class AdminDaoImpl implements AdminDao {
     public boolean editAdmin(Admin admin) throws DaoException {
         boolean isEdited;
         try (Connection connection = ConnectionPool.getInstance().takeConnection();
-                PreparedStatement statement = connection.prepareStatement(SQL_EDIT_ADMIN)) {
-            if (admin.getName() != null) {
+             PreparedStatement statement = connection.prepareStatement(SQL_EDIT_ADMIN)) {
+            if ((admin.getName() != null)) {
                 statement.setString(1, admin.getName());
             } else {
                 statement.setNull(1, Types.VARCHAR);
             }
+
+// TODO: 9/30/2021    statement.setString(1, admin.getName())!= null ?
+//                    statement.setString(1, admin.getName()) :
+//                    statement.setNull(1, Types.VARCHAR);
+//                    "Not a statement"
+
             if (admin.getSurname() != null) {
                 statement.setString(2, admin.getSurname());
             } else {
                 statement.setNull(2, Types.VARCHAR);
             }
+
             if (admin.getMail() != null) {
                 statement.setString(3, admin.getMail());
             } else {
@@ -120,7 +151,7 @@ public class AdminDaoImpl implements AdminDao {
     public boolean deleteUser(int userId) throws DaoException {
         boolean isDeleted;
         try (Connection connection = ConnectionPool.getInstance().takeConnection();
-                PreparedStatement statement = connection.prepareStatement(SQL_DELETE_USER)) {
+             PreparedStatement statement = connection.prepareStatement(SQL_DELETE_USER)) {
             statement.setInt(1, userId);
             isDeleted = statement.executeUpdate() == 1;
             logger.debug(
@@ -136,7 +167,7 @@ public class AdminDaoImpl implements AdminDao {
     public boolean restoreUser(int userId) throws DaoException {
         boolean isRestored;
         try (Connection connection = ConnectionPool.getInstance().takeConnection();
-                PreparedStatement statement = connection.prepareStatement(SQL_RESTORE_USER)) {
+             PreparedStatement statement = connection.prepareStatement(SQL_RESTORE_USER)) {
             statement.setInt(1, userId);
             isRestored = statement.executeUpdate() == 1;
             logger.debug(isRestored ? "User with id " + userId + " has been restored"

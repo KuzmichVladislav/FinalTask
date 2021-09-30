@@ -37,7 +37,7 @@ public class CreateOrderCommand implements Command {
             String duration = requestContent.getParameterByName(DURATION);
             Duration training = Duration.values()[Integer.parseInt(duration)];
             LocalDate endDate = startDate.plus(training.day(), ChronoUnit.DAYS);
-            BigDecimal price = training.getPrice().multiply(new BigDecimal(1d - 1d / discount), MathContext.DECIMAL32);
+            BigDecimal price = training.getPrice().multiply(BigDecimal.valueOf(1d - 1d / discount), MathContext.DECIMAL32);
 
             Order order = new Order.Builder().clientId(clientId).trainerId(trainerId).clientComment(clientComment)
                     .startDate(startDate).endDate(endDate).price(price).build();

@@ -13,7 +13,7 @@ import java.util.List;
 
 public class TrainerServiceImpl implements TrainerService {
 
-    private static TrainerServiceImpl mInstance;
+    private static TrainerServiceImpl instance;
 
     private TrainerDao trainerDao = TrainerDaoImpl.getInstance();
 
@@ -21,10 +21,10 @@ public class TrainerServiceImpl implements TrainerService {
     }
 
     public static TrainerServiceImpl getInstance() {
-        if (mInstance == null) {
-            mInstance = new TrainerServiceImpl();
+        if (instance == null) {
+            instance = new TrainerServiceImpl();
         }
-        return mInstance;
+        return instance;
     }
 
     @Override
@@ -38,13 +38,11 @@ public class TrainerServiceImpl implements TrainerService {
             throw new ServiceException(e);
         }
         MailSender sender = new MailSender();
-        // FIXME: 9/24/2021
         sender.send(trainer.getId(), trainer.getMail(),
-                "Hello, we are glad to welcome you.\n " + "To access our site as a trainer Use your login: \""
-                + trainer.getLogin() + "\", and password: \"" + password
-                + "\"\nClick on this link to verify your account: "
-                + "<a href='http://localhost:8080/gum/controller?command=verification&userId=" + trainer.getId()
-                + "'>verification</a>");
+                MAIL_MESSAGE_PART_1 + trainer.getLogin()
+                        + MAIL_MESSAGE_PART_2 + password
+                        + MAIL_MESSAGE_PART_3 + trainer.getId()
+                        + MAIL_MESSAGE_PART_4);
         return createdTrainer;
     }
 

@@ -30,11 +30,11 @@ public class UploadImageCommand implements Command {
             user = new User();
             user.setId(userId);
             user.setPhoto(photo.readAllBytes());
-            userService.updateUserImage2(user);
+            userService.updateUserImage(user);
 
             String base64Image = Base64.getEncoder().encodeToString(user.getPhoto());
 
-            requestContent.putSessionAttribute(USER_PHOTO, "data:image/jpg;base64," + base64Image);
+            requestContent.putSessionAttribute(USER_PHOTO, IMAGE_SRC_PREFIX + base64Image);
 
             router = new Router((String) requestContent.getSessionAttributeByName(CURRENT_PAGE), FORWARD);
             if (requestContent.getSessionAttributeByName(CURRENT_PAGE) == null) {

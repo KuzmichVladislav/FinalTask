@@ -21,37 +21,103 @@ public class ClientDaoImpl implements ClientDao {
     private static final Logger logger = LogManager.getLogger();
     private static final String SQL_CREATE_USER = "INSERT INTO users(login, password, name, surname, mail)\n"
             + "VALUES (?, ?, ?, ?, ?)";
-    private static final String SQL_CREATE_CLIENT = "INSERT INTO clients(client_id, phone_number)\n" + "VALUES (?, ?)";
-    private static final String SQL_EDIT_CLIENT = "UPDATE clients, users\n" + "SET name  = IFNULL(?, name),\n"
-            + "    surname      = IFNULL(?, surname),\n" + "    phone_number      = IFNULL(?, phone_number),\n"
-            + "    mail = IFNULL(?, mail)\n" + "WHERE user_id = ?\n";
-    private static final String SQL_VERIFICATION = "UPDATE users\n" + "SET is_active   = true,\n"
-            + "    is_verified = true\n" + "WHERE user_id = ?\n" + "  AND is_verified = false";
-    private static final String SQL_REFILL_MONEY = "UPDATE clients\n" + "SET money = money + ?\n"
+    private static final String SQL_CREATE_CLIENT = "INSERT INTO clients(client_id, phone_number)\n"
+            + "VALUES (?, ?)";
+    private static final String SQL_EDIT_CLIENT = "UPDATE clients, users\n"
+            + "SET name = IFNULL(?, name),\n"
+            + "    surname = IFNULL(?, surname),\n"
+            + "    phone_number = IFNULL(?, phone_number),\n"
+            + "    mail = IFNULL(?, mail)\n"
+            + "WHERE user_id = ?\n";
+    private static final String SQL_VERIFICATION = "UPDATE users\n"
+            + "SET is_active   = true,\n"
+            + "    is_verified = true\n"
+            + "WHERE user_id = ?\n"
+            + "  AND is_verified = false";
+    private static final String SQL_REFILL_MONEY = "UPDATE clients\n"
+            + "SET money = money "
+            + "+ ?\n"
             + "WHERE client_id = ?";
-    private static final String SQL_WITHDRAW_MONEY = "UPDATE clients\n" + "SET money = money + ?\n"
+    private static final String SQL_WITHDRAW_MONEY = "UPDATE clients\n"
+            + "SET money = money "
+            + "+ ?\n"
             + "WHERE client_id = ?";
-    private static final String SQL_FIND_CLIENT_BY_ID = "SELECT client_id,\n" + "       register_date,\n"
-            + "       phone_number,\n" + "       discount,\n" + "       discount_type,\n" + "       money,\n"
-            + "       login,\n" + "       password,\n" + "       role,\n" + "       name,\n" + "       surname,\n"
-            + "       is_active,\n" + "       mail,\n" + "       is_verified,\n" + "       image\n" + "FROM users\n"
-            + "LEFT JOIN clients on users.user_id = client_id\n" + "WHERE client_id = ?\n" + "  AND role = 'CLIENT'";
-    private static final String SQL_FIND_ALL_CLIENT = "SELECT client_id,\n" + "       register_date,\n"
-            + "       phone_number,\n" + "       discount,\n" + "       discount_type,\n" + "       money,\n"
-            + "       login,\n" + "       password,\n" + "       role,\n" + "       name,\n" + "       surname,\n"
-            + "       is_active,\n" + "       mail,\n" + "       is_verified\n" + "FROM clients,\n" + "     users\n"
+    private static final String SQL_FIND_CLIENT_BY_ID = "SELECT client_id,\n"
+            + "       register_date,\n"
+            + "       phone_number,\n"
+            + "       discount,\n"
+            + "       discount_type,\n"
+            + "       money,\n"
+            + "       login,\n"
+            + "       password,\n"
+            + "       role,\n"
+            + "       name,\n"
+            + "       surname,\n"
+            + "       is_active,\n"
+            + "       mail,\n"
+            + "       is_verified,\n"
+            + "       image\n"
+            + "FROM users\n"
+            + "LEFT JOIN clients on users.user_id = client_id\n"
+            + "WHERE client_id = ?\n"
+            + "  AND role = 'CLIENT'";
+    private static final String SQL_FIND_ALL_CLIENT = "SELECT client_id,\n"
+            + "       register_date,\n"
+            + "       phone_number,\n"
+            + "       discount,\n"
+            + "       discount_type,\n"
+            + "       money,\n"
+            + "       login,\n"
+            + "       password,\n"
+            + "       role,\n"
+            + "       name,\n"
+            + "       surname,\n"
+            + "       is_active,\n"
+            + "       mail,\n"
+            + "       is_verified\n"
+            + "FROM clients,\n"
+            + "     users\n"
             + "WHERE role = 'CLIENT'";
-    private static final String SQL_FIND_ALL_ACTIVE_CLIENT = "SELECT client_id,\n" + "       register_date,\n"
-            + "       phone_number,\n" + "       discount,\n" + "       discount_type,\n" + "       money,\n"
-            + "       login,\n" + "       password,\n" + "       role,\n" + "       name,\n" + "       surname,\n"
-            + "       is_active,\n" + "       mail,\n" + "       is_verified\n" + "FROM clients,\n" + "     users\n"
-            + "WHERE is_active = true\n" + "AND role = 'CLIENT'";
-    private static final String SQL_FIND_ALL_CLIENT_BY_ANTHROPONYM = "SELECT client_id,\n" + "       register_date,\n"
-            + "       phone_number,\n" + "       discount,\n" + "       discount_type,\n" + "       money,\n"
-            + "       login,\n" + "       password,\n" + "       role,\n" + "       name,\n" + "       surname,\n"
-            + "       is_active,\n" + "       mail,\n" + "       is_verified\n" + "FROM clients,\n" + "     users\n"
-            + "WHERE name = IFNULL(?, name)\n" + "  AND surname = IFNULL(?, surname)\n" + "AND role = 'CLIENT'";
-    private static final String SQL_ASSIGN_DISCOUNT = "UPDATE clients\n" + "SET discount = ?\n" + "WHERE client_id = ?";
+    private static final String SQL_FIND_ALL_ACTIVE_CLIENT = "SELECT client_id,\n" 
+            + "       register_date,\n"
+            + "       phone_number,\n" 
+            + "       discount,\n" 
+            + "       discount_type,\n" 
+            + "       money,\n"
+            + "       login,\n" 
+            + "       password,\n" 
+            + "       role,\n" 
+            + "       name,\n" 
+            + "       surname,\n"
+            + "       is_active,\n" 
+            + "       mail,\n" 
+            + "       is_verified\n" 
+            + "FROM clients,\n" 
+            + "     users\n"
+            + "WHERE is_active = true\n" 
+            + "AND role = 'CLIENT'";
+    private static final String SQL_FIND_ALL_CLIENT_BY_ANTHROPONYM = "SELECT client_id,\n" 
+            + "       register_date,\n"
+            + "       phone_number,\n" 
+            + "       discount,\n" 
+            + "       discount_type,\n" 
+            + "       money,\n"
+            + "       login,\n" 
+            + "       password,\n" 
+            + "       role,\n" 
+            + "       name,\n" 
+            + "       surname,\n"
+            + "       is_active,\n" 
+            + "       mail,\n" 
+            + "       is_verified\n" 
+            + "FROM clients,\n" 
+            + "     users\n"
+            + "WHERE name = IFNULL(?, name)\n" 
+            + "  AND surname = IFNULL(?, surname)\n" 
+            + "AND role = 'CLIENT'";
+    private static final String SQL_ASSIGN_DISCOUNT = "UPDATE clients\n" 
+            + "SET discount = ?\n" 
+            + "WHERE client_id = ?";
 
     private static ClientDaoImpl instance;
 
@@ -232,7 +298,6 @@ public class ClientDaoImpl implements ClientDao {
                 updateClientStatement.setBigDecimal(1, discount);
                 updateClientStatement.setInt(2, clientId);
                 isUpdated = updateClientStatement.executeUpdate() == 1;
-                System.out.println(isUpdated);
 
                 if (!isUpdated) {
                     connection.rollback();
