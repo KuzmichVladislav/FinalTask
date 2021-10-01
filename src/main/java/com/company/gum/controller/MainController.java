@@ -46,7 +46,7 @@ public class MainController extends HttpServlet {
                     dispatcher.forward(req, resp);
                     break;
                 default:
-                    logger.error("incorrect route type " + router.getRouterType());
+                    logger.error(String.format("incorrect route type %s", router.getRouterType()));
             }
         } catch (CommandException e) {
             logger.error(e);

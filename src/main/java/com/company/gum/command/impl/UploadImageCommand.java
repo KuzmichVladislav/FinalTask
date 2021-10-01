@@ -9,6 +9,7 @@ import com.company.gum.exception.CommandException;
 import com.company.gum.exception.ServiceException;
 import com.company.gum.service.UserService;
 import com.company.gum.service.impl.UserServiceImpl;
+
 import java.io.ByteArrayInputStream;
 import java.util.Base64;
 

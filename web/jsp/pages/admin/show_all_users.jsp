@@ -24,90 +24,92 @@
 
 
 <html>
-    <head>
+<head>
 
-        <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.css">
-        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <title>${title}</title>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <title>${title}</title>
 
-    </head>
-    <body>
-        <c:import url="../../fragment/navbar.jsp"/>
+</head>
+<body>
+<c:import url="../../fragment/navbar.jsp"/>
 
-        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 
-        <div class="container register">
-            <div class="row">
-                <div class="col-md-3 register-left">
-                    <img src="https://i.ibb.co/SsQJHTz/pngegg.png" alt="">
-                    <h3>${tagline}</h3>
-                    <p>${motivationMessage}</p>
+<div class="container register">
+    <div class="row">
+        <div class="col-md-3 register-left">
+            <img src="https://i.ibb.co/SsQJHTz/pngegg.png" alt="">
+            <h3>${tagline}</h3>
+            <p>${motivationMessage}</p>
+        </div>
+        <div class="col-md-9 register-right">
+            <h3 class="register-heading">${filterableTable}</h3>
+            <div class="row register-form">
+                <div class="container mt-3">
+                    <p>${filterMessage}</p>
+                    <input class="form-control" id="myInput" type="text" placeholder="${tableSearch}">
+                    <br>
+                    <table class="table table-bordered">
+
+                        <thead>
+                        <tr>
+                            <th>${UserId}</th>
+                            <th>${fullName}</th>
+                            <th>${userMail}</th>
+                            <th>${userRole}</th>
+                            <th>${isActive}</th>
+                            <th>${deleteRestoreUser}</th>
+                        </tr>
+                        </thead>
+                        <tbody id="myTable">
+                        <c:forEach items="${requestScope.users}" var="user">
+                        <jsp:useBean id="user" type="com.company.gum.entity.User"/>
+                        <tr>
+                            <td>${user.id}</td>
+                            <td>
+                                <a href="${pageContext.request.contextPath}/controller?command=SHOW_USER_PROFILE&userId=${user.id}&userRole=${user.role}">${user.name} ${user.surname}</a>
+                            </td>
+
+                            <td>${user.mail}</td>
+                            <td>${user.role}</td>
+                            <td>${user.active}</td>
+                            <td>
+                                <c:choose>
+                                    <c:when test="${user.active}">
+                                        <a href="${pageContext.request.contextPath}/controller?command=DELETE_USER&userId=${user.id}">${delete}</a>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <a href="${pageContext.request.contextPath}/controller?command=RESTORE_USER&userId=${user.id}">${restore}</a>
+                                    </c:otherwise>
+                                </c:choose>
+                            </td>
+                            </c:forEach>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <p>Note that we start the search in tbody, to prevent filtering the table headers.</p>
                 </div>
-                <div class="col-md-9 register-right">
-                    <h3 class="register-heading">${filterableTable}</h3>
-                    <div class="row register-form">
-                        <div class="container mt-3">
-                            <p>${filterMessage}</p>
-                            <input class="form-control" id="myInput" type="text" placeholder="${tableSearch}">
-                            <br>
-                            <table class="table table-bordered">
 
-                                <thead>
-                                    <tr>
-                                        <th>${UserId}</th>
-                                        <th>${fullName}</th>
-                                        <th>${userMail}</th>
-                                        <th>${userRole}</th>
-                                        <th>${isActive}</th>
-                                        <th>${deleteRestoreUser}</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="myTable">
-                                    <c:forEach items="${requestScope.users}" var="user">
-                                        <jsp:useBean id="user" type="com.company.gum.entity.User"/>
-                                        <tr>
-                                            <td>${user.id}</td>
-                                            <td><a href="${pageContext.request.contextPath}/controller?command=SHOW_USER_PROFILE&userId=${user.id}&userRole=${user.role}">${user.name} ${user.surname}</a></td>
-
-                                            <td>${user.mail}</td>
-                                            <td>${user.role}</td>
-                                            <td>${user.active}</td>
-                                            <td>
-                                                <c:choose>
-                                                    <c:when test="${user.active}">
-                                                        <a href="${pageContext.request.contextPath}/controller?command=DELETE_USER&userId=${user.id}">${delete}</a>
-                                                    </c:when>
-                                                    <c:otherwise>
-                                                        <a href="${pageContext.request.contextPath}/controller?command=RESTORE_USER&userId=${user.id}">${restore}</a>
-                                                    </c:otherwise>
-                                                </c:choose>
-                                            </td>
-                                        </c:forEach>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <p>Note that we start the search in tbody, to prevent filtering the table headers.</p>
-                        </div>
-
-                        <script>
-                            $(document).ready(function () {
-                                $("#myInput").on("keyup", function () {
-                                    var value = $(this).val().toLowerCase();
-                                    $("#myTable tr").filter(function () {
-                                        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-                                    });
-                                });
+                <script>
+                    $(document).ready(function () {
+                        $("#myInput").on("keyup", function () {
+                            var value = $(this).val().toLowerCase();
+                            $("#myTable tr").filter(function () {
+                                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
                             });
-                        </script>
+                        });
+                    });
+                </script>
 
-                    </div>
-                </div>
             </div>
         </div>
-        <c:import url="../../fragment/footer.jsp"/>
-    </body>
+    </div>
+</div>
+<c:import url="../../fragment/footer.jsp"/>
+</body>
 </html>

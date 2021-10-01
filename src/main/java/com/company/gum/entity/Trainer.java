@@ -3,6 +3,7 @@ package com.company.gum.entity;
 import java.time.LocalDateTime;
 
 // TODO: Auto-generated Javadoc
+
 /**
  * The Class Trainer.
  */

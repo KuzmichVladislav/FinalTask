@@ -14,20 +14,17 @@ import com.company.gum.util.JBCryptPasswordEncoder;
 import com.company.gum.util.Validator;
 
 import static com.company.gum.command.AttributeName.*;
-import static com.company.gum.command.ErrorMessageKey.*;
 import static com.company.gum.command.Router.RouterType.FORWARD;
 import static com.company.gum.command.Router.RouterType.REDIRECT;
 
 public class ChangePasswordCommand implements Command {
 
-    private UserService userService = UserServiceImpl.getInstance();
+    private final UserService userService = UserServiceImpl.getInstance();
 
     @Override
     public Router execute(SessionRequestContent requestContent) throws CommandException {
         Router router;
-
         boolean isValid = true;
-
         try {
             int userId = (Integer) requestContent.getSessionAttributeByName(AttributeName.USER_ID);
             String currentPassword = requestContent.getParameterByName(CURRENT_PASSWORD).strip();
@@ -36,15 +33,15 @@ public class ChangePasswordCommand implements Command {
 
             if (!Validator.checkPassword(currentPassword)) {
                 isValid = false;
-                requestContent.putAttribute(ERR_MESSAGE, INVALID_CURRENT_PASSWORD);
+                requestContent.putAttribute(ERROR_MESSAGE, "current.password.invalid");
             }
             if (!Validator.checkPassword(newPassword) && isValid) {
                 isValid = false;
-                requestContent.putAttribute(ERR_MESSAGE, INVALID_NEW_PASSWORD);
+                requestContent.putAttribute(ERROR_MESSAGE, "new.password.invalid");
             }
             if (!repeatedPassword.equals(newPassword) && isValid) {
                 isValid = false;
-                requestContent.putAttribute(ERR_MESSAGE, PASSWORDS_NOT_EQUAL);
+                requestContent.putAttribute(ERROR_MESSAGE, "passwords.not.equal");
             }
             if (isValid) {
                 User user = userService.findUserById(userId);
@@ -54,7 +51,7 @@ public class ChangePasswordCommand implements Command {
                     userService.updateUserPassword(user);
                     router = new Router(PagePath.PASSWORDS_CHANGED, REDIRECT);
                 } else {
-                    requestContent.putAttribute(ERR_MESSAGE, INVALID_PASSWORD);
+                    requestContent.putAttribute(ERROR_MESSAGE, "invalid.password");
                     router = new Router(PagePath.CHANGE_PASSWORD, FORWARD);
                 }
             } else {

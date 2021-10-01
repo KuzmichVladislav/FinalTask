@@ -3,6 +3,7 @@ package com.company.gum.entity;
 import java.math.BigDecimal;
 
 // TODO: Auto-generated Javadoc
+
 /**
  * The Enum Duration.
  */
@@ -39,7 +40,7 @@ public enum Duration {
      * Instantiates a new duration.
      *
      * @param price the price
-     * @param day the day
+     * @param day   the day
      */
     Duration(BigDecimal price, int day) {
         this.price = price;

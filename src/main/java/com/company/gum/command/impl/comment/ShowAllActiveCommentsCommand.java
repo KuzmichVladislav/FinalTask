@@ -19,13 +19,13 @@ import static com.company.gum.command.Router.RouterType.FORWARD;
 
 public class ShowAllActiveCommentsCommand implements Command {
 
-    private CommentService commentService = CommentServiceImpl.getInstance();
+    private final CommentService commentService = CommentServiceImpl.getInstance();
 
     @Override
     public Router execute(SessionRequestContent requestContent) throws CommandException {
         Router router;
         List<Comment> comments;
-        try { // TODO: 9/20/2021 pagination
+        try {
             int pageNumber = Integer.parseInt(requestContent.getParameterByName(AttributeName.PAGE));
             comments = commentService.findAllActiveComment();
             int commentsCount = comments.size();

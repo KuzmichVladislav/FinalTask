@@ -1,31 +1,16 @@
 package com.company.gum.command;
 
 // TODO: Auto-generated Javadoc
+
 /**
  * The Class Router.
  */
 public final class Router {
 
     /**
-     * The Enum RouterType.
-     */
-    public enum RouterType {
-
-        /**
-         * The forward.
-         */
-        FORWARD,
-        /**
-         * The redirect.
-         */
-        REDIRECT
-    }
-
-    /**
      * The page path.
      */
     private final String pagePath;
-
     /**
      * The router type.
      */
@@ -34,7 +19,7 @@ public final class Router {
     /**
      * Instantiates a new router.
      *
-     * @param pagePath the page path
+     * @param pagePath   the page path
      * @param routerType the router type
      */
     public Router(String pagePath, RouterType routerType) {
@@ -58,6 +43,21 @@ public final class Router {
      */
     public RouterType getRouterType() {
         return routerType;
+    }
+
+    /**
+     * The Enum RouterType.
+     */
+    public enum RouterType {
+
+        /**
+         * The forward.
+         */
+        FORWARD,
+        /**
+         * The redirect.
+         */
+        REDIRECT
     }
 
 }

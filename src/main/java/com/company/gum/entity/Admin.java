@@ -1,6 +1,7 @@
 package com.company.gum.entity;
 
 // TODO: Auto-generated Javadoc
+
 /**
  * The Class Admin.
  */

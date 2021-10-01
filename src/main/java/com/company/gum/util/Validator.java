@@ -1,6 +1,7 @@
 package com.company.gum.util;
 
 // TODO: Auto-generated Javadoc
+
 /**
  * The Class Validator.
  */

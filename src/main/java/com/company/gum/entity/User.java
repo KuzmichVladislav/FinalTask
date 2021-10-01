@@ -3,6 +3,7 @@ package com.company.gum.entity;
 import java.util.Arrays;
 
 // TODO: Auto-generated Javadoc
+
 /**
  * The Class User.
  */
@@ -75,6 +76,12 @@ public class User extends AbstractEntity {
         setVerification(builder.verification);
         setPhoto(builder.photo);
         setBase64Image(builder.base64Image);
+    }
+
+    /**
+     * Instantiates a new user.
+     */
+    public User() {
     }
 
     /**
@@ -349,12 +356,6 @@ public class User extends AbstractEntity {
      */
     public void setBase64Image(String base64Image) {
         this.base64Image = base64Image;
-    }
-
-    /**
-     * Instantiates a new user.
-     */
-    public User() {
     }
 
     /**

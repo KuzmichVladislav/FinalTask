@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 // TODO: Auto-generated Javadoc
+
 /**
  * The Class RoleCheckFilter.
  */
@@ -20,10 +21,10 @@ public class RoleCheckFilter implements Filter {
     /**
      * Do filter.
      *
-     * @param request the request
+     * @param request  the request
      * @param response the response
-     * @param chain the chain
-     * @throws IOException Signals that an I/O exception has occurred.
+     * @param chain    the chain
+     * @throws IOException      Signals that an I/O exception has occurred.
      * @throws ServletException the servlet exception
      */
     @Override

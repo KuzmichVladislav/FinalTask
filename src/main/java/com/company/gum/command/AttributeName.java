@@ -22,7 +22,7 @@ public class AttributeName {
     public static final String ERROR = "error";
     public static final String LOCALE = "locale";
     public static final String CURRENT_PAGE = "currentPage";
-    public static final String ERR_MESSAGE = "errMessage";
+    public static final String ERROR_MESSAGE = "errorMessage";
     public static final String TRAINERS = "trainers";
     public static final String NEW_PASSWORD = "newPassword";
     public static final String CURRENT_PASSWORD = "currentPassword";

@@ -21,75 +21,75 @@
 
 
 <html>
-    <head>
-        <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/profile.css">
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.css">
-        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    </head>
+<head>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/profile.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
 
-    <body>
-        <c:import url="../fragment/navbar.jsp"/>
+<body>
+<c:import url="../fragment/navbar.jsp"/>
 
-        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 
-        <div class="container register">
-            <div class="row">
-                <div class="col-md-3 register-left">
-                    <img src="https://i.ibb.co/SsQJHTz/pngegg.png" alt="">
-                    <h3>${tagline}</h3>
-                    <p>${motivationMessage}</p>
-                </div>
-                <div class="col-md-9 register-right">
-                    <h3 class="register-heading">${changePassword}</h3>
-                    <div class="row register-form">
-                        <div class="col-md-6">
-                            <p>${changePasswordMessage}</p>
-                            <form name="changePasswordForm"
-                                  action="${pageContext.request.contextPath}/controller"
-                                  method="POST">
-                                <input type="hidden" name="command" value="CHANGE_PASSWORD">
+<div class="container register">
+    <div class="row">
+        <div class="col-md-3 register-left">
+            <img src="https://i.ibb.co/SsQJHTz/pngegg.png" alt="">
+            <h3>${tagline}</h3>
+            <p>${motivationMessage}</p>
+        </div>
+        <div class="col-md-9 register-right">
+            <h3 class="register-heading">${changePassword}</h3>
+            <div class="row register-form">
+                <div class="col-md-6">
+                    <p>${changePasswordMessage}</p>
+                    <form name="changePasswordForm"
+                          action="${pageContext.request.contextPath}/controller"
+                          method="POST">
+                        <input type="hidden" name="command" value="CHANGE_PASSWORD">
 
-                                <div class="form-group">
-                                    <label for="input-current-password">${currentPassword}</label>
-                                    <input type="password" name="currentPassword" class="form-control"
-                                           id="input-current-password"
-                                           placeholder="${currentPassword}" value="">
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="input-new-password">${newPassword}</label>
-                                    <input type="password" name="newPassword" class="form-control"
-                                           id="input-new-password"
-                                           placeholder="${newPassword}" value="">
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="input-repeat-password">${repeatPassword}</label>
-                                    <input type="password" name="repeatPassword" class="form-control"
-                                           id="input-repeat-password"
-                                           placeholder="${repeatPassword}" value="">
-                                </div>
-                                <c:if test="${requestScope.errMessage != null}">
-                                    <div class="alert alert-danger">
-                                        <span><fmt:message key="${requestScope.errMessage}"
-                                                     bundle="${err_rb}"/></span>
-                                    </div>
-                                </c:if>
-                                <div>
-                                    <button type="submit" class="btn btn-primary">${saveChanges}</button>
-                                </div>
-                            </form>
+                        <div class="form-group">
+                            <label for="input-current-password">${currentPassword}</label>
+                            <input type="password" name="currentPassword" class="form-control"
+                                   id="input-current-password"
+                                   placeholder="${currentPassword}" value="">
                         </div>
-                    </div>
+
+                        <div class="form-group">
+                            <label for="input-new-password">${newPassword}</label>
+                            <input type="password" name="newPassword" class="form-control"
+                                   id="input-new-password"
+                                   placeholder="${newPassword}" value="">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="input-repeat-password">${repeatPassword}</label>
+                            <input type="password" name="repeatPassword" class="form-control"
+                                   id="input-repeat-password"
+                                   placeholder="${repeatPassword}" value="">
+                        </div>
+                        <c:if test="${requestScope.errMessage != null}">
+                            <div class="alert alert-danger">
+                                        <span><fmt:message key="${requestScope.errMessage}"
+                                                           bundle="${err_rb}"/></span>
+                            </div>
+                        </c:if>
+                        <div>
+                            <button type="submit" class="btn btn-primary">${saveChanges}</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
+    </div>
+</div>
 
 
-        <c:import url="../fragment/footer.jsp"/>
-    </body>
+<c:import url="../fragment/footer.jsp"/>
+</body>
 </html>

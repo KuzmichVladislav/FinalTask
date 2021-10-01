@@ -179,7 +179,7 @@ public class AdminDaoImpl implements AdminDao {
         return isRestored;
     }
 
-    private Admin getAdminFromResultSet(ResultSet resultSet) throws SQLException {
+    Admin getAdminFromResultSet(ResultSet resultSet) throws SQLException {
         return new Admin.Builder().id(resultSet.getInt(USER_ID)).login(resultSet.getString(USER_LOGIN))
                 .password(resultSet.getString(USER_PASSWORD))
                 .role(User.UserRole.valueOf(resultSet.getString(USER_ROLE).toUpperCase()))

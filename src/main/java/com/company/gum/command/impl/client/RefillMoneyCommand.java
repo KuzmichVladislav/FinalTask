@@ -15,13 +15,12 @@ import java.math.BigDecimal;
 import java.math.MathContext;
 
 import static com.company.gum.command.AttributeName.*;
-import static com.company.gum.command.ErrorMessageKey.INVALID_MONEY;
 import static com.company.gum.command.Router.RouterType.FORWARD;
 import static com.company.gum.command.Router.RouterType.REDIRECT;
 
 public class RefillMoneyCommand implements Command {
 
-    ClientService clientService = ClientServiceImpl.getInstance();
+    private final ClientService clientService = ClientServiceImpl.getInstance();
 
     @Override
     public Router execute(SessionRequestContent requestContent) throws CommandException {
@@ -31,7 +30,7 @@ public class RefillMoneyCommand implements Command {
             boolean isValid = true;
             String stringMoney = requestContent.getParameterByName(MONEY);
             if (!Validator.checkMoney(stringMoney)) {
-                requestContent.putAttribute(ERR_MESSAGE, INVALID_MONEY);
+                requestContent.putAttribute(ERROR_MESSAGE, "amount.is.not.valid");
                 isValid = false;
             }
             if (isValid) {
@@ -41,7 +40,7 @@ public class RefillMoneyCommand implements Command {
                     requestContent.putAttribute(MONEY, money.doubleValue());
                     Client client = clientService.findClientById(clientId);
                     requestContent.putSessionAttribute(USER_MONEY, client.getMoney());
-                    router = new Router(PagePath.MONEY_REFILLED, REDIRECT);
+                    router = new Router((String) requestContent.getSessionAttributeByName(CURRENT_PAGE), REDIRECT);
                 } else {
                     router = new Router(PagePath.REFILL_MONEY, FORWARD);
                 }

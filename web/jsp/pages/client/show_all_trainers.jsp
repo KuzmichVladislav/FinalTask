@@ -24,69 +24,71 @@
 
 
 <html>
-    <head>
+<head>
 
-        <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.css">
-        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <title>${title}</title>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <title>${title}</title>
 
-    </head>
-    <body>
-        <c:import url="../../fragment/navbar.jsp"/>
+</head>
+<body>
+<c:import url="../../fragment/navbar.jsp"/>
 
-        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 
-        <div class="container register">
-            <div class="row">
-                <div class="col-md-3 register-left">
-                    <img src="https://i.ibb.co/SsQJHTz/pngegg.png" alt="">
-                    <h3>${tagline}</h3>
-                    <p>${motivationMessage}</p>
+<div class="container register">
+    <div class="row">
+        <div class="col-md-3 register-left">
+            <img src="https://i.ibb.co/SsQJHTz/pngegg.png" alt="">
+            <h3>${tagline}</h3>
+            <p>${motivationMessage}</p>
+        </div>
+        <div class="col-md-9 register-right">
+            <h3 class="register-heading">${filterableTable}</h3>
+            <div class="row register-form">
+                <div class="container mt-3">
+                    <p>${filterMessage}</p>
+                    <label for="myInput"></label>
+                    <input class="form-control" id="myInput" type="text" placeholder="${tableSearch}">
+                    <br>
+                    <table class="table table-bordered">
+                        <thead>
+                        <tr>
+                            <th>${fullName}</th>
+                            <th>${userMail}</th>
+                        </tr>
+                        </thead>
+                        <tbody id="myTable">
+                        <c:forEach items="${requestScope.trainers}" var="trainer">
+                        <jsp:useBean id="trainer" type="com.company.gum.entity.Trainer"/>
+                        <tr>
+                            <td>
+                                <a href="${pageContext.request.contextPath}/controller?command=SHOW_USER_PROFILE&userId=${trainer.id}&userRole=${trainer.role}">${trainer.name} ${trainer.surname}</a>
+                            </td>
+                            <td>${trainer.mail}</td>
+                            </c:forEach>
+                        </tr>
+                        </tbody>
+                    </table>
                 </div>
-                <div class="col-md-9 register-right">
-                    <h3 class="register-heading">${filterableTable}</h3>
-                    <div class="row register-form">
-                        <div class="container mt-3">
-                            <p>${filterMessage}</p>
-                            <label for="myInput"></label>
-                            <input class="form-control" id="myInput" type="text" placeholder="${tableSearch}">
-                            <br>
-                            <table class="table table-bordered">
-                                <thead>
-                                    <tr>
-                                        <th>${fullName}</th>
-                                        <th>${userMail}</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="myTable">
-                                    <c:forEach items="${requestScope.trainers}" var="trainer">
-                                        <jsp:useBean id="trainer" type="com.company.gum.entity.Trainer"/>
-                                        <tr>
-                                            <td><a href="${pageContext.request.contextPath}/controller?command=SHOW_USER_PROFILE&userId=${trainer.id}&userRole=${trainer.role}">${trainer.name} ${trainer.surname}</a></td>
-                                            <td>${trainer.mail}</td>
-                                        </c:forEach>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <script>
-                            $(document).ready(function () {
-                                $("#myInput").on("keyup", function () {
-                                    var value = $(this).val().toLowerCase();
-                                    $("#myTable tr").filter(function () {
-                                        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-                                    });
-                                });
+                <script>
+                    $(document).ready(function () {
+                        $("#myInput").on("keyup", function () {
+                            var value = $(this).val().toLowerCase();
+                            $("#myTable tr").filter(function () {
+                                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
                             });
-                        </script>
-                    </div>
-                </div>
+                        });
+                    });
+                </script>
             </div>
         </div>
-        <c:import url="../../fragment/footer.jsp"/>
-    </body>
+    </div>
+</div>
+<c:import url="../../fragment/footer.jsp"/>
+</body>
 </html>

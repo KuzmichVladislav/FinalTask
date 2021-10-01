@@ -13,6 +13,7 @@ import javax.mail.internet.MimeMessage;
 import java.util.Properties;
 
 // TODO: Auto-generated Javadoc
+
 /**
  * The Class MailSender.
  */
@@ -46,8 +47,8 @@ public class MailSender {
     /**
      * Send.
      *
-     * @param userId the user id
-     * @param userMail the user mail
+     * @param userId      the user id
+     * @param userMail    the user mail
      * @param messageText the message text
      */
     public void send(int userId, String userMail, String messageText) {
@@ -64,8 +65,8 @@ public class MailSender {
     /**
      * Inits the message.
      *
-     * @param userId the user id
-     * @param userMail the user mail
+     * @param userId      the user id
+     * @param userMail    the user mail
      * @param messageText the message text
      * @throws MessagingException the messaging exception
      */

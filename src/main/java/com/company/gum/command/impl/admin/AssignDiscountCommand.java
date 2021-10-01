@@ -13,13 +13,12 @@ import java.math.BigDecimal;
 import java.math.MathContext;
 
 import static com.company.gum.command.AttributeName.*;
-import static com.company.gum.command.ErrorMessageKey.INVALID_DISCOUNT;
 import static com.company.gum.command.Router.RouterType.FORWARD;
 import static com.company.gum.command.Router.RouterType.REDIRECT;
 
 public class AssignDiscountCommand implements Command {
 
-    ClientService clientService = ClientServiceImpl.getInstance();
+    private final ClientService clientService = ClientServiceImpl.getInstance();
 
     @Override
     public Router execute(SessionRequestContent requestContent) throws CommandException {
@@ -29,7 +28,7 @@ public class AssignDiscountCommand implements Command {
             int clientId = Integer.parseInt(requestContent.getParameterByName(CLIENT_ID));
             String stringDiscount = requestContent.getParameterByName(DISCOUNT);
             if (!Validator.checkDiscount(stringDiscount)) {
-                requestContent.putAttribute(ERR_MESSAGE, INVALID_DISCOUNT);
+                requestContent.putAttribute(ERROR_MESSAGE, "discount.invalid");
                 isValid = false;
             }
             if (isValid) {
@@ -38,11 +37,11 @@ public class AssignDiscountCommand implements Command {
                 if (isUpdated) {
                     router = new Router((String) requestContent.getSessionAttributeByName(CURRENT_PAGE), REDIRECT);
                 } else {
-                    requestContent.putAttribute(ERR_MESSAGE, INVALID_DISCOUNT);
+                    requestContent.putAttribute(ERROR_MESSAGE, "discount.invalid");
                     router = new Router((String) requestContent.getSessionAttributeByName(CURRENT_PAGE), FORWARD);
                 }
             } else {
-                requestContent.putAttribute(ERR_MESSAGE, INVALID_DISCOUNT);
+                requestContent.putAttribute(ERROR_MESSAGE, "discount.invalid");
                 router = new Router((String) requestContent.getSessionAttributeByName(CURRENT_PAGE), FORWARD);
             }
         } catch (ServiceException e) {

@@ -11,8 +11,8 @@ import java.util.List;
 
 public class CommentServiceImpl implements CommentService {
 
-    public CommentDao commentDao = CommentDaoImpl.getInstance();
     private static CommentServiceImpl instance;
+    public CommentDao commentDao = CommentDaoImpl.getInstance();
 
     private CommentServiceImpl() {
     }

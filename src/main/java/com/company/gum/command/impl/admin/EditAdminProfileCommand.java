@@ -13,7 +13,6 @@ import com.company.gum.service.impl.AdminServiceImpl;
 import com.company.gum.util.Validator;
 
 import static com.company.gum.command.AttributeName.*;
-import static com.company.gum.command.ErrorMessageKey.*;
 import static com.company.gum.command.Router.RouterType.FORWARD;
 import static com.company.gum.command.Router.RouterType.REDIRECT;
 
@@ -40,15 +39,15 @@ public class EditAdminProfileCommand implements Command {
 
             if (!Validator.checkNameSurname(userName)) {
                 isValid = false;
-                requestContent.putAttribute(ERR_MESSAGE, INVALID_NAME);
+                requestContent.putAttribute(ERROR_MESSAGE, "invalid.name");
             }
             if (!Validator.checkNameSurname(userSurname) && isValid) {
                 isValid = false;
-                requestContent.putAttribute(ERR_MESSAGE, INVALID_SURNAME_NAME);
+                requestContent.putAttribute(ERROR_MESSAGE, "invalid.surname");
             }
             if (!Validator.checkMail(userMail) && isValid) {
                 isValid = false;
-                requestContent.putAttribute(ERR_MESSAGE, INVALID_EMAIL);
+                requestContent.putAttribute(ERROR_MESSAGE, "invalid.email");
             }
 
             if (isValid) {

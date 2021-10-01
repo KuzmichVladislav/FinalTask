@@ -1,6 +1,9 @@
 package com.company.gum.command.impl.client;
 
-import com.company.gum.command.*;
+import com.company.gum.command.AttributeName;
+import com.company.gum.command.Command;
+import com.company.gum.command.PagePath;
+import com.company.gum.command.Router;
 import com.company.gum.controller.SessionRequestContent;
 import com.company.gum.entity.Client;
 import com.company.gum.exception.CommandException;
@@ -10,13 +13,12 @@ import com.company.gum.service.impl.ClientServiceImpl;
 import com.company.gum.util.Validator;
 
 import static com.company.gum.command.AttributeName.*;
-import static com.company.gum.command.ErrorMessageKey.*;
 import static com.company.gum.command.Router.RouterType.FORWARD;
 import static com.company.gum.command.Router.RouterType.REDIRECT;
 
 public class EditClientProfileCommand implements Command {
 
-    private ClientService clientService = ClientServiceImpl.getInstance();
+    private final ClientService clientService = ClientServiceImpl.getInstance();
 
     @Override
     public Router execute(SessionRequestContent requestContent) throws CommandException {
@@ -40,19 +42,19 @@ public class EditClientProfileCommand implements Command {
 
             if (!Validator.checkNameSurname(userName)) {
                 isValid = false;
-                requestContent.putAttribute(ERR_MESSAGE, INVALID_NAME);
+                requestContent.putAttribute(ERROR_MESSAGE, "invalid.name");
             }
             if (!Validator.checkNameSurname(userSurname) && isValid) {
                 isValid = false;
-                requestContent.putAttribute(ERR_MESSAGE, INVALID_SURNAME_NAME);
+                requestContent.putAttribute(ERROR_MESSAGE, "invalid.surname");
             }
             if (!Validator.checkPhone(userPhone) && isValid) {
                 isValid = false;
-                requestContent.putAttribute(ERR_MESSAGE, INVALID_PHONE);
+                requestContent.putAttribute(ERROR_MESSAGE, "invalid.phone");
             }
             if (!Validator.checkMail(userMail) && isValid) {
                 isValid = false;
-                requestContent.putAttribute(ERR_MESSAGE, INVALID_EMAIL);
+                requestContent.putAttribute(ERROR_MESSAGE, "invalid.email");
             }
 
             if (isValid) {

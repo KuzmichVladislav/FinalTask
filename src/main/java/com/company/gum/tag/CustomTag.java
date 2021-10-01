@@ -69,7 +69,7 @@ public class CustomTag extends TagSupport {
                         || order.getOrderStatus() == Order.OrderStatus.REJECTED) {
                     out.write("<form name=\"delete_form\" action=\"controller\" method=\"POST\">");
                     out.write("<input type=\"hidden\" name=\"command\" value=\"DELETE_ORDER_BY_CLIENT\">");
-                    out.write("<input type=\"hidden\" name=\"orderId\" value="+order.getId()+">");
+                    out.write("<input type=\"hidden\" name=\"orderId\" value=" + order.getId() + ">");
                     out.write("<button type=\"submit\" class=\"btn btn-sm btn-outline-primary w-100\">" + delete + "</button>");
                     out.write("</form>");
                 }

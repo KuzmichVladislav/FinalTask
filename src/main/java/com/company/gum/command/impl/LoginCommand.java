@@ -27,9 +27,9 @@ public class LoginCommand implements Command {
 
     private static final Logger logger = LogManager.getLogger();
 
-    private UserService userService = UserServiceImpl.getInstance();
-    private TrainerService trainerService = TrainerServiceImpl.getInstance();
-    private ClientService clientService = ClientServiceImpl.getInstance();
+    private final UserService userService = UserServiceImpl.getInstance();
+    private final TrainerService trainerService = TrainerServiceImpl.getInstance();
+    private final ClientService clientService = ClientServiceImpl.getInstance();
 
     @Override
     public Router execute(SessionRequestContent requestContent) throws CommandException {
@@ -42,32 +42,18 @@ public class LoginCommand implements Command {
                 user = userService.findUserByLoginAndPassword(login, password);
                 if (user != null) {
                     if (user.isVerification()) {
-                        requestContent.putSessionAttribute(USER_ID, user.getId());
-                        requestContent.putSessionAttribute(USER_LOGIN, user.getLogin());
-                        requestContent.putSessionAttribute(USER_ROLE, user.getRole().name());
-                        requestContent.putSessionAttribute(USER_NAME, user.getName());
-                        requestContent.putSessionAttribute(USER_SURNAME, user.getSurname());
-                        requestContent.putSessionAttribute(USER_MAIL, user.getMail());
-                        requestContent.putSessionAttribute(USER_PHOTO, user.getBase64Image());
+                        createUser(requestContent, user);
                         switch (user.getRole()) {
                             case ADMIN:
                                 router = new Router(PagePath.WELCOME, REDIRECT);
                                 break;
                             case TRAINER:
-                                Trainer trainer = trainerService.findTrainerById(user.getId());
-                                requestContent.putSessionAttribute(USER_REGISTER_DATE, trainer.getRegisterDate());
-                                requestContent.putSessionAttribute(USER_PHONE, trainer.getPhone());
-                                requestContent.putSessionAttribute(DESCRIPTION, trainer.getDescription());
-                                requestContent.putSessionAttribute(EXPERIENCE, trainer.getExperience());
+                                createTrainer(requestContent, user);
                                 router = new Router(PagePath.WELCOME, REDIRECT);
                                 break;
                             case CLIENT:
                                 Client client = clientService.findClientById(user.getId());
-                                requestContent.putSessionAttribute(USER_REGISTER_DATE, client.getRegisterDate());
-                                requestContent.putSessionAttribute(USER_DISCOUNT, client.getDiscount());
-                                requestContent.putSessionAttribute(USER_DISCOUNT_LEVEL, client.getDiscountLevel());
-                                requestContent.putSessionAttribute(USER_PHONE, client.getPhone());
-                                requestContent.putSessionAttribute(USER_MONEY, client.getMoney());
+                                createClient(requestContent, client);
                                 router = new Router(PagePath.WELCOME, REDIRECT);
                                 break;
                             default:
@@ -76,20 +62,45 @@ public class LoginCommand implements Command {
                         }
                         requestContent.putSessionAttribute(USER_AUTHORIZATION, true);
                     } else {
-                        requestContent.putAttribute(ERR_MESSAGE, "verification.error");// TODO: 9/23/2021
+                        requestContent.putAttribute(ERROR_MESSAGE, "verification.error");
                         router = new Router((String) requestContent.getSessionAttributeByName(CURRENT_PAGE), FORWARD);
                     }
                 } else {
-                    requestContent.putAttribute(ERR_MESSAGE, "wrong.login.or.password");
+                    requestContent.putAttribute(ERROR_MESSAGE, "wrong.login.or.password");
                     router = new Router((String) requestContent.getSessionAttributeByName(CURRENT_PAGE), FORWARD);
                 }
             } else {
-                requestContent.putAttribute(ERR_MESSAGE, "login.or.password.is.not.valid");
+                requestContent.putAttribute(ERROR_MESSAGE, "login.or.password.is.not.valid");
                 router = new Router((String) requestContent.getSessionAttributeByName(CURRENT_PAGE), FORWARD);
             }
         } catch (ServiceException e) {
             throw new CommandException(e);
         }
         return router;
+    }
+
+    private void createClient(SessionRequestContent requestContent, Client client) {
+        requestContent.putSessionAttribute(USER_REGISTER_DATE, client.getRegisterDate());
+        requestContent.putSessionAttribute(USER_PHONE, client.getPhone());
+        requestContent.putSessionAttribute(USER_MONEY, client.getMoney());
+        requestContent.putSessionAttribute(USER_DISCOUNT, client.getDiscount());
+    }
+
+    private void createTrainer(SessionRequestContent requestContent, User user) throws ServiceException {
+        Trainer trainer = trainerService.findTrainerById(user.getId());
+        requestContent.putSessionAttribute(USER_REGISTER_DATE, trainer.getRegisterDate());
+        requestContent.putSessionAttribute(USER_PHONE, trainer.getPhone());
+        requestContent.putSessionAttribute(DESCRIPTION, trainer.getDescription());
+        requestContent.putSessionAttribute(EXPERIENCE, trainer.getExperience());
+    }
+
+    private void createUser(SessionRequestContent requestContent, User user) {
+        requestContent.putSessionAttribute(USER_ID, user.getId());
+        requestContent.putSessionAttribute(USER_LOGIN, user.getLogin());
+        requestContent.putSessionAttribute(USER_ROLE, user.getRole().name());
+        requestContent.putSessionAttribute(USER_NAME, user.getName());
+        requestContent.putSessionAttribute(USER_SURNAME, user.getSurname());
+        requestContent.putSessionAttribute(USER_MAIL, user.getMail());
+        requestContent.putSessionAttribute(USER_PHOTO, user.getBase64Image());
     }
 }

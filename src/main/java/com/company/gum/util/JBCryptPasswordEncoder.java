@@ -4,6 +4,7 @@ import org.mindrot.jbcrypt.BCrypt;
 import org.pac4j.core.util.CommonHelper;
 
 // TODO: Auto-generated Javadoc
+
 /**
  * The Class JBCryptPasswordEncoder.
  */
@@ -28,11 +29,11 @@ public class JBCryptPasswordEncoder {
     /**
      * Matches.
      *
-     * @param plainPassword the plain password
+     * @param plainPassword   the plain password
      * @param encodedPassword the encoded password
      * @return true, if successful
      */
-    // TODO: 9/29/2021 добавить в �?равнение паролей
+    // TODO: 9/29/2021 добавить в �?равнение паролей
     public boolean matches(final String plainPassword, final String encodedPassword) {
         CommonHelper.assertNotBlank("salt", SALT);
         return BCrypt.checkpw(plainPassword, encodedPassword);

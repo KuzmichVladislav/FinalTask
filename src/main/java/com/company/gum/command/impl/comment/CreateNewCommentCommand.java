@@ -12,11 +12,11 @@ import com.company.gum.service.impl.CommentServiceImpl;
 
 import static com.company.gum.command.AttributeName.COMMENT;
 import static com.company.gum.command.AttributeName.CURRENT_PAGE;
-import static com.company.gum.command.Router.RouterType.FORWARD;
+import static com.company.gum.command.Router.RouterType.REDIRECT;
 
 public class CreateNewCommentCommand implements Command {
 
-    private CommentService commentService = CommentServiceImpl.getInstance();
+    private final CommentService commentService = CommentServiceImpl.getInstance();
 
     @Override
     public Router execute(SessionRequestContent requestContent) throws CommandException {
@@ -32,7 +32,7 @@ public class CreateNewCommentCommand implements Command {
             comment.setCommentText(commentText);
 
             commentService.createComment(comment);
-            router = new Router((String) requestContent.getSessionAttributeByName(CURRENT_PAGE), FORWARD);
+            router = new Router((String) requestContent.getSessionAttributeByName(CURRENT_PAGE), REDIRECT);
         } catch (ServiceException e) {
             throw new CommandException(e);
         }

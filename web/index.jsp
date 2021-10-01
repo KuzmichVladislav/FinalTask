@@ -4,10 +4,10 @@
 
 
 <html>
-    <head>
-        <title>Index</title>
-    </head>
-    <body>
-        <c:redirect url="jsp/pages/main.jsp"/>
-    </body>
+<head>
+    <title>Index</title>
+</head>
+<body>
+<c:redirect url="jsp/pages/main.jsp"/>
+</body>
 </html>

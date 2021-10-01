@@ -8,12 +8,12 @@ public class Main {
     public static void main(String[] args) throws Exception {
 
         /*
-		 * Trainer trainer = new Trainer();
-		 * 
-		 * trainer.setLogin("secondLogin"); trainer.setPassword("aloha");
-		 * trainer.setName("Pert"); trainer.setSurname("Petrov");
-		 * trainer.setMail("56@jas.by"); trainer.setPhone("9379993");
-		 * TrainerDaoImpl.getInstance().createTrainer(trainer);
+         * Trainer trainer = new Trainer();
+         *
+         * trainer.setLogin("secondLogin"); trainer.setPassword("aloha");
+         * trainer.setName("Pert"); trainer.setSurname("Petrov");
+         * trainer.setMail("56@jas.by"); trainer.setPhone("9379993");
+         * TrainerDaoImpl.getInstance().createTrainer(trainer);
          */
         // ClientDaoImpl.getInstance().withdrawal(1, new BigDecimal(5500.5));
         // client_id, trainer_id, review, start_order_date, end_order_date, price
@@ -40,14 +40,14 @@ public class Main {
 //		System.out.println(order.getOrderStatus().ordinal());
 
         /*
-		 * Comment comment = new Comment(); comment.setCommentText("hi!!!!");
-		 * comment.setUserId(13); CommentDaoImpl.getInstance().createComment(comment);
+         * Comment comment = new Comment(); comment.setCommentText("hi!!!!");
+         * comment.setUserId(13); CommentDaoImpl.getInstance().createComment(comment);
          */
 
- /*
-		 * Comment comment = new Comment(); comment.setCommentText("her");
-		 * comment.setUserId(13); comment.setActive(false); comment.setId(3);
-		 * CommentDaoImpl.getInstance().updateComment(comment);
+        /*
+         * Comment comment = new Comment(); comment.setCommentText("her");
+         * comment.setUserId(13); comment.setActive(false); comment.setId(3);
+         * CommentDaoImpl.getInstance().updateComment(comment);
          */
         // Comment comment = CommentDaoImpl.getInstance().findComment(3);
         // System.out.println(CommentDaoImpl.getInstance().commentCount(true));

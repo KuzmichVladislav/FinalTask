@@ -9,7 +9,8 @@ import com.company.gum.exception.ServiceException;
 import com.company.gum.service.TrainerService;
 import com.company.gum.service.impl.TrainerServiceImpl;
 
-import static com.company.gum.command.AttributeName.*;
+import static com.company.gum.command.AttributeName.EXPERIENCE;
+import static com.company.gum.command.AttributeName.USER_ID;
 import static com.company.gum.command.Router.RouterType.FORWARD;
 
 public class EditExperienceCommand implements Command {

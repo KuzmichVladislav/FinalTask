@@ -1,30 +1,30 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<fmt:setLocale value="${sessionScope.locale}" />
-<fmt:setBundle basename="bundle/message" var="rb" />
+<fmt:setLocale value="${sessionScope.locale}"/>
+<fmt:setBundle basename="bundle/message" var="rb"/>
 
-<fmt:message key="form.sign.up.tagline" bundle="${rb}" var="tagline" />
-<fmt:message key="footer.about" bundle="${rb}" var="footerAbout" />
-<fmt:message key="footer.contacts" bundle="${rb}" var="footerContacts" />
-<fmt:message key="footer.address" bundle="${rb}" var="footerAddress" />
+<fmt:message key="form.sign.up.tagline" bundle="${rb}" var="tagline"/>
+<fmt:message key="footer.about" bundle="${rb}" var="footerAbout"/>
+<fmt:message key="footer.contacts" bundle="${rb}" var="footerContacts"/>
+<fmt:message key="footer.address" bundle="${rb}" var="footerAddress"/>
 <fmt:message key="footer.full.address" bundle="${rb}"
-             var="footerFullAddress" />
-<fmt:message key="footer.phones" bundle="${rb}" var="footerPhones" />
-<fmt:message key="footer.links" bundle="${rb}" var="footerlinks" />
+             var="footerFullAddress"/>
+<fmt:message key="footer.phones" bundle="${rb}" var="footerPhones"/>
+<fmt:message key="footer.links" bundle="${rb}" var="footerlinks"/>
 <fmt:message key="footer.about.link" bundle="${rb}"
-             var="footerAboutLink" />
-<fmt:message key="footer.email" bundle="${rb}" var="footerEmail" />
+             var="footerAboutLink"/>
+<fmt:message key="footer.email" bundle="${rb}" var="footerEmail"/>
 
 <link rel="stylesheet"
       href="${pageContext.request.contextPath}/css/footer.css">
 <script
-    src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
-type="text/javascript"></script>
+        src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
+        type="text/javascript"></script>
 <script
-    src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"
-type="text/javascript"></script>
+        src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"
+        type="text/javascript"></script>
 
 <footer class="section footer-classic context-dark bg-image"
         style="background: #f8f9fa;">
@@ -39,7 +39,8 @@ type="text/javascript"></script>
                             srcset="images/agency/logo-retina-inverse-280x74.png 2x"></a>
                     <p>${footerAbout}</p>
                     <p class="rights">
-                        <span>©  </span><span class="copyright-year">2021</span><span> </span><span>Waves</span><span>. </span><span>All
+                        <span>©  </span><span
+                            class="copyright-year">2021</span><span> </span><span>Waves</span><span>. </span><span>All
                             Rights Reserved.</span>
                     </p>
                 </div>
@@ -69,10 +70,10 @@ type="text/javascript"></script>
 
                     <li><a
                             href="${pageContext.request.contextPath}/jsp/pages/about.jsp">${footerAboutLink}</a></li>
-                        <%--                    <li><a href="#">Projects</a></li>--%>
-                        <%--                    <li><a href="#">Blog</a></li>--%>
-                        <%--                    <li><a href="#">Contacts</a></li>--%>
-                        <%--                    <li><a href="#">Pricing</a></li>--%>
+                    <%--                    <li><a href="#">Projects</a></li>--%>
+                    <%--                    <li><a href="#">Blog</a></li>--%>
+                    <%--                    <li><a href="#">Contacts</a></li>--%>
+                    <%--                    <li><a href="#">Pricing</a></li>--%>
                 </ul>
             </div>
         </div>

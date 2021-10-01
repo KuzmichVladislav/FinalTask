@@ -64,9 +64,9 @@ public class TrainerDaoImpl implements TrainerDao {
     @Override
     public Trainer createTrainer(Trainer trainer) throws DaoException {
         try (Connection connection = ConnectionPool.getInstance().takeConnection();
-                PreparedStatement userStatement = connection.prepareStatement(SQL_CREATE_USER,
-                        Statement.RETURN_GENERATED_KEYS);
-                PreparedStatement trainerStatement = connection.prepareStatement(SQL_CREATE_TRAINER)) {
+             PreparedStatement userStatement = connection.prepareStatement(SQL_CREATE_USER,
+                     Statement.RETURN_GENERATED_KEYS);
+             PreparedStatement trainerStatement = connection.prepareStatement(SQL_CREATE_TRAINER)) {
             try {
                 connection.setAutoCommit(false);
                 userStatement.setString(1, trainer.getLogin());
@@ -111,7 +111,7 @@ public class TrainerDaoImpl implements TrainerDao {
     public boolean editDescription(int trainerId, String description) throws DaoException {
         boolean isEdited;
         try (Connection connection = ConnectionPool.getInstance().takeConnection();
-                PreparedStatement statement = connection.prepareStatement(SQL_EDIT_DESCRIPTION)) {
+             PreparedStatement statement = connection.prepareStatement(SQL_EDIT_DESCRIPTION)) {
             if (description != null) {
                 statement.setString(1, description);
             } else {
@@ -135,7 +135,7 @@ public class TrainerDaoImpl implements TrainerDao {
     public boolean editExperience(int trainerId, String experience) throws DaoException {
         boolean isEdited;
         try (Connection connection = ConnectionPool.getInstance().takeConnection();
-                PreparedStatement statement = connection.prepareStatement(SQL_EDIT_EXPERIENCE)) {
+             PreparedStatement statement = connection.prepareStatement(SQL_EDIT_EXPERIENCE)) {
             if (experience != null) {
                 statement.setString(1, experience);
             } else {
@@ -159,7 +159,7 @@ public class TrainerDaoImpl implements TrainerDao {
     public boolean editTrainer(Trainer trainer) throws DaoException {
         boolean isEdited;
         try (Connection connection = ConnectionPool.getInstance().takeConnection();
-                PreparedStatement statement = connection.prepareStatement(SQL_EDIT_TRAINER)) {
+             PreparedStatement statement = connection.prepareStatement(SQL_EDIT_TRAINER)) {
             if (trainer.getName() != null) {
                 statement.setString(1, trainer.getName());
             } else {
@@ -197,7 +197,7 @@ public class TrainerDaoImpl implements TrainerDao {
     public Trainer findTrainerById(int trainerId) throws DaoException {
         Trainer trainer = new Trainer();
         try (Connection connection = ConnectionPool.getInstance().takeConnection();
-                PreparedStatement statement = connection.prepareStatement(SQL_FIND_TRAINER_BY_ID)) {
+             PreparedStatement statement = connection.prepareStatement(SQL_FIND_TRAINER_BY_ID)) {
 
             statement.setInt(1, trainerId);
 
@@ -219,7 +219,7 @@ public class TrainerDaoImpl implements TrainerDao {
     public List<Trainer> findAllTrainer() throws DaoException {
         List<Trainer> resultArray = new ArrayList<>();
         try (Connection connection = ConnectionPool.getInstance().takeConnection();
-                PreparedStatement statement = connection.prepareStatement(SQL_FIND_ALL_TRAINER)) {
+             PreparedStatement statement = connection.prepareStatement(SQL_FIND_ALL_TRAINER)) {
             ResultSet resultSet = statement.executeQuery();
 
             while (resultSet.next()) {
@@ -240,7 +240,7 @@ public class TrainerDaoImpl implements TrainerDao {
     public List<Trainer> findAllActiveTrainer() throws DaoException {
         List<Trainer> resultArray = new ArrayList<>();
         try (Connection connection = ConnectionPool.getInstance().takeConnection();
-                PreparedStatement statement = connection.prepareStatement(SQL_FIND_ALL_ACTIVE_TRAINER)) {
+             PreparedStatement statement = connection.prepareStatement(SQL_FIND_ALL_ACTIVE_TRAINER)) {
 
             ResultSet resultSet = statement.executeQuery();
 

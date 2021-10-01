@@ -13,7 +13,7 @@ import static com.company.gum.command.Router.RouterType.FORWARD;
 
 public class EditCommentCommand implements Command {
 
-    private CommentService commentService = CommentServiceImpl.getInstance();
+    private final CommentService commentService = CommentServiceImpl.getInstance();
 
     @Override
     public Router execute(SessionRequestContent requestContent) throws CommandException {

@@ -20,8 +20,8 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 @WebServlet(value = "/TimerServlet", initParams = {
-    @WebInitParam(name = "initialTime", value = "01:30:00 AM"),
-    @WebInitParam(name = "delay", value = "86400000")}, loadOnStartup = 1)
+        @WebInitParam(name = "initialTime", value = "01:30:00 AM"),
+        @WebInitParam(name = "delay", value = "86400000")}, loadOnStartup = 1)
 public class TimerServlet extends HttpServlet {
 
     private static final Logger logger = LogManager.getLogger();
@@ -95,7 +95,7 @@ public class TimerServlet extends HttpServlet {
 
         public void run() {
             try (Connection connection = ConnectionPool.getInstance().takeConnection();
-                    PreparedStatement statement = connection.prepareStatement(SQL_UPDATE_QUERY)) {
+                 PreparedStatement statement = connection.prepareStatement(SQL_UPDATE_QUERY)) {
                 statement.setBoolean(1, false);
                 statement.setDate(2, sqlDate);
                 boolean isDeleted = statement.executeUpdate() == 1;
