@@ -279,7 +279,6 @@ public class User extends AbstractEntity {
                 + ", mail='" + mail + '\''
                 + ", verification=" + verification
                 + ", photo=" + Arrays.toString(photo)
-                + ", base64Image='" + base64Image + '\''
                 + '}';
     }
 

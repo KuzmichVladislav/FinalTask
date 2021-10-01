@@ -15,6 +15,12 @@ public class JBCryptPasswordEncoder {
     private static final String SALT = "$2a$10$r/7vpCEEmIc0Kwek2SQu0.";
 
     /**
+     * Instantiates a new JB crypt password encoder.
+     */
+    private JBCryptPasswordEncoder() {
+    }
+
+    /**
      * Encode.
      *
      * @param password the password

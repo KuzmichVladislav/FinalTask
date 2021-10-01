@@ -14,17 +14,14 @@ public class Client extends User {
      * The register date.
      */
     private LocalDateTime registerDate;
-
     /**
      * The discount.
      */
     private Integer discount;
-
     /**
      * The phone.
      */
     private String phone;
-
     /**
      * The money.
      */
@@ -58,6 +55,53 @@ public class Client extends User {
         setDiscount(builder.discount);
         setPhone(builder.phone);
         setMoney(builder.money);
+    }
+
+    /**
+     * Equals.
+     *
+     * @param o the o
+     * @return true, if successful
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Client)) {
+            return false;
+        }
+        if (!super.equals(o)) {
+            return false;
+        }
+
+        Client client = (Client) o;
+
+        if (getRegisterDate() != null ? !getRegisterDate().equals(client.getRegisterDate()) : client.getRegisterDate() != null) {
+            return false;
+        }
+        if (getDiscount() != null ? !getDiscount().equals(client.getDiscount()) : client.getDiscount() != null) {
+            return false;
+        }
+        if (getPhone() != null ? !getPhone().equals(client.getPhone()) : client.getPhone() != null) {
+            return false;
+        }
+        return getMoney() != null ? getMoney().equals(client.getMoney()) : client.getMoney() == null;
+    }
+
+    /**
+     * Hash code.
+     *
+     * @return the int
+     */
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + (getRegisterDate() != null ? getRegisterDate().hashCode() : 0);
+        result = 31 * result + (getDiscount() != null ? getDiscount().hashCode() : 0);
+        result = 31 * result + (getPhone() != null ? getPhone().hashCode() : 0);
+        result = 31 * result + (getMoney() != null ? getMoney().hashCode() : 0);
+        return result;
     }
 
     /**
@@ -386,93 +430,6 @@ public class Client extends User {
                     + ", phone='" + phone + '\''
                     + ", money=" + money
                     + '}';
-        }
-
-        /**
-         * Equals.
-         *
-         * @param o the o
-         * @return true, if successful
-         */
-        @Override
-        public boolean equals(Object o) {
-            if (this == o) {
-                return true;
-            }
-            if (!(o instanceof Builder)) {
-                return false;
-            }
-
-            Builder builder = (Builder) o;
-
-            if (verification != builder.verification) {
-                return false;
-            }
-            if (isActive != builder.isActive) {
-                return false;
-            }
-            if (id != null ? !id.equals(builder.id) : builder.id != null) {
-                return false;
-            }
-            if (role != builder.role) {
-                return false;
-            }
-            if (login != null ? !login.equals(builder.login) : builder.login != null) {
-                return false;
-            }
-            if (password != null ? !password.equals(builder.password) : builder.password != null) {
-                return false;
-            }
-            if (name != null ? !name.equals(builder.name) : builder.name != null) {
-                return false;
-            }
-            if (surname != null ? !surname.equals(builder.surname) : builder.surname != null) {
-                return false;
-            }
-            if (mail != null ? !mail.equals(builder.mail) : builder.mail != null) {
-                return false;
-            }
-            if (!Arrays.equals(photo, builder.photo)) {
-                return false;
-            }
-            if (base64Image != null ? !base64Image.equals(builder.base64Image) : builder.base64Image != null) {
-                return false;
-            }
-            if (registerDate != null ? !registerDate.equals(builder.registerDate) : builder.registerDate != null) {
-                return false;
-            }
-            if (discount != null ? !discount.equals(builder.discount) : builder.discount != null) {
-                return false;
-            }
-            if (phone != null ? !phone.equals(builder.phone) : builder.phone != null) {
-                return false;
-            }
-            return money != null ? money.equals(builder.money) : builder.money == null;
-        }
-
-        /**
-         * Hash code.
-         *
-         * @return the int
-         */
-        @Override
-        public int hashCode() {
-            int result = id != null ? id.hashCode() : 0;
-            result = 31 * result + (role != null ? role.hashCode() : 0);
-            result = 31 * result + (login != null ? login.hashCode() : 0);
-            result = 31 * result + (password != null ? password.hashCode() : 0);
-            result = 31 * result + (name != null ? name.hashCode() : 0);
-            result = 31 * result + (surname != null ? surname.hashCode() : 0);
-            result = 31 * result + (mail != null ? mail.hashCode() : 0);
-            result = 31 * result + (verification ? 1 : 0);
-            result = 31 * result + (isActive ? 1 : 0);
-            result = 31 * result + Arrays.hashCode(photo);
-            result = 31 * result + (base64Image != null ? base64Image.hashCode() : 0);
-            result = 31 * result + (registerDate != null ? registerDate.hashCode() : 0);
-            result = 31 * result + (discount != null ? discount.hashCode() : 0);
-            result = 31 * result + (phone != null ? phone.hashCode() : 0);
-            result = 31 * result + (money != null ? money.hashCode() : 0);
-            return result;
         }
 
         /**
