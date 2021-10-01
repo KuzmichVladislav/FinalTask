@@ -7,13 +7,37 @@ import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Objects;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class SessionRequestContent.
+ */
 public class SessionRequestContent {
 
-    private HashMap<String, Object> requestAttributes = new HashMap<>();
-    private HashMap<String, String[]> requestParameters;
-    private HashMap<String, Object> sessionAttributes = new HashMap<>();
+    /**
+     * The request attributes.
+     */
+    private final HashMap<String, Object> requestAttributes = new HashMap<>();
+
+    /**
+     * The request parameters.
+     */
+    private final HashMap<String, String[]> requestParameters;
+
+    /**
+     * The session attributes.
+     */
+    private final HashMap<String, Object> sessionAttributes = new HashMap<>();
+
+    /**
+     * The invalidate session.
+     */
     private boolean invalidateSession;
 
+    /**
+     * Instantiates a new session request content.
+     *
+     * @param request the request
+     */
     public SessionRequestContent(HttpServletRequest request) {
         Enumeration<String> attributeNames = request.getAttributeNames();
         for (String s : Collections.list(attributeNames)) {
@@ -29,10 +53,11 @@ public class SessionRequestContent {
         }
     }
 
-    public HttpServletRequest showRequest(HttpServletRequest request) {
-        return request;
-    }
-
+    /**
+     * Insert attributes.
+     *
+     * @param request the request
+     */
     public void insertAttributes(HttpServletRequest request) {
         requestAttributes.entrySet().forEach(entry -> {
             String key = entry.getKey();
@@ -52,31 +77,62 @@ public class SessionRequestContent {
         }
     }
 
+    /**
+     * Gets the attribute by name.
+     *
+     * @param attributeName the attribute name
+     * @return the attribute by name
+     */
     public Object getAttributeByName(String attributeName) {
         return requestAttributes.get(attributeName);
     }
 
+    /**
+     * Put attribute.
+     *
+     * @param attributeName the attribute name
+     * @param object the object
+     * @return the object
+     */
     public Object putAttribute(String attributeName, Object object) {
         return requestAttributes.put(attributeName, object);
     }
 
-    public String[] getRequestParametersByName(String parameterName) {
-        return requestParameters.get(parameterName);
-    }
-
+    /**
+     * Gets the parameter by name.
+     *
+     * @param parameterName the parameter name
+     * @return the parameter by name
+     */
     public String getParameterByName(String parameterName) {
         String[] parameters = requestParameters.get(parameterName);
         return parameters.length != 0 ? parameters[0] : null;
     }
 
+    /**
+     * Gets the session attribute by name.
+     *
+     * @param sessionAttributeName the session attribute name
+     * @return the session attribute by name
+     */
     public Object getSessionAttributeByName(String sessionAttributeName) {
         return sessionAttributes.get(sessionAttributeName);
     }
 
+    /**
+     * Put session attribute.
+     *
+     * @param sessionAttributeName the session attribute name
+     * @param object the object
+     * @return the object
+     */
     public Object putSessionAttribute(String sessionAttributeName, Object object) {
         return sessionAttributes.put(sessionAttributeName, object);
     }
 
+    /**
+     * Invalidate session.
+     */
     public void invalidateSession() {
         invalidateSession = true;
     }

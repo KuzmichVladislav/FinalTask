@@ -4,7 +4,7 @@
  */
 package com.company.gum.controller;
 
-import com.company.gum.entity.User;
+import com.company.gum.model.entity.User;
 import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -24,7 +24,8 @@ import static org.mockito.Mockito.*;
 /**
  * @author kyzme
  */
-public class MainControllerTest {
+class MainControllerTest {
+
     @Mock
     Logger logger;
     @Mock
@@ -46,7 +47,7 @@ public class MainControllerTest {
      * Test of doGet method, of class MainController.
      */
     @Test
-    public void testDoGet() throws Exception {
+    void testDoGet() throws Exception {
         User user = new User.Builder().login("admin")
                 .password("admin22").build();
 
@@ -74,7 +75,7 @@ public class MainControllerTest {
      * Test of doPost method, of class MainController.
      */
     @Test
-    public void testDoPost() throws Exception {
+    void testDoPost() throws Exception {
         System.out.println("doPost");
         HttpServletRequest req = null;
         HttpServletResponse resp = null;

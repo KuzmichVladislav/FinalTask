@@ -69,7 +69,7 @@
                 <ul class="nav-list">
 
                     <li><a
-                            href="${pageContext.request.contextPath}/jsp/pages/about.jsp">${footerAboutLink}</a></li>
+                            href="${pageContext.request.contextPath}/jsp/about.jsp">${footerAboutLink}</a></li>
                     <%--                    <li><a href="#">Projects</a></li>--%>
                     <%--                    <li><a href="#">Blog</a></li>--%>
                     <%--                    <li><a href="#">Contacts</a></li>--%>

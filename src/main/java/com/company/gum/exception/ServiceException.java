@@ -1,7 +1,6 @@
 package com.company.gum.exception;
 
 // TODO: Auto-generated Javadoc
-
 /**
  * The Class ServiceException.
  */
@@ -27,7 +26,7 @@ public class ServiceException extends Exception {
      * Instantiates a new service exception.
      *
      * @param message the message
-     * @param cause   the cause
+     * @param cause the cause
      */
     public ServiceException(String message, Throwable cause) {
         super(message, cause);

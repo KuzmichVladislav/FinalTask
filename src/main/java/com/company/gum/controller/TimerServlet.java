@@ -1,6 +1,6 @@
 package com.company.gum.controller;
 
-import com.company.gum.pool.ConnectionPool;
+import com.company.gum.model.pool.ConnectionPool;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -19,35 +19,56 @@ import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class TimerServlet.
+ */
 @WebServlet(value = "/TimerServlet", initParams = {
-        @WebInitParam(name = "initialTime", value = "01:30:00 AM"),
-        @WebInitParam(name = "delay", value = "86400000")}, loadOnStartup = 1)
+    @WebInitParam(name = "initialTime", value = "01:30:00 AM"),
+    @WebInitParam(name = "delay", value = "86400000")}, loadOnStartup = 1)
 public class TimerServlet extends HttpServlet {
 
+    /**
+     * The Constant logger.
+     */
     private static final Logger logger = LogManager.getLogger();
 
-    private static final long HOURS_24 = 1000 * 60 * 60 * 24;
+    /**
+     * The Constant HOURS_24.
+     */
+    private static final long HOURS_24 = 86400000;
 
+    /**
+     * The format.
+     */
+    private final DateFormat format = DateFormat.getTimeInstance();
+
+    /**
+     * The timer.
+     */
     private Timer timer;
-    private ServletConfig config;
-    private long delay;
-    private DateFormat format = DateFormat.getTimeInstance();
-    private Date initialTime;
 
+    /**
+     * Inits the.
+     *
+     * @param servletConfig the servlet config
+     * @throws ServletException the servlet exception
+     */
     @Override
     public void init(ServletConfig servletConfig) throws ServletException {
         super.init(servletConfig);
-        this.config = servletConfig;
 
+        Date initialTime;
         try {
-            initialTime = format.parse(config.getInitParameter("initialTime"));
+            initialTime = format.parse(servletConfig.getInitParameter("initialTime"));
         } catch (ParseException pe) {
             logger.info("startTime could not be parsed from @WebInitParam");
             initialTime = new Date();
         }
 
+        long delay;
         try {
-            delay = Long.parseLong(config.getInitParameter("delay"));
+            delay = Long.parseLong(servletConfig.getInitParameter("delay"));
         } catch (Exception e) {
             logger.info("delay Parameter could not be parsed from @WebInitParam");
             delay = HOURS_24;
@@ -79,23 +100,42 @@ public class TimerServlet extends HttpServlet {
         }
     }
 
+    /**
+     * Destroy.
+     */
     @Override
     public void destroy() {
         timer.cancel();
         super.destroy();
     }
 
+    /**
+     * The Class DeleteObsoleteOrders.
+     */
     public static class DeleteObsoleteOrders extends TimerTask {
 
+        /**
+         * The Constant SQL_UPDATE_QUERY.
+         */
         private static final String SQL_UPDATE_QUERY = "UPDATE orders\n" + "SET is_active = ?\n"
                 + "WHERE end_order_date < convert(?, datetime)";
 
+        /**
+         * The date now.
+         */
         Date dateNow = new Date();
+
+        /**
+         * The sql date.
+         */
         java.sql.Date sqlDate = new java.sql.Date(dateNow.getTime());
 
+        /**
+         * Run.
+         */
         public void run() {
             try (Connection connection = ConnectionPool.getInstance().takeConnection();
-                 PreparedStatement statement = connection.prepareStatement(SQL_UPDATE_QUERY)) {
+                    PreparedStatement statement = connection.prepareStatement(SQL_UPDATE_QUERY)) {
                 statement.setBoolean(1, false);
                 statement.setDate(2, sqlDate);
                 boolean isDeleted = statement.executeUpdate() == 1;

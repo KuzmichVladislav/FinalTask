@@ -1,7 +1,6 @@
 package com.company.gum.exception;
 
 // TODO: Auto-generated Javadoc
-
 /**
  * The Class DaoException.
  */
@@ -27,7 +26,7 @@ public class DaoException extends Exception {
      * Instantiates a new dao exception.
      *
      * @param message the message
-     * @param cause   the cause
+     * @param cause the cause
      */
     public DaoException(String message, Throwable cause) {
         super(message, cause);

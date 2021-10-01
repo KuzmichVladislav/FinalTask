@@ -44,7 +44,7 @@ public class Main {
          * comment.setUserId(13); CommentDaoImpl.getInstance().createComment(comment);
          */
 
-        /*
+ /*
          * Comment comment = new Comment(); comment.setCommentText("her");
          * comment.setUserId(13); comment.setActive(false); comment.setId(3);
          * CommentDaoImpl.getInstance().updateComment(comment);

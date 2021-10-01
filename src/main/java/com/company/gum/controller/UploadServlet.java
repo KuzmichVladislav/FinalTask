@@ -1,7 +1,7 @@
 package com.company.gum.controller;
 
-import com.company.gum.command.AttributeName;
-import com.company.gum.command.PagePath;
+import com.company.gum.controller.command.AttributeName;
+import com.company.gum.controller.command.PagePath;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -13,10 +13,22 @@ import javax.servlet.http.Part;
 import java.io.IOException;
 import java.io.InputStream;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class UploadServlet.
+ */
 @WebServlet(urlPatterns = {"/uploadServlet"})
 @MultipartConfig(fileSizeThreshold = 1024 * 1024, maxFileSize = 1024 * 1024 * 5, maxRequestSize = 1024 * 1024 * 5 * 5)
 public class UploadServlet extends HttpServlet {
 
+    /**
+     * Do post.
+     *
+     * @param req the req
+     * @param resp the resp
+     * @throws ServletException the servlet exception
+     * @throws IOException Signals that an I/O exception has occurred.
+     */
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         InputStream inputStream = null;

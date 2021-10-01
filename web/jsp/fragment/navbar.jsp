@@ -57,7 +57,7 @@
                                            href="${pageContext.request.contextPath}">${home}<span
                     class="sr-only">(current)</span></a></li>
             <li class="nav-item"><a class="nav-link"
-                                    href="${pageContext.request.contextPath}/jsp/pages/about.jsp">${about}</a>
+                                    href="${pageContext.request.contextPath}/jsp/about.jsp">${about}</a>
             </li>
             <li class="nav-item"><a class="nav-link" href="#">${contacts}</a>
             </li>
@@ -65,15 +65,15 @@
                 <li class="nav-item"><c:choose>
                     <c:when test="${sessionScope.userRole == 'CLIENT'}">
                         <a class="nav-link"
-                           href="${pageContext.request.contextPath}/jsp/pages/client/profile.jsp">${account}</a>
+                           href="${pageContext.request.contextPath}/jsp/client/profile.jsp">${account}</a>
                     </c:when>
                     <c:when test="${sessionScope.userRole == 'TRAINER'}">
                         <a class="nav-link"
-                           href="${pageContext.request.contextPath}/jsp/pages/trainer/profile.jsp">${account}</a>
+                           href="${pageContext.request.contextPath}/jsp/trainer/profile.jsp">${account}</a>
                     </c:when>
                     <c:when test="${sessionScope.userRole == 'ADMIN'}">
                         <a class="nav-link"
-                           href="${pageContext.request.contextPath}/jsp/pages/admin/profile.jsp">${account}</a>
+                           href="${pageContext.request.contextPath}/jsp/admin/profile.jsp">${account}</a>
                     </c:when>
                 </c:choose></li>
                 <li class="nav-item"><a class="nav-link"
@@ -128,10 +128,10 @@
                             <br>
                             <div class="button mt-2 d-flex flex-row align-items-center">
                                 <a
-                                        href="${pageContext.request.contextPath}/jsp/pages/login_sign.jsp">
+                                        href="${pageContext.request.contextPath}/jsp/login_sign.jsp">
                                     <button class="btn btn-sm btn-outline-primary w-100">${login}</button>
                                 </a> <a
-                                    href="${pageContext.request.contextPath}/jsp/pages/register.jsp">
+                                    href="${pageContext.request.contextPath}/jsp/register.jsp">
                                 <button class="btn btn-sm btn-primary w-100 ml-2">${register}</button>
                             </a>
                             </div>

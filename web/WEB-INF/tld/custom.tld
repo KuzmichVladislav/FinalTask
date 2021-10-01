@@ -10,7 +10,7 @@
 
     <tag>
         <name>order_table</name>
-        <tag-class>com.company.gum.tag.CustomTag</tag-class>
+        <tag-class>com.company.gum.controller.tag.OrderTableTag</tag-class>
         <body-content>empty</body-content>
     </tag>
 

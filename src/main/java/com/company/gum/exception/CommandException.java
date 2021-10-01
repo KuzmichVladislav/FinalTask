@@ -1,7 +1,6 @@
 package com.company.gum.exception;
 
 // TODO: Auto-generated Javadoc
-
 /**
  * The Class CommandException.
  */
@@ -27,7 +26,7 @@ public class CommandException extends Exception {
      * Instantiates a new command exception.
      *
      * @param message the message
-     * @param cause   the cause
+     * @param cause the cause
      */
     public CommandException(String message, Throwable cause) {
         super(message, cause);
