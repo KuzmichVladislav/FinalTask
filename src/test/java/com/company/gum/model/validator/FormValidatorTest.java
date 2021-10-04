@@ -8,13 +8,13 @@ import org.junit.jupiter.api.Test;
  *
  * @author Vladislav Kuzmich
  */
-public class FormValidatorTest {
+class FormValidatorTest {
 
     /**
      * Test of checkLogin method, of class FormValidator.
      */
     @Test
-    public void testCheckLogin() {
+    void testCheckLogin() {
         String login = "Login";
         boolean result = FormValidator.checkLogin(login);
         Assertions.assertTrue(result);
@@ -24,7 +24,7 @@ public class FormValidatorTest {
      * Test of checkPassword method, of class FormValidator.
      */
     @Test
-    public void testCheckPassword() {
+    void testCheckPassword() {
         String password = "Password22";
         boolean result = FormValidator.checkPassword(password);
         Assertions.assertTrue(result);
@@ -34,7 +34,7 @@ public class FormValidatorTest {
      * Test of checkNameSurname method, of class FormValidator.
      */
     @Test
-    public void testCheckNameSurname() {
+    void testCheckNameSurname() {
         String nameSurname = "Obama";
         boolean result = FormValidator.checkNameSurname(nameSurname);
         Assertions.assertTrue(result);
@@ -44,7 +44,7 @@ public class FormValidatorTest {
      * Test of checkPhone method, of class FormValidator.
      */
     @Test
-    public void testCheckPhone() {
+    void testCheckPhone() {
         String phone = "+375259379992";
         boolean result = FormValidator.checkPhone(phone);
         Assertions.assertTrue(result);
@@ -54,7 +54,7 @@ public class FormValidatorTest {
      * Test of checkMail method, of class FormValidator.
      */
     @Test
-    public void testCheckMail() {
+    void testCheckMail() {
         System.out.println("checkMail");
         String mail = "obami@example.com";
         boolean result = FormValidator.checkMail(mail);
@@ -65,7 +65,7 @@ public class FormValidatorTest {
      * Test of checkMoney method, of class FormValidator.
      */
     @Test
-    public void testCheckMoney() {
+    void testCheckMoney() {
         String money = "99.85";
         boolean result = FormValidator.checkMoney(money);
         Assertions.assertTrue(result);
@@ -75,7 +75,7 @@ public class FormValidatorTest {
      * Test of checkDiscount method, of class FormValidator.
      */
     @Test
-    public void testCheckDiscount() {
+    void testCheckDiscount() {
         String discount = "10";
         boolean result = FormValidator.checkDiscount(discount);
         Assertions.assertTrue(result);

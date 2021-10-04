@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+// TODO: Auto-generated Javadoc
 /**
  * The Class Order.
  *
@@ -174,6 +175,76 @@ public class Order extends AbstractEntity {
      */
     public void setClientSurname(String clientSurname) {
         this.clientSurname = clientSurname;
+    }
+
+    /**
+     * Equals.
+     *
+     * @param o the o
+     * @return true, if successful
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Order)) return false;
+        if (!super.equals(o)) return false;
+
+        Order order = (Order) o;
+
+        if (getClientId() != null ? !getClientId().equals(order.getClientId()) : order.getClientId() != null)
+            return false;
+        if (getClientName() != null ? !getClientName().equals(order.getClientName()) : order.getClientName() != null)
+            return false;
+        if (getClientSurname() != null ? !getClientSurname().equals(order.getClientSurname()) : order.getClientSurname() != null)
+            return false;
+        if (getTrainerId() != null ? !getTrainerId().equals(order.getTrainerId()) : order.getTrainerId() != null)
+            return false;
+        if (getTrainerName() != null ? !getTrainerName().equals(order.getTrainerName()) : order.getTrainerName() != null)
+            return false;
+        if (getTrainerSurname() != null ? !getTrainerSurname().equals(order.getTrainerSurname()) : order.getTrainerSurname() != null)
+            return false;
+        if (getRegisterDate() != null ? !getRegisterDate().equals(order.getRegisterDate()) : order.getRegisterDate() != null)
+            return false;
+        if (getExercises() != null ? !getExercises().equals(order.getExercises()) : order.getExercises() != null)
+            return false;
+        if (getNutrition() != null ? !getNutrition().equals(order.getNutrition()) : order.getNutrition() != null)
+            return false;
+        if (getStartDate() != null ? !getStartDate().equals(order.getStartDate()) : order.getStartDate() != null)
+            return false;
+        if (getEndDate() != null ? !getEndDate().equals(order.getEndDate()) : order.getEndDate() != null) return false;
+        if (getPrice() != null ? !getPrice().equals(order.getPrice()) : order.getPrice() != null) return false;
+        if (getClientComment() != null ? !getClientComment().equals(order.getClientComment()) : order.getClientComment() != null)
+            return false;
+        if (getOrderStatus() != order.getOrderStatus()) return false;
+        if (getActive() != null ? !getActive().equals(order.getActive()) : order.getActive() != null) return false;
+        return getDuration() == order.getDuration();
+    }
+
+    /**
+     * Hash code.
+     *
+     * @return the int
+     */
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + (getClientId() != null ? getClientId().hashCode() : 0);
+        result = 31 * result + (getClientName() != null ? getClientName().hashCode() : 0);
+        result = 31 * result + (getClientSurname() != null ? getClientSurname().hashCode() : 0);
+        result = 31 * result + (getTrainerId() != null ? getTrainerId().hashCode() : 0);
+        result = 31 * result + (getTrainerName() != null ? getTrainerName().hashCode() : 0);
+        result = 31 * result + (getTrainerSurname() != null ? getTrainerSurname().hashCode() : 0);
+        result = 31 * result + (getRegisterDate() != null ? getRegisterDate().hashCode() : 0);
+        result = 31 * result + (getExercises() != null ? getExercises().hashCode() : 0);
+        result = 31 * result + (getNutrition() != null ? getNutrition().hashCode() : 0);
+        result = 31 * result + (getStartDate() != null ? getStartDate().hashCode() : 0);
+        result = 31 * result + (getEndDate() != null ? getEndDate().hashCode() : 0);
+        result = 31 * result + (getPrice() != null ? getPrice().hashCode() : 0);
+        result = 31 * result + (getClientComment() != null ? getClientComment().hashCode() : 0);
+        result = 31 * result + (getOrderStatus() != null ? getOrderStatus().hashCode() : 0);
+        result = 31 * result + (getActive() != null ? getActive().hashCode() : 0);
+        result = 31 * result + (getDuration() != null ? getDuration().hashCode() : 0);
+        return result;
     }
 
     /**
@@ -716,101 +787,6 @@ public class Order extends AbstractEntity {
         public Builder active(Boolean val) {
             active = val;
             return this;
-        }
-
-        /**
-         * Equals.
-         *
-         * @param o the o
-         * @return true, if successful
-         */
-        @Override
-        public boolean equals(Object o) {
-            if (this == o) {
-                return true;
-            }
-            if (!(o instanceof Builder)) {
-                return false;
-            }
-
-            Builder builder = (Builder) o;
-
-            if (id != null ? !id.equals(builder.id) : builder.id != null) {
-                return false;
-            }
-            if (clientId != null ? !clientId.equals(builder.clientId) : builder.clientId != null) {
-                return false;
-            }
-            if (clientName != null ? !clientName.equals(builder.clientName) : builder.clientName != null) {
-                return false;
-            }
-            if (clientSurname != null ? !clientSurname.equals(builder.clientSurname) : builder.clientSurname != null) {
-                return false;
-            }
-            if (trainerId != null ? !trainerId.equals(builder.trainerId) : builder.trainerId != null) {
-                return false;
-            }
-            if (trainerName != null ? !trainerName.equals(builder.trainerName) : builder.trainerName != null) {
-                return false;
-            }
-            if (trainerSurname != null ? !trainerSurname.equals(builder.trainerSurname) : builder.trainerSurname != null) {
-                return false;
-            }
-            if (registerDate != null ? !registerDate.equals(builder.registerDate) : builder.registerDate != null) {
-                return false;
-            }
-            if (exercises != null ? !exercises.equals(builder.exercises) : builder.exercises != null) {
-                return false;
-            }
-            if (nutrition != null ? !nutrition.equals(builder.nutrition) : builder.nutrition != null) {
-                return false;
-            }
-            if (startDate != null ? !startDate.equals(builder.startDate) : builder.startDate != null) {
-                return false;
-            }
-            if (endDate != null ? !endDate.equals(builder.endDate) : builder.endDate != null) {
-                return false;
-            }
-            if (price != null ? !price.equals(builder.price) : builder.price != null) {
-                return false;
-            }
-            if (clientComment != null ? !clientComment.equals(builder.clientComment) : builder.clientComment != null) {
-                return false;
-            }
-            if (orderStatus != builder.orderStatus) {
-                return false;
-            }
-            if (active != null ? !active.equals(builder.active) : builder.active != null) {
-                return false;
-            }
-            return duration == builder.duration;
-        }
-
-        /**
-         * Hash code.
-         *
-         * @return the int
-         */
-        @Override
-        public int hashCode() {
-            int result = id != null ? id.hashCode() : 0;
-            result = 31 * result + (clientId != null ? clientId.hashCode() : 0);
-            result = 31 * result + (clientName != null ? clientName.hashCode() : 0);
-            result = 31 * result + (clientSurname != null ? clientSurname.hashCode() : 0);
-            result = 31 * result + (trainerId != null ? trainerId.hashCode() : 0);
-            result = 31 * result + (trainerName != null ? trainerName.hashCode() : 0);
-            result = 31 * result + (trainerSurname != null ? trainerSurname.hashCode() : 0);
-            result = 31 * result + (registerDate != null ? registerDate.hashCode() : 0);
-            result = 31 * result + (exercises != null ? exercises.hashCode() : 0);
-            result = 31 * result + (nutrition != null ? nutrition.hashCode() : 0);
-            result = 31 * result + (startDate != null ? startDate.hashCode() : 0);
-            result = 31 * result + (endDate != null ? endDate.hashCode() : 0);
-            result = 31 * result + (price != null ? price.hashCode() : 0);
-            result = 31 * result + (clientComment != null ? clientComment.hashCode() : 0);
-            result = 31 * result + (orderStatus != null ? orderStatus.hashCode() : 0);
-            result = 31 * result + (active != null ? active.hashCode() : 0);
-            result = 31 * result + (duration != null ? duration.hashCode() : 0);
-            return result;
         }
 
         /**
