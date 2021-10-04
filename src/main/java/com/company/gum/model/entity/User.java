@@ -2,9 +2,10 @@ package com.company.gum.model.entity;
 
 import java.util.Arrays;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class User.
+ *
+ * @author Vladislav Kuzmich
  */
 public class User extends AbstractEntity {
 
@@ -261,25 +262,6 @@ public class User extends AbstractEntity {
      */
     public void setBase64Image(String base64Image) {
         this.base64Image = base64Image;
-    }
-
-    /**
-     * To string.
-     *
-     * @return the string
-     */
-    @Override
-    public String toString() {
-        return "User{"
-                + "role=" + role
-                + ", login='" + login + '\''
-                + ", name='" + name + '\''
-                + ", surname='" + surname + '\''
-                + ", isActive=" + isActive
-                + ", mail='" + mail + '\''
-                + ", verification=" + verification
-                + ", photo=" + Arrays.toString(photo)
-                + '}';
     }
 
     /**

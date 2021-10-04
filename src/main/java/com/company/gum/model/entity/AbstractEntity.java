@@ -1,8 +1,9 @@
 package com.company.gum.model.entity;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class AbstractEntity.
+ *
+ * @author Vladislav Kuzmich
  */
 public class AbstractEntity {
 
@@ -34,13 +35,6 @@ public class AbstractEntity {
      *
      * @return the string
      */
-    @Override
-    public String toString() {
-        return "AbstractEntity{"
-                + "id=" + id
-                + '}';
-    }
-
     /**
      * Equals.
      *

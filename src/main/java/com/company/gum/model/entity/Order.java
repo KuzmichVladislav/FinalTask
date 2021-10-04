@@ -4,9 +4,10 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class Order.
+ *
+ * @author Vladislav Kuzmich
  */
 public class Order extends AbstractEntity {
 
@@ -715,34 +716,6 @@ public class Order extends AbstractEntity {
         public Builder active(Boolean val) {
             active = val;
             return this;
-        }
-
-        /**
-         * To string.
-         *
-         * @return the string
-         */
-        @Override
-        public String toString() {
-            return "Builder{"
-                    + "id=" + id
-                    + ", clientId=" + clientId
-                    + ", clientName='" + clientName + '\''
-                    + ", clientSurname='" + clientSurname + '\''
-                    + ", trainerId=" + trainerId
-                    + ", trainerName='" + trainerName + '\''
-                    + ", trainerSurname='" + trainerSurname + '\''
-                    + ", registerDate=" + registerDate
-                    + ", exercises='" + exercises + '\''
-                    + ", nutrition='" + nutrition + '\''
-                    + ", startDate=" + startDate
-                    + ", endDate=" + endDate
-                    + ", price=" + price
-                    + ", clientComment='" + clientComment + '\''
-                    + ", orderStatus=" + orderStatus
-                    + ", active=" + active
-                    + ", duration=" + duration
-                    + '}';
         }
 
         /**

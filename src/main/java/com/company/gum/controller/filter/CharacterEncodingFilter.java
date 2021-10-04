@@ -5,9 +5,10 @@ import javax.servlet.annotation.WebFilter;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class CharacterEncodingFilter.
+ *
+ * @author Vladislav Kuzmich
  */
 @WebFilter(urlPatterns = "/*")
 public class CharacterEncodingFilter implements Filter {

@@ -11,9 +11,10 @@ import com.company.gum.model.service.impl.OrderServiceImpl;
 import static com.company.gum.controller.command.AttributeName.*;
 import static com.company.gum.controller.command.Router.RouterType.FORWARD;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class EditExercisesCommand.
+ *
+ * @author Vladislav Kuzmich
  */
 public class EditExercisesCommand implements Command {
 

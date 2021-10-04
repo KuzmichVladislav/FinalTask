@@ -16,9 +16,10 @@ import java.util.Base64;
 import static com.company.gum.controller.command.AttributeName.*;
 import static com.company.gum.controller.command.Router.RouterType.FORWARD;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class UploadImageCommand.
+ *
+ * @author Vladislav Kuzmich
  */
 public class UploadImageCommand implements Command {
 

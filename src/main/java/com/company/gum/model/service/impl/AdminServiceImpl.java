@@ -7,9 +7,10 @@ import com.company.gum.model.dao.impl.AdminDaoImpl;
 import com.company.gum.model.entity.Admin;
 import com.company.gum.model.service.AdminService;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class AdminServiceImpl.
+ *
+ * @author Vladislav Kuzmich
  */
 public class AdminServiceImpl implements AdminService {
 

@@ -13,9 +13,10 @@ import static com.company.gum.controller.command.AttributeName.DESCRIPTION;
 import static com.company.gum.controller.command.AttributeName.USER_ID;
 import static com.company.gum.controller.command.Router.RouterType.FORWARD;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class EditDescriptionCommand.
+ *
+ * @author Vladislav Kuzmich
  */
 public class EditDescriptionCommand implements Command {
 

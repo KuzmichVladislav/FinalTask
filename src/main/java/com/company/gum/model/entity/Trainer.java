@@ -1,10 +1,14 @@
+/*
+ * 
+ */
 package com.company.gum.model.entity;
 
 import java.time.LocalDateTime;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class Trainer.
+ *
+ * @author Vladislav Kuzmich
  */
 public class Trainer extends User {
 
@@ -154,23 +158,6 @@ public class Trainer extends User {
      */
     public void setExperience(String experience) {
         this.experience = experience;
-    }
-
-    /**
-     * To string.
-     *
-     * @return the string
-     */
-    @Override
-    public String toString() {
-        return "Trainer{"
-                + "registerDate=" + registerDate
-                + ", phone='" + phone + '\''
-                + ", mail='" + mail + '\''
-                + ", description='" + description + '\''
-                + ", experience='" + experience + '\''
-                + ", role=" + role
-                + '}';
     }
 
     /**

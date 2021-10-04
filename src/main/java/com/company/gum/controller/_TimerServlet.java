@@ -1,6 +1,6 @@
+/*
 package com.company.gum.controller;
 
-import com.company.gum.model.pool.ConnectionPool;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -9,9 +9,6 @@ import javax.servlet.ServletException;
 import javax.servlet.annotation.WebInitParam;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.util.Calendar;
@@ -19,41 +16,19 @@ import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
 
-// TODO: Auto-generated Javadoc
-/**
- * The Class TimerServlet.
- */
 @WebServlet(value = "/TimerServlet", initParams = {
     @WebInitParam(name = "initialTime", value = "01:30:00 AM"),
     @WebInitParam(name = "delay", value = "86400000")}, loadOnStartup = 1)
 public class TimerServlet extends HttpServlet {
 
-    /**
-     * The Constant logger.
-     */
     private static final Logger logger = LogManager.getLogger();
 
-    /**
-     * The Constant HOURS_24.
-     */
     private static final long HOURS_24 = 86400000;
 
-    /**
-     * The format.
-     */
     private final DateFormat format = DateFormat.getTimeInstance();
 
-    /**
-     * The timer.
-     */
     private Timer timer;
 
-    /**
-     * Inits the.
-     *
-     * @param servletConfig the servlet config
-     * @throws ServletException the servlet exception
-     */
     @Override
     public void init(ServletConfig servletConfig) throws ServletException {
         super.init(servletConfig);
@@ -100,49 +75,11 @@ public class TimerServlet extends HttpServlet {
         }
     }
 
-    /**
-     * Destroy.
-     */
     @Override
     public void destroy() {
         timer.cancel();
         super.destroy();
     }
 
-    /**
-     * The Class DeleteObsoleteOrders.
-     */
-    public static class DeleteObsoleteOrders extends TimerTask {
-
-        /**
-         * The Constant SQL_UPDATE_QUERY.
-         */
-        private static final String SQL_UPDATE_QUERY = "UPDATE orders\n" + "SET is_active = ?\n"
-                + "WHERE end_order_date < convert(?, datetime)";
-
-        /**
-         * The date now.
-         */
-        Date dateNow = new Date();
-
-        /**
-         * The sql date.
-         */
-        java.sql.Date sqlDate = new java.sql.Date(dateNow.getTime());
-
-        /**
-         * Run.
-         */
-        public void run() {
-            try (Connection connection = ConnectionPool.getInstance().takeConnection();
-                    PreparedStatement statement = connection.prepareStatement(SQL_UPDATE_QUERY)) {
-                statement.setBoolean(1, false);
-                statement.setDate(2, sqlDate);
-                boolean isDeleted = statement.executeUpdate() == 1;
-                logger.debug(isDeleted ? "Obsolete orders has been deleted" : "No obsolete orders found");
-            } catch (SQLException throwables) {
-                throwables.printStackTrace();
-            }
-        }
-    }
 }
+*/

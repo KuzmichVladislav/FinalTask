@@ -13,9 +13,10 @@ import static com.company.gum.controller.command.AttributeName.EXPERIENCE;
 import static com.company.gum.controller.command.AttributeName.USER_ID;
 import static com.company.gum.controller.command.Router.RouterType.FORWARD;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class EditExperienceCommand.
+ *
+ * @author Vladislav Kuzmich
  */
 public class EditExperienceCommand implements Command {
 

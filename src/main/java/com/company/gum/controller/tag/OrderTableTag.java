@@ -10,9 +10,10 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Properties;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class OrderTableTag.
+ *
+ * @author Vladislav Kuzmich
  */
 public class OrderTableTag extends TagSupport {
 
@@ -21,6 +22,7 @@ public class OrderTableTag extends TagSupport {
      *
      * @return the int
      */
+    @SuppressWarnings("unchecked") // FIXME: 10/4/2021
     @Override
     public int doStartTag() {
 
@@ -40,7 +42,7 @@ public class OrderTableTag extends TagSupport {
         try {
             out.write("<table style=\"width: auto;\">");
             out.write("<th>");
-            for (Order order : (List<Order>) pageContext.getRequest().getAttribute("orders")) {
+            for (Order order : (List<Order>) pageContext.getRequest().getAttribute("orders")) { // FIXME: 10/4/2021 Unchecked cast: 'java.lang.Object' to 'java.util.List<com.company.gum.model.entity.Order>'
                 out.write(
                         "<table class=\"table table-striped\" border=\"1\" style=\"width:min-content; max-width:min-content;\">");
                 out.write("<tr>");

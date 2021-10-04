@@ -9,7 +9,7 @@ import com.company.gum.exception.ServiceException;
 import com.company.gum.model.entity.Client;
 import com.company.gum.model.service.ClientService;
 import com.company.gum.model.service.impl.ClientServiceImpl;
-import com.company.gum.model.util.Validator;
+import com.company.gum.model.validator.FormValidator;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
@@ -18,9 +18,10 @@ import static com.company.gum.controller.command.AttributeName.*;
 import static com.company.gum.controller.command.Router.RouterType.FORWARD;
 import static com.company.gum.controller.command.Router.RouterType.REDIRECT;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class RefillMoneyCommand.
+ *
+ * @author Vladislav Kuzmich
  */
 public class RefillMoneyCommand implements Command {
 
@@ -43,7 +44,7 @@ public class RefillMoneyCommand implements Command {
             int clientId = (Integer) requestContent.getSessionAttributeByName(USER_ID);
             boolean isValid = true;
             String stringMoney = requestContent.getParameterByName(MONEY);
-            if (!Validator.checkMoney(stringMoney)) {
+            if (!FormValidator.checkMoney(stringMoney)) {
                 requestContent.putAttribute(ERROR_MESSAGE, "amount.is.not.valid");
                 isValid = false;
             }

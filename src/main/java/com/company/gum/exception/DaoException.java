@@ -1,8 +1,9 @@
 package com.company.gum.exception;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class DaoException.
+ *
+ * @author Vladislav Kuzmich
  */
 public class DaoException extends Exception {
 

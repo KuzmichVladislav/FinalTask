@@ -7,7 +7,7 @@ import com.company.gum.exception.CommandException;
 import com.company.gum.exception.ServiceException;
 import com.company.gum.model.service.ClientService;
 import com.company.gum.model.service.impl.ClientServiceImpl;
-import com.company.gum.model.util.Validator;
+import com.company.gum.model.validator.FormValidator;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
@@ -16,9 +16,8 @@ import static com.company.gum.controller.command.AttributeName.*;
 import static com.company.gum.controller.command.Router.RouterType.FORWARD;
 import static com.company.gum.controller.command.Router.RouterType.REDIRECT;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class AssignDiscountCommand.
+ * @author Vladislav Kuzmich The Class AssignDiscountCommand.
  */
 public class AssignDiscountCommand implements Command {
 
@@ -41,7 +40,7 @@ public class AssignDiscountCommand implements Command {
             boolean isValid = true;
             int clientId = Integer.parseInt(requestContent.getParameterByName(CLIENT_ID));
             String stringDiscount = requestContent.getParameterByName(DISCOUNT);
-            if (!Validator.checkDiscount(stringDiscount)) {
+            if (!FormValidator.checkDiscount(stringDiscount)) {
                 requestContent.putAttribute(ERROR_MESSAGE, "discount.invalid");
                 isValid = false;
             }

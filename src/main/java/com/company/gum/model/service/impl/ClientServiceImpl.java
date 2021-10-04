@@ -11,9 +11,10 @@ import com.company.gum.model.util.MailSender;
 
 import java.math.BigDecimal;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class ClientServiceImpl.
+ *
+ * @author Vladislav Kuzmich
  */
 public class ClientServiceImpl implements ClientService {
 

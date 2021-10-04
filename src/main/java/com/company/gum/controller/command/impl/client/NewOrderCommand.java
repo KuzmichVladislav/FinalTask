@@ -15,9 +15,10 @@ import java.util.List;
 import static com.company.gum.controller.command.AttributeName.TRAINERS;
 import static com.company.gum.controller.command.Router.RouterType.FORWARD;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class NewOrderCommand.
+ *
+ * @author Vladislav Kuzmich
  */
 public class NewOrderCommand implements Command {
 

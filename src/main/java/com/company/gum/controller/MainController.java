@@ -13,9 +13,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class MainController.
+ *
+ * @author Vladislav Kuzmich
  */
 @WebServlet(value = "/controller")
 public class MainController extends HttpServlet {

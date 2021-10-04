@@ -11,14 +11,15 @@ import com.company.gum.model.entity.User;
 import com.company.gum.model.service.UserService;
 import com.company.gum.model.service.impl.UserServiceImpl;
 import com.company.gum.model.util.JBCryptPasswordEncoder;
-import com.company.gum.model.util.Validator;
+import com.company.gum.model.validator.FormValidator;
 
 import static com.company.gum.controller.command.AttributeName.*;
 import static com.company.gum.controller.command.Router.RouterType.FORWARD;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class ChangePasswordCommand.
+ *
+ * @author Vladislav Kuzmich
  */
 public class ChangePasswordCommand implements Command {
 
@@ -44,11 +45,11 @@ public class ChangePasswordCommand implements Command {
             String newPassword = requestContent.getParameterByName(NEW_PASSWORD).strip();
             String repeatedPassword = requestContent.getParameterByName(REPEAT_PASSWORD).strip();
 
-            if (!Validator.checkPassword(currentPassword)) {
+            if (!FormValidator.checkPassword(currentPassword)) {
                 isValid = false;
                 requestContent.putAttribute(ERROR_MESSAGE, "current.password.invalid");
             }
-            if (!Validator.checkPassword(newPassword) && isValid) {
+            if (!FormValidator.checkPassword(newPassword) && isValid) {
                 isValid = false;
                 requestContent.putAttribute(ERROR_MESSAGE, "new.password.invalid");
             }

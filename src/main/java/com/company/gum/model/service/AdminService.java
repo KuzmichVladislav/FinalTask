@@ -3,9 +3,10 @@ package com.company.gum.model.service;
 import com.company.gum.exception.ServiceException;
 import com.company.gum.model.entity.Admin;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Interface AdminService.
+ *
+ * @author Vladislav Kuzmich
  */
 public interface AdminService {
 

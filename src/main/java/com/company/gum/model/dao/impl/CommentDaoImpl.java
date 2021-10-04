@@ -14,9 +14,10 @@ import java.util.List;
 
 import static com.company.gum.model.dao.TableColumnName.*;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class CommentDaoImpl.
+ *
+ * @author Vladislav Kuzmich
  */
 public class CommentDaoImpl implements CommentDao {
 
@@ -91,9 +92,8 @@ public class CommentDaoImpl implements CommentDao {
      */
     @Override
     public Comment createComment(Comment comment) throws DaoException {
-        try (Connection connection = ConnectionPool.getInstance().takeConnection();
-                PreparedStatement statement = connection.prepareStatement(SQL_CREATE_COMMENT,
-                        Statement.RETURN_GENERATED_KEYS)) {
+        try ( Connection connection = ConnectionPool.getInstance().takeConnection();  PreparedStatement statement = connection.prepareStatement(SQL_CREATE_COMMENT,
+                Statement.RETURN_GENERATED_KEYS)) {
             statement.setInt(1, comment.getUserId());
             statement.setString(2, comment.getCommentText());
 
@@ -103,9 +103,9 @@ public class CommentDaoImpl implements CommentDao {
             if (resultSet.next()) {
                 int commentId = resultSet.getInt(1);
                 comment.setId(commentId);
-                logger.debug("Comment {} was created", comment);
+                logger.debug("Comment with id {} was created", comment.getId());
             } else {
-                logger.debug("Comment {} was not created", comment);
+                logger.debug("Comment with id {} was not created", comment.getId());
             }
 
         } catch (SQLException e) {
@@ -126,8 +126,7 @@ public class CommentDaoImpl implements CommentDao {
     public boolean updateComment(int commentId, String commentText) throws DaoException {
         boolean isUpdated;
 
-        try (Connection connection = ConnectionPool.getInstance().takeConnection();
-                PreparedStatement statement = connection.prepareStatement(SQL_UPDATE_COMMENT)) {
+        try ( Connection connection = ConnectionPool.getInstance().takeConnection();  PreparedStatement statement = connection.prepareStatement(SQL_UPDATE_COMMENT)) {
             if (commentText != null) {
                 statement.setString(1, commentText);
             } else {
@@ -157,8 +156,7 @@ public class CommentDaoImpl implements CommentDao {
     public boolean deleteComment(int commentId) throws DaoException {
         boolean isDeleted;
 
-        try (Connection connection = ConnectionPool.getInstance().takeConnection();
-                PreparedStatement statement = connection.prepareStatement(SQL_DELETE_COMMENT)) {
+        try ( Connection connection = ConnectionPool.getInstance().takeConnection();  PreparedStatement statement = connection.prepareStatement(SQL_DELETE_COMMENT)) {
             statement.setInt(1, commentId);
             isDeleted = statement.executeUpdate() == 1;
             logger.debug(isDeleted ? "Comment with id {} has been deleted"
@@ -180,8 +178,7 @@ public class CommentDaoImpl implements CommentDao {
     public List<Comment> findAllActiveComment() throws DaoException {
         List<Comment> comments = new ArrayList<>();
 
-        try (Connection connection = ConnectionPool.getInstance().takeConnection();
-                PreparedStatement statement = connection.prepareStatement(SQL_FIND_ALL_ACTIVE_COMMENT)) {
+        try ( Connection connection = ConnectionPool.getInstance().takeConnection();  PreparedStatement statement = connection.prepareStatement(SQL_FIND_ALL_ACTIVE_COMMENT)) {
 
             ResultSet resultSet = statement.executeQuery();
 
@@ -190,7 +187,7 @@ public class CommentDaoImpl implements CommentDao {
                 comments.add(comment);
             }
 
-            logger.debug("Found {} active comments: {}", comments.size(), comments);
+            logger.debug("Found {} active comments", comments.size());
 
         } catch (SQLException e) {
             throw new DaoException(e);

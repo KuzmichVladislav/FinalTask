@@ -13,9 +13,10 @@ import javax.servlet.http.Part;
 import java.io.IOException;
 import java.io.InputStream;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class UploadServlet.
+ *
+ * @author Vladislav Kuzmich
  */
 @WebServlet(urlPatterns = {"/uploadServlet"})
 @MultipartConfig(fileSizeThreshold = 1024 * 1024, maxFileSize = 1024 * 1024 * 5, maxRequestSize = 1024 * 1024 * 5 * 5)

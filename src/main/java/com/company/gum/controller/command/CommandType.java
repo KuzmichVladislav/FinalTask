@@ -16,9 +16,10 @@ import com.company.gum.controller.command.impl.trainer.EditExperienceCommand;
 import com.company.gum.controller.command.impl.trainer.EditTrainerProfileCommand;
 import com.company.gum.controller.command.impl.trainer.ShowAllTrainerCommand;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Enum CommandType.
+ *
+ * @author Vladislav Kuzmich
  */
 public enum CommandType {
 

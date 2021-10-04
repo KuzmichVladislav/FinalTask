@@ -7,9 +7,10 @@ import com.company.gum.controller.command.Router;
 
 import static com.company.gum.controller.command.Router.RouterType.REDIRECT;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class LogoutCommand.
+ *
+ * @author Vladislav Kuzmich
  */
 public class LogoutCommand implements Command {
 

@@ -5,9 +5,10 @@ import com.company.gum.model.entity.Order;
 
 import java.util.List;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Interface OrderService.
+ *
+ * @author Vladislav Kuzmich
  */
 public interface OrderService {
 

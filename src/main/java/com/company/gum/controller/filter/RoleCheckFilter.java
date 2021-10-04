@@ -10,9 +10,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class RoleCheckFilter.
+ *
+ * @author Vladislav Kuzmich
  */
 @WebFilter(urlPatterns = {"/jsp/admin/*", "/jsp/client/*", "/jsp/trainer/*"})
 public class RoleCheckFilter implements Filter {

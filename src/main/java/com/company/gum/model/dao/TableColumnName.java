@@ -1,8 +1,9 @@
 package com.company.gum.model.dao;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class TableColumnName.
+ *
+ * @author Vladislav Kuzmich
  */
 public class TableColumnName {
 

@@ -14,9 +14,10 @@ import static com.company.gum.controller.command.AttributeName.COMMENT;
 import static com.company.gum.controller.command.AttributeName.CURRENT_PAGE;
 import static com.company.gum.controller.command.Router.RouterType.REDIRECT;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class CreateNewCommentCommand.
+ *
+ * @author Vladislav Kuzmich
  */
 public class CreateNewCommentCommand implements Command {
 

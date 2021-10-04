@@ -15,9 +15,10 @@ import com.company.gum.model.service.impl.OrderServiceImpl;
 import static com.company.gum.controller.command.AttributeName.*;
 import static com.company.gum.controller.command.Router.RouterType.FORWARD;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class UpdateOrderStatusCommand.
+ *
+ * @author Vladislav Kuzmich
  */
 public class UpdateOrderStatusCommand implements Command {
 

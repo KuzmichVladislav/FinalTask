@@ -3,9 +3,10 @@ package com.company.gum.model.util;
 import org.mindrot.jbcrypt.BCrypt;
 import org.pac4j.core.util.CommonHelper;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class JBCryptPasswordEncoder.
+ *
+ * @author Vladislav Kuzmich
  */
 public class JBCryptPasswordEncoder {
 

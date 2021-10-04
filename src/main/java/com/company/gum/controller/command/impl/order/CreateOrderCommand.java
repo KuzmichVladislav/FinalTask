@@ -19,9 +19,10 @@ import java.time.temporal.ChronoUnit;
 import static com.company.gum.controller.command.AttributeName.*;
 import static com.company.gum.controller.command.Router.RouterType.REDIRECT;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class CreateOrderCommand.
+ *
+ * @author Vladislav Kuzmich
  */
 public class CreateOrderCommand implements Command {
 

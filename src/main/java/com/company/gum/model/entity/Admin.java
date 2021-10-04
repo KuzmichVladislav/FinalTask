@@ -2,9 +2,10 @@ package com.company.gum.model.entity;
 
 import java.util.Arrays;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class Admin.
+ *
+ * @author Vladislav Kuzmich
  */
 public class Admin extends User {
 
@@ -32,19 +33,6 @@ public class Admin extends User {
         setActive(builder.isActive);
         setPhoto(builder.photo);
         setBase64Image(builder.base64Image);
-    }
-
-    /**
-     * To string.
-     *
-     * @return the string
-     */
-    @Override
-    public String toString() {
-        final StringBuilder sb = new StringBuilder("Admin{");
-        sb.append("role=").append(role);
-        sb.append('}');
-        return sb.toString();
     }
 
     /**
@@ -106,28 +94,6 @@ public class Admin extends User {
          * The base 64 image.
          */
         private String base64Image;
-
-        /**
-         * To string.
-         *
-         * @return the string
-         */
-        @Override
-        public String toString() {
-            return "Builder{"
-                    + "id=" + id
-                    + ", role=" + role
-                    + ", login='" + login + '\''
-                    + ", password='" + password + '\''
-                    + ", name='" + name + '\''
-                    + ", surname='" + surname + '\''
-                    + ", mail='" + mail + '\''
-                    + ", verification=" + verification
-                    + ", isActive=" + isActive
-                    + ", photo=" + Arrays.toString(photo)
-                    + ", base64Image='" + base64Image + '\''
-                    + '}';
-        }
 
         /**
          * Equals.
@@ -196,7 +162,6 @@ public class Admin extends User {
             result = 31 * result + (verification ? 1 : 0);
             result = 31 * result + (isActive ? 1 : 0);
             result = 31 * result + Arrays.hashCode(photo);
-            result = 31 * result + (base64Image != null ? base64Image.hashCode() : 0);
             return result;
         }
 

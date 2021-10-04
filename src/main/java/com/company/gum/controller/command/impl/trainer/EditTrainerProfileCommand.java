@@ -10,15 +10,16 @@ import com.company.gum.exception.ServiceException;
 import com.company.gum.model.entity.Trainer;
 import com.company.gum.model.service.TrainerService;
 import com.company.gum.model.service.impl.TrainerServiceImpl;
-import com.company.gum.model.util.Validator;
+import com.company.gum.model.validator.FormValidator;
 
 import static com.company.gum.controller.command.AttributeName.*;
 import static com.company.gum.controller.command.Router.RouterType.FORWARD;
 import static com.company.gum.controller.command.Router.RouterType.REDIRECT;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class EditTrainerProfileCommand.
+ *
+ * @author Vladislav Kuzmich
  */
 public class EditTrainerProfileCommand implements Command {
 
@@ -54,19 +55,19 @@ public class EditTrainerProfileCommand implements Command {
                     ? (String) requestContent.getSessionAttributeByName(USER_MAIL)
                     : requestContent.getParameterByName(USER_MAIL).strip();
 
-            if (!Validator.checkNameSurname(userName)) {
+            if (!FormValidator.checkNameSurname(userName)) {
                 isValid = false;
                 requestContent.putAttribute(ERROR_MESSAGE, "invalid.name");
             }
-            if (!Validator.checkNameSurname(userSurname) && isValid) {
+            if (!FormValidator.checkNameSurname(userSurname) && isValid) {
                 isValid = false;
                 requestContent.putAttribute(ERROR_MESSAGE, "invalid.surname");
             }
-            if (!Validator.checkPhone(userPhone) && isValid) {
+            if (!FormValidator.checkPhone(userPhone) && isValid) {
                 isValid = false;
                 requestContent.putAttribute(ERROR_MESSAGE, "invalid.phone");
             }
-            if (!Validator.checkMail(userMail) && isValid) {
+            if (!FormValidator.checkMail(userMail) && isValid) {
                 isValid = false;
                 requestContent.putAttribute(ERROR_MESSAGE, "invalid.email");
             }

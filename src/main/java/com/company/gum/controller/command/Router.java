@@ -1,8 +1,9 @@
 package com.company.gum.controller.command;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class Router.
+ *
+ * @author Vladislav Kuzmich
  */
 public final class Router {
 

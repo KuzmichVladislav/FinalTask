@@ -7,9 +7,10 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class CurrentPageFilter.
+ *
+ * @author Vladislav Kuzmich
  */
 @WebFilter(urlPatterns = {"/*"})
 public class CurrentPageFilter implements Filter {

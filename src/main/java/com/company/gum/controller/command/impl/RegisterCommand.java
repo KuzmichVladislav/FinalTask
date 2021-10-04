@@ -9,15 +9,16 @@ import com.company.gum.exception.ServiceException;
 import com.company.gum.model.entity.Client;
 import com.company.gum.model.service.ClientService;
 import com.company.gum.model.service.impl.ClientServiceImpl;
-import com.company.gum.model.util.Validator;
+import com.company.gum.model.validator.FormValidator;
 
 import static com.company.gum.controller.command.AttributeName.*;
 import static com.company.gum.controller.command.Router.RouterType.FORWARD;
 import static com.company.gum.controller.command.Router.RouterType.REDIRECT;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class RegisterCommand.
+ *
+ * @author Vladislav Kuzmich
  */
 public class RegisterCommand implements Command {
 
@@ -45,27 +46,27 @@ public class RegisterCommand implements Command {
 
         boolean isValid = true;
 
-        if (!Validator.checkLogin(login)) {
+        if (!FormValidator.checkLogin(login)) {
             requestContent.putAttribute(AttributeName.ERROR_MESSAGE, "invalid.login");
             isValid = false;
         }
-        if (!Validator.checkNameSurname(name) && isValid) {
+        if (!FormValidator.checkNameSurname(name) && isValid) {
             requestContent.putAttribute(ERROR_MESSAGE, "invalid.name");
             isValid = false;
         }
-        if (!Validator.checkNameSurname(surname) && isValid) {
+        if (!FormValidator.checkNameSurname(surname) && isValid) {
             requestContent.putAttribute(ERROR_MESSAGE, "invalid.surname");
             isValid = false;
         }
-        if (!Validator.checkPhone(phone) && isValid) {
+        if (!FormValidator.checkPhone(phone) && isValid) {
             requestContent.putAttribute(ERROR_MESSAGE, "invalid.phone");
             isValid = false;
         }
-        if (!Validator.checkMail(mail) && isValid) {
+        if (!FormValidator.checkMail(mail) && isValid) {
             requestContent.putAttribute(ERROR_MESSAGE, "invalid.email");
             isValid = false;
         }
-        if (!Validator.checkPassword(password) && isValid) {
+        if (!FormValidator.checkPassword(password) && isValid) {
             requestContent.putAttribute(ERROR_MESSAGE, "invalid.password");
             isValid = false;
         }

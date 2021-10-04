@@ -1,10 +1,9 @@
-package com.company.gum.model.util;
+package com.company.gum.model.validator;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class Validator.
+ * @author Vladislav Kuzmich The Class FormValidator.
  */
-public class Validator {
+public class FormValidator {
 
     /**
      * The Constant LOGIN_REGEX.
@@ -42,9 +41,9 @@ public class Validator {
     private static final String DISCOUNT_REGEX = "^[0-9]{1,2}(\\.[0-9]{1,2})?$";
 
     /**
-     * Instantiates a new validator.
+     * Instantiates a new form validator.
      */
-    private Validator() {
+    private FormValidator() {
     }
 
     /**

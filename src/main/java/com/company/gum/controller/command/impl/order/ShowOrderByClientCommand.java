@@ -14,9 +14,10 @@ import static com.company.gum.controller.command.AttributeName.ORDER;
 import static com.company.gum.controller.command.AttributeName.ORDER_ID;
 import static com.company.gum.controller.command.Router.RouterType.FORWARD;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class ShowOrderByClientCommand.
+ *
+ * @author Vladislav Kuzmich
  */
 public class ShowOrderByClientCommand implements Command {
 

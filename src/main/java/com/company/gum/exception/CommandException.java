@@ -1,8 +1,9 @@
 package com.company.gum.exception;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class CommandException.
+ *
+ * @author Vladislav Kuzmich
  */
 public class CommandException extends Exception {
 

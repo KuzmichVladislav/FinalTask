@@ -11,9 +11,10 @@ import com.company.gum.model.service.impl.CommentServiceImpl;
 import static com.company.gum.controller.command.AttributeName.*;
 import static com.company.gum.controller.command.Router.RouterType.FORWARD;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class EditCommentCommand.
+ *
+ * @author Vladislav Kuzmich
  */
 public class EditCommentCommand implements Command {
 

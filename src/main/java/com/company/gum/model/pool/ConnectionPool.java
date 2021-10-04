@@ -14,9 +14,10 @@ import java.util.concurrent.LinkedBlockingDeque;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.locks.ReentrantLock;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class ConnectionPool.
+ *
+ * @author Vladislav Kuzmich
  */
 public class ConnectionPool {
 
@@ -44,18 +45,22 @@ public class ConnectionPool {
      * The Constant NUMBER_OF_CONNECTIONS.
      */
     private static final String NUMBER_OF_CONNECTIONS = "number_of_connections";
+
     /**
-     * The is created.
+     * The Constant isCreated.
      */
     private static final AtomicBoolean isCreated = new AtomicBoolean(false);
+
     /**
-     * The lock.
+     * The Constant lock.
      */
     private static final ReentrantLock lock = new ReentrantLock(true);
+
     /**
      * The instance.
      */
     private static ConnectionPool instance;
+
     /**
      * The awaiting connections.
      */
@@ -187,4 +192,12 @@ public class ConnectionPool {
         });
     }
 
+    /**
+     * Size.
+     *
+     * @return the int
+     */
+    public int size() {
+        return instance.numberOfConnections;
+    }
 }

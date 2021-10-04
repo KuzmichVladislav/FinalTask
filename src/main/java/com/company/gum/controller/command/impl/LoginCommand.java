@@ -15,7 +15,7 @@ import com.company.gum.model.service.UserService;
 import com.company.gum.model.service.impl.ClientServiceImpl;
 import com.company.gum.model.service.impl.TrainerServiceImpl;
 import com.company.gum.model.service.impl.UserServiceImpl;
-import com.company.gum.model.util.Validator;
+import com.company.gum.model.validator.FormValidator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -23,9 +23,10 @@ import static com.company.gum.controller.command.AttributeName.*;
 import static com.company.gum.controller.command.Router.RouterType.FORWARD;
 import static com.company.gum.controller.command.Router.RouterType.REDIRECT;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class LoginCommand.
+ *
+ * @author Vladislav Kuzmich
  */
 public class LoginCommand implements Command {
 
@@ -63,7 +64,7 @@ public class LoginCommand implements Command {
         User user;
         Router router;
         try {
-            if (Validator.checkLogin(login) && Validator.checkPassword(password)) {
+            if (FormValidator.checkLogin(login) && FormValidator.checkPassword(password)) {
                 user = userService.findUserByLoginAndPassword(login, password);
                 if (user != null) {
                     if (user.isVerification()) {

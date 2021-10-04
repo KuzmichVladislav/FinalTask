@@ -5,9 +5,10 @@ import com.company.gum.model.entity.Trainer;
 
 import java.util.List;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Interface TrainerService.
+ *
+ * @author Vladislav Kuzmich
  */
 public interface TrainerService {
 

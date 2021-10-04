@@ -5,9 +5,10 @@ import com.company.gum.model.entity.Comment;
 
 import java.util.List;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Interface CommentDao.
+ *
+ * @author Vladislav Kuzmich
  */
 public interface CommentDao {
 

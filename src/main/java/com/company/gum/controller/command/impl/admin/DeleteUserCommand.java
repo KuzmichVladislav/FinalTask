@@ -12,9 +12,8 @@ import static com.company.gum.controller.command.AttributeName.CURRENT_PAGE;
 import static com.company.gum.controller.command.AttributeName.USER_ID;
 import static com.company.gum.controller.command.Router.RouterType.FORWARD;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class DeleteUserCommand.
+ * @author Vladislav Kuzmich The Class DeleteUserCommand.
  */
 public class DeleteUserCommand implements Command {
 

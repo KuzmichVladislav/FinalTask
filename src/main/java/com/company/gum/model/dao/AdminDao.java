@@ -3,9 +3,10 @@ package com.company.gum.model.dao;
 import com.company.gum.exception.DaoException;
 import com.company.gum.model.entity.Admin;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Interface AdminDao.
+ *
+ * @author Vladislav Kuzmich
  */
 public interface AdminDao {
 

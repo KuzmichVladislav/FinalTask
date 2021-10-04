@@ -5,9 +5,10 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class LocateFilter.
+ *
+ * @author Vladislav Kuzmich
  */
 @WebFilter(urlPatterns = {"/jsp/*"})
 public class LocateFilter implements Filter {

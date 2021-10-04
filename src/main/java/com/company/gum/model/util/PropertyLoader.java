@@ -7,9 +7,10 @@ import org.apache.logging.log4j.Logger;
 import java.io.IOException;
 import java.util.Properties;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class PropertyLoader.
+ *
+ * @author Vladislav Kuzmich
  */
 public class PropertyLoader {
 

@@ -15,9 +15,10 @@ import java.util.List;
 import static com.company.gum.controller.command.AttributeName.ORDERS;
 import static com.company.gum.controller.command.Router.RouterType.FORWARD;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class ShowAllOrdersByAdminCommand.
+ *
+ * @author Vladislav Kuzmich
  */
 public class ShowAllOrdersByAdminCommand implements Command {
 

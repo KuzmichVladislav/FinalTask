@@ -5,9 +5,10 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.concurrent.Executor;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class ProxyConnection.
+ *
+ * @author Vladislav Kuzmich
  */
 public class ProxyConnection implements Connection {
 

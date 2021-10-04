@@ -9,9 +9,10 @@ import com.company.gum.model.service.OrderService;
 
 import java.util.List;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class OrderServiceImpl.
+ *
+ * @author Vladislav Kuzmich
  */
 public class OrderServiceImpl implements OrderService {
 

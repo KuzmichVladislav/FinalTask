@@ -9,9 +9,10 @@ import com.company.gum.model.service.CommentService;
 
 import java.util.List;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class CommentServiceImpl.
+ *
+ * @author Vladislav Kuzmich
  */
 public class CommentServiceImpl implements CommentService {
 

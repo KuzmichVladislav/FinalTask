@@ -5,9 +5,10 @@ import com.company.gum.model.entity.Client;
 
 import java.math.BigDecimal;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Interface ClientDao.
+ *
+ * @author Vladislav Kuzmich
  */
 public interface ClientDao {
 

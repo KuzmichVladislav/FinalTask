@@ -2,9 +2,10 @@ package com.company.gum.model.entity;
 
 import java.math.BigDecimal;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Enum Duration.
+ *
+ * @author Vladislav Kuzmich
  */
 public enum Duration {
 

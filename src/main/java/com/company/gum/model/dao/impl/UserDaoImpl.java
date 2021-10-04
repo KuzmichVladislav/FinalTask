@@ -17,9 +17,10 @@ import java.util.List;
 
 import static com.company.gum.model.dao.TableColumnName.*;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class UserDaoImpl.
+ *
+ * @author Vladislav Kuzmich
  */
 public class UserDaoImpl implements UserDao {
 
@@ -43,22 +44,6 @@ public class UserDaoImpl implements UserDao {
             + "       is_verified\n"
             + "FROM users\n"
             + "WHERE user_id = ?";
-
-    /**
-     * The Constant SQL_FIND_USER_BY_LOGIN.
-     */
-    private static final String SQL_FIND_USER_BY_LOGIN = "SELECT user_id,\n"
-            + "       login,\n"
-            + "       password,\n"
-            + "       role,\n"
-            + "       name,\n"
-            + "       surname,\n"
-            + "       is_active,\n"
-            + "       mail,\n"
-            + "       image,\n"
-            + "       is_verified\n"
-            + "FROM users\n"
-            + "WHERE login = ?\n";
 
     /**
      * The Constant SQL_FIND_USER_BY_LOGIN_AND_PASSWORD.
@@ -152,42 +137,15 @@ public class UserDaoImpl implements UserDao {
     @Override
     public User findUserById(int userId) throws DaoException {
         User user = null;
-        try (Connection connection = ConnectionPool.getInstance().takeConnection();
-                PreparedStatement statement = connection.prepareStatement(SQL_FIND_USER_BY_ID)) {
+        try ( Connection connection = ConnectionPool.getInstance().takeConnection();  PreparedStatement statement = connection.prepareStatement(SQL_FIND_USER_BY_ID)) {
             statement.setInt(1, userId);
             ResultSet resultSet = statement.executeQuery();
 
             if (resultSet.next()) {
                 user = getUserFromResultSet(resultSet);
-                logger.debug("User with id \"{}\" was found", user.getId());
+                logger.debug("User with id \"{}\" was found", userId);
             } else {
                 logger.debug("User with id \"{}\" was not found", userId);
-            }
-        } catch (SQLException e) {
-            throw new DaoException(e);
-        }
-        return user;
-    }
-
-    /**
-     * Find user by login.
-     *
-     * @param login the login
-     * @return the user
-     * @throws DaoException the dao exception
-     */
-    @Override
-    public User findUserByLogin(String login) throws DaoException {
-        User user = null;
-        try (Connection connection = ConnectionPool.getInstance().takeConnection();
-                PreparedStatement statement = connection.prepareStatement(SQL_FIND_USER_BY_LOGIN)) {
-            statement.setString(1, login);
-            ResultSet resultSet = statement.executeQuery();
-            if (resultSet.next()) {
-                user = getUserFromResultSet(resultSet);
-                logger.debug("User with login \"{}\" was found", user.getLogin());
-            } else {
-                logger.debug("User with login \"{}\" was not found", login);
             }
         } catch (SQLException e) {
             throw new DaoException(e);
@@ -206,8 +164,7 @@ public class UserDaoImpl implements UserDao {
     @Override
     public User findUserByLoginAndPassword(String login, String password) throws DaoException {
         User user = null;
-        try (Connection connection = ConnectionPool.getInstance().takeConnection();
-                PreparedStatement statement = connection.prepareStatement(SQL_FIND_USER_BY_LOGIN_AND_PASSWORD)) {
+        try ( Connection connection = ConnectionPool.getInstance().takeConnection();  PreparedStatement statement = connection.prepareStatement(SQL_FIND_USER_BY_LOGIN_AND_PASSWORD)) {
             statement.setString(1, login);
             statement.setString(2, password);
             ResultSet resultSet = statement.executeQuery();
@@ -234,8 +191,7 @@ public class UserDaoImpl implements UserDao {
     @Override
     public boolean updateUserPassword(User user) throws DaoException {
         boolean isUpdated;
-        try (Connection connection = ConnectionPool.getInstance().takeConnection();
-                PreparedStatement statement = connection.prepareStatement(SQL_UPDATE_USER_PASSWORD)) {
+        try ( Connection connection = ConnectionPool.getInstance().takeConnection();  PreparedStatement statement = connection.prepareStatement(SQL_UPDATE_USER_PASSWORD)) {
             statement.setString(1, user.getPassword());
             statement.setInt(2, user.getId());
 
@@ -260,8 +216,7 @@ public class UserDaoImpl implements UserDao {
     @Override
     public boolean updateUserImage(User user) throws DaoException {
         boolean isUpdated;
-        try (Connection connection = ConnectionPool.getInstance().takeConnection();
-                PreparedStatement statement = connection.prepareStatement(SQL_UPDATE_USER_IMAGE)) {
+        try ( Connection connection = ConnectionPool.getInstance().takeConnection();  PreparedStatement statement = connection.prepareStatement(SQL_UPDATE_USER_IMAGE)) {
             statement.setBytes(1, user.getPhoto());
             statement.setInt(2, user.getId());
 
@@ -289,8 +244,7 @@ public class UserDaoImpl implements UserDao {
     @Override
     public boolean deleteUser(int userId) throws DaoException {
         boolean isDeleted;
-        try (Connection connection = ConnectionPool.getInstance().takeConnection();
-                PreparedStatement statement = connection.prepareStatement(SQL_DELETE_USER)) {
+        try ( Connection connection = ConnectionPool.getInstance().takeConnection();  PreparedStatement statement = connection.prepareStatement(SQL_DELETE_USER)) {
             statement.setInt(1, userId);
 
             isDeleted = statement.executeUpdate() == 1;
@@ -314,8 +268,7 @@ public class UserDaoImpl implements UserDao {
     @Override
     public boolean restoreUser(int userId) throws DaoException {
         boolean isRestored;
-        try (Connection connection = ConnectionPool.getInstance().takeConnection();
-                PreparedStatement statement = connection.prepareStatement(SQL_RESTORE_USER)) {
+        try ( Connection connection = ConnectionPool.getInstance().takeConnection();  PreparedStatement statement = connection.prepareStatement(SQL_RESTORE_USER)) {
             statement.setInt(1, userId);
 
             isRestored = statement.executeUpdate() == 1;
@@ -338,8 +291,7 @@ public class UserDaoImpl implements UserDao {
     @Override
     public List<User> findAllUser() throws DaoException {
         List<User> resultArray = new ArrayList<>();
-        try (Connection connection = ConnectionPool.getInstance().takeConnection();
-                PreparedStatement statement = connection.prepareStatement(SQL_FIND_ALL_USER)) {
+        try ( Connection connection = ConnectionPool.getInstance().takeConnection();  PreparedStatement statement = connection.prepareStatement(SQL_FIND_ALL_USER)) {
             ResultSet resultSet = statement.executeQuery();
 
             while (resultSet.next()) {
@@ -347,8 +299,7 @@ public class UserDaoImpl implements UserDao {
                 resultArray.add(client);
             }
 
-            logger.debug(resultArray.isEmpty() ? "No users found" : "Found {} users:\n{}", resultArray.size(),
-                    resultArray);
+            logger.debug(resultArray.isEmpty() ? "No users found" : "Found {} users", resultArray.size());
 
         } catch (SQLException e) {
             throw new DaoException(e);

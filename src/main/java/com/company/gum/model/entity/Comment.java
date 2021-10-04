@@ -3,9 +3,10 @@ package com.company.gum.model.entity;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class Comment.
+ *
+ * @author Vladislav Kuzmich
  */
 public class Comment extends AbstractEntity {
 
@@ -215,20 +216,6 @@ public class Comment extends AbstractEntity {
      *
      * @return the string
      */
-    @Override
-    public String toString() {
-        return "Comment{"
-                + "userId=" + userId
-                + ", userName='" + userName + '\''
-                + ", userSurname='" + userSurname + '\''
-                + ", photo=" + Arrays.toString(photo)
-                + ", base64Image='" + base64Image + '\''
-                + ", commentDate=" + commentDate
-                + ", commentText='" + commentText + '\''
-                + ", active=" + active
-                + '}';
-    }
-
     /**
      * Equals.
      *
@@ -285,7 +272,6 @@ public class Comment extends AbstractEntity {
         result = 31 * result + (getUserName() != null ? getUserName().hashCode() : 0);
         result = 31 * result + (getUserSurname() != null ? getUserSurname().hashCode() : 0);
         result = 31 * result + Arrays.hashCode(getPhoto());
-        result = 31 * result + (getBase64Image() != null ? getBase64Image().hashCode() : 0);
         result = 31 * result + (getCommentDate() != null ? getCommentDate().hashCode() : 0);
         result = 31 * result + (getCommentText() != null ? getCommentText().hashCode() : 0);
         result = 31 * result + (getActive() != null ? getActive().hashCode() : 0);

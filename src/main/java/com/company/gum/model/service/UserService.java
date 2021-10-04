@@ -5,9 +5,10 @@ import com.company.gum.model.entity.User;
 
 import java.util.List;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Interface UserService.
+ *
+ * @author Vladislav Kuzmich
  */
 public interface UserService {
 

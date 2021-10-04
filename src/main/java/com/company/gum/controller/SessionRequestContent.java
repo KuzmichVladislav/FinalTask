@@ -7,9 +7,10 @@ import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Objects;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class SessionRequestContent.
+ *
+ * @author Vladislav Kuzmich
  */
 public class SessionRequestContent {
 

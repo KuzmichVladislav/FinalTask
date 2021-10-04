@@ -1,8 +1,9 @@
 package com.company.gum.exception;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class ServiceException.
+ *
+ * @author Vladislav Kuzmich
  */
 public class ServiceException extends Exception {
 

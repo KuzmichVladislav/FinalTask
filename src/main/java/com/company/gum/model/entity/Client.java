@@ -2,11 +2,11 @@ package com.company.gum.model.entity;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.Arrays;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class Client.
+ *
+ * @author Vladislav Kuzmich
  */
 public class Client extends User {
 
@@ -404,32 +404,6 @@ public class Client extends User {
         public Builder discount(Integer val) {
             discount = val;
             return this;
-        }
-
-        /**
-         * To string.
-         *
-         * @return the string
-         */
-        @Override
-        public String toString() {
-            return "Builder{"
-                    + "id=" + id
-                    + ", role=" + role
-                    + ", login='" + login + '\''
-                    + ", password='" + password + '\''
-                    + ", name='" + name + '\''
-                    + ", surname='" + surname + '\''
-                    + ", mail='" + mail + '\''
-                    + ", verification=" + verification
-                    + ", isActive=" + isActive
-                    + ", photo=" + Arrays.toString(photo)
-                    + ", base64Image='" + base64Image + '\''
-                    + ", registerDate=" + registerDate
-                    + ", discount=" + discount
-                    + ", phone='" + phone + '\''
-                    + ", money=" + money
-                    + '}';
         }
 
         /**

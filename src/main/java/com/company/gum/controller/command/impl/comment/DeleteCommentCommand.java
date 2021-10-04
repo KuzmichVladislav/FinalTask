@@ -12,9 +12,10 @@ import static com.company.gum.controller.command.AttributeName.COMMENT_ID;
 import static com.company.gum.controller.command.AttributeName.CURRENT_PAGE;
 import static com.company.gum.controller.command.Router.RouterType.FORWARD;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class DeleteCommentCommand.
+ *
+ * @author Vladislav Kuzmich
  */
 public class DeleteCommentCommand implements Command {
 

@@ -16,9 +16,10 @@ import java.util.List;
 
 import static com.company.gum.controller.command.Router.RouterType.FORWARD;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class ShowUsersCommand.
+ *
+ * @author Vladislav Kuzmich
  */
 public class ShowUsersCommand implements Command {
 

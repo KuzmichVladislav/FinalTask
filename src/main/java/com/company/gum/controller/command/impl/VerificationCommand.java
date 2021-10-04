@@ -13,9 +13,10 @@ import static com.company.gum.controller.command.AttributeName.USER_ID;
 import static com.company.gum.controller.command.AttributeName.VERIFICATION;
 import static com.company.gum.controller.command.Router.RouterType.FORWARD;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class VerificationCommand.
+ *
+ * @author Vladislav Kuzmich
  */
 public class VerificationCommand implements Command {
 

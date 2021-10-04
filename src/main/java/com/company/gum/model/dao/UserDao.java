@@ -5,9 +5,10 @@ import com.company.gum.model.entity.User;
 
 import java.util.List;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Interface UserDao.
+ *
+ * @author Vladislav Kuzmich
  */
 public interface UserDao {
 
@@ -34,16 +35,6 @@ public interface UserDao {
      * Find user by login.
      *
      * @param login the login
-     * @return the user
-     * @throws DaoException the dao exception
-     */
-    User findUserByLogin(String login) throws DaoException;
-
-    /**
-     * Find user by login and password.
-     *
-     * @param login the login
-     * @param password the password
      * @return the user
      * @throws DaoException the dao exception
      */

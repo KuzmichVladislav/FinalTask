@@ -17,9 +17,8 @@ import org.apache.logging.log4j.Logger;
 
 import static com.company.gum.controller.command.Router.RouterType.FORWARD;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class ShowUserProfileCommand.
+ * @author Vladislav Kuzmich The Class ShowUserProfileCommand.
  */
 public class ShowUserProfileCommand implements Command {
 

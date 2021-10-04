@@ -12,9 +12,10 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.List;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class UserServiceImpl.
+ *
+ * @author Vladislav Kuzmich
  */
 public class UserServiceImpl implements UserService {
 

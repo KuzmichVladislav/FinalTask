@@ -1,8 +1,9 @@
 package com.company.gum.controller.command;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class AttributeName.
+ *
+ * @author Vladislav Kuzmich
  */
 public class AttributeName {
 

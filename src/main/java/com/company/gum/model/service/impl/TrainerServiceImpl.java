@@ -11,9 +11,10 @@ import com.company.gum.model.util.MailSender;
 
 import java.util.List;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class TrainerServiceImpl.
+ *
+ * @author Vladislav Kuzmich
  */
 public class TrainerServiceImpl implements TrainerService {
 
