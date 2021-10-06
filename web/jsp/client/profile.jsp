@@ -110,12 +110,6 @@
                     <a href="${pageContext.request.contextPath}/controller?command=SHOW_ALL_ORDERS_BY_CLIENT">${myOrder}</a><br/>
                     <a href="${pageContext.request.contextPath}/jsp/client/refill_money.jsp">${moneyRefill}</a><br/>
                     <a href="${pageContext.request.contextPath}/controller?command=SHOW_ALL_TRAINERS">${showTrainers}</a><br/>
-                    <p>SKILLS</p>
-                    <a href="">Web Designer</a><br/>
-                    <a href="">Web Developer</a><br/>
-                    <a href="">WordPress</a><br/>
-                    <a href="">WooCommerce</a><br/>
-                    <a href="">PHP, .Net</a><br/>
                 </div>
             </div>
             <div class="col-md-8">

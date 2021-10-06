@@ -4,7 +4,6 @@
 
 <fmt:setLocale value="${sessionScope.locale}"/>
 <fmt:setBundle basename="bundle/message" var="rb"/>
-<fmt:setBundle basename="bundle/err" var="err_rb"/>
 
 <fmt:message key="form.sign.up.tagline" bundle="${rb}" var="tagline"/>
 <fmt:message key="form.sign.up.motivation.message" bundle="${rb}" var="motivationMessage"/>
@@ -203,9 +202,13 @@
                                         </div>
                                     </div>
                                 </div>
-                                <c:if test="${requestScope.errMessage != null}">
-                                    <div class="err-message-from-server">
-                                        <fmt:message key="${requestScope.errMessage}" bundle="${err_rb}"/>
+                                <c:if test="${requestScope.errorMessage != null}">
+                                    <div class="form-group">
+                                        <div class="col-md-6 mb-3">
+                                            <div class="err-message-from-server">
+                                                <fmt:message key="${requestScope.errorMessage}" bundle="${rb}"/>
+                                            </div>
+                                        </div>
                                     </div>
                                 </c:if>
                                 <button type="submit" class="btn btn-primary" style="margin-top:10px; width:200px;">
