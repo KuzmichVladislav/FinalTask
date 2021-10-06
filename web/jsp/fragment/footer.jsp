@@ -9,13 +9,14 @@
 <fmt:message key="footer.about" bundle="${rb}" var="footerAbout"/>
 <fmt:message key="footer.contacts" bundle="${rb}" var="footerContacts"/>
 <fmt:message key="footer.address" bundle="${rb}" var="footerAddress"/>
-<fmt:message key="footer.full.address" bundle="${rb}"
-             var="footerFullAddress"/>
+<fmt:message key="footer.full.address" bundle="${rb}" var="footerFullAddress"/>
 <fmt:message key="footer.phones" bundle="${rb}" var="footerPhones"/>
 <fmt:message key="footer.links" bundle="${rb}" var="footerlinks"/>
-<fmt:message key="footer.about.link" bundle="${rb}"
-             var="footerAboutLink"/>
+<fmt:message key="footer.about.link" bundle="${rb}" var="footerAboutLink"/>
 <fmt:message key="footer.email" bundle="${rb}" var="footerEmail"/>
+<fmt:message key="footer.all.rights.reserved" bundle="${rb}" var="allRightsReserved"/>
+<fmt:message key="project.navigation.price" bundle="${rb}" var="price"/>
+<fmt:message key="project.navigation.contacts" bundle="${rb}" var="contacts"/>
 
 <link rel="stylesheet"
       href="${pageContext.request.contextPath}/css/footer.css">
@@ -32,16 +33,14 @@
         <div class="row row-30">
             <div class="col-md-4 col-xl-5">
                 <div class="pr-xl-4">
-                    <a class="brand" href="index.html"> <img
+                    <a class="brand" href="${pageContext.request.contextPath}/jsp/main.jsp"> <img
                             class="brand-logo-light"
                             src="https://i.ibb.co/7N7qp8j/kisspng-physical-fitness-silhouette-physical-exercise-yoga-sports-silhouette-5a84e265373299-08779795.png"
                             alt="" width="128" height="80"
                             srcset="images/agency/logo-retina-inverse-280x74.png 2x"></a>
                     <p>${footerAbout}</p>
                     <p class="rights">
-                        <span>©  </span><span
-                            class="copyright-year">2021</span><span> </span><span>Waves</span><span>. </span><span>All
-                            Rights Reserved.</span>
+                        <span>${allRightsReserved}</span>
                     </p>
                 </div>
             </div>
@@ -68,12 +67,9 @@
                 <h5>${footerlinks}</h5>
                 <ul class="nav-list">
 
-                    <li><a
-                            href="${pageContext.request.contextPath}/jsp/about.jsp">${footerAboutLink}</a></li>
-                    <%--                    <li><a href="#">Projects</a></li>--%>
-                    <%--                    <li><a href="#">Blog</a></li>--%>
-                    <%--                    <li><a href="#">Contacts</a></li>--%>
-                    <%--                    <li><a href="#">Pricing</a></li>--%>
+                    <li><a href="${pageContext.request.contextPath}/jsp/about.jsp">${footerAboutLink}</a></li>
+                    <li><a href="${pageContext.request.contextPath}/jsp/contact.jsp">${contacts}</a></li>
+                    <li><a href="${pageContext.request.contextPath}/jsp/price.jsp">${price}</a></li>
                 </ul>
             </div>
         </div>

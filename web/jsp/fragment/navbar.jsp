@@ -7,16 +7,12 @@
 <fmt:message key="project.name" bundle="${rb}" var="projectName"/>
 <fmt:message key="project.contacts" bundle="${rb}" var="projectContacts"/>
 <fmt:message key="project.navigation.home" bundle="${rb}" var="home"/>
-<fmt:message key="project.navigation.contacts" bundle="${rb}"
-             var="contacts"/>
+<fmt:message key="project.navigation.contacts" bundle="${rb}" var="contacts"/>
 <fmt:message key="project.navigation.about" bundle="${rb}" var="about"/>
-<fmt:message key="project.navigation.language" bundle="${rb}"
-             var="language"/>
-<fmt:message key="project.navigation.comments" bundle="${rb}"
-             var="coments"/>
+<fmt:message key="project.navigation.language" bundle="${rb}" var="language"/>
+<fmt:message key="project.navigation.comments" bundle="${rb}" var="coments"/>
 <fmt:message key="project.navigation.price" bundle="${rb}" var="price"/>
-<fmt:message key="project.navigation.account" bundle="${rb}"
-             var="account"/>
+<fmt:message key="project.navigation.account" bundle="${rb}" var="account"/>
 <fmt:message key="user.box.sign.login" bundle="${rb}" var="login"/>
 <fmt:message key="user.box.sign.register" bundle="${rb}" var="register"/>
 <fmt:message key="user.box.logout" bundle="${rb}" var="logOut"/>
@@ -53,14 +49,14 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav">
-            <li class="nav-item active"><a class="nav-link"
-                                           href="${pageContext.request.contextPath}">${home}<span
-                    class="sr-only">(current)</span></a></li>
-            <li class="nav-item"><a class="nav-link"
-                                    href="${pageContext.request.contextPath}/jsp/about.jsp">${about}</a>
+            <li class="nav-item active">
+                <a class="nav-link" href="${pageContext.request.contextPath}/jsp/main.jsp">${home}<span
+                        class="sr-only">(current)</span></a></li>
+            <li class="nav-item">
+                <a class="nav-link" href="${pageContext.request.contextPath}/jsp/about.jsp">${about}</a>
             </li>
-            <li class="nav-item"><a class="nav-link" href="#">${contacts}</a>
-            </li>
+            <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/jsp/contact.jsp">${contacts}</a></li>
+            <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/jsp/price.jsp">${price}</a></li>
             <c:if test="${sessionScope.authorization}">
                 <li class="nav-item"><c:choose>
                     <c:when test="${sessionScope.userRole == 'CLIENT'}">

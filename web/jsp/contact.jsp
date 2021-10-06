@@ -8,8 +8,8 @@
 <fmt:message key="project.name" bundle="${rb}" var="title"/>
 <fmt:message key="form.sign.up.tagline" bundle="${rb}" var="tagline"/>
 <fmt:message key="form.sign.up.motivation.message" bundle="${rb}" var="motivationMessage"/>
-<fmt:message key="about.message" bundle="${rb}" var="aboutMessage"/>
-<fmt:message key="footer.about.link" bundle="${rb}" var="about"/>
+<fmt:message key="contact.us.message" bundle="${rb}" var="contactUsMessage"/>
+<fmt:message key="project.navigation.contacts" bundle="${rb}" var="contactUs"/>
 
 <html>
 <head>
@@ -36,9 +36,9 @@
             <p>${motivationMessage}</p>
         </div>
         <div class="col-md-9 register-right">
-            <h3 class="register-heading">${about}</h3>
+            <h3 class="register-heading">${contactUs}</h3>
             <div class="row register-form">
-                ${aboutMessage}
+                ${contactUsMessage}
             </div>
         </div>
     </div>
