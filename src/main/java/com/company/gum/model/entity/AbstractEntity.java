@@ -31,11 +31,6 @@ public class AbstractEntity {
     }
 
     /**
-     * To string.
-     *
-     * @return the string
-     */
-    /**
      * Equals.
      *
      * @param o the o

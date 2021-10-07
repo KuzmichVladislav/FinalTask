@@ -23,8 +23,8 @@ import java.util.TimerTask;
  * method is invoked.
  *
  * @author Vladislav Kuzmich
- * @see ContextEvent
  */
+
 @WebListener
 public class ContextListener implements ServletContextListener {
 

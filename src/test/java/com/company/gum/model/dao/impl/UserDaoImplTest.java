@@ -106,7 +106,7 @@ class UserDaoImplTest {
      * @throws DaoException the dao exception
      */
     @Test
-    void testFindAllUser() throws SQLException, DaoException {
+    void testFindAllUser() throws DaoException {
         when(instance.findAllUser()).thenReturn(Collections.singletonList(new User()));
         List<User> result = instance.findAllUser();
         Assertions.assertEquals(Collections.singletonList(new User()), result);
