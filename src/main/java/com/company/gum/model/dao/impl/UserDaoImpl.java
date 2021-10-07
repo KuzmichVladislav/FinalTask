@@ -137,7 +137,8 @@ public class UserDaoImpl implements UserDao {
     @Override
     public User findUserById(int userId) throws DaoException {
         User user = null;
-        try ( Connection connection = ConnectionPool.getInstance().takeConnection();  PreparedStatement statement = connection.prepareStatement(SQL_FIND_USER_BY_ID)) {
+        try (Connection connection = ConnectionPool.getInstance().takeConnection();
+             PreparedStatement statement = connection.prepareStatement(SQL_FIND_USER_BY_ID)) {
             statement.setInt(1, userId);
             ResultSet resultSet = statement.executeQuery();
 
@@ -156,7 +157,7 @@ public class UserDaoImpl implements UserDao {
     /**
      * Find user by login and password.
      *
-     * @param login the login
+     * @param login    the login
      * @param password the password
      * @return the user
      * @throws DaoException the dao exception
@@ -164,7 +165,8 @@ public class UserDaoImpl implements UserDao {
     @Override
     public User findUserByLoginAndPassword(String login, String password) throws DaoException {
         User user = null;
-        try ( Connection connection = ConnectionPool.getInstance().takeConnection();  PreparedStatement statement = connection.prepareStatement(SQL_FIND_USER_BY_LOGIN_AND_PASSWORD)) {
+        try (Connection connection = ConnectionPool.getInstance().takeConnection();
+             PreparedStatement statement = connection.prepareStatement(SQL_FIND_USER_BY_LOGIN_AND_PASSWORD)) {
             statement.setString(1, login);
             statement.setString(2, password);
             ResultSet resultSet = statement.executeQuery();
@@ -191,7 +193,8 @@ public class UserDaoImpl implements UserDao {
     @Override
     public boolean updateUserPassword(User user) throws DaoException {
         boolean isUpdated;
-        try ( Connection connection = ConnectionPool.getInstance().takeConnection();  PreparedStatement statement = connection.prepareStatement(SQL_UPDATE_USER_PASSWORD)) {
+        try (Connection connection = ConnectionPool.getInstance().takeConnection();
+             PreparedStatement statement = connection.prepareStatement(SQL_UPDATE_USER_PASSWORD)) {
             statement.setString(1, user.getPassword());
             statement.setInt(2, user.getId());
 
@@ -216,7 +219,8 @@ public class UserDaoImpl implements UserDao {
     @Override
     public boolean updateUserImage(User user) throws DaoException {
         boolean isUpdated;
-        try ( Connection connection = ConnectionPool.getInstance().takeConnection();  PreparedStatement statement = connection.prepareStatement(SQL_UPDATE_USER_IMAGE)) {
+        try (Connection connection = ConnectionPool.getInstance().takeConnection();
+             PreparedStatement statement = connection.prepareStatement(SQL_UPDATE_USER_IMAGE)) {
             statement.setBytes(1, user.getPhoto());
             statement.setInt(2, user.getId());
 
@@ -244,7 +248,8 @@ public class UserDaoImpl implements UserDao {
     @Override
     public boolean deleteUser(int userId) throws DaoException {
         boolean isDeleted;
-        try ( Connection connection = ConnectionPool.getInstance().takeConnection();  PreparedStatement statement = connection.prepareStatement(SQL_DELETE_USER)) {
+        try (Connection connection = ConnectionPool.getInstance().takeConnection();
+             PreparedStatement statement = connection.prepareStatement(SQL_DELETE_USER)) {
             statement.setInt(1, userId);
 
             isDeleted = statement.executeUpdate() == 1;
@@ -268,7 +273,8 @@ public class UserDaoImpl implements UserDao {
     @Override
     public boolean restoreUser(int userId) throws DaoException {
         boolean isRestored;
-        try ( Connection connection = ConnectionPool.getInstance().takeConnection();  PreparedStatement statement = connection.prepareStatement(SQL_RESTORE_USER)) {
+        try (Connection connection = ConnectionPool.getInstance().takeConnection();
+             PreparedStatement statement = connection.prepareStatement(SQL_RESTORE_USER)) {
             statement.setInt(1, userId);
 
             isRestored = statement.executeUpdate() == 1;
@@ -291,7 +297,8 @@ public class UserDaoImpl implements UserDao {
     @Override
     public List<User> findAllUser() throws DaoException {
         List<User> resultArray = new ArrayList<>();
-        try ( Connection connection = ConnectionPool.getInstance().takeConnection();  PreparedStatement statement = connection.prepareStatement(SQL_FIND_ALL_USER)) {
+        try (Connection connection = ConnectionPool.getInstance().takeConnection();
+             PreparedStatement statement = connection.prepareStatement(SQL_FIND_ALL_USER)) {
             ResultSet resultSet = statement.executeQuery();
 
             while (resultSet.next()) {
@@ -315,12 +322,17 @@ public class UserDaoImpl implements UserDao {
      * @throws SQLException the SQL exception
      */
     private User getUserFromResultSet(ResultSet resultSet) throws SQLException {
-        return new User.Builder().id(resultSet.getInt(USER_ID)).login(resultSet.getString(USER_LOGIN))
+        return new User.Builder()
+                .id(resultSet.getInt(USER_ID))
+                .login(resultSet.getString(USER_LOGIN))
                 .password(resultSet.getString(USER_PASSWORD))
                 .role(User.UserRole.valueOf(resultSet.getString(USER_ROLE).toUpperCase()))
-                .mail(resultSet.getString(MAIL)).name(resultSet.getString(USER_NAME))
-                .surname(resultSet.getString(USER_SURNAME)).isActive(resultSet.getBoolean(IS_ACTIVE))
-                .photo(resultSet.getBytes(PHOTO)).verification(resultSet.getBoolean(VERIFICATION))
+                .mail(resultSet.getString(MAIL))
+                .name(resultSet.getString(USER_NAME))
+                .surname(resultSet.getString(USER_SURNAME))
+                .isActive(resultSet.getBoolean(IS_ACTIVE))
+                .photo(resultSet.getBytes(PHOTO))
+                .verification(resultSet.getBoolean(VERIFICATION))
                 .base64Image(resultSet.getBytes(PHOTO) != null
                         ? IMAGE_SRC_PREFIX + Base64.getEncoder().encodeToString(resultSet.getBytes(PHOTO))
                         : DEFAULT_IMAGE)

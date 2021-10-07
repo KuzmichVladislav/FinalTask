@@ -25,10 +25,10 @@ public class UploadServlet extends HttpServlet {
     /**
      * Do post.
      *
-     * @param req the req
+     * @param req  the req
      * @param resp the resp
      * @throws ServletException the servlet exception
-     * @throws IOException Signals that an I/O exception has occurred.
+     * @throws IOException      Signals that an I/O exception has occurred.
      */
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

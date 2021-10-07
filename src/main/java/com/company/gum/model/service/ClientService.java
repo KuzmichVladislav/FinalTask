@@ -53,7 +53,7 @@ public interface ClientService {
      * Refill money.
      *
      * @param clientId the client id
-     * @param amount the amount
+     * @param amount   the amount
      * @return true, if successful
      * @throws ServiceException the service exception
      */
@@ -63,7 +63,7 @@ public interface ClientService {
      * Withdraw money.
      *
      * @param clientId the client id
-     * @param amount the amount
+     * @param amount   the amount
      * @return true, if successful
      * @throws ServiceException the service exception
      */

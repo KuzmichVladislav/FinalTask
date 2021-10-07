@@ -34,7 +34,7 @@ public interface TrainerDao {
     /**
      * Edits the description.
      *
-     * @param trainerId the trainer id
+     * @param trainerId   the trainer id
      * @param description the description
      * @return true, if successful
      * @throws DaoException the dao exception
@@ -44,7 +44,7 @@ public interface TrainerDao {
     /**
      * Edits the experience.
      *
-     * @param trainerId the trainer id
+     * @param trainerId  the trainer id
      * @param experience the experience
      * @return true, if successful
      * @throws DaoException the dao exception

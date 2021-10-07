@@ -53,7 +53,8 @@ public class CommentDaoImpl implements CommentDao {
             + "       comments.user_id,\n"
             + "       u.name    AS user_name,\n"
             + "       u.surname AS user_surname,\n"
-            + "       u.image,\n" + "       comments.comment_date,\n"
+            + "       u.image,\n"
+            + "       comments.comment_date,\n"
             + "       comments.comment_text,\n"
             + "       comments.is_active\n"
             + "FROM comments\n"
@@ -92,8 +93,9 @@ public class CommentDaoImpl implements CommentDao {
      */
     @Override
     public Comment createComment(Comment comment) throws DaoException {
-        try ( Connection connection = ConnectionPool.getInstance().takeConnection();  PreparedStatement statement = connection.prepareStatement(SQL_CREATE_COMMENT,
-                Statement.RETURN_GENERATED_KEYS)) {
+        try (Connection connection = ConnectionPool.getInstance().takeConnection();
+             PreparedStatement statement = connection.prepareStatement(SQL_CREATE_COMMENT,
+                     Statement.RETURN_GENERATED_KEYS)) {
             statement.setInt(1, comment.getUserId());
             statement.setString(2, comment.getCommentText());
 
@@ -117,7 +119,7 @@ public class CommentDaoImpl implements CommentDao {
     /**
      * Update comment.
      *
-     * @param commentId the comment id
+     * @param commentId   the comment id
      * @param commentText the comment text
      * @return true, if successful
      * @throws DaoException the dao exception
@@ -126,7 +128,8 @@ public class CommentDaoImpl implements CommentDao {
     public boolean updateComment(int commentId, String commentText) throws DaoException {
         boolean isUpdated;
 
-        try ( Connection connection = ConnectionPool.getInstance().takeConnection();  PreparedStatement statement = connection.prepareStatement(SQL_UPDATE_COMMENT)) {
+        try (Connection connection = ConnectionPool.getInstance().takeConnection();
+             PreparedStatement statement = connection.prepareStatement(SQL_UPDATE_COMMENT)) {
             if (commentText != null) {
                 statement.setString(1, commentText);
             } else {
@@ -156,7 +159,8 @@ public class CommentDaoImpl implements CommentDao {
     public boolean deleteComment(int commentId) throws DaoException {
         boolean isDeleted;
 
-        try ( Connection connection = ConnectionPool.getInstance().takeConnection();  PreparedStatement statement = connection.prepareStatement(SQL_DELETE_COMMENT)) {
+        try (Connection connection = ConnectionPool.getInstance().takeConnection();
+             PreparedStatement statement = connection.prepareStatement(SQL_DELETE_COMMENT)) {
             statement.setInt(1, commentId);
             isDeleted = statement.executeUpdate() == 1;
             logger.debug(isDeleted ? "Comment with id {} has been deleted"
@@ -178,7 +182,8 @@ public class CommentDaoImpl implements CommentDao {
     public List<Comment> findAllActiveComment() throws DaoException {
         List<Comment> comments = new ArrayList<>();
 
-        try ( Connection connection = ConnectionPool.getInstance().takeConnection();  PreparedStatement statement = connection.prepareStatement(SQL_FIND_ALL_ACTIVE_COMMENT)) {
+        try (Connection connection = ConnectionPool.getInstance().takeConnection();
+             PreparedStatement statement = connection.prepareStatement(SQL_FIND_ALL_ACTIVE_COMMENT)) {
 
             ResultSet resultSet = statement.executeQuery();
 
@@ -203,9 +208,13 @@ public class CommentDaoImpl implements CommentDao {
      * @throws SQLException the SQL exception
      */
     private Comment getCommentFromResultSet(ResultSet resultSet) throws SQLException {
-        return new Comment.Builder().id(resultSet.getInt(COMMENT_ID)).userId(resultSet.getInt(USER_ID))
-                .userName(resultSet.getString(USER_NAME_COMMENT)).userSurname(resultSet.getString(USER_SURNAME_COMMENT))
-                .photo(resultSet.getBytes(PHOTO)).commentText(resultSet.getString(COMMENT_TEXT))
+        return new Comment.Builder()
+                .id(resultSet.getInt(COMMENT_ID))
+                .userId(resultSet.getInt(USER_ID))
+                .userName(resultSet.getString(USER_NAME_COMMENT))
+                .userSurname(resultSet.getString(USER_SURNAME_COMMENT))
+                .photo(resultSet.getBytes(PHOTO))
+                .commentText(resultSet.getString(COMMENT_TEXT))
                 .commentDate(resultSet.getTimestamp(COMMENT_DATE).toLocalDateTime())
                 .active(resultSet.getBoolean(IS_ACTIVE))
                 .base64Image(resultSet.getBytes(PHOTO) != null

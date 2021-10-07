@@ -55,8 +55,10 @@
             <li class="nav-item">
                 <a class="nav-link" href="${pageContext.request.contextPath}/jsp/about.jsp">${about}</a>
             </li>
-            <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/jsp/contact.jsp">${contacts}</a></li>
-            <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/jsp/price.jsp">${price}</a></li>
+            <li class="nav-item"><a class="nav-link"
+                                    href="${pageContext.request.contextPath}/jsp/contact.jsp">${contacts}</a></li>
+            <li class="nav-item"><a class="nav-link"
+                                    href="${pageContext.request.contextPath}/jsp/price.jsp">${price}</a></li>
             <c:if test="${sessionScope.authorization}">
                 <li class="nav-item"><c:choose>
                     <c:when test="${sessionScope.userRole == 'CLIENT'}">

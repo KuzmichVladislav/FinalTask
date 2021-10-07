@@ -68,7 +68,7 @@ public interface OrderService {
     /**
      * Edits the nutrition.
      *
-     * @param orderId the order id
+     * @param orderId   the order id
      * @param nutrition the nutrition
      * @return true, if successful
      * @throws ServiceException the service exception
@@ -78,7 +78,7 @@ public interface OrderService {
     /**
      * Edits the exercises.
      *
-     * @param orderId the order id
+     * @param orderId   the order id
      * @param exercises the exercises
      * @return true, if successful
      * @throws ServiceException the service exception
@@ -88,7 +88,7 @@ public interface OrderService {
     /**
      * Edits the order status.
      *
-     * @param orderId the order id
+     * @param orderId     the order id
      * @param orderStatus the order status
      * @return true, if successful
      * @throws ServiceException the service exception

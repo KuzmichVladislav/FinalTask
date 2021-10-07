@@ -21,31 +21,31 @@ public class RoleCheckFilter implements Filter {
     /**
      * Do filter.
      *
-     * @param request the request
-     * @param response the response
+     * @param req   the request
+     * @param resp  the response
      * @param chain the chain
-     * @throws IOException Signals that an I/O exception has occurred.
+     * @throws IOException      Signals that an I/O exception has occurred.
      * @throws ServletException the servlet exception
      */
     @Override
-    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+    public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain)
             throws IOException, ServletException {
-        HttpServletRequest req = (HttpServletRequest) request;
-        HttpServletResponse resp = (HttpServletResponse) response;
-        HttpSession session = req.getSession(false);
+        HttpServletRequest request = (HttpServletRequest) req;
+        HttpServletResponse response = (HttpServletResponse) resp;
+        HttpSession session = request.getSession(false);
 
         String userRole = (String) session.getAttribute(AttributeName.USER_ROLE);
         if (userRole != null) {
             userRole = userRole.toLowerCase();
-            String currentPage = req.getRequestURL().toString();
+            String currentPage = request.getRequestURL().toString();
 
             if (currentPage.contains("/" + userRole + "/")) {
-                chain.doFilter(request, response);
+                chain.doFilter(req, resp);
             } else {
-                resp.sendRedirect(req.getContextPath() + "/jsp/" + userRole + "/profile.jsp");
+                response.sendRedirect(request.getContextPath() + "/jsp/" + userRole + "/profile.jsp");
             }
         } else {
-            resp.sendRedirect(req.getContextPath() + "/" + PagePath.LOGIN);
+            response.sendRedirect(request.getContextPath() + "/" + PagePath.LOGIN);
         }
     }
 }

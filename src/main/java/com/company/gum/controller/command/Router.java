@@ -19,7 +19,7 @@ public final class Router {
     /**
      * Instantiates a new router.
      *
-     * @param pagePath the page path
+     * @param pagePath   the page path
      * @param routerType the router type
      */
     public Router(String pagePath, RouterType routerType) {

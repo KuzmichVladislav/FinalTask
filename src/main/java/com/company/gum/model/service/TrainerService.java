@@ -44,7 +44,7 @@ public interface TrainerService {
     /**
      * Edits the description.
      *
-     * @param trainerId the trainer id
+     * @param trainerId   the trainer id
      * @param description the description
      * @return true, if successful
      * @throws ServiceException the service exception
@@ -54,7 +54,7 @@ public interface TrainerService {
     /**
      * Edits the experience.
      *
-     * @param trainerId the trainer id
+     * @param trainerId  the trainer id
      * @param experience the experience
      * @return true, if successful
      * @throws ServiceException the service exception

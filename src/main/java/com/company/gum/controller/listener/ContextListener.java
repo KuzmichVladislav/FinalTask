@@ -22,9 +22,8 @@ import java.util.TimerTask;
  * the context event occurs, that object's appropriate
  * method is invoked.
  *
- * @see ContextEvent
- *
  * @author Vladislav Kuzmich
+ * @see ContextEvent
  */
 @WebListener
 public class ContextListener implements ServletContextListener {
@@ -84,7 +83,7 @@ public class ContextListener implements ServletContextListener {
             }
             logger.debug("Timer has been set for {} ({})", time.getTime(), DELAY);
 
-            TimerTask deleteObsoleteOrders = new DeleteObsoleteOrders();
+            TimerTask deleteObsoleteOrders = new DeleteOrdersTimerTask();
             timer.schedule(deleteObsoleteOrders, time.getTime(), DELAY);
         } catch (Exception e) {
             logger.warn(e);

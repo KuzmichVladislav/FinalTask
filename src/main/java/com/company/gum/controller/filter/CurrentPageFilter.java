@@ -18,10 +18,10 @@ public class CurrentPageFilter implements Filter {
     /**
      * Do filter.
      *
-     * @param req the req
-     * @param resp the resp
+     * @param req   the req
+     * @param resp  the resp
      * @param chain the chain
-     * @throws IOException Signals that an I/O exception has occurred.
+     * @throws IOException      Signals that an I/O exception has occurred.
      * @throws ServletException the servlet exception
      */
     @Override

@@ -96,6 +96,13 @@ public class Admin extends User {
         private String base64Image;
 
         /**
+         * Instantiates a new builder.
+         */
+        public Builder() {
+            // Instantiates a new builder.
+        }
+
+        /**
          * Equals.
          *
          * @param o the o
@@ -163,13 +170,6 @@ public class Admin extends User {
             result = 31 * result + (isActive ? 1 : 0);
             result = 31 * result + Arrays.hashCode(photo);
             return result;
-        }
-
-        /**
-         * Instantiates a new builder.
-         */
-        public Builder() {
-            // Instantiates a new builder.
         }
 
         /**

@@ -134,8 +134,10 @@ public class ClientDaoImpl implements ClientDao {
      */
     @Override
     public Client createClient(Client client) throws DaoException {
-        try (Connection connection = ConnectionPool.getInstance().takeConnection(); PreparedStatement userStatement = connection.prepareStatement(SQL_CREATE_USER,
-                Statement.RETURN_GENERATED_KEYS); PreparedStatement clientStatement = connection.prepareStatement(SQL_CREATE_CLIENT)) {
+        try (Connection connection = ConnectionPool.getInstance().takeConnection();
+             PreparedStatement userStatement = connection.prepareStatement(SQL_CREATE_USER,
+                     Statement.RETURN_GENERATED_KEYS); PreparedStatement clientStatement =
+                     connection.prepareStatement(SQL_CREATE_CLIENT)) {
             try {
                 connection.setAutoCommit(false);
                 userStatement.setString(1, client.getLogin());
@@ -183,7 +185,8 @@ public class ClientDaoImpl implements ClientDao {
     @Override
     public boolean editClient(Client client) throws DaoException {
         boolean isEdited;
-        try (Connection connection = ConnectionPool.getInstance().takeConnection(); PreparedStatement statement = connection.prepareStatement(SQL_EDIT_CLIENT)) {
+        try (Connection connection = ConnectionPool.getInstance().takeConnection();
+             PreparedStatement statement = connection.prepareStatement(SQL_EDIT_CLIENT)) {
             if (client.getName() != null) {
                 statement.setString(1, client.getName());
             } else {
@@ -227,7 +230,8 @@ public class ClientDaoImpl implements ClientDao {
     @Override
     public boolean verification(int clientId) throws DaoException {
         boolean isUpdated;
-        try (Connection connection = ConnectionPool.getInstance().takeConnection(); PreparedStatement statement = connection.prepareStatement(SQL_VERIFICATION)) {
+        try (Connection connection = ConnectionPool.getInstance().takeConnection();
+             PreparedStatement statement = connection.prepareStatement(SQL_VERIFICATION)) {
             statement.setInt(1, clientId);
 
             isUpdated = statement.executeUpdate() == 1;
@@ -252,7 +256,8 @@ public class ClientDaoImpl implements ClientDao {
     @Override
     public boolean refillMoney(int clientId, BigDecimal amount) throws DaoException {
         boolean isUpdated;
-        try (Connection connection = ConnectionPool.getInstance().takeConnection(); PreparedStatement updateClientStatement = connection.prepareStatement(SQL_REFILL_MONEY)) {
+        try (Connection connection = ConnectionPool.getInstance().takeConnection();
+             PreparedStatement updateClientStatement = connection.prepareStatement(SQL_REFILL_MONEY)) {
             try {
                 connection.setAutoCommit(false);
                 updateClientStatement.setBigDecimal(1, amount);
@@ -287,7 +292,8 @@ public class ClientDaoImpl implements ClientDao {
     @Override
     public boolean withdrawMoney(int clientId, BigDecimal amount) throws DaoException {
         boolean isUpdated;
-        try (Connection connection = ConnectionPool.getInstance().takeConnection(); PreparedStatement updateClientStatement = connection.prepareStatement(SQL_WITHDRAW_MONEY)) {
+        try (Connection connection = ConnectionPool.getInstance().takeConnection();
+             PreparedStatement updateClientStatement = connection.prepareStatement(SQL_WITHDRAW_MONEY)) {
             try {
                 connection.setAutoCommit(false);
 
@@ -324,7 +330,8 @@ public class ClientDaoImpl implements ClientDao {
     @Override
     public boolean assignDiscount(int clientId, BigDecimal discount) throws DaoException {
         boolean isUpdated;
-        try (Connection connection = ConnectionPool.getInstance().takeConnection(); PreparedStatement updateClientStatement = connection.prepareStatement(SQL_ASSIGN_DISCOUNT)) {
+        try (Connection connection = ConnectionPool.getInstance().takeConnection();
+             PreparedStatement updateClientStatement = connection.prepareStatement(SQL_ASSIGN_DISCOUNT)) {
             try {
                 connection.setAutoCommit(false);
                 updateClientStatement.setBigDecimal(1, discount);
@@ -358,7 +365,8 @@ public class ClientDaoImpl implements ClientDao {
     @Override
     public Client findClientById(int clientId) throws DaoException {
         Client client = new Client();
-        try (Connection connection = ConnectionPool.getInstance().takeConnection(); PreparedStatement clientStatement = connection.prepareStatement(SQL_FIND_CLIENT_BY_ID)) {
+        try (Connection connection = ConnectionPool.getInstance().takeConnection();
+             PreparedStatement clientStatement = connection.prepareStatement(SQL_FIND_CLIENT_BY_ID)) {
 
             clientStatement.setInt(1, clientId);
 

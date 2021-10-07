@@ -74,7 +74,7 @@ public class UserServiceImpl implements UserService {
     /**
      * Find user by login and password.
      *
-     * @param login the login
+     * @param login    the login
      * @param password the password
      * @return the user
      * @throws ServiceException the service exception

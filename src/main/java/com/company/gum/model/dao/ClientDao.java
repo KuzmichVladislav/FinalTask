@@ -53,7 +53,7 @@ public interface ClientDao {
      * Refill money.
      *
      * @param clientId the client id
-     * @param amount the amount
+     * @param amount   the amount
      * @return true, if successful
      * @throws DaoException the dao exception
      */
@@ -63,7 +63,7 @@ public interface ClientDao {
      * Withdraw money.
      *
      * @param clientId the client id
-     * @param amount the amount
+     * @param amount   the amount
      * @return true, if successful
      * @throws DaoException the dao exception
      */

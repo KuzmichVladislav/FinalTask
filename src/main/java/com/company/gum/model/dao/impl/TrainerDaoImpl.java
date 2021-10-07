@@ -159,8 +159,10 @@ public class TrainerDaoImpl implements TrainerDao {
      */
     @Override
     public Trainer createTrainer(Trainer trainer) throws DaoException {
-        try ( Connection connection = ConnectionPool.getInstance().takeConnection();  PreparedStatement userStatement = connection.prepareStatement(SQL_CREATE_USER,
-                Statement.RETURN_GENERATED_KEYS);  PreparedStatement trainerStatement = connection.prepareStatement(SQL_CREATE_TRAINER)) {
+        try (Connection connection = ConnectionPool.getInstance().takeConnection();
+             PreparedStatement userStatement = connection.prepareStatement(SQL_CREATE_USER,
+                     Statement.RETURN_GENERATED_KEYS);
+             PreparedStatement trainerStatement = connection.prepareStatement(SQL_CREATE_TRAINER)) {
             try {
                 connection.setAutoCommit(false);
                 userStatement.setString(1, trainer.getLogin());
@@ -203,7 +205,7 @@ public class TrainerDaoImpl implements TrainerDao {
     /**
      * Edits the description.
      *
-     * @param trainerId the trainer id
+     * @param trainerId   the trainer id
      * @param description the description
      * @return true, if successful
      * @throws DaoException the dao exception
@@ -211,7 +213,8 @@ public class TrainerDaoImpl implements TrainerDao {
     @Override
     public boolean editDescription(int trainerId, String description) throws DaoException {
         boolean isEdited;
-        try ( Connection connection = ConnectionPool.getInstance().takeConnection();  PreparedStatement statement = connection.prepareStatement(SQL_EDIT_DESCRIPTION)) {
+        try (Connection connection = ConnectionPool.getInstance().takeConnection();
+             PreparedStatement statement = connection.prepareStatement(SQL_EDIT_DESCRIPTION)) {
             if (description != null) {
                 statement.setString(1, description);
             } else {
@@ -234,7 +237,7 @@ public class TrainerDaoImpl implements TrainerDao {
     /**
      * Edits the experience.
      *
-     * @param trainerId the trainer id
+     * @param trainerId  the trainer id
      * @param experience the experience
      * @return true, if successful
      * @throws DaoException the dao exception
@@ -242,7 +245,8 @@ public class TrainerDaoImpl implements TrainerDao {
     @Override
     public boolean editExperience(int trainerId, String experience) throws DaoException {
         boolean isEdited;
-        try ( Connection connection = ConnectionPool.getInstance().takeConnection();  PreparedStatement statement = connection.prepareStatement(SQL_EDIT_EXPERIENCE)) {
+        try (Connection connection = ConnectionPool.getInstance().takeConnection();
+             PreparedStatement statement = connection.prepareStatement(SQL_EDIT_EXPERIENCE)) {
             if (experience != null) {
                 statement.setString(1, experience);
             } else {
@@ -272,7 +276,8 @@ public class TrainerDaoImpl implements TrainerDao {
     @Override
     public boolean editTrainer(Trainer trainer) throws DaoException {
         boolean isEdited;
-        try ( Connection connection = ConnectionPool.getInstance().takeConnection();  PreparedStatement statement = connection.prepareStatement(SQL_EDIT_TRAINER)) {
+        try (Connection connection = ConnectionPool.getInstance().takeConnection();
+             PreparedStatement statement = connection.prepareStatement(SQL_EDIT_TRAINER)) {
             if (trainer.getName() != null) {
                 statement.setString(1, trainer.getName());
             } else {
@@ -316,7 +321,8 @@ public class TrainerDaoImpl implements TrainerDao {
     @Override
     public Trainer findTrainerById(int trainerId) throws DaoException {
         Trainer trainer = new Trainer();
-        try ( Connection connection = ConnectionPool.getInstance().takeConnection();  PreparedStatement statement = connection.prepareStatement(SQL_FIND_TRAINER_BY_ID)) {
+        try (Connection connection = ConnectionPool.getInstance().takeConnection();
+             PreparedStatement statement = connection.prepareStatement(SQL_FIND_TRAINER_BY_ID)) {
 
             statement.setInt(1, trainerId);
 
@@ -343,7 +349,8 @@ public class TrainerDaoImpl implements TrainerDao {
     @Override
     public List<Trainer> findAllTrainer() throws DaoException {
         List<Trainer> resultArray = new ArrayList<>();
-        try ( Connection connection = ConnectionPool.getInstance().takeConnection();  PreparedStatement statement = connection.prepareStatement(SQL_FIND_ALL_TRAINER)) {
+        try (Connection connection = ConnectionPool.getInstance().takeConnection();
+             PreparedStatement statement = connection.prepareStatement(SQL_FIND_ALL_TRAINER)) {
             ResultSet resultSet = statement.executeQuery();
 
             while (resultSet.next()) {
@@ -368,7 +375,8 @@ public class TrainerDaoImpl implements TrainerDao {
     @Override
     public List<Trainer> findAllActiveTrainer() throws DaoException {
         List<Trainer> resultArray = new ArrayList<>();
-        try ( Connection connection = ConnectionPool.getInstance().takeConnection();  PreparedStatement statement = connection.prepareStatement(SQL_FIND_ALL_ACTIVE_TRAINER)) {
+        try (Connection connection = ConnectionPool.getInstance().takeConnection();
+             PreparedStatement statement = connection.prepareStatement(SQL_FIND_ALL_ACTIVE_TRAINER)) {
 
             ResultSet resultSet = statement.executeQuery();
 
@@ -393,14 +401,20 @@ public class TrainerDaoImpl implements TrainerDao {
      * @throws SQLException the SQL exception
      */
     private Trainer getTrainerFromResultSet(ResultSet resultSet) throws SQLException {
-        return new Trainer.Builder().id(resultSet.getInt(TRAINER_ID)).login(resultSet.getString(USER_LOGIN))
+        return new Trainer.Builder()
+                .id(resultSet.getInt(TRAINER_ID))
+                .login(resultSet.getString(USER_LOGIN))
                 .password(resultSet.getString(USER_PASSWORD))
                 .role(User.UserRole.valueOf(resultSet.getString(USER_ROLE).toUpperCase()))
-                .mail(resultSet.getString(MAIL)).name(resultSet.getString(USER_NAME))
-                .surname(resultSet.getString(USER_SURNAME)).isActive(resultSet.getBoolean(IS_ACTIVE))
+                .mail(resultSet.getString(MAIL))
+                .name(resultSet.getString(USER_NAME))
+                .surname(resultSet.getString(USER_SURNAME))
+                .isActive(resultSet.getBoolean(IS_ACTIVE))
                 .registerDate(resultSet.getTimestamp(REGISTER_DATE).toLocalDateTime())
-                .phone(resultSet.getString(PHONE_NUMBER)).verification(resultSet.getBoolean(VERIFICATION))
-                .experience(resultSet.getString(EXPERIENCE)).description(resultSet.getString(DESCRIPTION))
+                .phone(resultSet.getString(PHONE_NUMBER))
+                .verification(resultSet.getBoolean(VERIFICATION))
+                .experience(resultSet.getString(EXPERIENCE))
+                .description(resultSet.getString(DESCRIPTION))
                 .photo(resultSet.getBytes(PHOTO))
                 .base64Image(resultSet.getBytes(PHOTO) != null
                         ? IMAGE_SRC_PREFIX + Base64.getEncoder().encodeToString(resultSet.getBytes(PHOTO))

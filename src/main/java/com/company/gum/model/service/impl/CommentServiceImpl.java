@@ -65,7 +65,7 @@ public class CommentServiceImpl implements CommentService {
     /**
      * Update comment.
      *
-     * @param commentId the comment id
+     * @param commentId   the comment id
      * @param commentText the comment text
      * @return true, if successful
      * @throws ServiceException the service exception

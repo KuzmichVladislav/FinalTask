@@ -1,3 +1,6 @@
+/*
+ *
+ */
 package com.company.gum.model.dao.impl;
 
 import com.company.gum.exception.DaoException;
@@ -9,7 +12,7 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 import java.sql.SQLException;
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import static org.mockito.Mockito.*;
@@ -42,9 +45,9 @@ class UserDaoImplTest {
      */
     @Test
     void testFindUserById() throws DaoException {
-        when(instance.findUserById(10)).thenReturn(new User.Builder().id(10).build());
+        when(instance.findUserById(anyInt())).thenReturn(new User());
         User result = instance.findUserById(10);
-        Assertions.assertEquals(new User.Builder().id(10).build(), result);
+        Assertions.assertEquals(new User(), result);
     }
 
     /**
@@ -54,7 +57,7 @@ class UserDaoImplTest {
      */
     @Test
     void testFindUserByLoginAndPassword() throws DaoException {
-        when(instance.findUserByLoginAndPassword("login", "password"))
+        when(instance.findUserByLoginAndPassword(anyString(), anyString()))
                 .thenReturn(new User.Builder().login("login").password("password").build());
         User result = instance.findUserByLoginAndPassword("login", "password");
         Assertions.assertEquals(new User.Builder().login("login").password("password").build(), result);
@@ -104,8 +107,8 @@ class UserDaoImplTest {
      */
     @Test
     void testFindAllUser() throws SQLException, DaoException {
-        when(instance.findAllUser()).thenReturn(Arrays.<User>asList(new User()));
+        when(instance.findAllUser()).thenReturn(Collections.singletonList(new User()));
         List<User> result = instance.findAllUser();
-        Assertions.assertEquals(Arrays.<User>asList(new User()), result);
+        Assertions.assertEquals(Collections.singletonList(new User()), result);
     }
 }

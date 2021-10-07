@@ -108,7 +108,7 @@ public class ClientServiceImpl implements ClientService {
      * Refill money.
      *
      * @param clientId the client id
-     * @param amount the amount
+     * @param amount   the amount
      * @return true, if successful
      * @throws ServiceException the service exception
      */
@@ -127,7 +127,7 @@ public class ClientServiceImpl implements ClientService {
      * Withdraw money.
      *
      * @param clientId the client id
-     * @param amount the amount
+     * @param amount   the amount
      * @return true, if successful
      * @throws ServiceException the service exception
      */

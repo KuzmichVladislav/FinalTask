@@ -109,7 +109,7 @@ public class LoginCommand implements Command {
      * Creates the client.
      *
      * @param requestContent the request content
-     * @param client the client
+     * @param client         the client
      */
     private void createClient(SessionRequestContent requestContent, Client client) {
         requestContent.putSessionAttribute(USER_REGISTER_DATE, client.getRegisterDate());
@@ -122,7 +122,7 @@ public class LoginCommand implements Command {
      * Creates the trainer.
      *
      * @param requestContent the request content
-     * @param user the user
+     * @param user           the user
      * @throws ServiceException the service exception
      */
     private void createTrainer(SessionRequestContent requestContent, User user) throws ServiceException {
@@ -137,7 +137,7 @@ public class LoginCommand implements Command {
      * Creates the user.
      *
      * @param requestContent the request content
-     * @param user the user
+     * @param user           the user
      */
     private void createUser(SessionRequestContent requestContent, User user) {
         requestContent.putSessionAttribute(USER_ID, user.getId());

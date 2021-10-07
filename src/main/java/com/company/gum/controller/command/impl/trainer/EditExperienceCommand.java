@@ -40,7 +40,7 @@ public class EditExperienceCommand implements Command {
             String experience = requestContent.getParameterByName(EXPERIENCE).strip().equals("")
                     ? (String) requestContent.getSessionAttributeByName(EXPERIENCE)
                     : requestContent.getParameterByName(EXPERIENCE).strip()
-                            .replace("<", "").replace(">", "");
+                    .replace("<", "").replace(">", "");
 
             trainerService.editExperience(trainerId, experience);
 

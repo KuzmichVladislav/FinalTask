@@ -66,16 +66,16 @@ public class TrainerServiceImpl implements TrainerService {
         MailSender sender = new MailSender();
         sender.send(trainer.getMail(),
                 MAIL_MESSAGE_PART_1 + trainer.getLogin()
-                + MAIL_MESSAGE_PART_2 + password
-                + MAIL_MESSAGE_PART_3 + trainer.getId()
-                + MAIL_MESSAGE_PART_4);
+                        + MAIL_MESSAGE_PART_2 + password
+                        + MAIL_MESSAGE_PART_3 + trainer.getId()
+                        + MAIL_MESSAGE_PART_4);
         return createdTrainer;
     }
 
     /**
      * Edits the description.
      *
-     * @param trainerId the trainer id
+     * @param trainerId   the trainer id
      * @param description the description
      * @return true, if successful
      * @throws ServiceException the service exception
@@ -94,7 +94,7 @@ public class TrainerServiceImpl implements TrainerService {
     /**
      * Edits the experience.
      *
-     * @param trainerId the trainer id
+     * @param trainerId  the trainer id
      * @param experience the experience
      * @return true, if successful
      * @throws ServiceException the service exception

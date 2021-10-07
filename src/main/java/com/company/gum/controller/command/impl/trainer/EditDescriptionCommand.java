@@ -40,7 +40,7 @@ public class EditDescriptionCommand implements Command {
             String description = requestContent.getParameterByName(DESCRIPTION).strip().equals("")
                     ? (String) requestContent.getSessionAttributeByName(DESCRIPTION)
                     : requestContent.getParameterByName(DESCRIPTION).strip()
-                            .replace("<", "").replace(">", "");
+                    .replace("<", "").replace(">", "");
 
             trainerService.editDescription(trainerId, description);
 

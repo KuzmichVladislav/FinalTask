@@ -44,7 +44,7 @@ public class MailSender {
     /**
      * Send.
      *
-     * @param userMail the user mail
+     * @param userMail    the user mail
      * @param messageText the message text
      */
     public void send(String userMail, String messageText) {
@@ -61,7 +61,7 @@ public class MailSender {
     /**
      * Inits the message.
      *
-     * @param userMail the user mail
+     * @param userMail    the user mail
      * @param messageText the message text
      * @throws MessagingException the messaging exception
      */

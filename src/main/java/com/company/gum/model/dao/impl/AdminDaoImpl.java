@@ -97,7 +97,8 @@ public class AdminDaoImpl implements AdminDao {
     @Override
     public Admin findAdminById(int adminId) throws DaoException {
         Admin admin = new Admin();
-        try ( Connection connection = ConnectionPool.getInstance().takeConnection();  PreparedStatement statement = connection.prepareStatement(SQL_FIND_ADMIN_BY_ID)) {
+        try (Connection connection = ConnectionPool.getInstance().takeConnection();
+             PreparedStatement statement = connection.prepareStatement(SQL_FIND_ADMIN_BY_ID)) {
             statement.setInt(1, adminId);
             ResultSet resultSet = statement.executeQuery();
 
@@ -123,7 +124,8 @@ public class AdminDaoImpl implements AdminDao {
     @Override
     public boolean editAdmin(Admin admin) throws DaoException {
         boolean isEdited;
-        try ( Connection connection = ConnectionPool.getInstance().takeConnection();  PreparedStatement statement = connection.prepareStatement(SQL_EDIT_ADMIN)) {
+        try (Connection connection = ConnectionPool.getInstance().takeConnection();
+             PreparedStatement statement = connection.prepareStatement(SQL_EDIT_ADMIN)) {
             if ((admin.getName() != null)) {
                 statement.setString(1, admin.getName());
             } else {
@@ -164,7 +166,8 @@ public class AdminDaoImpl implements AdminDao {
     @Override
     public boolean deleteUser(int userId) throws DaoException {
         boolean isDeleted;
-        try ( Connection connection = ConnectionPool.getInstance().takeConnection();  PreparedStatement statement = connection.prepareStatement(SQL_DELETE_USER)) {
+        try (Connection connection = ConnectionPool.getInstance().takeConnection();
+             PreparedStatement statement = connection.prepareStatement(SQL_DELETE_USER)) {
             statement.setInt(1, userId);
             isDeleted = statement.executeUpdate() == 1;
             logger.debug(isDeleted ? "User with id {} has been deleted"
@@ -186,7 +189,8 @@ public class AdminDaoImpl implements AdminDao {
     @Override
     public boolean restoreUser(int userId) throws DaoException {
         boolean isRestored;
-        try ( Connection connection = ConnectionPool.getInstance().takeConnection();  PreparedStatement statement = connection.prepareStatement(SQL_RESTORE_USER)) {
+        try (Connection connection = ConnectionPool.getInstance().takeConnection();
+             PreparedStatement statement = connection.prepareStatement(SQL_RESTORE_USER)) {
             statement.setInt(1, userId);
             isRestored = statement.executeUpdate() == 1;
             logger.debug(isRestored ? "User with id {} has been restored"
@@ -206,12 +210,17 @@ public class AdminDaoImpl implements AdminDao {
      * @throws SQLException the SQL exception
      */
     private Admin getAdminFromResultSet(ResultSet resultSet) throws SQLException {
-        return new Admin.Builder().id(resultSet.getInt(USER_ID)).login(resultSet.getString(USER_LOGIN))
+        return new Admin.Builder()
+                .id(resultSet.getInt(USER_ID))
+                .login(resultSet.getString(USER_LOGIN))
                 .password(resultSet.getString(USER_PASSWORD))
                 .role(User.UserRole.valueOf(resultSet.getString(USER_ROLE).toUpperCase()))
-                .mail(resultSet.getString(MAIL)).name(resultSet.getString(USER_NAME))
-                .surname(resultSet.getString(USER_SURNAME)).isActive(resultSet.getBoolean(IS_ACTIVE))
-                .photo(resultSet.getBytes(PHOTO)).verification(resultSet.getBoolean(VERIFICATION))
+                .mail(resultSet.getString(MAIL))
+                .name(resultSet.getString(USER_NAME))
+                .surname(resultSet.getString(USER_SURNAME))
+                .isActive(resultSet.getBoolean(IS_ACTIVE))
+                .photo(resultSet.getBytes(PHOTO))
+                .verification(resultSet.getBoolean(VERIFICATION))
                 .base64Image(resultSet.getBytes(PHOTO) != null
                         ? IMAGE_SRC_PREFIX + Base64.getEncoder().encodeToString(resultSet.getBytes(PHOTO))
                         : DEFAULT_IMAGE)

@@ -42,7 +42,7 @@ public class EditNutritionCommand implements Command {
             String nutrition = requestContent.getParameterByName(NUTRITION).strip().equals("")
                     ? (String) requestContent.getSessionAttributeByName(NUTRITION)
                     : requestContent.getParameterByName(NUTRITION).strip()
-                            .replace("<", "").replace(">", "");
+                    .replace("<", "").replace(">", "");
 
             orderService.editNutrition(orderId, nutrition);
             router = new Router((String) requestContent.getSessionAttributeByName(CURRENT_PAGE), FORWARD);

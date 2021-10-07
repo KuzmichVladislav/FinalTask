@@ -42,7 +42,7 @@ public class EditExercisesCommand implements Command {
             String exercises = requestContent.getParameterByName(EXERCISES).strip().equals("")
                     ? (String) requestContent.getSessionAttributeByName(EXERCISES)
                     : requestContent.getParameterByName(EXERCISES).strip()
-                            .replace("<", "").replace(">", "");
+                    .replace("<", "").replace(">", "");
 
             orderService.editExercises(orderId, exercises);
             router = new Router((String) requestContent.getSessionAttributeByName(CURRENT_PAGE), FORWARD);
