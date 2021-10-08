@@ -16,22 +16,12 @@ import static com.company.gum.controller.command.AttributeName.*;
 import static com.company.gum.controller.command.Router.RouterType.FORWARD;
 import static com.company.gum.controller.command.Router.RouterType.REDIRECT;
 
-/**
- * @author Vladislav Kuzmich The Class RegisterTrainerCommand.
- */
 public class RegisterTrainerCommand implements Command {
 
-    /**
-     * The trainer service.
-     */
     private final TrainerService trainerService = TrainerServiceImpl.getInstance();
+    private final FormValidator validator = FormValidator.getInstance();
 
-    /**
-     * Execute.
-     *
-     * @param requestContent the request content
-     * @return the router
-     */
+
     @Override
     public Router execute(SessionRequestContent requestContent) {
         Router router;
@@ -46,27 +36,27 @@ public class RegisterTrainerCommand implements Command {
 
         boolean isValid = true;
 
-        if (!FormValidator.checkLogin(login)) {
+        if (!validator.checkLogin(login)) {
             requestContent.putAttribute(AttributeName.ERROR_MESSAGE, "invalid.login");
             isValid = false;
         }
-        if (!FormValidator.checkNameSurname(name) && isValid) {
+        if (!validator.checkNameSurname(name) && isValid) {
             requestContent.putAttribute(ERROR_MESSAGE, "invalid.name");
             isValid = false;
         }
-        if (!FormValidator.checkNameSurname(surname) && isValid) {
+        if (!validator.checkNameSurname(surname) && isValid) {
             requestContent.putAttribute(ERROR_MESSAGE, "invalid.surname");
             isValid = false;
         }
-        if (!FormValidator.checkPhone(phone) && isValid) {
+        if (!validator.checkPhone(phone) && isValid) {
             requestContent.putAttribute(ERROR_MESSAGE, "invalid.phone");
             isValid = false;
         }
-        if (!FormValidator.checkMail(mail) && isValid) {
+        if (!validator.checkMail(mail) && isValid) {
             requestContent.putAttribute(ERROR_MESSAGE, "invalid.email");
             isValid = false;
         }
-        if (!FormValidator.checkPassword(password) && isValid) {
+        if (!validator.checkPassword(password) && isValid) {
             requestContent.putAttribute(ERROR_MESSAGE, "invalid.password");
             isValid = false;
         }

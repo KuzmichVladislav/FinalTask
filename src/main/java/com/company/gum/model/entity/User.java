@@ -12,7 +12,7 @@ public class User extends AbstractEntity {
     /**
      * The role.
      */
-    UserRole role;
+    private UserRole role;
 
     /**
      * The login.

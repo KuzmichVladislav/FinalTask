@@ -13,7 +13,7 @@ public class Admin extends User {
      * Instantiates a new admin.
      */
     public Admin() {
-        role = UserRole.ADMIN;
+        setRole(UserRole.ADMIN);
     }
 
     /**

@@ -16,23 +16,11 @@ import static com.company.gum.controller.command.AttributeName.*;
 import static com.company.gum.controller.command.Router.RouterType.FORWARD;
 import static com.company.gum.controller.command.Router.RouterType.REDIRECT;
 
-/**
- * @author Vladislav Kuzmich The Class EditAdminProfileCommand.
- */
 public class EditAdminProfileCommand implements Command {
 
-    /**
-     * The admin service.
-     */
     private final AdminService adminService = AdminServiceImpl.getInstance();
+    private final FormValidator validator = FormValidator.getInstance();
 
-    /**
-     * Execute.
-     *
-     * @param requestContent the request content
-     * @return the router
-     * @throws CommandException the command exception
-     */
     @Override
     public Router execute(SessionRequestContent requestContent) throws CommandException {
         Router router;
@@ -50,15 +38,15 @@ public class EditAdminProfileCommand implements Command {
                     ? (String) requestContent.getSessionAttributeByName(USER_MAIL)
                     : requestContent.getParameterByName(USER_MAIL).strip();
 
-            if (!FormValidator.checkNameSurname(userName)) {
+            if (!validator.checkNameSurname(userName)) {
                 isValid = false;
                 requestContent.putAttribute(ERROR_MESSAGE, "invalid.name");
             }
-            if (!FormValidator.checkNameSurname(userSurname) && isValid) {
+            if (!validator.checkNameSurname(userSurname) && isValid) {
                 isValid = false;
                 requestContent.putAttribute(ERROR_MESSAGE, "invalid.surname");
             }
-            if (!FormValidator.checkMail(userMail) && isValid) {
+            if (!validator.checkMail(userMail) && isValid) {
                 isValid = false;
                 requestContent.putAttribute(ERROR_MESSAGE, "invalid.email");
             }

@@ -16,23 +16,11 @@ import static com.company.gum.controller.command.AttributeName.*;
 import static com.company.gum.controller.command.Router.RouterType.FORWARD;
 import static com.company.gum.controller.command.Router.RouterType.REDIRECT;
 
-/**
- * @author Vladislav Kuzmich The Class AssignDiscountCommand.
- */
 public class AssignDiscountCommand implements Command {
 
-    /**
-     * The client service.
-     */
     private final ClientService clientService = ClientServiceImpl.getInstance();
+    private final FormValidator validator = FormValidator.getInstance();
 
-    /**
-     * Execute.
-     *
-     * @param requestContent the request content
-     * @return the router
-     * @throws CommandException the command exception
-     */
     @Override
     public Router execute(SessionRequestContent requestContent) throws CommandException {
         Router router;
@@ -40,7 +28,7 @@ public class AssignDiscountCommand implements Command {
             boolean isValid = true;
             int clientId = Integer.parseInt(requestContent.getParameterByName(CLIENT_ID));
             String stringDiscount = requestContent.getParameterByName(DISCOUNT);
-            if (!FormValidator.checkDiscount(stringDiscount)) {
+            if (!validator.checkDiscount(stringDiscount)) {
                 requestContent.putAttribute(ERROR_MESSAGE, "discount.invalid");
                 isValid = false;
             }

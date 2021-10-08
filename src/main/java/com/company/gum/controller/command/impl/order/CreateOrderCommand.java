@@ -10,6 +10,7 @@ import com.company.gum.model.entity.Duration;
 import com.company.gum.model.entity.Order;
 import com.company.gum.model.service.OrderService;
 import com.company.gum.model.service.impl.OrderServiceImpl;
+import com.company.gum.model.util.UtilClass;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
@@ -19,25 +20,10 @@ import java.time.temporal.ChronoUnit;
 import static com.company.gum.controller.command.AttributeName.*;
 import static com.company.gum.controller.command.Router.RouterType.REDIRECT;
 
-/**
- * The Class CreateOrderCommand.
- *
- * @author Vladislav Kuzmich
- */
 public class CreateOrderCommand implements Command {
 
-    /**
-     * The order service.
-     */
     private final OrderService orderService = OrderServiceImpl.getInstance();
 
-    /**
-     * Execute.
-     *
-     * @param requestContent the request content
-     * @return the router
-     * @throws CommandException the command exception
-     */
     @Override
     public Router execute(SessionRequestContent requestContent) throws CommandException {
         Router router;
@@ -45,8 +31,7 @@ public class CreateOrderCommand implements Command {
             int clientId = (Integer) requestContent.getSessionAttributeByName(USER_ID);
             int discount = (Integer) requestContent.getSessionAttributeByName(USER_DISCOUNT);
             int trainerId = Integer.parseInt(requestContent.getParameterByName(TRAINER_ID));
-            String clientComment = requestContent.getParameterByName(COMMENT).strip().replace("<", "")
-                    .replace(">", "");
+            String clientComment = UtilClass.getInstance().getStringFromDescription(requestContent, COMMENT);
             String date = requestContent.getParameterByName(START_DATE);
             LocalDate startDate = date.isEmpty() ? LocalDate.now() : LocalDate.parse(date);
             String duration = requestContent.getParameterByName(DURATION);

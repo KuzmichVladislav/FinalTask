@@ -41,7 +41,7 @@ public class Trainer extends User {
      * Instantiates a new trainer.
      */
     public Trainer() {
-        role = UserRole.TRAINER;
+        setRole(UserRole.TRAINER);
     }
 
     /**

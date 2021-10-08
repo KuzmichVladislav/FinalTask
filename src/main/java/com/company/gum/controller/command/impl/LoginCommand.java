@@ -23,40 +23,18 @@ import static com.company.gum.controller.command.AttributeName.*;
 import static com.company.gum.controller.command.Router.RouterType.FORWARD;
 import static com.company.gum.controller.command.Router.RouterType.REDIRECT;
 
-/**
- * The Class LoginCommand.
- *
- * @author Vladislav Kuzmich
- */
 public class LoginCommand implements Command {
 
-    /**
-     * The Constant logger.
-     */
     private static final Logger logger = LogManager.getLogger();
 
-    /**
-     * The user service.
-     */
     private final UserService userService = UserServiceImpl.getInstance();
 
-    /**
-     * The trainer service.
-     */
     private final TrainerService trainerService = TrainerServiceImpl.getInstance();
 
-    /**
-     * The client service.
-     */
     private final ClientService clientService = ClientServiceImpl.getInstance();
+    private final FormValidator validator = FormValidator.getInstance();
 
-    /**
-     * Execute.
-     *
-     * @param requestContent the request content
-     * @return the router
-     * @throws CommandException the command exception
-     */
+
     @Override
     public Router execute(SessionRequestContent requestContent) throws CommandException {
         String login = requestContent.getParameterByName(USER_LOGIN);
@@ -64,28 +42,11 @@ public class LoginCommand implements Command {
         User user;
         Router router;
         try {
-            if (FormValidator.checkLogin(login) && FormValidator.checkPassword(password)) {
+            if (validator.checkLogin(login) && validator.checkPassword(password)) {
                 user = userService.findUserByLoginAndPassword(login, password);
                 if (user != null) {
                     if (user.isVerification()) {
-                        createUser(requestContent, user);
-                        switch (user.getRole()) {
-                            case ADMIN:
-                                router = new Router(PagePath.WELCOME, REDIRECT);
-                                break;
-                            case TRAINER:
-                                createTrainer(requestContent, user);
-                                router = new Router(PagePath.WELCOME, REDIRECT);
-                                break;
-                            case CLIENT:
-                                Client client = clientService.findClientById(user.getId());
-                                createClient(requestContent, client);
-                                router = new Router(PagePath.WELCOME, REDIRECT);
-                                break;
-                            default:
-                                logger.debug("Debug exception for testing. When adding a user with a new role.");
-                                throw new CommandException("Debug exception for testing. When adding a user with a new role.");
-                        }
+                        router = getRouter(requestContent, user);
                         requestContent.putSessionAttribute(USER_AUTHORIZATION, true);
                     } else {
                         requestContent.putAttribute(ERROR_MESSAGE, "verification.error");
@@ -105,12 +66,29 @@ public class LoginCommand implements Command {
         return router;
     }
 
-    /**
-     * Creates the client.
-     *
-     * @param requestContent the request content
-     * @param client         the client
-     */
+    private Router getRouter(SessionRequestContent requestContent, User user) throws ServiceException, CommandException {
+        Router router;
+        createUser(requestContent, user);
+        switch (user.getRole()) {
+            case ADMIN:
+                router = new Router(PagePath.WELCOME, REDIRECT);
+                break;
+            case TRAINER:
+                createTrainer(requestContent, user);
+                router = new Router(PagePath.WELCOME, REDIRECT);
+                break;
+            case CLIENT:
+                Client client = clientService.findClientById(user.getId());
+                createClient(requestContent, client);
+                router = new Router(PagePath.WELCOME, REDIRECT);
+                break;
+            default:
+                logger.debug("Debug exception for testing. When adding a user with a new role.");
+                throw new CommandException("Debug exception for testing. When adding a user with a new role.");
+        }
+        return router;
+    }
+
     private void createClient(SessionRequestContent requestContent, Client client) {
         requestContent.putSessionAttribute(USER_REGISTER_DATE, client.getRegisterDate());
         requestContent.putSessionAttribute(USER_PHONE, client.getPhone());
@@ -118,13 +96,6 @@ public class LoginCommand implements Command {
         requestContent.putSessionAttribute(USER_DISCOUNT, client.getDiscount());
     }
 
-    /**
-     * Creates the trainer.
-     *
-     * @param requestContent the request content
-     * @param user           the user
-     * @throws ServiceException the service exception
-     */
     private void createTrainer(SessionRequestContent requestContent, User user) throws ServiceException {
         Trainer trainer = trainerService.findTrainerById(user.getId());
         requestContent.putSessionAttribute(USER_REGISTER_DATE, trainer.getRegisterDate());
@@ -133,12 +104,6 @@ public class LoginCommand implements Command {
         requestContent.putSessionAttribute(EXPERIENCE, trainer.getExperience());
     }
 
-    /**
-     * Creates the user.
-     *
-     * @param requestContent the request content
-     * @param user           the user
-     */
     private void createUser(SessionRequestContent requestContent, User user) {
         requestContent.putSessionAttribute(USER_ID, user.getId());
         requestContent.putSessionAttribute(USER_LOGIN, user.getLogin());

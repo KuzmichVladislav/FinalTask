@@ -16,7 +16,7 @@ class FormValidatorTest {
     @Test
     void testCheckLogin() {
         String login = "Login";
-        boolean result = FormValidator.checkLogin(login);
+        boolean result = FormValidator.getInstance().checkLogin(login);
         Assertions.assertTrue(result);
     }
 
@@ -26,7 +26,7 @@ class FormValidatorTest {
     @Test
     void testCheckPassword() {
         String password = "Password22";
-        boolean result = FormValidator.checkPassword(password);
+        boolean result = FormValidator.getInstance().checkPassword(password);
         Assertions.assertTrue(result);
     }
 
@@ -36,7 +36,7 @@ class FormValidatorTest {
     @Test
     void testCheckNameSurname() {
         String nameSurname = "Obama";
-        boolean result = FormValidator.checkNameSurname(nameSurname);
+        boolean result = FormValidator.getInstance().checkNameSurname(nameSurname);
         Assertions.assertTrue(result);
     }
 
@@ -46,7 +46,7 @@ class FormValidatorTest {
     @Test
     void testCheckPhone() {
         String phone = "+375259379992";
-        boolean result = FormValidator.checkPhone(phone);
+        boolean result = FormValidator.getInstance().checkPhone(phone);
         Assertions.assertTrue(result);
     }
 
@@ -57,7 +57,7 @@ class FormValidatorTest {
     void testCheckMail() {
         System.out.println("checkMail");
         String mail = "obami@example.com";
-        boolean result = FormValidator.checkMail(mail);
+        boolean result = FormValidator.getInstance().checkMail(mail);
         Assertions.assertTrue(result);
     }
 
@@ -67,7 +67,7 @@ class FormValidatorTest {
     @Test
     void testCheckMoney() {
         String money = "99.85";
-        boolean result = FormValidator.checkMoney(money);
+        boolean result = FormValidator.getInstance().checkMoney(money);
         Assertions.assertTrue(result);
     }
 
@@ -77,7 +77,7 @@ class FormValidatorTest {
     @Test
     void testCheckDiscount() {
         String discount = "10";
-        boolean result = FormValidator.checkDiscount(discount);
+        boolean result = FormValidator.getInstance().checkDiscount(discount);
         Assertions.assertTrue(result);
     }
 }

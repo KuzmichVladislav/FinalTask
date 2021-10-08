@@ -72,13 +72,15 @@ public class UserDaoImpl implements UserDao {
      * The Constant SQL_DELETE_USER.
      */
     private static final String SQL_DELETE_USER = "UPDATE users\n"
-            + "SET is_active = false\n" + "WHERE user_id = ?";
+            + "SET is_active = false\n"
+            + "WHERE user_id = ?";
 
     /**
      * The Constant SQL_RESTORE_USER.
      */
     private static final String SQL_RESTORE_USER = "UPDATE users\n"
-            + "SET is_active = true\n" + "WHERE user_id = ?";
+            + "SET is_active = true\n"
+            + "WHERE user_id = ?";
 
     /**
      * The Constant SQL_UPDATE_USER_IMAGE.

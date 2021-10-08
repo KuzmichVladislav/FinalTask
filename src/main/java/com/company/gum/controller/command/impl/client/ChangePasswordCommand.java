@@ -16,25 +16,11 @@ import com.company.gum.model.validator.FormValidator;
 import static com.company.gum.controller.command.AttributeName.*;
 import static com.company.gum.controller.command.Router.RouterType.FORWARD;
 
-/**
- * The Class ChangePasswordCommand.
- *
- * @author Vladislav Kuzmich
- */
 public class ChangePasswordCommand implements Command {
 
-    /**
-     * The user service.
-     */
+    private final FormValidator validator = FormValidator.getInstance();
     private final UserService userService = UserServiceImpl.getInstance();
 
-    /**
-     * Execute.
-     *
-     * @param requestContent the request content
-     * @return the router
-     * @throws CommandException the command exception
-     */
     @Override
     public Router execute(SessionRequestContent requestContent) throws CommandException {
         Router router;
@@ -45,11 +31,11 @@ public class ChangePasswordCommand implements Command {
             String newPassword = requestContent.getParameterByName(NEW_PASSWORD).strip();
             String repeatedPassword = requestContent.getParameterByName(REPEAT_PASSWORD).strip();
 
-            if (!FormValidator.checkPassword(currentPassword)) {
+            if (!validator.checkPassword(currentPassword)) {
                 isValid = false;
                 requestContent.putAttribute(ERROR_MESSAGE, "current.password.invalid");
             }
-            if (!FormValidator.checkPassword(newPassword) && isValid) {
+            if (!validator.checkPassword(newPassword) && isValid) {
                 isValid = false;
                 requestContent.putAttribute(ERROR_MESSAGE, "new.password.invalid");
             }

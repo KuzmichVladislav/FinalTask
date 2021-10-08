@@ -8,39 +8,22 @@ import com.company.gum.exception.CommandException;
 import com.company.gum.exception.ServiceException;
 import com.company.gum.model.service.TrainerService;
 import com.company.gum.model.service.impl.TrainerServiceImpl;
+import com.company.gum.model.util.UtilClass;
 
 import static com.company.gum.controller.command.AttributeName.DESCRIPTION;
 import static com.company.gum.controller.command.AttributeName.USER_ID;
 import static com.company.gum.controller.command.Router.RouterType.FORWARD;
 
-/**
- * The Class EditDescriptionCommand.
- *
- * @author Vladislav Kuzmich
- */
 public class EditDescriptionCommand implements Command {
 
-    /**
-     * The trainer service.
-     */
     private final TrainerService trainerService = TrainerServiceImpl.getInstance();
 
-    /**
-     * Execute.
-     *
-     * @param requestContent the request content
-     * @return the router
-     * @throws CommandException the command exception
-     */
     @Override
     public Router execute(SessionRequestContent requestContent) throws CommandException {
         Router router;
         try {
             int trainerId = Integer.parseInt(requestContent.getParameterByName(USER_ID));
-            String description = requestContent.getParameterByName(DESCRIPTION).strip().equals("")
-                    ? (String) requestContent.getSessionAttributeByName(DESCRIPTION)
-                    : requestContent.getParameterByName(DESCRIPTION).strip()
-                    .replace("<", "").replace(">", "");
+            String description = UtilClass.getInstance().getStringFromDescription(requestContent, DESCRIPTION);
 
             trainerService.editDescription(trainerId, description);
 

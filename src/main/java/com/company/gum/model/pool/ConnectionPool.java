@@ -24,7 +24,7 @@ public class ConnectionPool {
     /**
      * The Constant logger.
      */
-    private static final Logger logger = LogManager.getLogger(ConnectionPool.class);
+    private static final Logger logger = LogManager.getLogger();
 
     /**
      * The Constant DEFAULT_NUMBER_OF_CONNECTION.
@@ -167,7 +167,6 @@ public class ConnectionPool {
             }
         } else {
             logger.error("Wrong connection");
-            throw new RuntimeException("Wrong connection");
         }
     }
 

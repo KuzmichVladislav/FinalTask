@@ -31,7 +31,7 @@ public class Client extends User {
      * Instantiates a new client.
      */
     public Client() {
-        role = UserRole.CLIENT;
+        setRole(UserRole.CLIENT);
     }
 
     /**

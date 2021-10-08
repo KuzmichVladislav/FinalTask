@@ -18,25 +18,12 @@ import static com.company.gum.controller.command.AttributeName.*;
 import static com.company.gum.controller.command.Router.RouterType.FORWARD;
 import static com.company.gum.controller.command.Router.RouterType.REDIRECT;
 
-/**
- * The Class RefillMoneyCommand.
- *
- * @author Vladislav Kuzmich
- */
 public class RefillMoneyCommand implements Command {
 
-    /**
-     * The client service.
-     */
     private final ClientService clientService = ClientServiceImpl.getInstance();
+    private final FormValidator validator = FormValidator.getInstance();
 
-    /**
-     * Execute.
-     *
-     * @param requestContent the request content
-     * @return the router
-     * @throws CommandException the command exception
-     */
+
     @Override
     public Router execute(SessionRequestContent requestContent) throws CommandException {
         Router router;
@@ -44,7 +31,7 @@ public class RefillMoneyCommand implements Command {
             int clientId = (Integer) requestContent.getSessionAttributeByName(USER_ID);
             boolean isValid = true;
             String stringMoney = requestContent.getParameterByName(MONEY);
-            if (!FormValidator.checkMoney(stringMoney)) {
+            if (!validator.checkMoney(stringMoney)) {
                 requestContent.putAttribute(ERROR_MESSAGE, "amount.is.not.valid");
                 isValid = false;
             }
