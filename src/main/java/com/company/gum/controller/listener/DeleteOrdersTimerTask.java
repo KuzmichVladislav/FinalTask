@@ -10,6 +10,7 @@ import java.sql.SQLException;
 import java.util.Date;
 import java.util.TimerTask;
 
+
 /**
  * The Class DeleteOrdersTimerTask.
  *
@@ -51,7 +52,7 @@ public class DeleteOrdersTimerTask extends TimerTask {
             boolean isDeleted = statement.executeUpdate() == 1;
             logger.debug(isDeleted ? "Obsolete orders has been deleted" : "No obsolete orders found");
         } catch (SQLException throwables) {
-            logger.debug("Obsolete orders has not been deleted");
+            logger.warn("Obsolete orders has not been deleted");
             throwables.printStackTrace();
         }
     }

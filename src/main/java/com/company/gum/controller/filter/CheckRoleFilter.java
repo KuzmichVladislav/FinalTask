@@ -11,12 +11,12 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 /**
- * The Class RoleCheckFilter.
+ * The Class CheckRoleFilter.
  *
  * @author Vladislav Kuzmich
  */
 @WebFilter(urlPatterns = {"/jsp/admin/*", "/jsp/client/*", "/jsp/trainer/*"})
-public class RoleCheckFilter implements Filter {
+public class CheckRoleFilter implements Filter {
 
     /**
      * Do filter.

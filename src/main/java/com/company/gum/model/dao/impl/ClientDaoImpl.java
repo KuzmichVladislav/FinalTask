@@ -136,8 +136,8 @@ public class ClientDaoImpl implements ClientDao {
     public Client createClient(Client client) throws DaoException {
         try (Connection connection = ConnectionPool.getInstance().takeConnection();
              PreparedStatement userStatement = connection.prepareStatement(SQL_CREATE_USER,
-                     Statement.RETURN_GENERATED_KEYS); PreparedStatement clientStatement =
-                     connection.prepareStatement(SQL_CREATE_CLIENT)) {
+                     Statement.RETURN_GENERATED_KEYS);
+             PreparedStatement clientStatement = connection.prepareStatement(SQL_CREATE_CLIENT)) {
             try {
                 connection.setAutoCommit(false);
                 userStatement.setString(1, client.getLogin());
