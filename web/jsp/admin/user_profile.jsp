@@ -4,8 +4,6 @@
 
 <fmt:setLocale value="${sessionScope.locale}"/>
 <fmt:setBundle basename="bundle/message" var="rb"/>
-<fmt:setBundle basename="bundle/err" var="err_rb"/>
-
 
 <fmt:message key="project.name" bundle="${rb}" var="title"/>
 <fmt:message key="login.login" bundle="${rb}" var="login"/>
@@ -56,6 +54,7 @@
 <fmt:message key="profile.description.programs" bundle="${rb}" var="descriptionPrograms"/>
 <fmt:message key="profile.experience" bundle="${rb}" var="experience"/>
 <fmt:message key="profile.experience.trainer" bundle="${rb}" var="experienceTrainer"/>
+<fmt:message key="project.name" bundle="${rb}" var="title"/>
 
 <html>
 <head>
@@ -63,6 +62,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/profile.css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <title>${title}</title>
 </head>
 <body>
 <c:import url="../fragment/navbar.jsp"/>

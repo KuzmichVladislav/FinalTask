@@ -16,7 +16,7 @@
 <fmt:message key="profile.repeat.password" bundle="${rb}" var="repeatPassword"/>
 <fmt:message key="profile.change.password.message" bundle="${rb}" var="changePasswordMessage"/>
 <fmt:message key="profile.save.changes" bundle="${rb}" var="saveChanges"/>
-
+<fmt:message key="project.name" bundle="${rb}" var="title"/>
 
 <html>
 <head>
@@ -25,6 +25,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <title>${title}</title>
 </head>
 
 <body>

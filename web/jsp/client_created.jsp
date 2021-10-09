@@ -4,12 +4,12 @@
 
 <fmt:setLocale value="${sessionScope.locale}"/>
 <fmt:setBundle basename="bundle/message" var="rb"/>
+
 <fmt:message key="created.user.title" bundle="${rb}" var="userCreatedTitle"/>
 <fmt:message key="created.user.text" bundle="${rb}" var="userCreatedText"/>
 <fmt:message key="project.navigation.home" bundle="${rb}" var="home"/>
 <fmt:message key="form.sign.up.tagline" bundle="${rb}" var="tagline"/>
-<fmt:message key="form.sign.up.motivation.message" bundle="${rb}"
-             var="motivationMessage"/>
+<fmt:message key="form.sign.up.motivation.message" bundle="${rb}" var="motivationMessage"/>
 
 <html>
 <head>
@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <title>${title}</title>
 </head>
 
 <body>

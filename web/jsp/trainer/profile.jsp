@@ -51,15 +51,13 @@
 <fmt:message key="profile.confirm" bundle="${rb}" var="confirm"/>
 <fmt:message key="profile.my.orders" bundle="${rb}" var="myOrder"/>
 <fmt:message key="form.money.refill" bundle="${rb}" var="moneyRefill"/>
-
 <fmt:message key="profile.close" bundle="${rb}" var="close"/>
 <fmt:message key="profile.description" bundle="${rb}" var="description"/>
 <fmt:message key="profile.description.programs" bundle="${rb}" var="descriptionPrograms"/>
 <fmt:message key="profile.experience" bundle="${rb}" var="experience"/>
 <fmt:message key="profile.experience.trainer" bundle="${rb}" var="experienceTrainer"/>
-
 <fmt:message key="profile.save.changes" bundle="${rb}" var="saveChanges"/>
-
+<fmt:message key="project.name" bundle="${rb}" var="title"/>
 
 <html>
 <head>
@@ -67,6 +65,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/profile.css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <title>${title}</title>
 </head>
 <body>
 <c:import url="../fragment/navbar.jsp"/>

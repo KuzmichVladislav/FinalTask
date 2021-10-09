@@ -50,6 +50,7 @@
 <fmt:message key="form.money.refill" bundle="${rb}" var="moneyRefill"/>
 <fmt:message key="profile.change.password" bundle="${rb}" var="changePassword"/>
 <fmt:message key="profile.show.trainers" bundle="${rb}" var="showTrainers"/>
+<fmt:message key="project.name" bundle="${rb}" var="title"/>
 
 <html>
 <head>
@@ -57,6 +58,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/profile.css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <title>${title}</title>
 </head>
 <body>
 <c:import url="../fragment/navbar.jsp"/>

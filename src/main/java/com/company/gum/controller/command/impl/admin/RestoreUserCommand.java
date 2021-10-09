@@ -13,13 +13,13 @@ import static com.company.gum.controller.command.AttributeName.USER_ID;
 import static com.company.gum.controller.command.Router.RouterType.FORWARD;
 
 /**
- * @author Vladislav Kuzmich The Class RestoreUserCommand.
+ * The Class RestoreUserCommand.
+ *
+ * @author Vladislav Kuzmich
  */
 public class RestoreUserCommand implements Command {
 
-    /**
-     * The admin service.
-     */
+    /** The admin service. */
     private final AdminService adminService = AdminServiceImpl.getInstance();
 
     /**

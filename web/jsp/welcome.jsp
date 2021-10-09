@@ -5,15 +5,16 @@
 <fmt:setLocale value="${sessionScope.locale}"/>
 <fmt:setBundle basename="bundle/message" var="rb"/>
 <c:set var="authorization" value="${sessionScope.authorization}"/>
-<fmt:message key="project.name" bundle="${rb}" var="projectName"/>
+
 <fmt:message key="welcome.title" bundle="${rb}" var="userCreatedTitle"/>
 <fmt:message key="welcome.text.registered" bundle="${rb}" var="welcomTextReg"/>
 <fmt:message key="welcome.text.role" bundle="${rb}" var="welcomTextRole"/>
 <fmt:message key="project.navigation.home" bundle="${rb}" var="home"/>
+<fmt:message key="project.name" bundle="${rb}" var="title"/>
 
 <html>
 <head>
-    <title>${projectName}</title>
+    <title>${title}</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header.css">

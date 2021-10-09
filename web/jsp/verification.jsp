@@ -4,15 +4,14 @@
 
 <fmt:setLocale value="${sessionScope.locale}"/>
 <fmt:setBundle basename="bundle/message" var="rb"/>
-<fmt:message key="project.name" bundle="${rb}" var="projectName"/>
 <fmt:message key="project.verification.title" bundle="${rb}" var="verificationTitle"/>
 <fmt:message key="project.verification.text.success" bundle="${rb}" var="verificationTextSuccess"/>
 <fmt:message key="project.verification.text.fail" bundle="${rb}" var="verificationTextFail"/>
+<fmt:message key="project.name" bundle="${rb}" var="title"/>
 
-<!DOCTYPE html>
 <html>
 <head>
-    <title>${projectName}</title>
+    <title>${title}</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
     <script src="${pageContext.request.contextPath}/js/jquery/jquery-3.4.1.min.js"></script>

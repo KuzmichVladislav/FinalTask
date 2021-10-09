@@ -31,7 +31,7 @@
 <fmt:message key="agree.to.terms.and.conditions" bundle="${rb}" var="agreeToTermsAndConditions"/>
 <fmt:message key="agree.before.submitting" bundle="${rb}" var="agreeBeforeSubmitting"/>
 <fmt:message key="form.sign.up.register" bundle="${rb}" var="register"/>
-
+<fmt:message key="project.name" bundle="${rb}" var="title"/>
 
 <html>
 <head>
@@ -40,6 +40,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <title>${title}</title>
 </head>
 
 <body>

@@ -22,6 +22,7 @@
 <fmt:message key="agree.before.confirming" bundle="${rb}" var="agreeBeforeConfirming"/>
 <fmt:message key="action.is.paid" bundle="${rb}" var="actionIsPaid"/>
 <fmt:message key="profile.close" bundle="${rb}" var="close"/>
+<fmt:message key="project.name" bundle="${rb}" var="title"/>
 
 <html>
 <head>
@@ -30,6 +31,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <title>${title}</title>
 </head>
 
 <body>

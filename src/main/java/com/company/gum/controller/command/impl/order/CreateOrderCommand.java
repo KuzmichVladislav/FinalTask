@@ -20,10 +20,23 @@ import java.time.temporal.ChronoUnit;
 import static com.company.gum.controller.command.AttributeName.*;
 import static com.company.gum.controller.command.Router.RouterType.REDIRECT;
 
+/**
+ * The Class CreateOrderCommand.
+ *
+ * @author Vladislav Kuzmich
+ */
 public class CreateOrderCommand implements Command {
 
+    /** The order service. */
     private final OrderService orderService = OrderServiceImpl.getInstance();
 
+    /**
+     * Execute.
+     *
+     * @param requestContent the request content
+     * @return the router
+     * @throws CommandException the command exception
+     */
     @Override
     public Router execute(SessionRequestContent requestContent) throws CommandException {
         Router router;

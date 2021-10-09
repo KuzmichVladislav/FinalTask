@@ -16,11 +16,26 @@ import static com.company.gum.controller.command.AttributeName.*;
 import static com.company.gum.controller.command.Router.RouterType.FORWARD;
 import static com.company.gum.controller.command.Router.RouterType.REDIRECT;
 
+/**
+ * The Class EditClientProfileCommand.
+ *
+ * @author Vladislav Kuzmich
+ */
 public class EditClientProfileCommand implements Command {
 
+    /** The client service. */
     private final ClientService clientService = ClientServiceImpl.getInstance();
+    
+    /** The validator. */
     private final FormValidator validator = FormValidator.getInstance();
 
+    /**
+     * Execute.
+     *
+     * @param requestContent the request content
+     * @return the router
+     * @throws CommandException the command exception
+     */
     @Override
     public Router execute(SessionRequestContent requestContent) throws CommandException {
         Router router;

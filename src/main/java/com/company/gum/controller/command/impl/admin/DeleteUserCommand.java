@@ -13,7 +13,9 @@ import static com.company.gum.controller.command.AttributeName.USER_ID;
 import static com.company.gum.controller.command.Router.RouterType.FORWARD;
 
 /**
- * @author Vladislav Kuzmich The Class DeleteUserCommand.
+ * The Class DeleteUserCommand.
+ *
+ * @author Vladislav Kuzmich
  */
 public class DeleteUserCommand implements Command {
 

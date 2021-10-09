@@ -35,7 +35,8 @@ public class OrderDaoImpl implements OrderDao {
      * The Constant SQL_DELETE_ORDER.
      */
     private static final String SQL_DELETE_ORDER = "UPDATE orders\n"
-            + "SET is_active = false\n" + "WHERE order_id = ?";
+            + "SET is_active = false\n"
+            + "WHERE order_id = ?";
 
     /**
      * The Constant SQL_FIND_ORDER.

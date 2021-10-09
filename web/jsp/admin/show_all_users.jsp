@@ -4,8 +4,6 @@
 
 <fmt:setLocale value="${sessionScope.locale}"/>
 <fmt:setBundle basename="bundle/message" var="rb"/>
-<fmt:setBundle basename="bundle/err" var="err_rb"/>
-
 
 <fmt:message key="project.name" bundle="${rb}" var="title"/>
 <fmt:message key="form.sign.up.tagline" bundle="${rb}" var="tagline"/>
@@ -21,18 +19,17 @@
 <fmt:message key="table.search" bundle="${rb}" var="tableSearch"/>
 <fmt:message key="filter.message" bundle="${rb}" var="filterMessage"/>
 <fmt:message key="delete.restore.user" bundle="${rb}" var="deleteRestoreUser"/>
-
+<fmt:message key="project.name" bundle="${rb}" var="title"/>
 
 <html>
 <head>
-
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <title>${title}</title>
-
 </head>
+
 <body>
 <c:import url="../fragment/navbar.jsp"/>
 

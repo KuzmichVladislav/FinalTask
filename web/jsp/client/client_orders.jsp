@@ -13,6 +13,7 @@
 <fmt:message key="order.empty.order" bundle="${rb}" var="emptyOrdersList"/>
 <fmt:message key="order.register.date" bundle="${rb}" var="registerDate"/>
 <fmt:message key="profile.new.order" bundle="${rb}" var="newOrder"/>
+<fmt:message key="project.name" bundle="${rb}" var="title"/>
 
 <html>
 <head>
@@ -21,6 +22,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <title>${title}</title>
 </head>
 <body>
 

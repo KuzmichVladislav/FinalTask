@@ -60,7 +60,8 @@ public class TrainerDaoImpl implements TrainerDao {
             + "SET name  = IFNULL(?, name),\n"
             + "    surname      = IFNULL(?, surname),\n"
             + "    phone_number      = IFNULL(?, phone_number),\n"
-            + "    mail = IFNULL(?, mail)\n" + "WHERE user_id = ?\n";
+            + "    mail = IFNULL(?, mail)\n"
+            + "WHERE user_id = ?\n";
 
     /**
      * The Constant SQL_FIND_TRAINER_BY_ID.

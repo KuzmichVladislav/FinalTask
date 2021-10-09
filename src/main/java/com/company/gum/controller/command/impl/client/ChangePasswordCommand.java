@@ -16,11 +16,26 @@ import com.company.gum.model.validator.FormValidator;
 import static com.company.gum.controller.command.AttributeName.*;
 import static com.company.gum.controller.command.Router.RouterType.FORWARD;
 
+/**
+ * The Class ChangePasswordCommand.
+ *
+ * @author Vladislav Kuzmich
+ */
 public class ChangePasswordCommand implements Command {
 
+    /** The validator. */
     private final FormValidator validator = FormValidator.getInstance();
+    
+    /** The user service. */
     private final UserService userService = UserServiceImpl.getInstance();
 
+    /**
+     * Execute.
+     *
+     * @param requestContent the request content
+     * @return the router
+     * @throws CommandException the command exception
+     */
     @Override
     public Router execute(SessionRequestContent requestContent) throws CommandException {
         Router router;

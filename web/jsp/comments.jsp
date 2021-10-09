@@ -4,7 +4,6 @@
 
 <fmt:setLocale value="${sessionScope.locale}"/>
 <fmt:setBundle basename="bundle/message" var="rb"/>
-<fmt:setBundle basename="bundle/err" var="err_rb"/>
 
 <fmt:message key="form.sign.up.tagline" bundle="${rb}" var="tagline"/>
 <fmt:message key="form.sign.up.motivation.message" bundle="${rb}" var="motivationMessage"/>
@@ -16,7 +15,7 @@
 <fmt:message key="comment.add.your.comment" bundle="${rb}" var="addYourComment"/>
 <fmt:message key="comment.send.comment" bundle="${rb}" var="sendComment"/>
 <fmt:message key="comment.delete" bundle="${rb}" var="delete"/>
-
+<fmt:message key="project.name" bundle="${rb}" var="title"/>
 
 <html>
 <head>
@@ -26,6 +25,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/comment.css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <title>${title}</title>
 
 </head>
 

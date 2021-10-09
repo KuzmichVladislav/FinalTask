@@ -52,6 +52,7 @@
 <fmt:message key="profile.register.trainer" bundle="${rb}" var="registerTrainer"/>
 <fmt:message key="show.users" bundle="${rb}" var="showUsers"/>
 <fmt:message key="show.orders" bundle="${rb}" var="showOrders"/>
+<fmt:message key="project.name" bundle="${rb}" var="title"/>
 
 <html>
 <head>
@@ -59,6 +60,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/profile.css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <title>${title}</title>
 </head>
 <body>
 <c:import url="../fragment/navbar.jsp"/>

@@ -23,18 +23,36 @@ import static com.company.gum.controller.command.AttributeName.*;
 import static com.company.gum.controller.command.Router.RouterType.FORWARD;
 import static com.company.gum.controller.command.Router.RouterType.REDIRECT;
 
+/**
+ * The Class LoginCommand.
+ *
+ * @author Vladislav Kuzmich
+ */
 public class LoginCommand implements Command {
 
+    /** The Constant logger. */
     private static final Logger logger = LogManager.getLogger();
 
+    /** The user service. */
     private final UserService userService = UserServiceImpl.getInstance();
 
+    /** The trainer service. */
     private final TrainerService trainerService = TrainerServiceImpl.getInstance();
 
+    /** The client service. */
     private final ClientService clientService = ClientServiceImpl.getInstance();
+    
+    /** The validator. */
     private final FormValidator validator = FormValidator.getInstance();
 
 
+    /**
+     * Execute.
+     *
+     * @param requestContent the request content
+     * @return the router
+     * @throws CommandException the command exception
+     */
     @Override
     public Router execute(SessionRequestContent requestContent) throws CommandException {
         String login = requestContent.getParameterByName(USER_LOGIN);
@@ -66,6 +84,15 @@ public class LoginCommand implements Command {
         return router;
     }
 
+    /**
+     * Gets the router.
+     *
+     * @param requestContent the request content
+     * @param user the user
+     * @return the router
+     * @throws ServiceException the service exception
+     * @throws CommandException the command exception
+     */
     private Router getRouter(SessionRequestContent requestContent, User user) throws ServiceException, CommandException {
         Router router;
         createUser(requestContent, user);
@@ -89,6 +116,12 @@ public class LoginCommand implements Command {
         return router;
     }
 
+    /**
+     * Creates the client.
+     *
+     * @param requestContent the request content
+     * @param client the client
+     */
     private void createClient(SessionRequestContent requestContent, Client client) {
         requestContent.putSessionAttribute(USER_REGISTER_DATE, client.getRegisterDate());
         requestContent.putSessionAttribute(USER_PHONE, client.getPhone());
@@ -96,6 +129,13 @@ public class LoginCommand implements Command {
         requestContent.putSessionAttribute(USER_DISCOUNT, client.getDiscount());
     }
 
+    /**
+     * Creates the trainer.
+     *
+     * @param requestContent the request content
+     * @param user the user
+     * @throws ServiceException the service exception
+     */
     private void createTrainer(SessionRequestContent requestContent, User user) throws ServiceException {
         Trainer trainer = trainerService.findTrainerById(user.getId());
         requestContent.putSessionAttribute(USER_REGISTER_DATE, trainer.getRegisterDate());
@@ -104,6 +144,12 @@ public class LoginCommand implements Command {
         requestContent.putSessionAttribute(EXPERIENCE, trainer.getExperience());
     }
 
+    /**
+     * Creates the user.
+     *
+     * @param requestContent the request content
+     * @param user the user
+     */
     private void createUser(SessionRequestContent requestContent, User user) {
         requestContent.putSessionAttribute(USER_ID, user.getId());
         requestContent.putSessionAttribute(USER_LOGIN, user.getLogin());

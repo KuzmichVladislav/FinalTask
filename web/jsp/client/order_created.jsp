@@ -10,7 +10,7 @@
 <fmt:message key="order.congratulations" bundle="${rb}" var="congratulations"/>
 <fmt:message key="order.congratulations.message" bundle="${rb}" var="congratulationsMessage"/>
 <fmt:message key="order.orders" bundle="${rb}" var="orders"/>
-
+<fmt:message key="project.name" bundle="${rb}" var="title"/>
 
 <html>
 <head>
@@ -21,6 +21,7 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <meta http-equiv="refresh"
           content="5;${pageContext.request.contextPath}/controller?command=SHOW_ALL_ORDERS_BY_CLIENT">
+    <title>${title}</title>
 </head>
 
 <body>

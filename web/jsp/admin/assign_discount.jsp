@@ -4,15 +4,13 @@
 
 <fmt:setLocale value="${sessionScope.locale}"/>
 <fmt:setBundle basename="bundle/message" var="rb"/>
-<fmt:setBundle basename="bundle/err" var="err_rb"/>
 
-<fmt:message key="form.money.placeholder" bundle="${rb}"
-             var="moneyPlaceholder"/>
+<fmt:message key="form.money.placeholder" bundle="${rb}" var="moneyPlaceholder"/>
 <fmt:message key="form.money.refill" bundle="${rb}" var="moneyRefill"/>
 <fmt:message key="form.money.message" bundle="${rb}" var="moneyMessage"/>
 <fmt:message key="form.sign.up.tagline" bundle="${rb}" var="tagline"/>
-<fmt:message key="form.sign.up.motivation.message" bundle="${rb}"
-             var="motivationMessage"/>
+<fmt:message key="form.sign.up.motivation.message" bundle="${rb}" var="motivationMessage"/>
+<fmt:message key="project.name" bundle="${rb}" var="title"/>
 
 <html>
 <head>
@@ -27,6 +25,7 @@
     <script
             src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"
             type="text/javascript"></script>
+    <title>${title}</title>
 </head>
 <body>
 <c:import url="../fragment/navbar.jsp"/>
@@ -59,11 +58,13 @@
                                                                      name="money" class="form-control" id="input_money"
                                                                      placeholder="${moneyPlaceholder}">
                         </div>
-                        <c:if test="${requestScope.errMessage != null}">
-                            <div class="alert alert-danger">
-                                                                                            <span><fmt:message
-                                                                                                    key="${requestScope.errMessage}"
-                                                                                                    bundle="${err_rb}"/></span>
+                        <c:if test="${requestScope.errorMessage != null}">
+                            <div class="form-group">
+                                <div class="col-md-6 mb-3">
+                                    <div class="err-message-from-server">
+                                        <fmt:message key="${requestScope.errorMessage}" bundle="${rb}"/>
+                                    </div>
+                                </div>
                             </div>
                         </c:if>
                         <button type="submit" class="btn btn-primary">${moneyRefill}

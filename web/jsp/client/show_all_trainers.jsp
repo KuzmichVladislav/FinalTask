@@ -4,8 +4,6 @@
 
 <fmt:setLocale value="${sessionScope.locale}"/>
 <fmt:setBundle basename="bundle/message" var="rb"/>
-<fmt:setBundle basename="bundle/err" var="err_rb"/>
-
 
 <fmt:message key="project.name" bundle="${rb}" var="title"/>
 <fmt:message key="form.sign.up.tagline" bundle="${rb}" var="tagline"/>
@@ -21,7 +19,7 @@
 <fmt:message key="table.search" bundle="${rb}" var="tableSearch"/>
 <fmt:message key="filter.message" bundle="${rb}" var="filterMessage"/>
 <fmt:message key="delete.restore.user" bundle="${rb}" var="deleteRestoreUser"/>
-
+<fmt:message key="project.name" bundle="${rb}" var="title"/>
 
 <html>
 <head>
@@ -33,6 +31,7 @@
     <title>${title}</title>
 
 </head>
+
 <body>
 <c:import url="../fragment/navbar.jsp"/>
 

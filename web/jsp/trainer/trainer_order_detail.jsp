@@ -4,7 +4,6 @@
 
 <fmt:setLocale value="${sessionScope.locale}"/>
 <fmt:setBundle basename="bundle/message" var="rb"/>
-<fmt:setBundle basename="bundle/err" var="err_rb"/>
 
 <fmt:message key="form.sign.up.tagline" bundle="${rb}" var="tagline"/>
 <fmt:message key="form.sign.up.motivation.message" bundle="${rb}" var="motivationMessage"/>
@@ -27,7 +26,7 @@
 <fmt:message key="send.for.confirm" bundle="${rb}" var="sendForConfirm"/>
 <fmt:message key="save" bundle="${rb}" var="save"/>
 <fmt:message key="client.comment" bundle="${rb}" var="clientComment"/>
-
+<fmt:message key="project.name" bundle="${rb}" var="title"/>
 
 <html>
 <head>
@@ -47,9 +46,9 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
             integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
             crossorigin="anonymous"></script>
+    <title>${title}</title>
 </head>
 
-</head>
 <body>
 <c:import url="../fragment/navbar.jsp"/>
 

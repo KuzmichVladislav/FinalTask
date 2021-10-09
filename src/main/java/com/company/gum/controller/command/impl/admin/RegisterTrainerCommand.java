@@ -16,12 +16,26 @@ import static com.company.gum.controller.command.AttributeName.*;
 import static com.company.gum.controller.command.Router.RouterType.FORWARD;
 import static com.company.gum.controller.command.Router.RouterType.REDIRECT;
 
+/**
+ * The Class RegisterTrainerCommand.
+ *
+ * @author Vladislav Kuzmich
+ */
 public class RegisterTrainerCommand implements Command {
 
+    /** The trainer service. */
     private final TrainerService trainerService = TrainerServiceImpl.getInstance();
+    
+    /** The validator. */
     private final FormValidator validator = FormValidator.getInstance();
 
 
+    /**
+     * Execute.
+     *
+     * @param requestContent the request content
+     * @return the router
+     */
     @Override
     public Router execute(SessionRequestContent requestContent) {
         Router router;

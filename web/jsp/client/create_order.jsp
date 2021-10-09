@@ -4,7 +4,6 @@
 
 <fmt:setLocale value="${sessionScope.locale}"/>
 <fmt:setBundle basename="bundle/message" var="rb"/>
-<fmt:setBundle basename="bundle/err" var="err_rb"/>
 
 <fmt:message key="order.comment" bundle="${rb}" var="orderComment"/>
 <fmt:message key="order.comment.placeholder" bundle="${rb}" var="commentPlaceholder"/>
@@ -19,7 +18,7 @@
 <fmt:message key="order.new.order.month" bundle="${rb}" var="month"/>
 <fmt:message key="order.new.order.half.year" bundle="${rb}" var="halfYear"/>
 <fmt:message key="order.new.order.year" bundle="${rb}" var="year"/>
-
+<fmt:message key="project.name" bundle="${rb}" var="title"/>
 
 <html>
 <head>
@@ -28,6 +27,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <title>${title}</title>
 </head>
 
 <body>

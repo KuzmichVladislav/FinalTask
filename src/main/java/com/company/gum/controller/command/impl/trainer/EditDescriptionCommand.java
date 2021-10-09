@@ -14,10 +14,23 @@ import static com.company.gum.controller.command.AttributeName.DESCRIPTION;
 import static com.company.gum.controller.command.AttributeName.USER_ID;
 import static com.company.gum.controller.command.Router.RouterType.FORWARD;
 
+/**
+ * The Class EditDescriptionCommand.
+ *
+ * @author Vladislav Kuzmich
+ */
 public class EditDescriptionCommand implements Command {
 
+    /** The trainer service. */
     private final TrainerService trainerService = TrainerServiceImpl.getInstance();
 
+    /**
+     * Execute.
+     *
+     * @param requestContent the request content
+     * @return the router
+     * @throws CommandException the command exception
+     */
     @Override
     public Router execute(SessionRequestContent requestContent) throws CommandException {
         Router router;

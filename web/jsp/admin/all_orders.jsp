@@ -8,19 +8,16 @@
 <fmt:message key="project.name" bundle="${rb}" var="projectName"/>
 <fmt:message key="profile.all.orders" bundle="${rb}" var="allOrders"/>
 <fmt:message key="form.sign.up.tagline" bundle="${rb}" var="tagline"/>
-<fmt:message key="form.sign.up.motivation.message" bundle="${rb}"
-             var="motivationMessage"/>
-<fmt:message key="order.empty.order.at.all" bundle="${rb}"
-             var="emptyOrdersListAtAll"/>
+<fmt:message key="form.sign.up.motivation.message" bundle="${rb}" var="motivationMessage"/>
+<fmt:message key="order.empty.order.at.all" bundle="${rb}" var="emptyOrdersListAtAll"/>
 <fmt:message key="order.register.date" bundle="${rb}" var="registerDate"/>
 <fmt:message key="order.start.date" bundle="${rb}" var="startDate"/>
 <fmt:message key="order.end.date" bundle="${rb}" var="endDate"/>
 <fmt:message key="order.status" bundle="${rb}" var="status"/>
 <fmt:message key="order.client.name" bundle="${rb}" var="clientFullName"/>
 <fmt:message key="order.details" bundle="${rb}" var="orderDetails"/>
-<fmt:message key="order.trainer.name" bundle="${rb}"
-             var="trainerFullName"/>
-
+<fmt:message key="order.trainer.name" bundle="${rb}" var="trainerFullName"/>
+<fmt:message key="project.name" bundle="${rb}" var="title"/>
 
 <html>
 <head>
@@ -37,6 +34,7 @@
     <script
             src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"
             type="text/javascript"></script>
+    <title>${title}</title>
 </head>
 <body>
 

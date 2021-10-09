@@ -13,10 +13,23 @@ import com.company.gum.model.util.UtilClass;
 import static com.company.gum.controller.command.AttributeName.*;
 import static com.company.gum.controller.command.Router.RouterType.FORWARD;
 
+/**
+ * The Class EditExperienceCommand.
+ *
+ * @author Vladislav Kuzmich
+ */
 public class EditExperienceCommand implements Command {
 
+    /** The trainer service. */
     private final TrainerService trainerService = TrainerServiceImpl.getInstance();
 
+    /**
+     * Execute.
+     *
+     * @param requestContent the request content
+     * @return the router
+     * @throws CommandException the command exception
+     */
     @Override
     public Router execute(SessionRequestContent requestContent) throws CommandException {
         Router router;

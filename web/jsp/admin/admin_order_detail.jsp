@@ -7,14 +7,12 @@
 <fmt:setBundle basename="bundle/err" var="err_rb"/>
 
 <fmt:message key="form.sign.up.tagline" bundle="${rb}" var="tagline"/>
-<fmt:message key="form.sign.up.motivation.message" bundle="${rb}"
-             var="motivationMessage"/>
+<fmt:message key="form.sign.up.motivation.message" bundle="${rb}" var="motivationMessage"/>
 <fmt:message key="order.start.date" bundle="${rb}" var="startDate"/>
 <fmt:message key="order.end.date" bundle="${rb}" var="endDate"/>
 <fmt:message key="order.details" bundle="${rb}" var="oderDetails"/>
 <fmt:message key="order.id" bundle="${rb}" var="orderId"/>
-<fmt:message key="order.trainer.name" bundle="${rb}"
-             var="trainerFullName"/>
+<fmt:message key="order.trainer.name" bundle="${rb}" var="trainerFullName"/>
 <fmt:message key="order.client.name" bundle="${rb}" var="clientFullName"/>
 <fmt:message key="order.register.date" bundle="${rb}" var="registerDate"/>
 <fmt:message key="order.exercises" bundle="${rb}" var="exercises"/>
@@ -22,19 +20,15 @@
 <fmt:message key="order.your.comment" bundle="${rb}" var="yourComment"/>
 <fmt:message key="project.navigation.price" bundle="${rb}" var="price"/>
 <fmt:message key="profile.status" bundle="${rb}" var="status"/>
-<fmt:message key="order.edit.nutrition" bundle="${rb}"
-             var="editNutrition"/>
-<fmt:message key="order.edit.exercises" bundle="${rb}"
-             var="editExercises"/>
-<fmt:message key="agree.to.terms.and.conditions" bundle="${rb}"
-             var="agreeToTermsAndConditions"/>
-<fmt:message key="agree.before.submitting" bundle="${rb}"
-             var="agreeBeforeSubmitting"/>
+<fmt:message key="order.edit.nutrition" bundle="${rb}" var="editNutrition"/>
+<fmt:message key="order.edit.exercises" bundle="${rb}" var="editExercises"/>
+<fmt:message key="agree.to.terms.and.conditions" bundle="${rb}" var="agreeToTermsAndConditions"/>
+<fmt:message key="agree.before.submitting" bundle="${rb}" var="agreeBeforeSubmitting"/>
 <fmt:message key="profile.close" bundle="${rb}" var="close"/>
 <fmt:message key="send.for.confirm" bundle="${rb}" var="sendForConfirm"/>
 <fmt:message key="save" bundle="${rb}" var="save"/>
 <fmt:message key="client.comment" bundle="${rb}" var="clientComment"/>
-
+<fmt:message key="project.name" bundle="${rb}" var="title"/>
 
 <html>
 <head>
@@ -66,9 +60,8 @@
             src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
             integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
             crossorigin="anonymous" type="text/javascript"></script>
+    <title>${title}</title>
 </head>
-
-<head></head>
 <body>
 <c:import url="../fragment/navbar.jsp"/>
 
