@@ -14,16 +14,16 @@ import static com.company.gum.controller.command.Router.RouterType.REDIRECT;
  */
 public class LogoutCommand implements Command {
 
-    /**
-     * Execute.
-     *
-     * @param requestContent the request content
-     * @return the router
-     */
-    @Override
-    public Router execute(SessionRequestContent requestContent) {
+	/**
+	 * Execute.
+	 *
+	 * @param requestContent the request content
+	 * @return the router
+	 */
+	@Override
+	public Router execute(SessionRequestContent requestContent) {
 
-        requestContent.invalidateSession();
-        return new Router(PagePath.INDEX, REDIRECT);
-    }
+		requestContent.invalidateSession();
+		return new Router(PagePath.INDEX, REDIRECT);
+	}
 }

@@ -24,38 +24,38 @@ import static com.company.gum.controller.command.Router.RouterType.FORWARD;
  */
 public class ShowAllActiveCommentsCommand implements Command {
 
-    /**
-     * The comment service.
-     */
-    private final CommentService commentService = CommentServiceImpl.getInstance();
+	/**
+	 * The comment service.
+	 */
+	private final CommentService commentService = CommentServiceImpl.getInstance();
 
-    /**
-     * Execute.
-     *
-     * @param requestContent the request content
-     * @return the router
-     * @throws CommandException the command exception
-     */
-    @Override
-    public Router execute(SessionRequestContent requestContent) throws CommandException {
-        Router router;
-        List<Comment> comments;
-        try {
-            int pageNumber = Integer.parseInt(requestContent.getParameterByName(AttributeName.PAGE));
-            comments = commentService.findAllActiveComment();
-            int commentsCount = comments.size();
-            Collections.reverse(comments);
-            int numberOfPages = (int) Math.ceil((commentsCount) / 5d);
-            List<Comment> showComments = comments.subList((pageNumber - 1) * 5,
-                    Math.min(pageNumber * 5, commentsCount));
-            requestContent.putAttribute(NUMBER_OF_PAGES, numberOfPages);
-            requestContent.putAttribute(CURRENT_NUMBER_PAGE, pageNumber);
-            requestContent.putAttribute(COMMENTS, showComments);
-            router = new Router(PagePath.COMMENTS, FORWARD);
+	/**
+	 * Execute.
+	 *
+	 * @param requestContent the request content
+	 * @return the router
+	 * @throws CommandException the command exception
+	 */
+	@Override
+	public Router execute(SessionRequestContent requestContent) throws CommandException {
+		Router router;
+		List<Comment> comments;
+		try {
+			int pageNumber = Integer.parseInt(requestContent.getParameterByName(AttributeName.PAGE));
+			comments = commentService.findAllActiveComment();
+			int commentsCount = comments.size();
+			Collections.reverse(comments);
+			int numberOfPages = (int) Math.ceil((commentsCount) / 5d);
+			List<Comment> showComments = comments.subList((pageNumber - 1) * 5,
+					Math.min(pageNumber * 5, commentsCount));
+			requestContent.putAttribute(NUMBER_OF_PAGES, numberOfPages);
+			requestContent.putAttribute(CURRENT_NUMBER_PAGE, pageNumber);
+			requestContent.putAttribute(COMMENTS, showComments);
+			router = new Router(PagePath.COMMENTS, FORWARD);
 
-        } catch (ServiceException e) {
-            throw new CommandException(e);
-        }
-        return router;
-    }
+		} catch (ServiceException e) {
+			throw new CommandException(e);
+		}
+		return router;
+	}
 }

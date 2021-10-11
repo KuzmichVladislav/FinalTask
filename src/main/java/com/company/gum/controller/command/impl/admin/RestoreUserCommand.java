@@ -19,26 +19,28 @@ import static com.company.gum.controller.command.Router.RouterType.FORWARD;
  */
 public class RestoreUserCommand implements Command {
 
-    /** The admin service. */
-    private final AdminService adminService = AdminServiceImpl.getInstance();
+	/**
+	 * The admin service.
+	 */
+	private final AdminService adminService = AdminServiceImpl.getInstance();
 
-    /**
-     * Execute.
-     *
-     * @param requestContent the request content
-     * @return the router
-     * @throws CommandException the command exception
-     */
-    @Override
-    public Router execute(SessionRequestContent requestContent) throws CommandException {
-        Router router;
-        try {
-            int userId = Integer.parseInt(requestContent.getParameterByName(USER_ID));
-            adminService.restoreUser(userId);
-            router = new Router((String) requestContent.getSessionAttributeByName(CURRENT_PAGE), FORWARD);
-        } catch (ServiceException e) {
-            throw new CommandException(e);
-        }
-        return router;
-    }
+	/**
+	 * Execute.
+	 *
+	 * @param requestContent the request content
+	 * @return the router
+	 * @throws CommandException the command exception
+	 */
+	@Override
+	public Router execute(SessionRequestContent requestContent) throws CommandException {
+		Router router;
+		try {
+			int userId = Integer.parseInt(requestContent.getParameterByName(USER_ID));
+			adminService.restoreUser(userId);
+			router = new Router((String) requestContent.getSessionAttributeByName(CURRENT_PAGE), FORWARD);
+		} catch (ServiceException e) {
+			throw new CommandException(e);
+		}
+		return router;
+	}
 }

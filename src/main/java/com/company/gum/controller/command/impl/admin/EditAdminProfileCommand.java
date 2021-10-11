@@ -23,67 +23,75 @@ import static com.company.gum.controller.command.Router.RouterType.REDIRECT;
  */
 public class EditAdminProfileCommand implements Command {
 
-    /** The admin service. */
-    private final AdminService adminService = AdminServiceImpl.getInstance();
-    
-    /** The validator. */
-    private final FormValidator validator = FormValidator.getInstance();
+	/**
+	 * The admin service.
+	 */
+	private final AdminService adminService = AdminServiceImpl.getInstance();
 
-    /**
-     * Execute.
-     *
-     * @param requestContent the request content
-     * @return the router
-     * @throws CommandException the command exception
-     */
-    @Override
-    public Router execute(SessionRequestContent requestContent) throws CommandException {
-        Router router;
-        boolean isValid = true;
-        try {
-            int adminId = (Integer) requestContent.getSessionAttributeByName(AttributeName.USER_ID);
+	/**
+	 * The validator.
+	 */
+	private final FormValidator validator = FormValidator.getInstance();
 
-            String userName = requestContent.getParameterByName(USER_NAME).strip().equals("")
-                    ? (String) requestContent.getSessionAttributeByName(USER_NAME)
-                    : requestContent.getParameterByName(USER_NAME).strip();
-            String userSurname = requestContent.getParameterByName(USER_SURNAME).strip().equals("")
-                    ? (String) requestContent.getSessionAttributeByName(USER_SURNAME)
-                    : requestContent.getParameterByName(USER_SURNAME).strip();
-            String userMail = requestContent.getParameterByName(USER_MAIL).strip().equals("")
-                    ? (String) requestContent.getSessionAttributeByName(USER_MAIL)
-                    : requestContent.getParameterByName(USER_MAIL).strip();
+	/**
+	 * Execute.
+	 *
+	 * @param requestContent the request content
+	 * @return the router
+	 * @throws CommandException the command exception
+	 */
+	@Override
+	public Router execute(SessionRequestContent requestContent) throws CommandException {
+		Router router;
+		boolean isValid = true;
+		try {
+			int adminId = (Integer) requestContent.getSessionAttributeByName(AttributeName.USER_ID);
 
-            if (!validator.checkNameSurname(userName)) {
-                isValid = false;
-                requestContent.putAttribute(ERROR_MESSAGE, "invalid.name");
-            }
-            if (!validator.checkNameSurname(userSurname) && isValid) {
-                isValid = false;
-                requestContent.putAttribute(ERROR_MESSAGE, "invalid.surname");
-            }
-            if (!validator.checkMail(userMail) && isValid) {
-                isValid = false;
-                requestContent.putAttribute(ERROR_MESSAGE, "invalid.email");
-            }
+			String userName = requestContent.getParameterByName(USER_NAME).isBlank()
+					? (String) requestContent.getSessionAttributeByName(USER_NAME)
+					: requestContent.getParameterByName(USER_NAME).strip();
+			String userSurname = requestContent.getParameterByName(USER_SURNAME).isBlank()
+					? (String) requestContent.getSessionAttributeByName(USER_SURNAME)
+					: requestContent.getParameterByName(USER_SURNAME).strip();
+			String userMail = requestContent.getParameterByName(USER_MAIL).isBlank()
+					? (String) requestContent.getSessionAttributeByName(USER_MAIL)
+					: requestContent.getParameterByName(USER_MAIL).strip();
 
-            if (isValid) {
-                Admin admin = new Admin.Builder().id(adminId).name(userName).surname(userSurname).mail(userMail)
-                        .build();
+			if (!validator.checkNameSurname(userName)) {
+				isValid = false;
+				requestContent.putAttribute(ERROR_MESSAGE, "invalid.name");
+			}
+			if (!validator.checkNameSurname(userSurname) && isValid) {
+				isValid = false;
+				requestContent.putAttribute(ERROR_MESSAGE, "invalid.surname");
+			}
+			if (!validator.checkMail(userMail) && isValid) {
+				isValid = false;
+				requestContent.putAttribute(ERROR_MESSAGE, "invalid.email");
+			}
 
-                adminService.editAdmin(admin);
+			if (isValid) {
+				Admin admin = new Admin.Builder()
+						.id(adminId)
+						.name(userName)
+						.surname(userSurname)
+						.mail(userMail)
+						.build();
 
-                admin = adminService.findAdminById(adminId);
+				adminService.editAdmin(admin);
 
-                requestContent.putSessionAttribute(USER_NAME, admin.getName());
-                requestContent.putSessionAttribute(USER_SURNAME, admin.getSurname());
-                requestContent.putSessionAttribute(USER_MAIL, admin.getMail());
-                router = new Router(PagePath.ADMIN_PROFILE, REDIRECT);
-            } else {
-                router = new Router(PagePath.ADMIN_PROFILE, FORWARD);
-            }
-        } catch (ServiceException e) {
-            throw new CommandException(e);
-        }
-        return router;
-    }
+				admin = adminService.findAdminById(adminId);
+
+				requestContent.putSessionAttribute(USER_NAME, admin.getName());
+				requestContent.putSessionAttribute(USER_SURNAME, admin.getSurname());
+				requestContent.putSessionAttribute(USER_MAIL, admin.getMail());
+				router = new Router(PagePath.ADMIN_PROFILE, REDIRECT);
+			} else {
+				router = new Router(PagePath.ADMIN_PROFILE, FORWARD);
+			}
+		} catch (ServiceException e) {
+			throw new CommandException(e);
+		}
+		return router;
+	}
 }

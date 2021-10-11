@@ -22,26 +22,26 @@ import static com.company.gum.controller.command.Router.RouterType.FORWARD;
  */
 public class ShowAllTrainerCommand implements Command {
 
-    /**
-     * The trainer service.
-     */
-    private final TrainerService trainerService = TrainerServiceImpl.getInstance();
+	/**
+	 * The trainer service.
+	 */
+	private final TrainerService trainerService = TrainerServiceImpl.getInstance();
 
-    /**
-     * Execute.
-     *
-     * @param requestContent the request content
-     * @return the router
-     * @throws CommandException the command exception
-     */
-    @Override
-    public Router execute(SessionRequestContent requestContent) throws CommandException {
-        try {
-            List<Trainer> trainers = trainerService.findAllActiveTrainer();
-            requestContent.putAttribute(AttributeName.TRAINERS, trainers);
-        } catch (ServiceException e) {
-            throw new CommandException(e);
-        }
-        return new Router(PagePath.SHOW_ALL_TRAINERS, FORWARD);
-    }
+	/**
+	 * Execute.
+	 *
+	 * @param requestContent the request content
+	 * @return the router
+	 * @throws CommandException the command exception
+	 */
+	@Override
+	public Router execute(SessionRequestContent requestContent) throws CommandException {
+		try {
+			List<Trainer> trainers = trainerService.findAllActiveTrainer();
+			requestContent.putAttribute(AttributeName.TRAINERS, trainers);
+		} catch (ServiceException e) {
+			throw new CommandException(e);
+		}
+		return new Router(PagePath.SHOW_ALL_TRAINERS, FORWARD);
+	}
 }

@@ -27,40 +27,42 @@ import static com.company.gum.controller.command.Router.RouterType.REDIRECT;
  */
 public class CreateOrderCommand implements Command {
 
-    /** The order service. */
-    private final OrderService orderService = OrderServiceImpl.getInstance();
+	/**
+	 * The order service.
+	 */
+	private final OrderService orderService = OrderServiceImpl.getInstance();
 
-    /**
-     * Execute.
-     *
-     * @param requestContent the request content
-     * @return the router
-     * @throws CommandException the command exception
-     */
-    @Override
-    public Router execute(SessionRequestContent requestContent) throws CommandException {
-        Router router;
-        try {
-            int clientId = (Integer) requestContent.getSessionAttributeByName(USER_ID);
-            int discount = (Integer) requestContent.getSessionAttributeByName(USER_DISCOUNT);
-            int trainerId = Integer.parseInt(requestContent.getParameterByName(TRAINER_ID));
-            String clientComment = UtilClass.getInstance().getStringFromDescription(requestContent, COMMENT);
-            String date = requestContent.getParameterByName(START_DATE);
-            LocalDate startDate = date.isEmpty() ? LocalDate.now() : LocalDate.parse(date);
-            String duration = requestContent.getParameterByName(DURATION);
-            Duration training = Duration.values()[Integer.parseInt(duration)];
-            LocalDate endDate = startDate.plus(training.day(), ChronoUnit.DAYS);
-            BigDecimal price = training.getPrice().multiply(BigDecimal.valueOf(1d - 1d / discount), MathContext.DECIMAL32);
+	/**
+	 * Execute.
+	 *
+	 * @param requestContent the request content
+	 * @return the router
+	 * @throws CommandException the command exception
+	 */
+	@Override
+	public Router execute(SessionRequestContent requestContent) throws CommandException {
+		Router router;
+		try {
+			int clientId = (Integer) requestContent.getSessionAttributeByName(USER_ID);
+			int discount = (Integer) requestContent.getSessionAttributeByName(USER_DISCOUNT);
+			int trainerId = Integer.parseInt(requestContent.getParameterByName(TRAINER_ID));
+			String clientComment = UtilClass.getInstance().getStringFromDescription(requestContent, COMMENT);
+			String date = requestContent.getParameterByName(START_DATE);
+			LocalDate startDate = date.isEmpty() ? LocalDate.now() : LocalDate.parse(date);
+			String duration = requestContent.getParameterByName(DURATION);
+			Duration training = Duration.values()[Integer.parseInt(duration)];
+			LocalDate endDate = startDate.plus(training.day(), ChronoUnit.DAYS);
+			BigDecimal price = training.getPrice().multiply(BigDecimal.valueOf(1d - 1d / discount), MathContext.DECIMAL32);
 
-            Order order = new Order.Builder().clientId(clientId).trainerId(trainerId).clientComment(clientComment)
-                    .startDate(startDate).endDate(endDate).price(price).build();
+			Order order = new Order.Builder().clientId(clientId).trainerId(trainerId).clientComment(clientComment)
+					.startDate(startDate).endDate(endDate).price(price).build();
 
-            orderService.createOrder(order);
-            router = new Router(PagePath.ORDER_CREATED, REDIRECT);
+			orderService.createOrder(order);
+			router = new Router(PagePath.ORDER_CREATED, REDIRECT);
 
-        } catch (ServiceException e) {
-            throw new CommandException(e);
-        }
-        return router;
-    }
+		} catch (ServiceException e) {
+			throw new CommandException(e);
+		}
+		return router;
+	}
 }

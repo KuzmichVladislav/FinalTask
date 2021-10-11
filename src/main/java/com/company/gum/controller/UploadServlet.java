@@ -20,27 +20,27 @@ import java.io.InputStream;
  */
 @WebServlet(urlPatterns = {"/uploadServlet"})
 @MultipartConfig(fileSizeThreshold = 1024 * 1024,
-        maxFileSize = 1024 * 1024 * 5,
-        maxRequestSize = 1024 * 1024 * 5 * 5)
+		maxFileSize = 1024 * 1024 * 5,
+		maxRequestSize = 1024 * 1024 * 5 * 5)
 public class UploadServlet extends HttpServlet {
 
-    /**
-     * Do post.
-     *
-     * @param req  the req
-     * @param resp the resp
-     * @throws ServletException the servlet exception
-     * @throws IOException      Signals that an I/O exception has occurred.
-     */
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        InputStream inputStream = null;
-        for (Part part : req.getParts()) {
-            if (part.getSubmittedFileName() != null && part.getContentType().contains("image")) {
-                inputStream = part.getInputStream();
-            }
-        }
-        req.setAttribute(AttributeName.USER_PHOTO, inputStream);
-        req.getRequestDispatcher(PagePath.MAIN_CONTROLLER).forward(req, resp);
-    }
+	/**
+	 * Do post.
+	 *
+	 * @param req  the Http servlet request
+	 * @param resp the Http servlet response
+	 * @throws ServletException the servlet exception
+	 * @throws IOException      Signals that an I/O exception has occurred.
+	 */
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		InputStream inputStream = null;
+		for (Part part : req.getParts()) {
+			if (part.getSubmittedFileName() != null && part.getContentType().contains("image")) {
+				inputStream = part.getInputStream();
+			}
+		}
+		req.setAttribute(AttributeName.USER_PHOTO, inputStream);
+		req.getRequestDispatcher(PagePath.MAIN_CONTROLLER).forward(req, resp);
+	}
 }

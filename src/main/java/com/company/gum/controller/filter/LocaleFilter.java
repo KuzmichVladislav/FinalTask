@@ -13,28 +13,33 @@ import java.io.IOException;
 @WebFilter(urlPatterns = {"/jsp/*"})
 public class LocaleFilter implements Filter {
 
-    /** The Constant LOCALE. */
-    public static final String LOCALE = "locale";
-    
-    /** The Constant EN_EN. */
-    public static final String EN_EN = "en_EN";
+	/**
+	 * The Constant LOCALE.
+	 */
+	public static final String LOCALE = "locale";
 
-    /**
-     * Do filter.
-     *
-     * @param req the req
-     * @param resp the resp
-     * @param chain the chain
-     * @throws IOException Signals that an I/O exception has occurred.
-     * @throws ServletException the servlet exception
-     */
-    @Override
-    public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain)
-            throws IOException, ServletException {
-        HttpServletRequest httpRequest = (HttpServletRequest) req;
-        if (httpRequest.getSession(false) != null && httpRequest.getSession(false).getAttribute("locale") == null) {
-            httpRequest.getSession().setAttribute(LOCALE, EN_EN);
-        }
-        chain.doFilter(httpRequest, resp);
-    }
+	/**
+	 * The Constant EN_EN.
+	 */
+	public static final String EN_EN = "en_EN";
+
+	/**
+	 * Do filter.
+	 *
+	 * @param req   the Servlet request
+	 * @param resp  the Servlet response
+	 * @param chain the Filter chain
+	 * @throws IOException      Signals that an I/O exception has occurred.
+	 * @throws ServletException the servlet exception
+	 */
+	@Override
+	public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain)
+			throws IOException, ServletException {
+		HttpServletRequest httpRequest = (HttpServletRequest) req;
+		if (httpRequest.getSession(false) != null
+				&& httpRequest.getSession(false).getAttribute(LOCALE) == null) {
+			httpRequest.getSession().setAttribute(LOCALE, EN_EN);
+		}
+		chain.doFilter(httpRequest, resp);
+	}
 }

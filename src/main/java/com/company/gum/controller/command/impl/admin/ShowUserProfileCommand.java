@@ -24,7 +24,9 @@ import static com.company.gum.controller.command.Router.RouterType.FORWARD;
  */
 public class ShowUserProfileCommand implements Command {
 
-	/** The Constant logger. */
+	/**
+	 * The Constant logger.
+	 */
 	private static final Logger logger = LogManager.getLogger();
 
 	/**
@@ -54,15 +56,15 @@ public class ShowUserProfileCommand implements Command {
 					.valueOf(requestContent.getParameterByName(AttributeName.USER_ROLE).toUpperCase());
 
 			switch (role) {
-			case CLIENT:
-				user = clientService.findClientById(userId);
-				break;
-			case TRAINER:
-				user = trainerService.findTrainerById(userId);
-				break;
-			default:
-				logger.debug("Debug exception for testing. When adding a user with a new role.");
-				throw new CommandException("Debug exception for testing. When adding a user with a new role.");
+				case CLIENT:
+					user = clientService.findClientById(userId);
+					break;
+				case TRAINER:
+					user = trainerService.findTrainerById(userId);
+					break;
+				default:
+					logger.debug("Debug exception for testing. When adding a user with a new role.");
+					throw new CommandException("Debug exception for testing. When adding a user with a new role.");
 			}
 
 			requestContent.putAttribute(AttributeName.USER, user);

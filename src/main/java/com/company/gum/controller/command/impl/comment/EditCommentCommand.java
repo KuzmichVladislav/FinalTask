@@ -19,27 +19,29 @@ import static com.company.gum.controller.command.Router.RouterType.FORWARD;
  */
 public class EditCommentCommand implements Command {
 
-    /** The comment service. */
-    private final CommentService commentService = CommentServiceImpl.getInstance();
+	/**
+	 * The comment service.
+	 */
+	private final CommentService commentService = CommentServiceImpl.getInstance();
 
-    /**
-     * Execute.
-     *
-     * @param requestContent the request content
-     * @return the router
-     * @throws CommandException the command exception
-     */
-    @Override
-    public Router execute(SessionRequestContent requestContent) throws CommandException {
-        Router router;
-        try {
-            int commentId = Integer.parseInt(requestContent.getParameterByName(COMMENT_ID));
-            String commentText = UtilClass.getInstance().getStringFromDescription(requestContent, COMMENT);
-            commentService.updateComment(commentId, commentText);
-            router = new Router((String) requestContent.getSessionAttributeByName(CURRENT_PAGE), FORWARD);
-        } catch (ServiceException e) {
-            throw new CommandException(e);
-        }
-        return router;
-    }
+	/**
+	 * Execute.
+	 *
+	 * @param requestContent the request content
+	 * @return the router
+	 * @throws CommandException the command exception
+	 */
+	@Override
+	public Router execute(SessionRequestContent requestContent) throws CommandException {
+		Router router;
+		try {
+			int commentId = Integer.parseInt(requestContent.getParameterByName(COMMENT_ID));
+			String commentText = UtilClass.getInstance().getStringFromDescription(requestContent, COMMENT);
+			commentService.updateComment(commentId, commentText);
+			router = new Router((String) requestContent.getSessionAttributeByName(CURRENT_PAGE), FORWARD);
+		} catch (ServiceException e) {
+			throw new CommandException(e);
+		}
+		return router;
+	}
 }

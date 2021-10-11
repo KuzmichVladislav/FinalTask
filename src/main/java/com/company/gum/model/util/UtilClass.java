@@ -9,47 +9,55 @@ import com.company.gum.controller.SessionRequestContent;
  */
 public class UtilClass {
 
-    /** The Constant LESS_THAN_SIGN. */
-    public static final String LESS_THAN_SIGN = "<";
-    
-    /** The Constant GREATER_THAN_SIGN. */
-    public static final String GREATER_THAN_SIGN = ">";
-    
-    /** The Constant REPLACEMENT. */
-    public static final String REPLACEMENT = "";
+	/**
+	 * The Constant LESS_THAN_SIGN.
+	 */
+	public static final String LESS_THAN_SIGN = "<";
 
-    /** The instance. */
-    private static UtilClass instance;
+	/**
+	 * The Constant GREATER_THAN_SIGN.
+	 */
+	public static final String GREATER_THAN_SIGN = ">";
 
-    /**
-     * Instantiates a new util class.
-     */
-    private UtilClass() {
-    }
+	/**
+	 * The Constant REPLACEMENT.
+	 */
+	public static final String REPLACEMENT = "";
 
-    /**
-     * Gets the single instance of UtilClass.
-     *
-     * @return single instance of UtilClass
-     */
-    public static UtilClass getInstance() {
-        if (instance == null) {
-            instance = new UtilClass();
-        }
-        return instance;
-    }
+	/**
+	 * The instance.
+	 */
+	private static UtilClass instance;
 
-    /**
-     * Gets the string from description.
-     *
-     * @param requestContent the request content
-     * @param parameterName the parameter name
-     * @return the string from description
-     */
-    public String getStringFromDescription(SessionRequestContent requestContent, String parameterName) {
-        return requestContent.getParameterByName(parameterName).isBlank()
-                ? (String) requestContent.getSessionAttributeByName(parameterName)
-                : requestContent.getParameterByName(parameterName).strip()
-                .replace(LESS_THAN_SIGN, REPLACEMENT).replace(GREATER_THAN_SIGN, REPLACEMENT);
-    }
+	/**
+	 * Instantiates a new util class.
+	 */
+	private UtilClass() {
+	}
+
+	/**
+	 * Gets the single instance of UtilClass.
+	 *
+	 * @return single instance of UtilClass
+	 */
+	public static UtilClass getInstance() {
+		if (instance == null) {
+			instance = new UtilClass();
+		}
+		return instance;
+	}
+
+	/**
+	 * Gets the string from description.
+	 *
+	 * @param requestContent the request content
+	 * @param parameterName  the parameter name
+	 * @return the string from description
+	 */
+	public String getStringFromDescription(SessionRequestContent requestContent, String parameterName) {
+		return requestContent.getParameterByName(parameterName).isBlank()
+				? (String) requestContent.getSessionAttributeByName(parameterName)
+				: requestContent.getParameterByName(parameterName).strip()
+				.replace(LESS_THAN_SIGN, REPLACEMENT).replace(GREATER_THAN_SIGN, REPLACEMENT);
+	}
 }

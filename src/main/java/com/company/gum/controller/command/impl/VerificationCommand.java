@@ -20,31 +20,31 @@ import static com.company.gum.controller.command.Router.RouterType.FORWARD;
  */
 public class VerificationCommand implements Command {
 
-    /**
-     * The client service.
-     */
-    private final ClientService clientService = ClientServiceImpl.getInstance();
+	/**
+	 * The client service.
+	 */
+	private final ClientService clientService = ClientServiceImpl.getInstance();
 
-    /**
-     * Execute.
-     *
-     * @param requestContent the request content
-     * @return the router
-     * @throws CommandException the command exception
-     */
-    @Override
-    public Router execute(SessionRequestContent requestContent) throws CommandException {
-        Router router;
+	/**
+	 * Execute.
+	 *
+	 * @param requestContent the request content
+	 * @return the router
+	 * @throws CommandException the command exception
+	 */
+	@Override
+	public Router execute(SessionRequestContent requestContent) throws CommandException {
+		Router router;
 
-        int clientId = Integer.parseInt(requestContent.getParameterByName(USER_ID));
+		int clientId = Integer.parseInt(requestContent.getParameterByName(USER_ID));
 
-        try {
-            boolean isVerified = clientService.verification(clientId);
-            requestContent.putAttribute(VERIFICATION, isVerified);
-            router = new Router(PagePath.VERIFICATION, FORWARD);
-        } catch (ServiceException e) {
-            throw new CommandException(e);
-        }
-        return router;
-    }
+		try {
+			boolean isVerified = clientService.verification(clientId);
+			requestContent.putAttribute(VERIFICATION, isVerified);
+			router = new Router(PagePath.VERIFICATION, FORWARD);
+		} catch (ServiceException e) {
+			throw new CommandException(e);
+		}
+		return router;
+	}
 }

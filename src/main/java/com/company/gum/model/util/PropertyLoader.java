@@ -14,31 +14,31 @@ import java.util.Properties;
  */
 public class PropertyLoader {
 
-    /**
-     * The Constant logger.
-     */
-    private static final Logger logger = LogManager.getLogger();
+	/**
+	 * The Constant logger.
+	 */
+	private static final Logger logger = LogManager.getLogger();
 
-    /**
-     * Instantiates a new property loader.
-     */
-    private PropertyLoader() {
-    }
+	/**
+	 * Instantiates a new property loader.
+	 */
+	private PropertyLoader() {
+	}
 
-    /**
-     * Load property.
-     *
-     * @param path the path
-     * @return the properties
-     */
-    public static Properties loadProperty(String path) {
-        Properties properties = new Properties();
+	/**
+	 * Load property.
+	 *
+	 * @param path the path
+	 * @return the properties
+	 */
+	public static Properties loadProperty(String path) {
+		Properties properties = new Properties();
+		try {
 
-        try {
-            properties.load(ConnectionPool.class.getClassLoader().getResourceAsStream(path));
-        } catch (IOException e) {
-            logger.error("Unable to load resources", e);
-        }
-        return properties;
-    }
+			properties.load(ConnectionPool.class.getClassLoader().getResourceAsStream(path));
+		} catch (IOException e) {
+			logger.error("Unable to load resources", e);
+		}
+		return properties;
+	}
 }

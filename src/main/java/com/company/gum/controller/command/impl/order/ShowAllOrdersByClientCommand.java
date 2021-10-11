@@ -23,30 +23,30 @@ import static com.company.gum.controller.command.Router.RouterType.FORWARD;
  */
 public class ShowAllOrdersByClientCommand implements Command {
 
-    /**
-     * The order service.
-     */
-    private final OrderService orderService = OrderServiceImpl.getInstance();
+	/**
+	 * The order service.
+	 */
+	private final OrderService orderService = OrderServiceImpl.getInstance();
 
-    /**
-     * Execute.
-     *
-     * @param requestContent the request content
-     * @return the router
-     * @throws CommandException the command exception
-     */
-    @Override
-    public Router execute(SessionRequestContent requestContent) throws CommandException {
-        Router router;
-        try {
-            int clientId = (Integer) requestContent.getSessionAttributeByName(USER_ID);
-            List<Order> orders;
-            orders = orderService.findActiveOrderByClient(clientId);
-            router = new Router(PagePath.CLIENT_ORDERS, FORWARD);
-            requestContent.putAttribute(ORDERS, orders);
-        } catch (ServiceException e) {
-            throw new CommandException(e);
-        }
-        return router;
-    }
+	/**
+	 * Execute.
+	 *
+	 * @param requestContent the request content
+	 * @return the router
+	 * @throws CommandException the command exception
+	 */
+	@Override
+	public Router execute(SessionRequestContent requestContent) throws CommandException {
+		Router router;
+		try {
+			int clientId = (Integer) requestContent.getSessionAttributeByName(USER_ID);
+			List<Order> orders;
+			orders = orderService.findActiveOrderByClient(clientId);
+			router = new Router(PagePath.CLIENT_ORDERS, FORWARD);
+			requestContent.putAttribute(ORDERS, orders);
+		} catch (ServiceException e) {
+			throw new CommandException(e);
+		}
+		return router;
+	}
 }

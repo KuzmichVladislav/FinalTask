@@ -23,42 +23,42 @@ import static com.company.gum.controller.command.Router.RouterType.FORWARD;
  */
 public class UploadImageCommand implements Command {
 
-    /**
-     * The Constant userService.
-     */
-    private static final UserService userService = UserServiceImpl.getInstance();
+	/**
+	 * The Constant userService.
+	 */
+	private static final UserService userService = UserServiceImpl.getInstance();
 
-    /**
-     * Execute.
-     *
-     * @param requestContent the request content
-     * @return the router
-     * @throws CommandException the command exception
-     */
-    @Override
-    public Router execute(SessionRequestContent requestContent) throws CommandException {
-        int userId = (Integer) requestContent.getSessionAttributeByName(USER_ID);
-        ByteArrayInputStream photo = (ByteArrayInputStream) requestContent.getAttributeByName(USER_PHOTO);
+	/**
+	 * Execute.
+	 *
+	 * @param requestContent the request content
+	 * @return the router
+	 * @throws CommandException the command exception
+	 */
+	@Override
+	public Router execute(SessionRequestContent requestContent) throws CommandException {
+		int userId = (Integer) requestContent.getSessionAttributeByName(USER_ID);
+		ByteArrayInputStream photo = (ByteArrayInputStream) requestContent.getAttributeByName(USER_PHOTO);
 
-        Router router;
-        try {
-            User user;
-            user = new User();
-            user.setId(userId);
-            user.setPhoto(photo.readAllBytes());
-            userService.updateUserImage(user);
+		Router router;
+		try {
+			User user;
+			user = new User();
+			user.setId(userId);
+			user.setPhoto(photo.readAllBytes());
+			userService.updateUserImage(user);
 
-            String base64Image = Base64.getEncoder().encodeToString(user.getPhoto());
+			String base64Image = Base64.getEncoder().encodeToString(user.getPhoto());
 
-            requestContent.putSessionAttribute(USER_PHOTO, IMAGE_SRC_PREFIX + base64Image);
+			requestContent.putSessionAttribute(USER_PHOTO, IMAGE_SRC_PREFIX + base64Image);
 
-            router = new Router((String) requestContent.getSessionAttributeByName(CURRENT_PAGE), FORWARD);
-            if (requestContent.getSessionAttributeByName(CURRENT_PAGE) == null) {
-                router = new Router(PagePath.INDEX, FORWARD);
-            }
-        } catch (ServiceException e) {
-            throw new CommandException(e);
-        }
-        return router;
-    }
+			router = new Router((String) requestContent.getSessionAttributeByName(CURRENT_PAGE), FORWARD);
+			if (requestContent.getSessionAttributeByName(CURRENT_PAGE) == null) {
+				router = new Router(PagePath.INDEX, FORWARD);
+			}
+		} catch (ServiceException e) {
+			throw new CommandException(e);
+		}
+		return router;
+	}
 }

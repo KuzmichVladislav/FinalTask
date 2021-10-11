@@ -28,67 +28,77 @@ import java.util.TimerTask;
 @WebListener
 public class ContextListener implements ServletContextListener {
 
-    /** The Constant logger. */
-    private static final Logger logger = LogManager.getLogger();
+	/**
+	 * The Constant logger.
+	 */
+	private static final Logger logger = LogManager.getLogger();
 
-    /** The Constant DELAY. */
-    private static final long DELAY = 86400000;
-    
-    /** The Constant DELETE_TIME. */
-    public static final String DELETE_TIME = "01:30:00 AM";
+	/**
+	 * The Constant DELAY.
+	 */
+	private static final long DELAY = 86400000;
 
-    /** The format. */
-    private final DateFormat format = DateFormat.getTimeInstance();
+	/**
+	 * The Constant DELETE_TIME.
+	 */
+	public static final String DELETE_TIME = "01:30:00 AM";
 
-    /** The timer. */
-    private final Timer timer = new Timer();
+	/**
+	 * The format.
+	 */
+	private final DateFormat format = DateFormat.getTimeInstance();
 
-    /**
-     * Context initialized.
-     *
-     * @param sce the sce
-     */
-    @Override
-    public void contextInitialized(ServletContextEvent sce) {
-        ConnectionPool.initPool();
+	/**
+	 * The timer.
+	 */
+	private final Timer timer = new Timer();
 
-        Date initialTime;
-        try {
-            initialTime = format.parse(DELETE_TIME);
-        } catch (ParseException e) {
-            logger.warn("initialTime could not be parsed");
-            initialTime = new Date();
-        }
+	/**
+	 * Context initialized.
+	 *
+	 * @param sce the Servlet context event
+	 */
+	@Override
+	public void contextInitialized(ServletContextEvent sce) {
+		ConnectionPool.initPool();
 
-        Calendar time = Calendar.getInstance();
-        Calendar timeOfDay = Calendar.getInstance();
+		Date initialTime;
+		try {
+			initialTime = format.parse(DELETE_TIME);
+		} catch (ParseException e) {
+			logger.warn("initialTime could not be parsed");
+			initialTime = new Date();
+		}
 
-        timeOfDay.setTime(initialTime);
+		Calendar time = Calendar.getInstance();
+		Calendar timeOfDay = Calendar.getInstance();
 
-        time.set(Calendar.HOUR_OF_DAY, timeOfDay.get(Calendar.HOUR_OF_DAY));
-        time.set(Calendar.MINUTE, timeOfDay.get(Calendar.MINUTE));
-        time.set(Calendar.SECOND, timeOfDay.get(Calendar.SECOND));
+		timeOfDay.setTime(initialTime);
 
-        Calendar startTime = Calendar.getInstance();
-        startTime.add(Calendar.MINUTE, 1);
+		time.set(Calendar.HOUR_OF_DAY, timeOfDay.get(Calendar.HOUR_OF_DAY));
+		time.set(Calendar.MINUTE, timeOfDay.get(Calendar.MINUTE));
+		time.set(Calendar.SECOND, timeOfDay.get(Calendar.SECOND));
 
-        if (time.before(startTime)) {
-            time = startTime;
-        }
-        logger.debug("Timer has been set for {} ({})", time.getTime(), DELAY);
+		Calendar startTime = Calendar.getInstance();
+		startTime.add(Calendar.MINUTE, 1);
 
-        TimerTask deleteObsoleteOrders = new DeleteOrdersTimerTask();
-        timer.schedule(deleteObsoleteOrders, time.getTime(), DELAY);
-    }
+		if (time.before(startTime)) {
+			time = startTime;
+		}
+		logger.debug("Timer has been set for {} ({})", time.getTime(), DELAY);
 
-    /**
-     * Context destroyed.
-     *
-     * @param sce the sce
-     */
-    @Override
-    public void contextDestroyed(ServletContextEvent sce) {
-        ConnectionPool.getInstance().closeAllConnections();
-        timer.cancel();
-    }
+		TimerTask deleteObsoleteOrders = new DeleteOrdersTimerTask();
+		timer.schedule(deleteObsoleteOrders, time.getTime(), DELAY);
+	}
+
+	/**
+	 * Context destroyed.
+	 *
+	 * @param sce the Servlet context event
+	 */
+	@Override
+	public void contextDestroyed(ServletContextEvent sce) {
+		ConnectionPool.getInstance().closeAllConnections();
+		timer.cancel();
+	}
 }

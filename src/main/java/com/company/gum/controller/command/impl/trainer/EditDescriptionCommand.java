@@ -21,30 +21,32 @@ import static com.company.gum.controller.command.Router.RouterType.FORWARD;
  */
 public class EditDescriptionCommand implements Command {
 
-    /** The trainer service. */
-    private final TrainerService trainerService = TrainerServiceImpl.getInstance();
+	/**
+	 * The trainer service.
+	 */
+	private final TrainerService trainerService = TrainerServiceImpl.getInstance();
 
-    /**
-     * Execute.
-     *
-     * @param requestContent the request content
-     * @return the router
-     * @throws CommandException the command exception
-     */
-    @Override
-    public Router execute(SessionRequestContent requestContent) throws CommandException {
-        Router router;
-        try {
-            int trainerId = Integer.parseInt(requestContent.getParameterByName(USER_ID));
-            String description = UtilClass.getInstance().getStringFromDescription(requestContent, DESCRIPTION);
+	/**
+	 * Execute.
+	 *
+	 * @param requestContent the request content
+	 * @return the router
+	 * @throws CommandException the command exception
+	 */
+	@Override
+	public Router execute(SessionRequestContent requestContent) throws CommandException {
+		Router router;
+		try {
+			int trainerId = Integer.parseInt(requestContent.getParameterByName(USER_ID));
+			String description = UtilClass.getInstance().getStringFromDescription(requestContent, DESCRIPTION);
 
-            trainerService.editDescription(trainerId, description);
+			trainerService.editDescription(trainerId, description);
 
-            requestContent.putSessionAttribute(DESCRIPTION, description);
-            router = new Router(PagePath.TRAINER_PROFILE, FORWARD);
-        } catch (ServiceException e) {
-            throw new CommandException(e);
-        }
-        return router;
-    }
+			requestContent.putSessionAttribute(DESCRIPTION, description);
+			router = new Router(PagePath.TRAINER_PROFILE, FORWARD);
+		} catch (ServiceException e) {
+			throw new CommandException(e);
+		}
+		return router;
+	}
 }

@@ -23,46 +23,55 @@ import static com.company.gum.controller.command.Router.RouterType.REDIRECT;
  */
 public class AssignDiscountCommand implements Command {
 
-    /** The client service. */
-    private final ClientService clientService = ClientServiceImpl.getInstance();
-    
-    /** The validator. */
-    private final FormValidator formValidator = FormValidator.getInstance();
+	/**
+	 * The Constant DISCOUNT_INVALID.
+	 */
+	public static final String DISCOUNT_INVALID = "discount.invalid";
 
-    /**
-     * Execute.
-     *
-     * @param requestContent the request content
-     * @return the router
-     * @throws CommandException the command exception
-     */
-    @Override
-    public Router execute(SessionRequestContent requestContent) throws CommandException {
-        Router router;
-        try {
-            boolean isValid = true;
-            int clientId = Integer.parseInt(requestContent.getParameterByName(CLIENT_ID));
-            String stringDiscount = requestContent.getParameterByName(DISCOUNT);
-            if (!formValidator.checkDiscount(stringDiscount)) {
-                requestContent.putAttribute(ERROR_MESSAGE, "discount.invalid");
-                isValid = false;
-            }
-            if (isValid) {
-                BigDecimal discount = new BigDecimal(stringDiscount, MathContext.DECIMAL32);
-                boolean isUpdated = clientService.assignDiscount(clientId, discount);
-                if (isUpdated) {
-                    router = new Router((String) requestContent.getSessionAttributeByName(CURRENT_PAGE), REDIRECT);
-                } else {
-                    requestContent.putAttribute(ERROR_MESSAGE, "discount.invalid");
-                    router = new Router((String) requestContent.getSessionAttributeByName(CURRENT_PAGE), FORWARD);
-                }
-            } else {
-                requestContent.putAttribute(ERROR_MESSAGE, "discount.invalid");
-                router = new Router((String) requestContent.getSessionAttributeByName(CURRENT_PAGE), FORWARD);
-            }
-        } catch (ServiceException e) {
-            throw new CommandException(e);
-        }
-        return router;
-    }
+	/**
+	 * The client service.
+	 */
+	private final ClientService clientService = ClientServiceImpl.getInstance();
+
+	/**
+	 * The form validator.
+	 */
+	private final FormValidator formValidator = FormValidator.getInstance();
+
+	/**
+	 * Execute.
+	 *
+	 * @param requestContent the request content
+	 * @return the router
+	 * @throws CommandException the command exception
+	 */
+	@Override
+	public Router execute(SessionRequestContent requestContent) throws CommandException {
+		Router router;
+		try {
+			boolean isValid = true;
+			int clientId = Integer.parseInt(requestContent.getParameterByName(CLIENT_ID));
+			String stringDiscount = requestContent.getParameterByName(DISCOUNT);
+			if (!formValidator.checkDiscount(stringDiscount)) {
+				requestContent.putAttribute(ERROR_MESSAGE, DISCOUNT_INVALID);
+				isValid = false;
+			}
+			if (isValid) {
+				BigDecimal discount = new BigDecimal(stringDiscount, MathContext.DECIMAL32);
+				boolean isUpdated = clientService.assignDiscount(clientId, discount);
+				if (isUpdated) {
+					router = new Router((String) requestContent.getSessionAttributeByName(CURRENT_PAGE), REDIRECT);
+				} else {
+					requestContent.putAttribute(ERROR_MESSAGE, DISCOUNT_INVALID);
+					router = new Router((String) requestContent.getSessionAttributeByName(CURRENT_PAGE), FORWARD);
+				}
+			} else {
+				requestContent.putAttribute(ERROR_MESSAGE, DISCOUNT_INVALID);
+				router = new Router((String) requestContent.getSessionAttributeByName(CURRENT_PAGE), FORWARD);
+			}
+		} catch (ServiceException e) {
+			throw new CommandException(e);
+		}
+		return router;
+	}
 }

@@ -19,65 +19,65 @@ import static org.mockito.Mockito.when;
  */
 class AdminDaoImplTest {
 
-    /**
-     * The instance.
-     */
-    @Mock
-    AdminDaoImpl instance;
+	/**
+	 * The instance.
+	 */
+	@Mock
+	AdminDaoImpl instance;
 
-    /**
-     * Sets the up.
-     */
-    @BeforeEach
-    void setUp() {
-        MockitoAnnotations.openMocks(this);
-    }
+	/**
+	 * Sets the up.
+	 */
+	@BeforeEach
+	void setUp() {
+		MockitoAnnotations.openMocks(this);
+	}
 
-    /**
-     * Test find admin by id.
-     *
-     * @throws DaoException the dao exception
-     */
-    @Test
-    void testFindAdminById() throws DaoException {
-        when(instance.findAdminById(anyInt())).thenReturn(new Admin());
-        Admin result = instance.findAdminById(10);
-        Assertions.assertEquals(new Admin(), result);
-    }
+	/**
+	 * Test of findAdminById method, of class AdminDaoImpl.
+	 *
+	 * @throws DaoException the dao exception
+	 */
+	@Test
+	void testFindAdminById() throws DaoException {
+		when(instance.findAdminById(anyInt())).thenReturn(new Admin());
+		Admin result = instance.findAdminById(10);
+		Assertions.assertEquals(new Admin(), result);
+	}
 
-    /**
-     * Test edit admin.
-     *
-     * @throws DaoException the dao exception
-     */
-    @Test
-    void testEditAdmin() throws DaoException {
-        when(instance.editAdmin(any())).thenReturn(true);
-        boolean result = instance.editAdmin(new Admin());
-        Assertions.assertTrue(result);
-    }
+	/**
+	 * Test of editAdmin method, of class AdminDaoImpl.
+	 *
+	 * @throws DaoException the dao exception
+	 */
+	@Test
+	void testEditAdmin() throws DaoException {
+		when(instance.editAdmin(any())).thenReturn(true);
+		boolean result = instance.editAdmin(new Admin());
+		Assertions.assertTrue(result);
+	}
 
-    /**
-     * Test delete user.
-     *
-     * @throws DaoException the dao exception
-     */
-    @Test
-    void testDeleteUser() throws DaoException {
-        when(instance.deleteUser(anyInt())).thenReturn(true);
-        boolean result = instance.deleteUser(10);
-        Assertions.assertTrue(result);
-    }
+	/**
+	 * Test of deleteUser method, of class AdminDaoImpl.
+	 *
+	 * @throws DaoException the dao exception
+	 */
+	@Test
+	void testDeleteUser() throws DaoException {
+		when(instance.deleteUser(anyInt())).thenReturn(true);
+		boolean result = instance.deleteUser(10);
+		Assertions.assertTrue(result);
+	}
 
-    /**
-     * Test restore user.
-     *
-     * @throws DaoException the dao exception
-     */
-    @Test
-    void testRestoreUser() throws DaoException {
-        when(instance.restoreUser(anyInt())).thenReturn(true);
-        boolean result = instance.restoreUser(10);
-        Assertions.assertTrue(result);
-    }
+	/**
+	 * Test of restoreUser method, of class AdminDaoImpl.
+	 *
+	 * @throws DaoException the dao exception
+	 */
+	@Test
+	void testRestoreUser() throws DaoException {
+		when(instance.restoreUser(anyInt())).thenReturn(true);
+		boolean result = instance.restoreUser(10);
+		Assertions.assertTrue(result);
+	}
 }

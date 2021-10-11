@@ -21,29 +21,29 @@ import static com.company.gum.controller.command.Router.RouterType.FORWARD;
  */
 public class ShowOrderByClientCommand implements Command {
 
-    /**
-     * The order service.
-     */
-    private final OrderService orderService = OrderServiceImpl.getInstance();
+	/**
+	 * The order service.
+	 */
+	private final OrderService orderService = OrderServiceImpl.getInstance();
 
-    /**
-     * Execute.
-     *
-     * @param requestContent the request content
-     * @return the router
-     * @throws CommandException the command exception
-     */
-    @Override
-    public Router execute(SessionRequestContent requestContent) throws CommandException {
-        Router router;
-        try {
-            int orderId = Integer.parseInt(requestContent.getParameterByName(ORDER_ID));
-            Order order = orderService.findOrder(orderId);
-            router = new Router(PagePath.CLIENT_ORDER_DETAIL, FORWARD);
-            requestContent.putAttribute(ORDER, order);
-        } catch (ServiceException e) {
-            throw new CommandException(e);
-        }
-        return router;
-    }
+	/**
+	 * Execute.
+	 *
+	 * @param requestContent the request content
+	 * @return the router
+	 * @throws CommandException the command exception
+	 */
+	@Override
+	public Router execute(SessionRequestContent requestContent) throws CommandException {
+		Router router;
+		try {
+			int orderId = Integer.parseInt(requestContent.getParameterByName(ORDER_ID));
+			Order order = orderService.findOrder(orderId);
+			router = new Router(PagePath.CLIENT_ORDER_DETAIL, FORWARD);
+			requestContent.putAttribute(ORDER, order);
+		} catch (ServiceException e) {
+			throw new CommandException(e);
+		}
+		return router;
+	}
 }

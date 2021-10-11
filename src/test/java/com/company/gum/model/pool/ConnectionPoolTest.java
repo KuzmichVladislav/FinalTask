@@ -10,12 +10,12 @@ import org.junit.jupiter.api.Test;
  */
 class ConnectionPoolTest {
 
-    /**
-     * Connection pool test.
-     */
-    @Test
-    void connectionPoolTest() {
-        ConnectionPool instance = ConnectionPool.getInstance();
-        Assertions.assertEquals(4, instance.size());
-    }
+	/**
+	 * Connection pool test.
+	 */
+	@Test
+	void connectionPoolTest() {
+		ConnectionPool instance = ConnectionPool.getInstance();
+		Assertions.assertEquals(4, instance.size());
+	}
 }

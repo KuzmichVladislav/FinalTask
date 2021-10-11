@@ -18,34 +18,34 @@ import java.io.IOException;
 @WebFilter(urlPatterns = {"/jsp/admin/*", "/jsp/client/*", "/jsp/trainer/*"})
 public class CheckRoleFilter implements Filter {
 
-    /**
-     * Do filter.
-     *
-     * @param req   the request
-     * @param resp  the response
-     * @param chain the chain
-     * @throws IOException      Signals that an I/O exception has occurred.
-     * @throws ServletException the servlet exception
-     */
-    @Override
-    public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain)
-            throws IOException, ServletException {
-        HttpServletRequest request = (HttpServletRequest) req;
-        HttpServletResponse response = (HttpServletResponse) resp;
-        HttpSession session = request.getSession(false);
+	/**
+	 * Do filter.
+	 *
+	 * @param req   the Servlet request
+	 * @param resp  the Servlet response
+	 * @param chain the Filter chain
+	 * @throws IOException      Signals that an I/O exception has occurred.
+	 * @throws ServletException the servlet exception
+	 */
+	@Override
+	public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain)
+			throws IOException, ServletException {
+		HttpServletRequest request = (HttpServletRequest) req;
+		HttpServletResponse response = (HttpServletResponse) resp;
+		HttpSession session = request.getSession(false);
 
-        String userRole = (String) session.getAttribute(AttributeName.USER_ROLE);
-        if (userRole != null) {
-            userRole = userRole.toLowerCase();
-            String currentPage = request.getRequestURL().toString();
+		String userRole = (String) session.getAttribute(AttributeName.USER_ROLE);
+		if (userRole != null) {
+			userRole = userRole.toLowerCase();
+			String currentPage = request.getRequestURL().toString();
 
-            if (currentPage.contains("/" + userRole + "/")) {
-                chain.doFilter(req, resp);
-            } else {
-                response.sendRedirect(request.getContextPath() + "/jsp/" + userRole + "/profile.jsp");
-            }
-        } else {
-            response.sendRedirect(request.getContextPath() + "/" + PagePath.LOGIN);
-        }
-    }
+			if (currentPage.contains("/" + userRole + "/")) {
+				chain.doFilter(req, resp);
+			} else {
+				response.sendRedirect(request.getContextPath() + "/jsp/" + userRole + "/profile.jsp");
+			}
+		} else {
+			response.sendRedirect(request.getContextPath() + "/" + PagePath.LOGIN);
+		}
+	}
 }

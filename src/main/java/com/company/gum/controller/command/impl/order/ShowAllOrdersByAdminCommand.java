@@ -22,29 +22,29 @@ import static com.company.gum.controller.command.Router.RouterType.FORWARD;
  */
 public class ShowAllOrdersByAdminCommand implements Command {
 
-    /**
-     * The order service.
-     */
-    private final OrderService orderService = OrderServiceImpl.getInstance();
+	/**
+	 * The order service.
+	 */
+	private final OrderService orderService = OrderServiceImpl.getInstance();
 
-    /**
-     * Execute.
-     *
-     * @param requestContent the request content
-     * @return the router
-     * @throws CommandException the command exception
-     */
-    @Override
-    public Router execute(SessionRequestContent requestContent) throws CommandException {
-        Router router;
-        try {
-            List<Order> orders;
-            orders = orderService.findAllOrder();
-            router = new Router(PagePath.ADMIN_ORDERS, FORWARD);
-            requestContent.putAttribute(ORDERS, orders);
-        } catch (ServiceException e) {
-            throw new CommandException(e);
-        }
-        return router;
-    }
+	/**
+	 * Execute.
+	 *
+	 * @param requestContent the request content
+	 * @return the router
+	 * @throws CommandException the command exception
+	 */
+	@Override
+	public Router execute(SessionRequestContent requestContent) throws CommandException {
+		Router router;
+		try {
+			List<Order> orders;
+			orders = orderService.findAllOrder();
+			router = new Router(PagePath.ADMIN_ORDERS, FORWARD);
+			requestContent.putAttribute(ORDERS, orders);
+		} catch (ServiceException e) {
+			throw new CommandException(e);
+		}
+		return router;
+	}
 }

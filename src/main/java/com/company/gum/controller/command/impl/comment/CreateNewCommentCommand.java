@@ -21,33 +21,35 @@ import static com.company.gum.controller.command.Router.RouterType.REDIRECT;
  */
 public class CreateNewCommentCommand implements Command {
 
-    /** The comment service. */
-    private final CommentService commentService = CommentServiceImpl.getInstance();
+	/**
+	 * The comment service.
+	 */
+	private final CommentService commentService = CommentServiceImpl.getInstance();
 
-    /**
-     * Execute.
-     *
-     * @param requestContent the request content
-     * @return the router
-     * @throws CommandException the command exception
-     */
-    @Override
-    public Router execute(SessionRequestContent requestContent) throws CommandException {
-        Router router;
-        try {
+	/**
+	 * Execute.
+	 *
+	 * @param requestContent the request content
+	 * @return the router
+	 * @throws CommandException the command exception
+	 */
+	@Override
+	public Router execute(SessionRequestContent requestContent) throws CommandException {
+		Router router;
+		try {
 
-            int userId = (Integer) requestContent.getSessionAttributeByName(AttributeName.USER_ID);
-            String commentText = UtilClass.getInstance().getStringFromDescription(requestContent, COMMENT);
+			int userId = (Integer) requestContent.getSessionAttributeByName(AttributeName.USER_ID);
+			String commentText = UtilClass.getInstance().getStringFromDescription(requestContent, COMMENT);
 
-            Comment comment = new Comment.Builder().build();
-            comment.setUserId(userId);
-            comment.setCommentText(commentText);
+			Comment comment = new Comment.Builder().build();
+			comment.setUserId(userId);
+			comment.setCommentText(commentText);
 
-            commentService.createComment(comment);
-            router = new Router((String) requestContent.getSessionAttributeByName(CURRENT_PAGE), REDIRECT);
-        } catch (ServiceException e) {
-            throw new CommandException(e);
-        }
-        return router;
-    }
+			commentService.createComment(comment);
+			router = new Router((String) requestContent.getSessionAttributeByName(CURRENT_PAGE), REDIRECT);
+		} catch (ServiceException e) {
+			throw new CommandException(e);
+		}
+		return router;
+	}
 }
