@@ -10,7 +10,7 @@
 <fmt:message key="project.navigation.contacts" bundle="${rb}" var="contacts"/>
 <fmt:message key="project.navigation.about" bundle="${rb}" var="about"/>
 <fmt:message key="project.navigation.language" bundle="${rb}" var="language"/>
-<fmt:message key="project.navigation.comments" bundle="${rb}" var="coments"/>
+<fmt:message key="project.navigation.comments" bundle="${rb}" var="comments"/>
 <fmt:message key="project.navigation.price" bundle="${rb}" var="price"/>
 <fmt:message key="project.navigation.account" bundle="${rb}" var="account"/>
 <fmt:message key="user.box.sign.login" bundle="${rb}" var="login"/>
@@ -75,7 +75,7 @@
                     </c:when>
                 </c:choose></li>
                 <li class="nav-item"><a class="nav-link"
-                                        href="${pageContext.request.contextPath}/controller?command=show_all_active_comments&amp;page=1">Comments</a>
+                                        href="${pageContext.request.contextPath}/controller?command=show_all_active_comments&amp;page=1">${comments}</a>
                 </li>
             </c:if>
             <li class="nav-item dropdown"><a
@@ -84,10 +84,11 @@
                     aria-haspopup="true" aria-expanded="false"> ${language} </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                     <a class="dropdown-item"
-                       href="${pageContext.request.contextPath}/controller?command=change_locale&amp;locale=en_EN">EN
-                        (English)</a> <a class="dropdown-item"
-                                         href="${pageContext.request.contextPath}/controller?command=change_locale&amp;locale=ru_RU">RU
-                    (Русский)</a>
+                       href="${pageContext.request.contextPath}/controller?command=change_locale&amp;locale=en_EN">
+                        EN (English)</a>
+                    <a class="dropdown-item"
+                       href="${pageContext.request.contextPath}/controller?command=change_locale&amp;locale=ru_RU">
+                        RU (Русский)</a>
                 </div>
             </li>
         </ul>
