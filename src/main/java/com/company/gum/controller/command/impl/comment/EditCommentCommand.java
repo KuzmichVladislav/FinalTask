@@ -7,7 +7,7 @@ import com.company.gum.exception.CommandException;
 import com.company.gum.exception.ServiceException;
 import com.company.gum.model.service.CommentService;
 import com.company.gum.model.service.impl.CommentServiceImpl;
-import com.company.gum.model.util.UtilClass;
+import com.company.gum.model.util.XssDefender;
 
 import static com.company.gum.controller.command.AttributeName.*;
 import static com.company.gum.controller.command.Router.RouterType.FORWARD;
@@ -36,7 +36,7 @@ public class EditCommentCommand implements Command {
 		Router router;
 		try {
 			int commentId = Integer.parseInt(requestContent.getParameterByName(COMMENT_ID));
-			String commentText = UtilClass.getInstance().getStringFromDescription(requestContent, COMMENT);
+			String commentText = XssDefender.getInstance().getStringFromDescription(requestContent, COMMENT);
 			commentService.updateComment(commentId, commentText);
 			router = new Router((String) requestContent.getSessionAttributeByName(CURRENT_PAGE), FORWARD);
 		} catch (ServiceException e) {

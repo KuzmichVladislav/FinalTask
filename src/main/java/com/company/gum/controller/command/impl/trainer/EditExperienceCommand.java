@@ -8,7 +8,7 @@ import com.company.gum.exception.CommandException;
 import com.company.gum.exception.ServiceException;
 import com.company.gum.model.service.TrainerService;
 import com.company.gum.model.service.impl.TrainerServiceImpl;
-import com.company.gum.model.util.UtilClass;
+import com.company.gum.model.util.XssDefender;
 
 import static com.company.gum.controller.command.AttributeName.*;
 import static com.company.gum.controller.command.Router.RouterType.FORWARD;
@@ -37,7 +37,7 @@ public class EditExperienceCommand implements Command {
 		Router router;
 		try {
 			int trainerId = Integer.parseInt(requestContent.getParameterByName(USER_ID));
-			String experience = UtilClass.getInstance().getStringFromDescription(requestContent, EXPERIENCE);
+			String experience = XssDefender.getInstance().getStringFromDescription(requestContent, EXPERIENCE);
 
 			trainerService.editExperience(trainerId, experience);
 

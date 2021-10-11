@@ -8,7 +8,7 @@ import com.company.gum.exception.CommandException;
 import com.company.gum.exception.ServiceException;
 import com.company.gum.model.service.TrainerService;
 import com.company.gum.model.service.impl.TrainerServiceImpl;
-import com.company.gum.model.util.UtilClass;
+import com.company.gum.model.util.XssDefender;
 
 import static com.company.gum.controller.command.AttributeName.DESCRIPTION;
 import static com.company.gum.controller.command.AttributeName.USER_ID;
@@ -38,7 +38,7 @@ public class EditDescriptionCommand implements Command {
 		Router router;
 		try {
 			int trainerId = Integer.parseInt(requestContent.getParameterByName(USER_ID));
-			String description = UtilClass.getInstance().getStringFromDescription(requestContent, DESCRIPTION);
+			String description = XssDefender.getInstance().getStringFromDescription(requestContent, DESCRIPTION);
 
 			trainerService.editDescription(trainerId, description);
 

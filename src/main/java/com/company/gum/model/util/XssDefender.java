@@ -3,11 +3,11 @@ package com.company.gum.model.util;
 import com.company.gum.controller.SessionRequestContent;
 
 /**
- * The Class UtilClass.
+ * The Class XssDefender.
  *
  * @author Vladislav Kuzmich
  */
-public class UtilClass {
+public class XssDefender {
 
 	/**
 	 * The Constant LESS_THAN_SIGN.
@@ -27,12 +27,12 @@ public class UtilClass {
 	/**
 	 * The instance.
 	 */
-	private static UtilClass instance;
+	private static XssDefender instance;
 
 	/**
 	 * Instantiates a new util class.
 	 */
-	private UtilClass() {
+	private XssDefender() {
 	}
 
 	/**
@@ -40,9 +40,9 @@ public class UtilClass {
 	 *
 	 * @return single instance of UtilClass
 	 */
-	public static UtilClass getInstance() {
+	public static XssDefender getInstance() {
 		if (instance == null) {
-			instance = new UtilClass();
+			instance = new XssDefender();
 		}
 		return instance;
 	}

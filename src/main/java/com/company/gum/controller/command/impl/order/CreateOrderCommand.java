@@ -10,7 +10,7 @@ import com.company.gum.model.entity.Duration;
 import com.company.gum.model.entity.Order;
 import com.company.gum.model.service.OrderService;
 import com.company.gum.model.service.impl.OrderServiceImpl;
-import com.company.gum.model.util.UtilClass;
+import com.company.gum.model.util.XssDefender;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
@@ -46,7 +46,7 @@ public class CreateOrderCommand implements Command {
 			int clientId = (Integer) requestContent.getSessionAttributeByName(USER_ID);
 			int discount = (Integer) requestContent.getSessionAttributeByName(USER_DISCOUNT);
 			int trainerId = Integer.parseInt(requestContent.getParameterByName(TRAINER_ID));
-			String clientComment = UtilClass.getInstance().getStringFromDescription(requestContent, COMMENT);
+			String clientComment = XssDefender.getInstance().getStringFromDescription(requestContent, COMMENT);
 			String date = requestContent.getParameterByName(START_DATE);
 			LocalDate startDate = date.isEmpty() ? LocalDate.now() : LocalDate.parse(date);
 			String duration = requestContent.getParameterByName(DURATION);

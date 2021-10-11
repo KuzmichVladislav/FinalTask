@@ -9,7 +9,7 @@ import com.company.gum.exception.ServiceException;
 import com.company.gum.model.entity.Comment;
 import com.company.gum.model.service.CommentService;
 import com.company.gum.model.service.impl.CommentServiceImpl;
-import com.company.gum.model.util.UtilClass;
+import com.company.gum.model.util.XssDefender;
 
 import static com.company.gum.controller.command.AttributeName.*;
 import static com.company.gum.controller.command.Router.RouterType.REDIRECT;
@@ -39,7 +39,7 @@ public class CreateNewCommentCommand implements Command {
 		try {
 
 			int userId = (Integer) requestContent.getSessionAttributeByName(AttributeName.USER_ID);
-			String commentText = UtilClass.getInstance().getStringFromDescription(requestContent, COMMENT);
+			String commentText = XssDefender.getInstance().getStringFromDescription(requestContent, COMMENT);
 
 			Comment comment = new Comment.Builder().build();
 			comment.setUserId(userId);
