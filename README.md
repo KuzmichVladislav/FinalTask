@@ -45,5 +45,6 @@ You can **edit and delete** your comments. **The administrator** can delete **an
 - junit.jupiter 5.7.0
 
 **Database visualization**
-![](ibb.co/GVtQp2N"><img src="https://i.ibb.co/GVtQp2N/gum.png)
+
+![](https://i.ibb.co/SKdwynG/gum.png)
 
