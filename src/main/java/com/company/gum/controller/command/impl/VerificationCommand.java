@@ -35,9 +35,7 @@ public class VerificationCommand implements Command {
 	@Override
 	public Router execute(SessionRequestContent requestContent) throws CommandException {
 		Router router;
-
 		int clientId = Integer.parseInt(requestContent.getParameterByName(USER_ID));
-
 		try {
 			boolean isVerified = clientService.verification(clientId);
 			requestContent.putAttribute(VERIFICATION, isVerified);

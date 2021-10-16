@@ -145,9 +145,7 @@ public class ClientDaoImpl implements ClientDao {
 				userStatement.setString(3, client.getName());
 				userStatement.setString(4, client.getSurname());
 				userStatement.setString(5, client.getMail());
-
 				userStatement.execute();
-
 				ResultSet resultSet = userStatement.getGeneratedKeys();
 				if (resultSet.next()) {
 					int clientId = resultSet.getInt(1);
@@ -160,7 +158,6 @@ public class ClientDaoImpl implements ClientDao {
 					clientStatement.setNull(2, Types.NULL);
 				}
 				clientStatement.execute();
-
 				connection.commit();
 				logger.debug("Client with id {} was created", client.getId());
 			} catch (SQLException e) {
@@ -208,12 +205,9 @@ public class ClientDaoImpl implements ClientDao {
 				statement.setNull(4, Types.VARCHAR);
 			}
 			statement.setInt(5, client.getId());
-
 			isEdited = statement.executeUpdate() == 1;
-
 			logger.debug(isEdited ? "Client " + client.getId() + " was updated"
 					: "Client " + client.getId() + " was not updated");
-
 		} catch (SQLException e) {
 			throw new DaoException(e);
 		}
@@ -233,12 +227,9 @@ public class ClientDaoImpl implements ClientDao {
 		try (Connection connection = ConnectionPool.getInstance().takeConnection();
 		     PreparedStatement statement = connection.prepareStatement(SQL_VERIFICATION)) {
 			statement.setInt(1, clientId);
-
 			isUpdated = statement.executeUpdate() == 1;
-
 			logger.debug(isUpdated ? "Client with id {} was verified"
 					: "Client id {} verification failed", clientId);
-
 		} catch (SQLException e) {
 			throw new DaoException(e);
 		}
@@ -263,7 +254,6 @@ public class ClientDaoImpl implements ClientDao {
 				updateClientStatement.setBigDecimal(1, amount);
 				updateClientStatement.setInt(2, clientId);
 				isUpdated = updateClientStatement.executeUpdate() == 1;
-
 				if (!isUpdated) {
 					connection.rollback();
 				}
@@ -296,15 +286,12 @@ public class ClientDaoImpl implements ClientDao {
 		     PreparedStatement updateClientStatement = connection.prepareStatement(SQL_WITHDRAW_MONEY)) {
 			try {
 				connection.setAutoCommit(false);
-
 				updateClientStatement.setBigDecimal(1, amount.negate());
 				updateClientStatement.setInt(2, clientId);
 				isUpdated = updateClientStatement.executeUpdate() == 1;
-
 				if (!isUpdated) {
 					connection.rollback();
 				}
-
 				connection.commit();
 				logger.debug("Client's money with \"{}\" was withdrawn by {}", clientId, amount.doubleValue());
 			} catch (SQLException e) {
@@ -337,7 +324,6 @@ public class ClientDaoImpl implements ClientDao {
 				updateClientStatement.setBigDecimal(1, discount);
 				updateClientStatement.setInt(2, clientId);
 				isUpdated = updateClientStatement.executeUpdate() == 1;
-
 				if (!isUpdated) {
 					connection.rollback();
 				}
@@ -367,9 +353,7 @@ public class ClientDaoImpl implements ClientDao {
 		Client client = new Client();
 		try (Connection connection = ConnectionPool.getInstance().takeConnection();
 		     PreparedStatement clientStatement = connection.prepareStatement(SQL_FIND_CLIENT_BY_ID)) {
-
 			clientStatement.setInt(1, clientId);
-
 			ResultSet resultClientSet = clientStatement.executeQuery();
 			if (resultClientSet.next()) {
 				client = getClientFromResultSet(resultClientSet);
@@ -377,7 +361,6 @@ public class ClientDaoImpl implements ClientDao {
 			} else {
 				logger.debug("Client with id \"{}\" was not found", clientId);
 			}
-
 		} catch (SQLException e) {
 			throw new DaoException(e);
 		}

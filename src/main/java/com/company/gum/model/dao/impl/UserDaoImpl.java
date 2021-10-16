@@ -143,7 +143,6 @@ public class UserDaoImpl implements UserDao {
 		     PreparedStatement statement = connection.prepareStatement(SQL_FIND_USER_BY_ID)) {
 			statement.setInt(1, userId);
 			ResultSet resultSet = statement.executeQuery();
-
 			if (resultSet.next()) {
 				user = getUserFromResultSet(resultSet);
 				logger.debug("User with id \"{}\" was found", userId);
@@ -172,7 +171,6 @@ public class UserDaoImpl implements UserDao {
 			statement.setString(1, login);
 			statement.setString(2, password);
 			ResultSet resultSet = statement.executeQuery();
-
 			if (resultSet.next()) {
 				user = getUserFromResultSet(resultSet);
 				logger.debug("User was found");
@@ -199,12 +197,9 @@ public class UserDaoImpl implements UserDao {
 		     PreparedStatement statement = connection.prepareStatement(SQL_UPDATE_USER_PASSWORD)) {
 			statement.setString(1, user.getPassword());
 			statement.setInt(2, user.getId());
-
 			isUpdated = statement.executeUpdate() == 1;
-
 			logger.debug(isUpdated ? "Password for user with id " + user.getId() + " has been updated"
 					: "Can't update password for user with id " + user.getId());
-
 		} catch (SQLException e) {
 			throw new DaoException(e);
 		}
@@ -225,15 +220,12 @@ public class UserDaoImpl implements UserDao {
 		     PreparedStatement statement = connection.prepareStatement(SQL_UPDATE_USER_IMAGE)) {
 			statement.setBytes(1, user.getPhoto());
 			statement.setInt(2, user.getId());
-
 			isUpdated = statement.executeUpdate() == 1;
-
 			if (isUpdated) {
 				logger.debug("Profile image path for user with id \"{}\" has been updated", user.getId());
 			} else {
 				logger.debug("Can't update image path for user with id \"{}\"", user.getId());
 			}
-
 		} catch (SQLException e) {
 			throw new DaoException(e);
 		}
@@ -253,12 +245,9 @@ public class UserDaoImpl implements UserDao {
 		try (Connection connection = ConnectionPool.getInstance().takeConnection();
 		     PreparedStatement statement = connection.prepareStatement(SQL_DELETE_USER)) {
 			statement.setInt(1, userId);
-
 			isDeleted = statement.executeUpdate() == 1;
-
 			logger.debug(isDeleted ? "User with id {} has been deleted"
 					: "Can't delete user with id {}", userId);
-
 		} catch (SQLException e) {
 			throw new DaoException(e);
 		}
@@ -278,12 +267,9 @@ public class UserDaoImpl implements UserDao {
 		try (Connection connection = ConnectionPool.getInstance().takeConnection();
 		     PreparedStatement statement = connection.prepareStatement(SQL_RESTORE_USER)) {
 			statement.setInt(1, userId);
-
 			isRestored = statement.executeUpdate() == 1;
-
 			logger.debug(isRestored ? "User with id {} has been restored"
 					: "Can't restore user with id {}", userId);
-
 		} catch (SQLException e) {
 			throw new DaoException(e);
 		}
@@ -302,14 +288,12 @@ public class UserDaoImpl implements UserDao {
 		try (Connection connection = ConnectionPool.getInstance().takeConnection();
 		     PreparedStatement statement = connection.prepareStatement(SQL_FIND_ALL_USER)) {
 			ResultSet resultSet = statement.executeQuery();
-
 			while (resultSet.next()) {
 				User client = getUserFromResultSet(resultSet);
 				resultArray.add(client);
 			}
-
-			logger.debug(resultArray.isEmpty() ? "No users found" : "Found {} users", resultArray.size());
-
+			logger.debug(resultArray.isEmpty() ? "No users found"
+					: "Found {} users", resultArray.size());
 		} catch (SQLException e) {
 			throw new DaoException(e);
 		}

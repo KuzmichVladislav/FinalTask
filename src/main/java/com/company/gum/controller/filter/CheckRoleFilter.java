@@ -33,12 +33,10 @@ public class CheckRoleFilter implements Filter {
 		HttpServletRequest request = (HttpServletRequest) req;
 		HttpServletResponse response = (HttpServletResponse) resp;
 		HttpSession session = request.getSession(false);
-
 		String userRole = (String) session.getAttribute(AttributeName.USER_ROLE);
 		if (userRole != null) {
 			userRole = userRole.toLowerCase();
 			String currentPage = request.getRequestURL().toString();
-
 			if (currentPage.contains("/" + userRole + "/")) {
 				chain.doFilter(req, resp);
 			} else {

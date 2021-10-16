@@ -39,9 +39,7 @@ public class EditDescriptionCommand implements Command {
 		try {
 			int trainerId = Integer.parseInt(requestContent.getParameterByName(USER_ID));
 			String description = XssDefender.getInstance().getStringFromDescription(requestContent, DESCRIPTION);
-
 			trainerService.editDescription(trainerId, description);
-
 			requestContent.putSessionAttribute(DESCRIPTION, description);
 			router = new Router(PagePath.TRAINER_PROFILE, FORWARD);
 		} catch (ServiceException e) {

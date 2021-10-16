@@ -87,5 +87,4 @@ public interface ClientDao {
 	 * @throws DaoException the dao exception
 	 */
 	Client findClientById(int clientId) throws DaoException;
-
 }

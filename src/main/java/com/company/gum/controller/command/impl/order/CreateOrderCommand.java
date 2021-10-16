@@ -53,13 +53,16 @@ public class CreateOrderCommand implements Command {
 			Duration training = Duration.values()[Integer.parseInt(duration)];
 			LocalDate endDate = startDate.plus(training.day(), ChronoUnit.DAYS);
 			BigDecimal price = training.getPrice().multiply(BigDecimal.valueOf(1d - 1d / discount), MathContext.DECIMAL32);
-
-			Order order = new Order.Builder().clientId(clientId).trainerId(trainerId).clientComment(clientComment)
-					.startDate(startDate).endDate(endDate).price(price).build();
-
+			Order order = new Order.Builder()
+					.clientId(clientId)
+					.trainerId(trainerId)
+					.clientComment(clientComment)
+					.startDate(startDate)
+					.endDate(endDate)
+					.price(price)
+					.build();
 			orderService.createOrder(order);
 			router = new Router(PagePath.ORDER_CREATED, REDIRECT);
-
 		} catch (ServiceException e) {
 			throw new CommandException(e);
 		}

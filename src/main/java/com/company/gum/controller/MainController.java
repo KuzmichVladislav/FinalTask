@@ -62,7 +62,6 @@ public class MainController extends HttpServlet {
 	 */
 	private void doProcess(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		SessionRequestContent content = new SessionRequestContent(req);
-
 		try {
 			String parameter = req.getParameter(AttributeName.COMMAND);
 			Command command = CommandType.valueOf(parameter.toUpperCase()).getCommand();

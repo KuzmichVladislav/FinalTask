@@ -199,7 +199,6 @@ public class OrderDaoImpl implements OrderDao {
 			statement.setString(7, MESSAGE);
 			statement.setString(8, MESSAGE);
 			statement.execute();
-
 			ResultSet resultSet = statement.getGeneratedKeys();
 			if (resultSet.next()) {
 				int orderId = resultSet.getInt(1);
@@ -208,7 +207,6 @@ public class OrderDaoImpl implements OrderDao {
 			} else {
 				logger.debug("Order was not created");
 			}
-
 		} catch (SQLException e) {
 			throw new DaoException(e);
 		}
@@ -231,7 +229,6 @@ public class OrderDaoImpl implements OrderDao {
 			isDeleted = statement.executeUpdate() == 1;
 			logger.debug(isDeleted ? "Order with id {} has been deleted"
 					: "Can't delete order with id {}", orderId);
-
 		} catch (SQLException e) {
 			throw new DaoException(e);
 		}
@@ -252,14 +249,12 @@ public class OrderDaoImpl implements OrderDao {
 		     PreparedStatement statement = connection.prepareStatement(SQL_FIND_ORDER)) {
 			statement.setInt(1, orderId);
 			ResultSet resultSet = statement.executeQuery();
-
 			if (resultSet.next()) {
 				order = getOrderFromResultSet(resultSet);
 				logger.debug("Order with id \"{}\" was found", orderId);
 			} else {
 				logger.debug("Order with id \"{}\" was not found", orderId);
 			}
-
 		} catch (SQLException e) {
 			throw new DaoException(e);
 		}
@@ -278,7 +273,6 @@ public class OrderDaoImpl implements OrderDao {
 		try (Connection connection = ConnectionPool.getInstance().takeConnection();
 		     PreparedStatement statement = connection.prepareStatement(SQL_FIND_ALL_ORDER)) {
 			ResultSet resultSet = statement.executeQuery();
-
 			while (resultSet.next()) {
 				Order order = getOrderFromResultSet(resultSet);
 				result.add(order);
@@ -303,9 +297,7 @@ public class OrderDaoImpl implements OrderDao {
 		try (Connection connection = ConnectionPool.getInstance().takeConnection();
 		     PreparedStatement statement = connection.prepareStatement(SQL_FIND_ALL_ACTIVE_ORDER_BY_TRAINER)) {
 			statement.setInt(1, trainerId);
-
 			ResultSet resultSet = statement.executeQuery();
-
 			while (resultSet.next()) {
 				Order order = getOrderFromResultSet(resultSet);
 				result.add(order);
@@ -330,9 +322,7 @@ public class OrderDaoImpl implements OrderDao {
 		try (Connection connection = ConnectionPool.getInstance().takeConnection();
 		     PreparedStatement statement = connection.prepareStatement(SQL_FIND_ALL_ACTIVE_ORDER_BY_CLIENT)) {
 			statement.setInt(1, clientId);
-
 			ResultSet resultSet = statement.executeQuery();
-
 			while (resultSet.next()) {
 				Order order = getOrderFromResultSet(resultSet);
 				result.add(order);
@@ -362,14 +352,10 @@ public class OrderDaoImpl implements OrderDao {
 			} else {
 				statement.setNull(1, Types.VARCHAR);
 			}
-
 			statement.setInt(2, orderId);
-
 			isEdited = statement.executeUpdate() == 1;
-
 			logger.debug(isEdited ? "Order nutrition {} was updated"
 					: "Order nutrition {} was not updated", orderId);
-
 		} catch (SQLException e) {
 			throw new DaoException(e);
 		}
@@ -394,14 +380,10 @@ public class OrderDaoImpl implements OrderDao {
 			} else {
 				statement.setNull(1, Types.VARCHAR);
 			}
-
 			statement.setInt(2, orderId);
-
 			isEdited = statement.executeUpdate() == 1;
-
 			logger.debug(isEdited ? "Order exercises {} was updated"
 					: "Order exercises {} was not updated", orderId);
-
 		} catch (SQLException e) {
 			throw new DaoException(e);
 		}
@@ -426,14 +408,10 @@ public class OrderDaoImpl implements OrderDao {
 			} else {
 				statement.setNull(1, Types.INTEGER);
 			}
-
 			statement.setInt(2, orderId);
-
 			isEdited = statement.executeUpdate() == 1;
-
 			logger.debug(isEdited ? "Order status {} was updated"
 					: "Order status {} was not updated", orderId);
-
 		} catch (SQLException e) {
 			throw new DaoException(e);
 		}

@@ -11,7 +11,8 @@ import com.company.gum.model.service.CommentService;
 import com.company.gum.model.service.impl.CommentServiceImpl;
 import com.company.gum.model.util.XssDefender;
 
-import static com.company.gum.controller.command.AttributeName.*;
+import static com.company.gum.controller.command.AttributeName.COMMENT;
+import static com.company.gum.controller.command.AttributeName.CURRENT_PAGE;
 import static com.company.gum.controller.command.Router.RouterType.REDIRECT;
 
 /**
@@ -37,14 +38,11 @@ public class CreateNewCommentCommand implements Command {
 	public Router execute(SessionRequestContent requestContent) throws CommandException {
 		Router router;
 		try {
-
 			int userId = (Integer) requestContent.getSessionAttributeByName(AttributeName.USER_ID);
 			String commentText = XssDefender.getInstance().getStringFromDescription(requestContent, COMMENT);
-
 			Comment comment = new Comment.Builder().build();
 			comment.setUserId(userId);
 			comment.setCommentText(commentText);
-
 			commentService.createComment(comment);
 			router = new Router((String) requestContent.getSessionAttributeByName(CURRENT_PAGE), REDIRECT);
 		} catch (ServiceException e) {

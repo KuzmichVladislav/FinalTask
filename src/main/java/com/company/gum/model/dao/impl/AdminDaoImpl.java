@@ -101,7 +101,6 @@ public class AdminDaoImpl implements AdminDao {
 		     PreparedStatement statement = connection.prepareStatement(SQL_FIND_ADMIN_BY_ID)) {
 			statement.setInt(1, adminId);
 			ResultSet resultSet = statement.executeQuery();
-
 			if (resultSet.next()) {
 				admin = getAdminFromResultSet(resultSet);
 				logger.debug("Admin with id \"{}\" was found", admin.getId());
@@ -131,25 +130,20 @@ public class AdminDaoImpl implements AdminDao {
 			} else {
 				statement.setNull(1, Types.VARCHAR);
 			}
-
 			if (admin.getSurname() != null) {
 				statement.setString(2, admin.getSurname());
 			} else {
 				statement.setNull(2, Types.VARCHAR);
 			}
-
 			if (admin.getMail() != null) {
 				statement.setString(3, admin.getMail());
 			} else {
 				statement.setNull(3, Types.VARCHAR);
 			}
 			statement.setInt(4, admin.getId());
-
 			isEdited = statement.executeUpdate() == 1;
-
 			logger.debug(isEdited ? "Admin " + admin.getId() + " was updated"
 					: "Admin " + admin.getId() + " was not updated");
-
 		} catch (SQLException e) {
 			throw new DaoException(e);
 		}
@@ -172,7 +166,6 @@ public class AdminDaoImpl implements AdminDao {
 			isDeleted = statement.executeUpdate() == 1;
 			logger.debug(isDeleted ? "User with id {} has been deleted"
 					: "Can't delete user with id {}", userId);
-
 		} catch (SQLException e) {
 			throw new DaoException(e);
 		}
@@ -195,7 +188,6 @@ public class AdminDaoImpl implements AdminDao {
 			isRestored = statement.executeUpdate() == 1;
 			logger.debug(isRestored ? "User with id {} has been restored"
 					: "Can't restore user with id {}", userId);
-
 		} catch (SQLException e) {
 			throw new DaoException(e);
 		}

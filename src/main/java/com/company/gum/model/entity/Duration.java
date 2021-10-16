@@ -64,5 +64,4 @@ public enum Duration {
 	public int day() {
 		return day;
 	}
-
 }

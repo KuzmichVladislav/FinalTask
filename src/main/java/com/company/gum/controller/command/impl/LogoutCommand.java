@@ -22,7 +22,6 @@ public class LogoutCommand implements Command {
 	 */
 	@Override
 	public Router execute(SessionRequestContent requestContent) {
-
 		requestContent.invalidateSession();
 		return new Router(PagePath.INDEX, REDIRECT);
 	}

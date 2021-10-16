@@ -56,5 +56,4 @@ public interface UserService {
 	 * @throws ServiceException the service exception
 	 */
 	List<User> findAllUser() throws ServiceException;
-
 }

@@ -10,7 +10,8 @@ import com.company.gum.model.service.TrainerService;
 import com.company.gum.model.service.impl.TrainerServiceImpl;
 import com.company.gum.model.util.XssDefender;
 
-import static com.company.gum.controller.command.AttributeName.*;
+import static com.company.gum.controller.command.AttributeName.EXPERIENCE;
+import static com.company.gum.controller.command.AttributeName.USER_ID;
 import static com.company.gum.controller.command.Router.RouterType.FORWARD;
 
 /**
@@ -38,9 +39,7 @@ public class EditExperienceCommand implements Command {
 		try {
 			int trainerId = Integer.parseInt(requestContent.getParameterByName(USER_ID));
 			String experience = XssDefender.getInstance().getStringFromDescription(requestContent, EXPERIENCE);
-
 			trainerService.editExperience(trainerId, experience);
-
 			requestContent.putSessionAttribute(EXPERIENCE, experience);
 			router = new Router(PagePath.TRAINER_PROFILE, FORWARD);
 		} catch (ServiceException e) {

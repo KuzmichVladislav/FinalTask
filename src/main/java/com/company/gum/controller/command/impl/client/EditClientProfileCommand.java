@@ -46,7 +46,6 @@ public class EditClientProfileCommand implements Command {
 		boolean isValid = true;
 		try {
 			int clientId = (Integer) requestContent.getSessionAttributeByName(AttributeName.USER_ID);
-
 			String userName = requestContent.getParameterByName(USER_NAME).isBlank()
 					? (String) requestContent.getSessionAttributeByName(USER_NAME)
 					: requestContent.getParameterByName(USER_NAME).strip();
@@ -59,7 +58,6 @@ public class EditClientProfileCommand implements Command {
 			String userMail = requestContent.getParameterByName(USER_MAIL).isBlank()
 					? (String) requestContent.getSessionAttributeByName(USER_MAIL)
 					: requestContent.getParameterByName(USER_MAIL).strip();
-
 			if (!validator.checkNameSurname(userName)) {
 				isValid = false;
 				requestContent.putAttribute(ERROR_MESSAGE, "invalid.name");
@@ -76,7 +74,6 @@ public class EditClientProfileCommand implements Command {
 				isValid = false;
 				requestContent.putAttribute(ERROR_MESSAGE, "invalid.email");
 			}
-
 			if (isValid) {
 				Client client = new Client.Builder()
 						.id(clientId)
@@ -85,11 +82,8 @@ public class EditClientProfileCommand implements Command {
 						.mail(userMail)
 						.phone(userPhone)
 						.build();
-
 				clientService.editClient(client);
-
 				client = clientService.findClientById(clientId);
-
 				requestContent.putSessionAttribute(USER_NAME, client.getName());
 				requestContent.putSessionAttribute(USER_SURNAME, client.getSurname());
 				requestContent.putSessionAttribute(USER_PHONE, client.getPhone());

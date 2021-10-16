@@ -34,7 +34,6 @@ public class PropertyLoader {
 	public static Properties loadProperty(String path) {
 		Properties properties = new Properties();
 		try {
-
 			properties.load(ConnectionPool.class.getClassLoader().getResourceAsStream(path));
 		} catch (IOException e) {
 			logger.error("Unable to load resources", e);

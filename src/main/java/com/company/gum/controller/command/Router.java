@@ -49,7 +49,6 @@ public final class Router {
 	 * The Enum RouterType.
 	 */
 	public enum RouterType {
-
 		/**
 		 * The forward.
 		 */
@@ -59,5 +58,4 @@ public final class Router {
 		 */
 		REDIRECT
 	}
-
 }

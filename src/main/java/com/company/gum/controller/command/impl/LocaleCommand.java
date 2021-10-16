@@ -32,5 +32,4 @@ public class LocaleCommand implements Command {
 		}
 		return router;
 	}
-
 }

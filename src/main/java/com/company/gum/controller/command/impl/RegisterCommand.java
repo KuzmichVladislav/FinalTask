@@ -48,9 +48,7 @@ public class RegisterCommand implements Command {
 		String surname = requestContent.getParameterByName(USER_SURNAME).strip();
 		String phone = requestContent.getParameterByName(USER_PHONE).strip();
 		String mail = requestContent.getParameterByName(USER_MAIL).strip();
-
 		boolean isValid = true;
-
 		if (!validator.checkLogin(login)) {
 			requestContent.putAttribute(AttributeName.ERROR_MESSAGE, "invalid.login");
 			isValid = false;
@@ -79,7 +77,6 @@ public class RegisterCommand implements Command {
 			requestContent.putAttribute(ERROR_MESSAGE, "passwords.not.equal");
 			isValid = false;
 		}
-
 		try {
 			if (isValid) {
 				Client client = new Client.Builder()

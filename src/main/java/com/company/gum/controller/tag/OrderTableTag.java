@@ -26,10 +26,9 @@ public class OrderTableTag extends TagSupport {
 	 *
 	 * @return the int
 	 */
-	@SuppressWarnings("unchecked") // FIXME: 10/4/2021
+	@SuppressWarnings("unchecked")
 	@Override
 	public int doStartTag() {
-
 		HttpSession session = pageContext.getSession();
 		String language = String.valueOf(session.getAttribute("locale"));
 		ResourceBundle bundle = null;
@@ -42,7 +41,6 @@ public class OrderTableTag extends TagSupport {
 				e.printStackTrace();
 			}
 		}
-
 		assert bundle != null;
 		String registerDate = bundle.getString("profile.register.date");
 		String trainerFio = bundle.getString("order.trainer.name");
@@ -51,12 +49,11 @@ public class OrderTableTag extends TagSupport {
 		String status = bundle.getString("order.status");
 		String detail = bundle.getString("order.details");
 		String delete = bundle.getString("comment.delete");
-
 		JspWriter out = pageContext.getOut();
 		try {
 			out.write("<table style=\"width: auto;\">");
 			out.write("<th>");
-			for (Order order : (List<Order>) pageContext.getRequest().getAttribute("orders")) { // FIXME: 10/4/2021 Unchecked cast: 'java.lang.Object' to 'java.util.List<com.company.gum.model.entity.Order>'
+			for (Order order : (List<Order>) pageContext.getRequest().getAttribute("orders")) {
 				out.write(
 						"<table class=\"table table-striped\" border=\"1\" style=\"width:min-content; max-width:min-content;\">");
 				out.write("<tr>");

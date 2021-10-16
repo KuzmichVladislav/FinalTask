@@ -33,7 +33,6 @@ public class RegisterTrainerCommand implements Command {
 	 */
 	private final FormValidator validator = FormValidator.getInstance();
 
-
 	/**
 	 * Execute.
 	 *
@@ -51,9 +50,7 @@ public class RegisterTrainerCommand implements Command {
 		String phone = requestContent.getParameterByName(USER_PHONE).strip();
 		String mail = requestContent.getParameterByName(USER_MAIL).strip();
 		User.UserRole role = User.UserRole.TRAINER;
-
 		boolean isValid = true;
-
 		if (!validator.checkLogin(login)) {
 			requestContent.putAttribute(AttributeName.ERROR_MESSAGE, "invalid.login");
 			isValid = false;
@@ -82,7 +79,6 @@ public class RegisterTrainerCommand implements Command {
 			requestContent.putAttribute(ERROR_MESSAGE, "passwords.not.equal");
 			isValid = false;
 		}
-
 		try {
 			if (isValid) {
 				Trainer trainer = new Trainer.Builder()
@@ -94,9 +90,7 @@ public class RegisterTrainerCommand implements Command {
 						.phone(phone)
 						.role(role)
 						.build();
-
 				trainerService.createTrainer(trainer);
-
 				router = new Router(PagePath.CLIENT_CREATED, REDIRECT);
 			} else {
 				router = new Router(PagePath.REGISTER, FORWARD);

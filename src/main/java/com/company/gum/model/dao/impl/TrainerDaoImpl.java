@@ -172,9 +172,7 @@ public class TrainerDaoImpl implements TrainerDao {
 				userStatement.setString(4, trainer.getSurname());
 				userStatement.setString(5, trainer.getMail());
 				userStatement.setString(6, trainer.getRole().name());
-
 				userStatement.execute();
-
 				ResultSet resultSet = userStatement.getGeneratedKeys();
 				if (resultSet.next()) {
 					int trainerId = resultSet.getInt(1);
@@ -186,7 +184,6 @@ public class TrainerDaoImpl implements TrainerDao {
 				} else {
 					trainerStatement.setNull(2, Types.VARCHAR);
 				}
-
 				trainerStatement.execute();
 				connection.commit();
 				logger.debug("Trainer with id {} was created", trainer.getId());
@@ -221,14 +218,10 @@ public class TrainerDaoImpl implements TrainerDao {
 			} else {
 				statement.setNull(1, Types.VARCHAR);
 			}
-
 			statement.setInt(2, trainerId);
-
 			isEdited = statement.executeUpdate() == 1;
-
 			logger.debug(isEdited ? "Trainer description {} was updated"
 					: "Trainer description {} was not updated", trainerId);
-
 		} catch (SQLException e) {
 			throw new DaoException(e);
 		}
@@ -253,14 +246,10 @@ public class TrainerDaoImpl implements TrainerDao {
 			} else {
 				statement.setNull(1, Types.VARCHAR);
 			}
-
 			statement.setInt(2, trainerId);
-
 			isEdited = statement.executeUpdate() == 1;
-
 			logger.debug(isEdited ? "Trainer experience {} was updated"
 					: "Trainer experience {} was not updated", trainerId);
-
 		} catch (SQLException e) {
 			throw new DaoException(e);
 		}
@@ -300,12 +289,9 @@ public class TrainerDaoImpl implements TrainerDao {
 				statement.setNull(4, Types.VARCHAR);
 			}
 			statement.setInt(5, trainer.getId());
-
 			isEdited = statement.executeUpdate() == 1;
-
 			logger.debug(isEdited ? "Trainer " + trainer.getId() + " was updated"
 					: "Trainer " + trainer.getId() + " was not updated");
-
 		} catch (SQLException e) {
 			throw new DaoException(e);
 		}
@@ -324,9 +310,7 @@ public class TrainerDaoImpl implements TrainerDao {
 		Trainer trainer = new Trainer();
 		try (Connection connection = ConnectionPool.getInstance().takeConnection();
 		     PreparedStatement statement = connection.prepareStatement(SQL_FIND_TRAINER_BY_ID)) {
-
 			statement.setInt(1, trainerId);
-
 			ResultSet resultSet = statement.executeQuery();
 			if (resultSet.next()) {
 				trainer = getTrainerFromResultSet(resultSet);
@@ -334,7 +318,6 @@ public class TrainerDaoImpl implements TrainerDao {
 			} else {
 				logger.debug("Trainer with id \"{}\" was not found", trainerId);
 			}
-
 		} catch (SQLException e) {
 			throw new DaoException(e);
 		}
@@ -353,14 +336,12 @@ public class TrainerDaoImpl implements TrainerDao {
 		try (Connection connection = ConnectionPool.getInstance().takeConnection();
 		     PreparedStatement statement = connection.prepareStatement(SQL_FIND_ALL_TRAINER)) {
 			ResultSet resultSet = statement.executeQuery();
-
 			while (resultSet.next()) {
 				Trainer trainer = getTrainerFromResultSet(resultSet);
 				resultArray.add(trainer);
 			}
-
-			logger.debug(resultArray.isEmpty() ? "No clients found" : "Found {} clients", resultArray.size());
-
+			logger.debug(resultArray.isEmpty() ? "No clients found"
+					: "Found {} clients", resultArray.size());
 		} catch (SQLException e) {
 			throw new DaoException(e);
 		}
@@ -378,16 +359,12 @@ public class TrainerDaoImpl implements TrainerDao {
 		List<Trainer> resultArray = new ArrayList<>();
 		try (Connection connection = ConnectionPool.getInstance().takeConnection();
 		     PreparedStatement statement = connection.prepareStatement(SQL_FIND_ALL_ACTIVE_TRAINER)) {
-
 			ResultSet resultSet = statement.executeQuery();
-
 			while (resultSet.next()) {
 				Trainer trainer = getTrainerFromResultSet(resultSet);
 				resultArray.add(trainer);
 			}
-
 			logger.debug(resultArray.isEmpty() ? "No active trainer found" : "Found {} active trainers", resultArray.size());
-
 		} catch (SQLException e) {
 			throw new DaoException(e);
 		}

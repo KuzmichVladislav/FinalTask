@@ -50,6 +50,8 @@ class TrainerDaoImplTest {
 	 * Test edit description.
 	 * <p>
 	 * Test of editDescription method, of class TrainerDaoImpl.
+	 *
+	 * @throws DaoException the dao exception
 	 */
 	@Test
 	void testEditDescription() throws DaoException {

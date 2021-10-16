@@ -35,13 +35,11 @@ public class UpdateOrderStatusCommand implements Command {
 	 */
 	@Override
 	public Router execute(SessionRequestContent requestContent) {
-
 		Router router;
 		Order order = null;
 		try {
 			int orderId = Integer.parseInt(requestContent.getParameterByName(ORDER_ID));
 			Order.OrderStatus orderStatus = Order.OrderStatus.valueOf(requestContent.getParameterByName(ORDER_STATUS));
-
 			if (orderStatus == Order.OrderStatus.ACCEPTED) {
 				int userId = (Integer) requestContent.getSessionAttributeByName(USER_ID);
 				order = orderService.findOrder(orderId);

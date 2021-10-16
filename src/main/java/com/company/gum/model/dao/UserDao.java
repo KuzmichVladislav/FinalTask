@@ -34,7 +34,8 @@ public interface UserDao {
 	/**
 	 * Find user by login.
 	 *
-	 * @param login the login
+	 * @param login    the login
+	 * @param password the password
 	 * @return the user
 	 * @throws DaoException the dao exception
 	 */

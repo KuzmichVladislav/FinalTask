@@ -46,7 +46,6 @@ public class EditTrainerProfileCommand implements Command {
 		boolean isValid = true;
 		try {
 			int trainerId = Integer.parseInt(requestContent.getParameterByName(AttributeName.USER_ID));
-
 			String userName = requestContent.getParameterByName(USER_NAME).strip().equals("")
 					? (String) requestContent.getSessionAttributeByName(USER_NAME)
 					: requestContent.getParameterByName(USER_NAME).strip();
@@ -59,7 +58,6 @@ public class EditTrainerProfileCommand implements Command {
 			String userMail = requestContent.getParameterByName(USER_MAIL).strip().equals("")
 					? (String) requestContent.getSessionAttributeByName(USER_MAIL)
 					: requestContent.getParameterByName(USER_MAIL).strip();
-
 			if (!validator.checkNameSurname(userName)) {
 				isValid = false;
 				requestContent.putAttribute(ERROR_MESSAGE, "invalid.name");
@@ -76,15 +74,11 @@ public class EditTrainerProfileCommand implements Command {
 				isValid = false;
 				requestContent.putAttribute(ERROR_MESSAGE, "invalid.email");
 			}
-
 			if (isValid) {
 				Trainer trainer = new Trainer.Builder().id(trainerId).name(userName).surname(userSurname).mail(userMail)
 						.phone(userPhone).build();
-
 				trainerService.editTrainer(trainer);
-
 				trainer = trainerService.findTrainerById(trainerId);
-
 				requestContent.putSessionAttribute(USER_NAME, trainer.getName());
 				requestContent.putSessionAttribute(USER_SURNAME, trainer.getSurname());
 				requestContent.putSessionAttribute(USER_PHONE, trainer.getPhone());

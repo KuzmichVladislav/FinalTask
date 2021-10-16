@@ -88,11 +88,6 @@ public final class TableColumnName {
 	public static final String DISCOUNT = "discount";
 
 	/**
-	 * The Constant DISCOUNT_TYPE.
-	 */
-	public static final String DISCOUNT_TYPE = "discount_type";
-
-	/**
 	 * The Constant MONEY.
 	 */
 	public static final String MONEY = "money";

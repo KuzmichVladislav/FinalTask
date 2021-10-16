@@ -54,7 +54,6 @@ public class ShowUserProfileCommand implements Command {
 			int userId = Integer.parseInt(requestContent.getParameterByName(AttributeName.USER_ID));
 			User.UserRole role = User.UserRole
 					.valueOf(requestContent.getParameterByName(AttributeName.USER_ROLE).toUpperCase());
-
 			switch (role) {
 				case CLIENT:
 					user = clientService.findClientById(userId);
@@ -66,10 +65,8 @@ public class ShowUserProfileCommand implements Command {
 					logger.debug("Debug exception for testing. When adding a user with a new role.");
 					throw new CommandException("Debug exception for testing. When adding a user with a new role.");
 			}
-
 			requestContent.putAttribute(AttributeName.USER, user);
 			router = new Router(PagePath.USER_PROFILE, FORWARD);
-
 		} catch (ServiceException e) {
 			throw new CommandException(e);
 		}

@@ -134,5 +134,4 @@ public class FormValidator {
 	public boolean checkDiscount(String discount) {
 		return discount.matches(DISCOUNT_REGEX);
 	}
-
 }

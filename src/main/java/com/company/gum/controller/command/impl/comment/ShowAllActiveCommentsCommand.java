@@ -52,7 +52,6 @@ public class ShowAllActiveCommentsCommand implements Command {
 			requestContent.putAttribute(CURRENT_NUMBER_PAGE, pageNumber);
 			requestContent.putAttribute(COMMENTS, showComments);
 			router = new Router(PagePath.COMMENTS, FORWARD);
-
 		} catch (ServiceException e) {
 			throw new CommandException(e);
 		}

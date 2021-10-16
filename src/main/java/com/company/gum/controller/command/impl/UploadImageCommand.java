@@ -39,7 +39,6 @@ public class UploadImageCommand implements Command {
 	public Router execute(SessionRequestContent requestContent) throws CommandException {
 		int userId = (Integer) requestContent.getSessionAttributeByName(USER_ID);
 		ByteArrayInputStream photo = (ByteArrayInputStream) requestContent.getAttributeByName(USER_PHOTO);
-
 		Router router;
 		try {
 			User user;
@@ -47,11 +46,8 @@ public class UploadImageCommand implements Command {
 			user.setId(userId);
 			user.setPhoto(photo.readAllBytes());
 			userService.updateUserImage(user);
-
 			String base64Image = Base64.getEncoder().encodeToString(user.getPhoto());
-
 			requestContent.putSessionAttribute(USER_PHOTO, IMAGE_SRC_PREFIX + base64Image);
-
 			router = new Router((String) requestContent.getSessionAttributeByName(CURRENT_PAGE), FORWARD);
 			if (requestContent.getSessionAttributeByName(CURRENT_PAGE) == null) {
 				router = new Router(PagePath.INDEX, FORWARD);

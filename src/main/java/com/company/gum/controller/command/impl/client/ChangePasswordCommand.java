@@ -49,7 +49,6 @@ public class ChangePasswordCommand implements Command {
 			String currentPassword = requestContent.getParameterByName(CURRENT_PASSWORD).strip();
 			String newPassword = requestContent.getParameterByName(NEW_PASSWORD).strip();
 			String repeatedPassword = requestContent.getParameterByName(REPEAT_PASSWORD).strip();
-
 			if (!validator.checkPassword(currentPassword)) {
 				isValid = false;
 				requestContent.putAttribute(ERROR_MESSAGE, "current.password.invalid");
@@ -76,7 +75,6 @@ public class ChangePasswordCommand implements Command {
 			} else {
 				router = new Router(PagePath.CHANGE_PASSWORD, FORWARD);
 			}
-
 		} catch (ServiceException e) {
 			throw new CommandException(e);
 		}

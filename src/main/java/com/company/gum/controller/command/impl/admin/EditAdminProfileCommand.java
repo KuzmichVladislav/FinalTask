@@ -46,7 +46,6 @@ public class EditAdminProfileCommand implements Command {
 		boolean isValid = true;
 		try {
 			int adminId = (Integer) requestContent.getSessionAttributeByName(AttributeName.USER_ID);
-
 			String userName = requestContent.getParameterByName(USER_NAME).isBlank()
 					? (String) requestContent.getSessionAttributeByName(USER_NAME)
 					: requestContent.getParameterByName(USER_NAME).strip();
@@ -56,7 +55,6 @@ public class EditAdminProfileCommand implements Command {
 			String userMail = requestContent.getParameterByName(USER_MAIL).isBlank()
 					? (String) requestContent.getSessionAttributeByName(USER_MAIL)
 					: requestContent.getParameterByName(USER_MAIL).strip();
-
 			if (!validator.checkNameSurname(userName)) {
 				isValid = false;
 				requestContent.putAttribute(ERROR_MESSAGE, "invalid.name");
@@ -69,7 +67,6 @@ public class EditAdminProfileCommand implements Command {
 				isValid = false;
 				requestContent.putAttribute(ERROR_MESSAGE, "invalid.email");
 			}
-
 			if (isValid) {
 				Admin admin = new Admin.Builder()
 						.id(adminId)
@@ -77,11 +74,8 @@ public class EditAdminProfileCommand implements Command {
 						.surname(userSurname)
 						.mail(userMail)
 						.build();
-
 				adminService.editAdmin(admin);
-
 				admin = adminService.findAdminById(adminId);
-
 				requestContent.putSessionAttribute(USER_NAME, admin.getName());
 				requestContent.putSessionAttribute(USER_SURNAME, admin.getSurname());
 				requestContent.putSessionAttribute(USER_MAIL, admin.getMail());

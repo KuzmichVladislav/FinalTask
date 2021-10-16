@@ -24,6 +24,9 @@ import java.io.InputStream;
 		maxRequestSize = 1024 * 1024 * 5 * 5)
 public class UploadServlet extends HttpServlet {
 
+	/** The Constant IMAGE. */
+	public static final String IMAGE = "image";
+
 	/**
 	 * Do post.
 	 *
@@ -36,7 +39,7 @@ public class UploadServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		InputStream inputStream = null;
 		for (Part part : req.getParts()) {
-			if (part.getSubmittedFileName() != null && part.getContentType().contains("image")) {
+			if (part.getSubmittedFileName() != null && part.getContentType().contains(IMAGE)) {
 				inputStream = part.getInputStream();
 			}
 		}
