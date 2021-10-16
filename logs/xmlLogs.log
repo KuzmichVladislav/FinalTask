@@ -1,4 +1,0 @@
-[DEBUG] 2021-09-03 09:19:57,795 ConnectionPool.getInstance() - The connection pool was created with the number of connections 4
-[INFO ] 2021-09-03 09:19:57,888 UserDaoImpl.findUserByLoginAndPassword() - User was found
-[DEBUG] 2021-09-03 09:19:57,904 ClientDaoImpl.findClientById() - Client with id "13" was found:
-Client{registerDate=2021-08-11T13:43:21, discount=0, discountLevel=0, phone='9379993', money=0, role=CLIENT}

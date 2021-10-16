@@ -1,3 +1,0 @@
-[INFO ] 2021-08-08 20:49:00,481 UserDaoImpl.findById() - User with id "1" was found
-[INFO ] 2021-08-08 20:49:00,494 UserDaoImpl.findByLogin() - User with login "client" was found
-[DEBUG] 2021-08-08 20:49:00,498 UserDaoImpl.delete() - User with id "2" has been deleted
