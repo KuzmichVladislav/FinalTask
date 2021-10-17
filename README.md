@@ -46,5 +46,4 @@ You can **edit and delete** your comments. **The administrator** can delete **an
 
 **Database visualization**
 
-![](https://i.ibb.co/SKdwynG/gum.png)
-
+![database](https://i.ibb.co/9bwBPqD/diagram.png)
