@@ -29,11 +29,6 @@ public class RegisterTrainerCommand implements Command {
 	private final TrainerService trainerService = TrainerServiceImpl.getInstance();
 
 	/**
-	 * The validator.
-	 */
-	private final FormValidator validator = FormValidator.getInstance();
-
-	/**
 	 * Execute.
 	 *
 	 * @param requestContent the request content
@@ -51,27 +46,27 @@ public class RegisterTrainerCommand implements Command {
 		String mail = requestContent.getParameterByName(USER_MAIL).strip();
 		User.UserRole role = User.UserRole.TRAINER;
 		boolean isValid = true;
-		if (!validator.checkLogin(login)) {
+		if (!FormValidator.getInstance().checkLogin(login)) {
 			requestContent.putAttribute(AttributeName.ERROR_MESSAGE, "invalid.login");
 			isValid = false;
 		}
-		if (!validator.checkNameSurname(name) && isValid) {
+		if (!FormValidator.getInstance().checkNameSurname(name) && isValid) {
 			requestContent.putAttribute(ERROR_MESSAGE, "invalid.name");
 			isValid = false;
 		}
-		if (!validator.checkNameSurname(surname) && isValid) {
+		if (!FormValidator.getInstance().checkNameSurname(surname) && isValid) {
 			requestContent.putAttribute(ERROR_MESSAGE, "invalid.surname");
 			isValid = false;
 		}
-		if (!validator.checkPhone(phone) && isValid) {
+		if (!FormValidator.getInstance().checkPhone(phone) && isValid) {
 			requestContent.putAttribute(ERROR_MESSAGE, "invalid.phone");
 			isValid = false;
 		}
-		if (!validator.checkMail(mail) && isValid) {
+		if (!FormValidator.getInstance().checkMail(mail) && isValid) {
 			requestContent.putAttribute(ERROR_MESSAGE, "invalid.email");
 			isValid = false;
 		}
-		if (!validator.checkPassword(password) && isValid) {
+		if (!FormValidator.getInstance().checkPassword(password) && isValid) {
 			requestContent.putAttribute(ERROR_MESSAGE, "invalid.password");
 			isValid = false;
 		}

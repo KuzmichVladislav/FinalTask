@@ -51,12 +51,6 @@ public class LoginCommand implements Command {
 	private final ClientService clientService = ClientServiceImpl.getInstance();
 
 	/**
-	 * The validator.
-	 */
-	private final FormValidator validator = FormValidator.getInstance();
-
-
-	/**
 	 * Execute.
 	 *
 	 * @param requestContent the request content
@@ -70,7 +64,7 @@ public class LoginCommand implements Command {
 		User user;
 		Router router;
 		try {
-			if (validator.checkLogin(login) && validator.checkPassword(password)) {
+			if (FormValidator.getInstance().checkLogin(login) && FormValidator.getInstance().checkPassword(password)) {
 				user = userService.findUserByLoginAndPassword(login, password);
 				if (user != null) {
 					if (user.isVerification()) {

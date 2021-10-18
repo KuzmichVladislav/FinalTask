@@ -24,11 +24,6 @@ import static com.company.gum.controller.command.Router.RouterType.FORWARD;
 public class ChangePasswordCommand implements Command {
 
 	/**
-	 * The validator.
-	 */
-	private final FormValidator validator = FormValidator.getInstance();
-
-	/**
 	 * The user service.
 	 */
 	private final UserService userService = UserServiceImpl.getInstance();
@@ -49,11 +44,11 @@ public class ChangePasswordCommand implements Command {
 			String currentPassword = requestContent.getParameterByName(CURRENT_PASSWORD).strip();
 			String newPassword = requestContent.getParameterByName(NEW_PASSWORD).strip();
 			String repeatedPassword = requestContent.getParameterByName(REPEAT_PASSWORD).strip();
-			if (!validator.checkPassword(currentPassword)) {
+			if (!FormValidator.getInstance().checkPassword(currentPassword)) {
 				isValid = false;
 				requestContent.putAttribute(ERROR_MESSAGE, "current.password.invalid");
 			}
-			if (!validator.checkPassword(newPassword) && isValid) {
+			if (!FormValidator.getInstance().checkPassword(newPassword) && isValid) {
 				isValid = false;
 				requestContent.putAttribute(ERROR_MESSAGE, "new.password.invalid");
 			}

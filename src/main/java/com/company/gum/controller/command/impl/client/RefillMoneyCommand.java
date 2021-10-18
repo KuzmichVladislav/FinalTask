@@ -31,12 +31,6 @@ public class RefillMoneyCommand implements Command {
 	private final ClientService clientService = ClientServiceImpl.getInstance();
 
 	/**
-	 * The validator.
-	 */
-	private final FormValidator validator = FormValidator.getInstance();
-
-
-	/**
 	 * Execute.
 	 *
 	 * @param requestContent the request content
@@ -50,7 +44,7 @@ public class RefillMoneyCommand implements Command {
 			int clientId = (Integer) requestContent.getSessionAttributeByName(USER_ID);
 			boolean isValid = true;
 			String stringMoney = requestContent.getParameterByName(MONEY);
-			if (!validator.checkMoney(stringMoney)) {
+			if (!FormValidator.getInstance().checkMoney(stringMoney)) {
 				requestContent.putAttribute(ERROR_MESSAGE, "amount.is.not.valid");
 				isValid = false;
 			}

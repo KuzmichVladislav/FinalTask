@@ -29,11 +29,6 @@ public class EditTrainerProfileCommand implements Command {
 	private final TrainerService trainerService = TrainerServiceImpl.getInstance();
 
 	/**
-	 * The validator.
-	 */
-	private final FormValidator validator = FormValidator.getInstance();
-
-	/**
 	 * Execute.
 	 *
 	 * @param requestContent the request content
@@ -58,19 +53,19 @@ public class EditTrainerProfileCommand implements Command {
 			String userMail = requestContent.getParameterByName(USER_MAIL).strip().equals("")
 					? (String) requestContent.getSessionAttributeByName(USER_MAIL)
 					: requestContent.getParameterByName(USER_MAIL).strip();
-			if (!validator.checkNameSurname(userName)) {
+			if (!FormValidator.getInstance().checkNameSurname(userName)) {
 				isValid = false;
 				requestContent.putAttribute(ERROR_MESSAGE, "invalid.name");
 			}
-			if (!validator.checkNameSurname(userSurname) && isValid) {
+			if (!FormValidator.getInstance().checkNameSurname(userSurname) && isValid) {
 				isValid = false;
 				requestContent.putAttribute(ERROR_MESSAGE, "invalid.surname");
 			}
-			if (!validator.checkPhone(userPhone) && isValid) {
+			if (!FormValidator.getInstance().checkPhone(userPhone) && isValid) {
 				isValid = false;
 				requestContent.putAttribute(ERROR_MESSAGE, "invalid.phone");
 			}
-			if (!validator.checkMail(userMail) && isValid) {
+			if (!FormValidator.getInstance().checkMail(userMail) && isValid) {
 				isValid = false;
 				requestContent.putAttribute(ERROR_MESSAGE, "invalid.email");
 			}

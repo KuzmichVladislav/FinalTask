@@ -34,11 +34,6 @@ public class AssignDiscountCommand implements Command {
 	private final ClientService clientService = ClientServiceImpl.getInstance();
 
 	/**
-	 * The form validator.
-	 */
-	private final FormValidator formValidator = FormValidator.getInstance();
-
-	/**
 	 * Execute.
 	 *
 	 * @param requestContent the request content
@@ -52,7 +47,7 @@ public class AssignDiscountCommand implements Command {
 			boolean isValid = true;
 			int clientId = Integer.parseInt(requestContent.getParameterByName(CLIENT_ID));
 			String stringDiscount = requestContent.getParameterByName(DISCOUNT);
-			if (!formValidator.checkDiscount(stringDiscount)) {
+			if (!FormValidator.getInstance().checkDiscount(stringDiscount)) {
 				requestContent.putAttribute(ERROR_MESSAGE, DISCOUNT_INVALID);
 				isValid = false;
 			}
