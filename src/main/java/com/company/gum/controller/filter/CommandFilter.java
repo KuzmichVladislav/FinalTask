@@ -113,9 +113,9 @@ public class CommandFilter implements Filter {
 	/**
 	 * Do filter.
 	 *
-	 * @param req   the req
-	 * @param resp  the resp
-	 * @param chain the chain
+	 * @param req   the Servlet request
+	 * @param resp  the Servlet response
+	 * @param chain the Filter chain
 	 * @throws IOException      Signals that an I/O exception has occurred.
 	 * @throws ServletException the servlet exception
 	 */
