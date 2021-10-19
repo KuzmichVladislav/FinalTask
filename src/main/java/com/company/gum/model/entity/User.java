@@ -2,6 +2,8 @@ package com.company.gum.model.entity;
 
 import java.util.Arrays;
 
+// TODO: Auto-generated Javadoc
+
 /**
  * The Class User.
  *
@@ -351,7 +353,11 @@ public class User extends AbstractEntity {
 		/**
 		 * The client.
 		 */
-		CLIENT
+		CLIENT,
+		/**
+		 * The guest.
+		 */
+		GUEST;
 	}
 
 	/**

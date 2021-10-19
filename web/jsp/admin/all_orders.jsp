@@ -54,7 +54,7 @@
             <div class="row register-form">
                 <div class="col-md-6 ">
                     <c:choose>
-                        <c:when test="${requestScope.orders.size()} &gt; 0}">
+                        <c:when test="${requestScope.orders.size() > 0}">
                             <table style="width: auto;">
                                 <th><c:forEach items="${requestScope.orders}" var="order">
                                     <jsp:useBean id="order" type="com.company.gum.model.entity.Order"/>

@@ -24,7 +24,9 @@ import java.io.InputStream;
 		maxRequestSize = 1024 * 1024 * 5 * 5)
 public class UploadServlet extends HttpServlet {
 
-	/** The Constant IMAGE. */
+	/**
+	 * The Constant IMAGE.
+	 */
 	public static final String IMAGE = "image";
 
 	/**

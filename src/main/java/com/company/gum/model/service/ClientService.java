@@ -20,7 +20,7 @@ public interface ClientService {
 	/**
 	 * The mail message part 2.
 	 */
-	String MAIL_MESSAGE_PART_2 = ">verification</a>";
+	String MAIL_MESSAGE_PART_2 = "'>verification</a>";
 
 	/**
 	 * Creates the client.

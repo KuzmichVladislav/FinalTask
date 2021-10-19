@@ -30,7 +30,7 @@ public interface TrainerService {
 	/**
 	 * The mail message part 4.
 	 */
-	String MAIL_MESSAGE_PART_4 = "\"\nClick on this link to verify your account: <a href='http://localhost:8080/gum/controller?command=verification&userId=";
+	String MAIL_MESSAGE_PART_4 = "'>verification</a>";
 
 	/**
 	 * Creates the trainer.
