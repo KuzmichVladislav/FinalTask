@@ -59,12 +59,13 @@ public class LoginCommand implements Command {
 	 */
 	@Override
 	public Router execute(SessionRequestContent requestContent) throws CommandException {
+		FormValidator validator = FormValidator.getInstance();
 		String login = requestContent.getParameterByName(USER_LOGIN);
 		String password = requestContent.getParameterByName(USER_PASSWORD);
 		User user;
 		Router router;
 		try {
-			if (FormValidator.getInstance().checkLogin(login) && FormValidator.getInstance().checkPassword(password)) {
+			if (validator.checkLogin(login) && validator.checkPassword(password)) {
 				user = userService.findUserByLoginAndPassword(login, password);
 				if (user != null) {
 					if (user.isVerification()) {

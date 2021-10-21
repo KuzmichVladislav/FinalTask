@@ -38,6 +38,7 @@ public class EditAdminProfileCommand implements Command {
 	@Override
 	public Router execute(SessionRequestContent requestContent) throws CommandException {
 		Router router;
+		FormValidator validator = FormValidator.getInstance();
 		boolean isValid = true;
 		try {
 			int adminId = (Integer) requestContent.getSessionAttributeByName(AttributeName.USER_ID);
@@ -50,15 +51,15 @@ public class EditAdminProfileCommand implements Command {
 			String userMail = requestContent.getParameterByName(USER_MAIL).isBlank()
 					? (String) requestContent.getSessionAttributeByName(USER_MAIL)
 					: requestContent.getParameterByName(USER_MAIL).strip();
-			if (!FormValidator.getInstance().checkNameSurname(userName)) {
+			if (!validator.checkNameSurname(userName)) {
 				isValid = false;
 				requestContent.putAttribute(ERROR_MESSAGE, "invalid.name");
 			}
-			if (!FormValidator.getInstance().checkNameSurname(userSurname) && isValid) {
+			if (!validator.checkNameSurname(userSurname) && isValid) {
 				isValid = false;
 				requestContent.putAttribute(ERROR_MESSAGE, "invalid.surname");
 			}
-			if (!FormValidator.getInstance().checkMail(userMail) && isValid) {
+			if (!validator.checkMail(userMail) && isValid) {
 				isValid = false;
 				requestContent.putAttribute(ERROR_MESSAGE, "invalid.email");
 			}

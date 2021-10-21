@@ -37,6 +37,7 @@ public class RegisterTrainerCommand implements Command {
 	@Override
 	public Router execute(SessionRequestContent requestContent) {
 		Router router;
+		FormValidator validator = FormValidator.getInstance();
 		String login = requestContent.getParameterByName(USER_LOGIN).strip();
 		String password = requestContent.getParameterByName(USER_PASSWORD).strip();
 		String repeatedPassword = requestContent.getParameterByName(REPEAT_PASSWORD).strip();
@@ -46,27 +47,27 @@ public class RegisterTrainerCommand implements Command {
 		String mail = requestContent.getParameterByName(USER_MAIL).strip();
 		User.UserRole role = User.UserRole.TRAINER;
 		boolean isValid = true;
-		if (!FormValidator.getInstance().checkLogin(login)) {
+		if (!validator.checkLogin(login)) {
 			requestContent.putAttribute(AttributeName.ERROR_MESSAGE, "invalid.login");
 			isValid = false;
 		}
-		if (!FormValidator.getInstance().checkNameSurname(name) && isValid) {
+		if (!validator.checkNameSurname(name) && isValid) {
 			requestContent.putAttribute(ERROR_MESSAGE, "invalid.name");
 			isValid = false;
 		}
-		if (!FormValidator.getInstance().checkNameSurname(surname) && isValid) {
+		if (!validator.checkNameSurname(surname) && isValid) {
 			requestContent.putAttribute(ERROR_MESSAGE, "invalid.surname");
 			isValid = false;
 		}
-		if (!FormValidator.getInstance().checkPhone(phone) && isValid) {
+		if (!validator.checkPhone(phone) && isValid) {
 			requestContent.putAttribute(ERROR_MESSAGE, "invalid.phone");
 			isValid = false;
 		}
-		if (!FormValidator.getInstance().checkMail(mail) && isValid) {
+		if (!validator.checkMail(mail) && isValid) {
 			requestContent.putAttribute(ERROR_MESSAGE, "invalid.email");
 			isValid = false;
 		}
-		if (!FormValidator.getInstance().checkPassword(password) && isValid) {
+		if (!validator.checkPassword(password) && isValid) {
 			requestContent.putAttribute(ERROR_MESSAGE, "invalid.password");
 			isValid = false;
 		}

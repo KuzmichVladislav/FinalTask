@@ -38,6 +38,7 @@ public class EditTrainerProfileCommand implements Command {
 	@Override
 	public Router execute(SessionRequestContent requestContent) throws CommandException {
 		Router router;
+		FormValidator validator = FormValidator.getInstance();
 		boolean isValid = true;
 		try {
 			int trainerId = Integer.parseInt(requestContent.getParameterByName(AttributeName.USER_ID));
@@ -53,19 +54,19 @@ public class EditTrainerProfileCommand implements Command {
 			String userMail = requestContent.getParameterByName(USER_MAIL).strip().equals("")
 					? (String) requestContent.getSessionAttributeByName(USER_MAIL)
 					: requestContent.getParameterByName(USER_MAIL).strip();
-			if (!FormValidator.getInstance().checkNameSurname(userName)) {
+			if (!validator.checkNameSurname(userName)) {
 				isValid = false;
 				requestContent.putAttribute(ERROR_MESSAGE, "invalid.name");
 			}
-			if (!FormValidator.getInstance().checkNameSurname(userSurname) && isValid) {
+			if (!validator.checkNameSurname(userSurname) && isValid) {
 				isValid = false;
 				requestContent.putAttribute(ERROR_MESSAGE, "invalid.surname");
 			}
-			if (!FormValidator.getInstance().checkPhone(userPhone) && isValid) {
+			if (!validator.checkPhone(userPhone) && isValid) {
 				isValid = false;
 				requestContent.putAttribute(ERROR_MESSAGE, "invalid.phone");
 			}
-			if (!FormValidator.getInstance().checkMail(userMail) && isValid) {
+			if (!validator.checkMail(userMail) && isValid) {
 				isValid = false;
 				requestContent.putAttribute(ERROR_MESSAGE, "invalid.email");
 			}

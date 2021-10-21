@@ -38,17 +38,18 @@ public class ChangePasswordCommand implements Command {
 	@Override
 	public Router execute(SessionRequestContent requestContent) throws CommandException {
 		Router router;
+		FormValidator validator = FormValidator.getInstance();
 		boolean isValid = true;
 		try {
 			int userId = (Integer) requestContent.getSessionAttributeByName(AttributeName.USER_ID);
 			String currentPassword = requestContent.getParameterByName(CURRENT_PASSWORD).strip();
 			String newPassword = requestContent.getParameterByName(NEW_PASSWORD).strip();
 			String repeatedPassword = requestContent.getParameterByName(REPEAT_PASSWORD).strip();
-			if (!FormValidator.getInstance().checkPassword(currentPassword)) {
+			if (!validator.checkPassword(currentPassword)) {
 				isValid = false;
 				requestContent.putAttribute(ERROR_MESSAGE, "current.password.invalid");
 			}
-			if (!FormValidator.getInstance().checkPassword(newPassword) && isValid) {
+			if (!validator.checkPassword(newPassword) && isValid) {
 				isValid = false;
 				requestContent.putAttribute(ERROR_MESSAGE, "new.password.invalid");
 			}
