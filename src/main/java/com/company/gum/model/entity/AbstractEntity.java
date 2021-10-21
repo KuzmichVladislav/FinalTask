@@ -60,7 +60,7 @@ public class AbstractEntity {
 		return getId() != null ? getId().hashCode() : 0;
 	}
 
-	@Override
+    @Override
 	public String toString() {
 		return "AbstractEntity{" +
 				"id=" + id +

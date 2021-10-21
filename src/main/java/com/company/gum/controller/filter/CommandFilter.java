@@ -157,7 +157,7 @@ public class CommandFilter implements Filter {
 	 *
 	 * @param userRole    the user role
 	 * @param commandType the command type
-	 * @return true, if is access allowed
+	 * @return true, if access allowed
 	 */
 	public boolean isAccessAllowed(User.UserRole userRole, CommandType commandType) {
 		roleEnumMap.put(User.UserRole.GUEST, commandTypesOfGuest);
