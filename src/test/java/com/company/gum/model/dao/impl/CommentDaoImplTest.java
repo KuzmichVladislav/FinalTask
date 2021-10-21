@@ -20,65 +20,73 @@ import static org.mockito.Mockito.*;
  */
 class CommentDaoImplTest {
 
-	/**
-	 * The instance.
-	 */
-	@Mock
-	CommentDaoImpl instance;
+    /**
+     * The instance.
+     */
+    @Mock
+    CommentDaoImpl instance;
 
-	/**
-	 * Sets the up.
-	 */
-	@BeforeEach
-	void setUp() {
-		MockitoAnnotations.openMocks(this);
-	}
+    /**
+     * Sets the up.
+     */
+    @BeforeEach
+    void setUp() {
+        MockitoAnnotations.openMocks(this);
+    }
 
-	/**
-	 * Test of CreateComment method, of class CommentDaoImpl.
-	 *
-	 * @throws DaoException the dao exception
-	 */
-	@Test
-	void testCreateComment() throws DaoException {
-		when(instance.createComment(any())).thenReturn(new Comment());
-		Comment result = instance.createComment(new Comment());
-		Assertions.assertEquals(new Comment(), result);
-	}
+    /**
+     * Test of CreateComment method, of class CommentDaoImpl.
+     */
+    @Test
+    void testCreateComment() {
+        try {
+            when(instance.createComment(any())).thenReturn(new Comment());
+            Comment result = instance.createComment(new Comment());
+            Assertions.assertEquals(new Comment(), result);
+        } catch (DaoException e) {
+            Assertions.fail(e);
+        }
+    }
 
-	/**
-	 * Test of updateComment method, of class CommentDaoImpl.
-	 *
-	 * @throws DaoException the dao exception
-	 */
-	@Test
-	void testUpdateComment() throws DaoException {
-		when(instance.updateComment(anyInt(), anyString())).thenReturn(true);
-		boolean result = instance.updateComment(10, "test");
-		Assertions.assertTrue(result);
-	}
+    /**
+     * Test of updateComment method, of class CommentDaoImpl.
+     */
+    @Test
+    void testUpdateComment() {
+        try {
+            when(instance.updateComment(anyInt(), anyString())).thenReturn(true);
+            boolean result = instance.updateComment(10, "test");
+            Assertions.assertTrue(result);
+        } catch (DaoException e) {
+            Assertions.fail(e);
+        }
+    }
 
-	/**
-	 * Test of deleteComment method, of class CommentDaoImpl.
-	 *
-	 * @throws DaoException the dao exception
-	 */
-	@Test
-	void testDeleteComment() throws DaoException {
-		when(instance.deleteComment(anyInt())).thenReturn(true);
-		boolean result = instance.deleteComment(10);
-		Assertions.assertTrue(result);
-	}
+    /**
+     * Test of deleteComment method, of class CommentDaoImpl.
+     */
+    @Test
+    void testDeleteComment() {
+        try {
+            when(instance.deleteComment(anyInt())).thenReturn(true);
+            boolean result = instance.deleteComment(10);
+            Assertions.assertTrue(result);
+        } catch (DaoException e) {
+            Assertions.fail(e);
+        }
+    }
 
-	/**
-	 * Test of findAllActiveComment method, of class CommentDaoImpl.
-	 *
-	 * @throws DaoException the dao exception
-	 */
-	@Test
-	void testFindAllActiveComment() throws DaoException {
-		when(instance.findAllActiveComment()).thenReturn(Collections.singletonList(new Comment()));
-		List<Comment> result = instance.findAllActiveComment();
-		Assertions.assertEquals(Collections.singletonList(new Comment()), result);
-	}
+    /**
+     * Test of findAllActiveComment method, of class CommentDaoImpl.
+     */
+    @Test
+    void testFindAllActiveComment() {
+        try {
+            when(instance.findAllActiveComment()).thenReturn(Collections.singletonList(new Comment()));
+            List<Comment> result = instance.findAllActiveComment();
+            Assertions.assertEquals(Collections.singletonList(new Comment()), result);
+        } catch (DaoException e) {
+            Assertions.fail(e);
+        }
+    }
 }
