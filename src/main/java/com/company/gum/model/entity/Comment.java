@@ -10,438 +10,454 @@ import java.util.Arrays;
  */
 public class Comment extends AbstractEntity {
 
-	/**
-	 * The user id.
-	 */
-	private Integer userId;
+    /**
+     * The user id.
+     */
+    private Integer userId;
 
-	/**
-	 * The user name.
-	 */
-	private String userName;
+    /**
+     * The user name.
+     */
+    private String userName;
 
-	/**
-	 * The user surname.
-	 */
-	private String userSurname;
+    /**
+     * The user surname.
+     */
+    private String userSurname;
 
-	/**
-	 * The photo.
-	 */
-	private byte[] photo;
+    /**
+     * The photo.
+     */
+    private byte[] photo;
 
-	/**
-	 * The base 64 image.
-	 */
-	private String base64Image;
+    /**
+     * The base 64 image.
+     */
+    private String base64Image;
 
-	/**
-	 * The comment date.
-	 */
-	private LocalDateTime commentDate;
+    /**
+     * The comment date.
+     */
+    private LocalDateTime commentDate;
 
-	/**
-	 * The comment text.
-	 */
-	private String commentText;
+    /**
+     * The comment text.
+     */
+    private String commentText;
 
-	/**
-	 * The active.
-	 */
-	private Boolean active;
+    /**
+     * The active.
+     */
+    private Boolean active;
 
-	/**
-	 * Instantiates a new comment.
-	 */
-	public Comment() {
-	}
+    /**
+     * Instantiates a new comment.
+     */
+    public Comment() {
+    }
 
-	/**
-	 * Instantiates a new comment.
-	 *
-	 * @param builder the builder
-	 */
-	private Comment(Builder builder) {
-		setId(builder.id);
-		setUserId(builder.userId);
-		setUserName(builder.userName);
-		setUserSurname(builder.userSurname);
-		setPhoto(builder.photo);
-		setCommentDate(builder.commentDate);
-		setCommentText(builder.commentText);
-		setActive(builder.active);
-		setBase64Image(builder.base64Image);
-	}
+    /**
+     * Instantiates a new comment.
+     *
+     * @param builder the builder
+     */
+    private Comment(Builder builder) {
+        setId(builder.id);
+        setUserId(builder.userId);
+        setUserName(builder.userName);
+        setUserSurname(builder.userSurname);
+        setPhoto(builder.photo);
+        setCommentDate(builder.commentDate);
+        setCommentText(builder.commentText);
+        setActive(builder.active);
+        setBase64Image(builder.base64Image);
+    }
 
-	/**
-	 * Gets the base 64 image.
-	 *
-	 * @return the base 64 image
-	 */
-	public String getBase64Image() {
-		return base64Image;
-	}
+    /**
+     * Gets the base 64 image.
+     *
+     * @return the base 64 image
+     */
+    public String getBase64Image() {
+        return base64Image;
+    }
 
-	/**
-	 * Sets the base 64 image.
-	 *
-	 * @param base64Image the new base 64 image
-	 */
-	public void setBase64Image(String base64Image) {
-		this.base64Image = base64Image;
-	}
+    /**
+     * Sets the base 64 image.
+     *
+     * @param base64Image the new base 64 image
+     */
+    public void setBase64Image(String base64Image) {
+        this.base64Image = base64Image;
+    }
 
-	/**
-	 * Gets the user id.
-	 *
-	 * @return the user id
-	 */
-	public Integer getUserId() {
-		return userId;
-	}
+    /**
+     * Gets the user id.
+     *
+     * @return the user id
+     */
+    public Integer getUserId() {
+        return userId;
+    }
 
-	/**
-	 * Sets the user id.
-	 *
-	 * @param userId the new user id
-	 */
-	public void setUserId(Integer userId) {
-		this.userId = userId;
-	}
+    /**
+     * Sets the user id.
+     *
+     * @param userId the new user id
+     */
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
 
-	/**
-	 * Gets the user name.
-	 *
-	 * @return the user name
-	 */
-	public String getUserName() {
-		return userName;
-	}
+    /**
+     * Gets the user name.
+     *
+     * @return the user name
+     */
+    public String getUserName() {
+        return userName;
+    }
 
-	/**
-	 * Sets the user name.
-	 *
-	 * @param userName the new user name
-	 */
-	public void setUserName(String userName) {
-		this.userName = userName;
-	}
+    /**
+     * Sets the user name.
+     *
+     * @param userName the new user name
+     */
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
 
-	/**
-	 * Gets the user surname.
-	 *
-	 * @return the user surname
-	 */
-	public String getUserSurname() {
-		return userSurname;
-	}
+    /**
+     * Gets the user surname.
+     *
+     * @return the user surname
+     */
+    public String getUserSurname() {
+        return userSurname;
+    }
 
-	/**
-	 * Sets the user surname.
-	 *
-	 * @param userSurname the new user surname
-	 */
-	public void setUserSurname(String userSurname) {
-		this.userSurname = userSurname;
-	}
+    /**
+     * Sets the user surname.
+     *
+     * @param userSurname the new user surname
+     */
+    public void setUserSurname(String userSurname) {
+        this.userSurname = userSurname;
+    }
 
-	/**
-	 * Gets the photo.
-	 *
-	 * @return the photo
-	 */
-	public byte[] getPhoto() {
-		return photo;
-	}
+    /**
+     * Gets the photo.
+     *
+     * @return the photo
+     */
+    public byte[] getPhoto() {
+        return photo;
+    }
 
-	/**
-	 * Sets the photo.
-	 *
-	 * @param photo the new photo
-	 */
-	public void setPhoto(byte[] photo) {
-		this.photo = photo;
-	}
+    /**
+     * Sets the photo.
+     *
+     * @param photo the new photo
+     */
+    public void setPhoto(byte[] photo) {
+        this.photo = photo;
+    }
 
-	/**
-	 * Gets the comment date.
-	 *
-	 * @return the comment date
-	 */
-	public LocalDateTime getCommentDate() {
-		return commentDate;
-	}
+    /**
+     * Gets the comment date.
+     *
+     * @return the comment date
+     */
+    public LocalDateTime getCommentDate() {
+        return commentDate;
+    }
 
-	/**
-	 * Sets the comment date.
-	 *
-	 * @param commentDate the new comment date
-	 */
-	public void setCommentDate(LocalDateTime commentDate) {
-		this.commentDate = commentDate;
-	}
+    /**
+     * Sets the comment date.
+     *
+     * @param commentDate the new comment date
+     */
+    public void setCommentDate(LocalDateTime commentDate) {
+        this.commentDate = commentDate;
+    }
 
-	/**
-	 * Gets the comment text.
-	 *
-	 * @return the comment text
-	 */
-	public String getCommentText() {
-		return commentText;
-	}
+    /**
+     * Gets the comment text.
+     *
+     * @return the comment text
+     */
+    public String getCommentText() {
+        return commentText;
+    }
 
-	/**
-	 * Sets the comment text.
-	 *
-	 * @param commentText the new comment text
-	 */
-	public void setCommentText(String commentText) {
-		this.commentText = commentText;
-	}
+    /**
+     * Sets the comment text.
+     *
+     * @param commentText the new comment text
+     */
+    public void setCommentText(String commentText) {
+        this.commentText = commentText;
+    }
 
-	/**
-	 * Gets the active.
-	 *
-	 * @return the active
-	 */
-	public Boolean getActive() {
-		return active;
-	}
+    /**
+     * Gets the active.
+     *
+     * @return the active
+     */
+    public Boolean getActive() {
+        return active;
+    }
 
-	/**
-	 * Sets the active.
-	 *
-	 * @param active the new active
-	 */
-	public void setActive(Boolean active) {
-		this.active = active;
-	}
+    /**
+     * Sets the active.
+     *
+     * @param active the new active
+     */
+    public void setActive(Boolean active) {
+        this.active = active;
+    }
 
-	/**
-	 * To string.
-	 *
-	 * @param o the o
-	 * @return the string
-	 */
-	@Override
-	public boolean equals(Object o) {
-		if (this == o) {
-			return true;
-		}
-		if (!(o instanceof Comment)) {
-			return false;
-		}
-		if (!super.equals(o)) {
-			return false;
-		}
+    /**
+     * To string.
+     *
+     * @param o the o
+     * @return the string
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Comment)) {
+            return false;
+        }
+        if (!super.equals(o)) {
+            return false;
+        }
 
-		Comment comment = (Comment) o;
+        Comment comment = (Comment) o;
 
-		if (getUserId() != null ? !getUserId().equals(comment.getUserId()) : comment.getUserId() != null) {
-			return false;
-		}
-		if (getUserName() != null ? !getUserName().equals(comment.getUserName()) : comment.getUserName() != null) {
-			return false;
-		}
-		if (getUserSurname() != null ? !getUserSurname().equals(comment.getUserSurname()) : comment.getUserSurname() != null) {
-			return false;
-		}
-		if (!Arrays.equals(getPhoto(), comment.getPhoto())) {
-			return false;
-		}
-		if (getBase64Image() != null ? !getBase64Image().equals(comment.getBase64Image()) : comment.getBase64Image() != null) {
-			return false;
-		}
-		if (getCommentDate() != null ? !getCommentDate().equals(comment.getCommentDate()) : comment.getCommentDate() != null) {
-			return false;
-		}
-		if (getCommentText() != null ? !getCommentText().equals(comment.getCommentText()) : comment.getCommentText() != null) {
-			return false;
-		}
-		return getActive() != null ? getActive().equals(comment.getActive()) : comment.getActive() == null;
-	}
+        if (getUserId() != null ? !getUserId().equals(comment.getUserId()) : comment.getUserId() != null) {
+            return false;
+        }
+        if (getUserName() != null ? !getUserName().equals(comment.getUserName()) : comment.getUserName() != null) {
+            return false;
+        }
+        if (getUserSurname() != null ? !getUserSurname().equals(comment.getUserSurname()) : comment.getUserSurname() != null) {
+            return false;
+        }
+        if (!Arrays.equals(getPhoto(), comment.getPhoto())) {
+            return false;
+        }
+        if (getBase64Image() != null ? !getBase64Image().equals(comment.getBase64Image()) : comment.getBase64Image() != null) {
+            return false;
+        }
+        if (getCommentDate() != null ? !getCommentDate().equals(comment.getCommentDate()) : comment.getCommentDate() != null) {
+            return false;
+        }
+        if (getCommentText() != null ? !getCommentText().equals(comment.getCommentText()) : comment.getCommentText() != null) {
+            return false;
+        }
+        return getActive() != null ? getActive().equals(comment.getActive()) : comment.getActive() == null;
+    }
 
-	/**
-	 * Hash code.
-	 *
-	 * @return the int
-	 */
-	@Override
-	public int hashCode() {
-		int result = super.hashCode();
-		result = 31 * result + (getUserId() != null ? getUserId().hashCode() : 0);
-		result = 31 * result + (getUserName() != null ? getUserName().hashCode() : 0);
-		result = 31 * result + (getUserSurname() != null ? getUserSurname().hashCode() : 0);
-		result = 31 * result + Arrays.hashCode(getPhoto());
-		result = 31 * result + (getCommentDate() != null ? getCommentDate().hashCode() : 0);
-		result = 31 * result + (getCommentText() != null ? getCommentText().hashCode() : 0);
-		result = 31 * result + (getActive() != null ? getActive().hashCode() : 0);
-		return result;
-	}
+    /**
+     * Hash code.
+     *
+     * @return the int
+     */
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + (getUserId() != null ? getUserId().hashCode() : 0);
+        result = 31 * result + (getUserName() != null ? getUserName().hashCode() : 0);
+        result = 31 * result + (getUserSurname() != null ? getUserSurname().hashCode() : 0);
+        result = 31 * result + Arrays.hashCode(getPhoto());
+        result = 31 * result + (getCommentDate() != null ? getCommentDate().hashCode() : 0);
+        result = 31 * result + (getCommentText() != null ? getCommentText().hashCode() : 0);
+        result = 31 * result + (getActive() != null ? getActive().hashCode() : 0);
+        return result;
+    }
 
-	/**
-	 * The Class Builder.
-	 */
-	public static final class Builder {
+    /**
+     * To string.
+     *
+     * @return the string
+     */
+    @Override
+    public String toString() {
+        return "Comment{" +
+                "userId=" + userId +
+                ", userName='" + userName + '\'' +
+                ", userSurname='" + userSurname + '\'' +
+                ", active=" + active +
+                ", id=" + getId() +
+                '}';
+    }
 
-		/**
-		 * The id.
-		 */
-		private Integer id;
+    /**
+     * The Class Builder.
+     */
+    public static final class Builder {
 
-		/**
-		 * The user id.
-		 */
-		private Integer userId;
+        /**
+         * The id.
+         */
+        private Integer id;
 
-		/**
-		 * The user name.
-		 */
-		private String userName;
+        /**
+         * The user id.
+         */
+        private Integer userId;
 
-		/**
-		 * The user surname.
-		 */
-		private String userSurname;
+        /**
+         * The user name.
+         */
+        private String userName;
 
-		/**
-		 * The photo.
-		 */
-		private byte[] photo;
+        /**
+         * The user surname.
+         */
+        private String userSurname;
 
-		/**
-		 * The comment date.
-		 */
-		private LocalDateTime commentDate;
+        /**
+         * The photo.
+         */
+        private byte[] photo;
 
-		/**
-		 * The comment text.
-		 */
-		private String commentText;
+        /**
+         * The comment date.
+         */
+        private LocalDateTime commentDate;
 
-		/**
-		 * The active.
-		 */
-		private Boolean active;
+        /**
+         * The comment text.
+         */
+        private String commentText;
 
-		/**
-		 * The base 64 image.
-		 */
-		private String base64Image;
+        /**
+         * The active.
+         */
+        private Boolean active;
 
-		/**
-		 * Instantiates a new builder.
-		 */
-		public Builder() {
-			// Instantiates a new builder.
-		}
+        /**
+         * The base 64 image.
+         */
+        private String base64Image;
 
-		/**
-		 * Id.
-		 *
-		 * @param val the val
-		 * @return the builder
-		 */
-		public Builder id(Integer val) {
-			id = val;
-			return this;
-		}
+        /**
+         * Instantiates a new builder.
+         */
+        public Builder() {
+            // Instantiates a new builder.
+        }
 
-		/**
-		 * User id.
-		 *
-		 * @param val the val
-		 * @return the builder
-		 */
-		public Builder userId(Integer val) {
-			userId = val;
-			return this;
-		}
+        /**
+         * Id.
+         *
+         * @param val the val
+         * @return the builder
+         */
+        public Builder id(Integer val) {
+            id = val;
+            return this;
+        }
 
-		/**
-		 * User name.
-		 *
-		 * @param val the val
-		 * @return the builder
-		 */
-		public Builder userName(String val) {
-			userName = val;
-			return this;
-		}
+        /**
+         * User id.
+         *
+         * @param val the val
+         * @return the builder
+         */
+        public Builder userId(Integer val) {
+            userId = val;
+            return this;
+        }
 
-		/**
-		 * User surname.
-		 *
-		 * @param val the val
-		 * @return the builder
-		 */
-		public Builder userSurname(String val) {
-			userSurname = val;
-			return this;
-		}
+        /**
+         * User name.
+         *
+         * @param val the val
+         * @return the builder
+         */
+        public Builder userName(String val) {
+            userName = val;
+            return this;
+        }
 
-		/**
-		 * Photo.
-		 *
-		 * @param val the val
-		 * @return the builder
-		 */
-		public Builder photo(byte[] val) {
-			photo = val;
-			return this;
-		}
+        /**
+         * User surname.
+         *
+         * @param val the val
+         * @return the builder
+         */
+        public Builder userSurname(String val) {
+            userSurname = val;
+            return this;
+        }
 
-		/**
-		 * Comment date.
-		 *
-		 * @param val the val
-		 * @return the builder
-		 */
-		public Builder commentDate(LocalDateTime val) {
-			commentDate = val;
-			return this;
-		}
+        /**
+         * Photo.
+         *
+         * @param val the val
+         * @return the builder
+         */
+        public Builder photo(byte[] val) {
+            photo = val;
+            return this;
+        }
 
-		/**
-		 * Comment text.
-		 *
-		 * @param val the val
-		 * @return the builder
-		 */
-		public Builder commentText(String val) {
-			commentText = val;
-			return this;
-		}
+        /**
+         * Comment date.
+         *
+         * @param val the val
+         * @return the builder
+         */
+        public Builder commentDate(LocalDateTime val) {
+            commentDate = val;
+            return this;
+        }
 
-		/**
-		 * Active.
-		 *
-		 * @param val the val
-		 * @return the builder
-		 */
-		public Builder active(Boolean val) {
-			active = val;
-			return this;
-		}
+        /**
+         * Comment text.
+         *
+         * @param val the val
+         * @return the builder
+         */
+        public Builder commentText(String val) {
+            commentText = val;
+            return this;
+        }
 
-		/**
-		 * Base 64 image.
-		 *
-		 * @param val the val
-		 * @return the builder
-		 */
-		public Builder base64Image(String val) {
-			base64Image = val;
-			return this;
-		}
+        /**
+         * Active.
+         *
+         * @param val the val
+         * @return the builder
+         */
+        public Builder active(Boolean val) {
+            active = val;
+            return this;
+        }
 
-		/**
-		 * Builds the.
-		 *
-		 * @return the comment
-		 */
-		public Comment build() {
-			return new Comment(this);
-		}
-	}
+        /**
+         * Base 64 image.
+         *
+         * @param val the val
+         * @return the builder
+         */
+        public Builder base64Image(String val) {
+            base64Image = val;
+            return this;
+        }
+
+        /**
+         * Builds the.
+         *
+         * @return the comment
+         */
+        public Comment build() {
+            return new Comment(this);
+        }
+    }
 }

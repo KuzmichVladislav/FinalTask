@@ -39,6 +39,7 @@ can **edit and delete** your comments. **The administrator** can delete **any co
 
 **Technologies and libraries used**
 
+- jdk-version 13
 - log4j 2.14.1
 - mysql 8.0.26
 - javax.servlet 4.0.1
