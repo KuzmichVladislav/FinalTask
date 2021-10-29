@@ -319,7 +319,7 @@ public class UserDaoImpl implements UserDao {
 				.isActive(resultSet.getBoolean(IS_ACTIVE))
 				.photo(resultSet.getBytes(PHOTO))
 				.verification(resultSet.getBoolean(VERIFICATION))
-				.base64Image(resultSet.getBytes(PHOTO) != null
+				.photoBase64Image(resultSet.getBytes(PHOTO) != null
 						? IMAGE_SRC_PREFIX + Base64.getEncoder().encodeToString(resultSet.getBytes(PHOTO))
 						: DEFAULT_IMAGE)
 				.build();

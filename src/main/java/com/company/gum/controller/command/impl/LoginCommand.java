@@ -162,6 +162,6 @@ public class LoginCommand implements Command {
 		requestContent.putSessionAttribute(USER_NAME, user.getName());
 		requestContent.putSessionAttribute(USER_SURNAME, user.getSurname());
 		requestContent.putSessionAttribute(USER_MAIL, user.getMail());
-		requestContent.putSessionAttribute(USER_PHOTO, user.getBase64Image());
+		requestContent.putSessionAttribute(USER_PHOTO, user.getPhotoBase64Image());
 	}
 }

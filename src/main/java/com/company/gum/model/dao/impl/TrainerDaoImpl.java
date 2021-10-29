@@ -394,7 +394,7 @@ public class TrainerDaoImpl implements TrainerDao {
 				.experience(resultSet.getString(EXPERIENCE))
 				.description(resultSet.getString(DESCRIPTION))
 				.photo(resultSet.getBytes(PHOTO))
-				.base64Image(resultSet.getBytes(PHOTO) != null
+				.photoBase64Image(resultSet.getBytes(PHOTO) != null
 						? IMAGE_SRC_PREFIX + Base64.getEncoder().encodeToString(resultSet.getBytes(PHOTO))
 						: DEFAULT_IMAGE)
 				.build();

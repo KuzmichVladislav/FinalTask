@@ -57,7 +57,7 @@ public class User extends AbstractEntity {
     /**
      * The base 64 image.
      */
-    private String base64Image;
+    private String photoBase64Image;
 
     /**
      * Instantiates a new user.
@@ -75,7 +75,7 @@ public class User extends AbstractEntity {
         setMail(builder.mail);
         setVerification(builder.verification);
         setPhoto(builder.photo);
-        setBase64Image(builder.base64Image);
+        setPhotoBase64Image(builder.photoBase64Image);
     }
 
     /**
@@ -251,17 +251,17 @@ public class User extends AbstractEntity {
      *
      * @return the base 64 image
      */
-    public String getBase64Image() {
-        return base64Image;
+    public String getPhotoBase64Image() {
+        return photoBase64Image;
     }
 
     /**
      * Sets the base 64 image.
      *
-     * @param base64Image the new base 64 image
+     * @param photoBase64Image the new base 64 image
      */
-    public void setBase64Image(String base64Image) {
-        this.base64Image = base64Image;
+    public void setPhotoBase64Image(String photoBase64Image) {
+        this.photoBase64Image = photoBase64Image;
     }
 
     /**
@@ -311,7 +311,7 @@ public class User extends AbstractEntity {
         if (!Arrays.equals(getPhoto(), user.getPhoto())) {
             return false;
         }
-        return getBase64Image() != null ? getBase64Image().equals(user.getBase64Image()) : user.getBase64Image() == null;
+        return getPhotoBase64Image() != null ? getPhotoBase64Image().equals(user.getPhotoBase64Image()) : user.getPhotoBase64Image() == null;
     }
 
     /**
@@ -331,7 +331,7 @@ public class User extends AbstractEntity {
         result = 31 * result + (getMail() != null ? getMail().hashCode() : 0);
         result = 31 * result + (isVerification() ? 1 : 0);
         result = 31 * result + Arrays.hashCode(getPhoto());
-        result = 31 * result + (getBase64Image() != null ? getBase64Image().hashCode() : 0);
+        result = 31 * result + (getPhotoBase64Image() != null ? getPhotoBase64Image().hashCode() : 0);
         return result;
     }
 
@@ -434,7 +434,7 @@ public class User extends AbstractEntity {
         /**
          * The base 64 image.
          */
-        private String base64Image;
+        private String photoBase64Image;
 
         /**
          * Instantiates a new builder.
@@ -570,8 +570,8 @@ public class User extends AbstractEntity {
          * @param val the {@code base64Image} to set
          * @return a reference to this Builder
          */
-        public Builder base64Image(String val) {
-            base64Image = val;
+        public Builder photoBase64Image(String val) {
+            photoBase64Image = val;
             return this;
         }
 

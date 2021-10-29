@@ -203,7 +203,7 @@ public class CommentDaoImpl implements CommentDao {
 				.commentText(resultSet.getString(COMMENT_TEXT))
 				.commentDate(resultSet.getTimestamp(COMMENT_DATE).toLocalDateTime())
 				.active(resultSet.getBoolean(IS_ACTIVE))
-				.base64Image(resultSet.getBytes(PHOTO) != null
+				.photoBase64Image(resultSet.getBytes(PHOTO) != null
 						? IMAGE_SRC_PREFIX + Base64.getEncoder().encodeToString(resultSet.getBytes(PHOTO))
 						: DEFAULT_IMAGE)
 				.build();

@@ -86,7 +86,7 @@
                         <div class="card card-white post" style="width: auto">
                             <div class="post-heading">
                                 <div class="float-left image">
-                                    <img src="${comment.base64Image}"
+                                    <img src="${comment.photoBase64Image}"
                                          class="img-circle avatar" alt="user profile image">
                                 </div>
                                 <div class="float-left meta">

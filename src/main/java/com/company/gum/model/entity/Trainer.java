@@ -60,7 +60,7 @@ public class Trainer extends User {
         setVerification(builder.verification);
         setActive(builder.isActive);
         setPhoto(builder.photo);
-        setBase64Image(builder.base64Image);
+        setPhotoBase64Image(builder.photoBase64Image);
         setRegisterDate(builder.registerDate);
         setPhone(builder.phone);
         setMail(builder.mail);
@@ -297,7 +297,7 @@ public class Trainer extends User {
         /**
          * The base 64 image.
          */
-        private String base64Image;
+        private String photoBase64Image;
 
         /**
          * The register date.
@@ -477,8 +477,8 @@ public class Trainer extends User {
          * @param val the {@code base64Image} to set
          * @return a reference to this Builder
          */
-        public Builder base64Image(String val) {
-            base64Image = val;
+        public Builder photoBase64Image(String val) {
+            photoBase64Image = val;
             return this;
         }
 

@@ -50,7 +50,7 @@ public class Client extends User {
         setVerification(builder.verification);
         setActive(builder.isActive);
         setPhoto(builder.photo);
-        setBase64Image(builder.base64Image);
+        setPhotoBase64Image(builder.photoBase64Image);
         setRegisterDate(builder.registerDate);
         setDiscount(builder.discount);
         setPhone(builder.phone);
@@ -252,7 +252,7 @@ public class Client extends User {
         /**
          * The base 64 image.
          */
-        private String base64Image;
+        private String photoBase64Image;
 
         /**
          * The register date.
@@ -397,8 +397,8 @@ public class Client extends User {
          * @param val the val
          * @return the builder
          */
-        public Builder base64Image(String val) {
-            base64Image = val;
+        public Builder photoBase64Image(String val) {
+            photoBase64Image = val;
             return this;
         }
 

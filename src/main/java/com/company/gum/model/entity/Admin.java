@@ -32,7 +32,7 @@ public class Admin extends User {
         setVerification(builder.verification);
         setActive(builder.isActive);
         setPhoto(builder.photo);
-        setBase64Image(builder.base64Image);
+        setPhotoBase64Image(builder.photoBase64Image);
     }
 
     /**
@@ -111,7 +111,7 @@ public class Admin extends User {
         /**
          * The base 64 image.
          */
-        private String base64Image;
+        private String photoBase64Image;
 
         /**
          * Instantiates a new builder.
@@ -167,7 +167,7 @@ public class Admin extends User {
             if (!Arrays.equals(photo, builder.photo)) {
                 return false;
             }
-            return base64Image != null ? base64Image.equals(builder.base64Image) : builder.base64Image == null;
+            return photoBase64Image != null ? photoBase64Image.equals(builder.photoBase64Image) : builder.photoBase64Image == null;
         }
 
         /**
@@ -317,8 +317,8 @@ public class Admin extends User {
          * @param val the {@code base64Image} to set
          * @return a reference to this Builder
          */
-        public Builder base64Image(String val) {
-            base64Image = val;
+        public Builder photoBase64Image(String val) {
+            photoBase64Image = val;
             return this;
         }
 

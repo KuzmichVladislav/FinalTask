@@ -390,7 +390,7 @@ public class ClientDaoImpl implements ClientDao {
 				.photo(resultSet.getBytes(PHOTO))
 				.verification(resultSet.getBoolean(VERIFICATION))
 				.money(resultSet.getBigDecimal(MONEY))
-				.base64Image(resultSet.getBytes(PHOTO) != null
+				.photoBase64Image(resultSet.getBytes(PHOTO) != null
 						? IMAGE_SRC_PREFIX + Base64.getEncoder().encodeToString(resultSet.getBytes(PHOTO))
 						: DEFAULT_IMAGE)
 				.build();

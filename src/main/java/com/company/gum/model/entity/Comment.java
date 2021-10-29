@@ -33,7 +33,7 @@ public class Comment extends AbstractEntity {
     /**
      * The base 64 image.
      */
-    private String base64Image;
+    private String photoBase64Image;
 
     /**
      * The comment date.
@@ -70,7 +70,7 @@ public class Comment extends AbstractEntity {
         setCommentDate(builder.commentDate);
         setCommentText(builder.commentText);
         setActive(builder.active);
-        setBase64Image(builder.base64Image);
+        setPhotoBase64Image(builder.photoBase64Image);
     }
 
     /**
@@ -78,17 +78,17 @@ public class Comment extends AbstractEntity {
      *
      * @return the base 64 image
      */
-    public String getBase64Image() {
-        return base64Image;
+    public String getPhotoBase64Image() {
+        return photoBase64Image;
     }
 
     /**
      * Sets the base 64 image.
      *
-     * @param base64Image the new base 64 image
+     * @param photoBase64Image the new base 64 image
      */
-    public void setBase64Image(String base64Image) {
-        this.base64Image = base64Image;
+    public void setPhotoBase64Image(String photoBase64Image) {
+        this.photoBase64Image = photoBase64Image;
     }
 
     /**
@@ -249,7 +249,7 @@ public class Comment extends AbstractEntity {
         if (!Arrays.equals(getPhoto(), comment.getPhoto())) {
             return false;
         }
-        if (getBase64Image() != null ? !getBase64Image().equals(comment.getBase64Image()) : comment.getBase64Image() != null) {
+        if (getPhotoBase64Image() != null ? !getPhotoBase64Image().equals(comment.getPhotoBase64Image()) : comment.getPhotoBase64Image() != null) {
             return false;
         }
         if (getCommentDate() != null ? !getCommentDate().equals(comment.getCommentDate()) : comment.getCommentDate() != null) {
@@ -343,7 +343,7 @@ public class Comment extends AbstractEntity {
         /**
          * The base 64 image.
          */
-        private String base64Image;
+        private String photoBase64Image;
 
         /**
          * Instantiates a new builder.
@@ -446,8 +446,8 @@ public class Comment extends AbstractEntity {
          * @param val the val
          * @return the builder
          */
-        public Builder base64Image(String val) {
-            base64Image = val;
+        public Builder photoBase64Image(String val) {
+            photoBase64Image = val;
             return this;
         }
 

@@ -81,7 +81,7 @@
                     <div class="col-md-4">
 
                         <div class="profile-img">
-                                <img src="${trainer.base64Image}"/>
+                                <img src="${trainer.photoBase64Image}"/>
                         </div>
                     </div>
                     <div class="col-md-6" style="max-width:42%;">
@@ -235,7 +235,7 @@
                     <div class="col-md-4">
 
                         <div class="profile-img">
-                                <img src="${client.base64Image}"/>
+                                <img src="${client.photoBase64Image}"/>
                         </div>
                     </div>
                     <div class="col-md-6" style="max-width:42%;">
