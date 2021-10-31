@@ -59,6 +59,7 @@ public class CommandFilter implements Filter {
             EDIT_COMMENT,
             REFILL_MONEY,
             UPDATE_ORDER_STATUS,
+            SHOW_USER_PROFILE,
             SHOW_ALL_TRAINERS);
 
     /**
